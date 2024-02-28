@@ -6,11 +6,15 @@ import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.util.Assert;
 
 import javax.annotation.Nonnull;
 import java.nio.charset.Charset;
@@ -19,7 +23,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import static java.util.Collections.unmodifiableList;
 import static org.springframework.core.annotation.AnnotationAwareOrderComparator.sort;
 
 /**
@@ -30,8 +33,8 @@ import static org.springframework.core.annotation.AnnotationAwareOrderComparator
  * @see ServiceMessageSource
  * @since 1.0.0
  */
-public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource,
-        InitializingBean, SmartInitializingSingleton, DisposableBean {
+public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource, BeanFactoryAware,
+        InitializingBean, DisposableBean {
 
     private static final Logger logger = LoggerFactory.getLogger(DelegatingServiceMessageSource.class);
 
@@ -39,47 +42,25 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
 
     private CompositeServiceMessageSource delegate;
 
+    private ListableBeanFactory beanFactory;
+
     public DelegatingServiceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider) {
         this.serviceMessageSourcesProvider = serviceMessageSourcesProvider;
     }
 
     @Override
-    public void afterSingletonsInstantiated() {
-        List<ServiceMessageSource> serviceMessageSources = getServiceMessageSourceBeans();
-        this.delegate.setServiceMessageSources(serviceMessageSources);
-        this.delegate.init();
-    }
-
-    private List<ServiceMessageSource> getServiceMessageSourceBeans() {
-        List<ServiceMessageSource> serviceMessageSources = new LinkedList<>();
-        for (ServiceMessageSource serviceMessageSource : serviceMessageSourcesProvider) {
-            if (serviceMessageSource != this) {
-                serviceMessageSources.add(serviceMessageSource);
-            }
+    public void init() {
+        CompositeServiceMessageSource delegate = this.delegate;
+        if (delegate == null) {
+            delegate = new CompositeServiceMessageSource();
+            delegate.setServiceMessageSources(getServiceMessageSourceBeans());
+            this.delegate = delegate;
         }
-        sort(serviceMessageSources);
-        logger.debug("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
-        return unmodifiableList(serviceMessageSources);
-    }
-
-    @Override
-    public String toString() {
-        return "ServiceMessageSources{" + "delegate=" + delegate + '}';
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        this.init();
-    }
-
-    @Override
-    public void init() {
-        this.delegate = new CompositeServiceMessageSource();
-    }
-
-    @Override
-    public void destroy() {
-        this.delegate.destroy();
+        init();
     }
 
     @Nonnull
@@ -145,6 +126,30 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
     @Override
     public Charset getEncoding() {
         return this.delegate.getEncoding();
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        Assert.isInstanceOf(ListableBeanFactory.class, beanFactory, "The 'beanFactory' must be an instance of ListableBeanFactory class");
+        this.beanFactory = (ListableBeanFactory) beanFactory;
+    }
+
+    @Override
+    public void destroy() {
+        this.delegate.destroy();
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceMessageSources{" + "delegate=" + delegate + '}';
+    }
+
+    private List<ServiceMessageSource> getServiceMessageSourceBeans() {
+        List<ServiceMessageSource> serviceMessageSources = new LinkedList<>();
+        serviceMessageSourcesProvider.forEach(serviceMessageSources::add);
+        sort(serviceMessageSources);
+        logger.debug("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
+        return serviceMessageSources;
     }
 
 }

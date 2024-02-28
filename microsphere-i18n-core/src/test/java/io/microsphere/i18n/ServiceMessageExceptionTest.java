@@ -17,7 +17,9 @@
 package io.microsphere.i18n;
 
 import io.microsphere.i18n.util.I18nUtils;
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -37,8 +39,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class ServiceMessageExceptionTest {
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void before() {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
         serviceMessageSource.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
         serviceMessageSource.setSupportedLocales(asList(Locale.SIMPLIFIED_CHINESE));
@@ -46,8 +48,8 @@ public class ServiceMessageExceptionTest {
         I18nUtils.setServiceMessageSource(serviceMessageSource);
     }
 
-    @AfterClass
-    public static void afterClass() {
+    @After
+    public void after() {
         I18nUtils.destroyServiceMessageSource();
     }
 

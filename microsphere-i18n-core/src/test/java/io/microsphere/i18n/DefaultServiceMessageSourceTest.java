@@ -1,7 +1,5 @@
 package io.microsphere.i18n;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,7 +10,7 @@ import static org.junit.Assert.assertEquals;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class DefaultServiceMessageSourceTest {
+public class DefaultServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     public void test() {

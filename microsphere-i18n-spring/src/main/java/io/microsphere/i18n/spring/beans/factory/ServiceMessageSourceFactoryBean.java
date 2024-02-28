@@ -9,9 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
@@ -52,9 +50,8 @@ import static org.springframework.util.StringUtils.hasText;
  * @since 1.0.0
  */
 public final class ServiceMessageSourceFactoryBean implements ReloadableResourceServiceMessageSource,
-        ApplicationListener<ResourceServiceMessageSourceChangedEvent>,
-        FactoryBean<ReloadableResourceServiceMessageSource>, InitializingBean, EnvironmentAware, BeanClassLoaderAware,
-        ApplicationContextAware, DisposableBean, Ordered {
+        ApplicationListener<ResourceServiceMessageSourceChangedEvent>, EnvironmentAware, BeanClassLoaderAware,
+        ApplicationContextAware, FactoryBean<ReloadableResourceServiceMessageSource>, Ordered {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceMessageSourceFactoryBean.class);
 
@@ -67,7 +64,6 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
     private ConfigurableEnvironment environment;
 
     private ApplicationContext context;
-
 
     private int order;
 
@@ -89,7 +85,6 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
     @Override
     public void init() {
         this.delegate.setServiceMessageSources(initServiceMessageSources());
-        this.delegate.init();
     }
 
     @Override
@@ -136,11 +131,6 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        init();
-    }
-
-    @Override
     public void setBeanClassLoader(ClassLoader classLoader) {
         this.classLoader = classLoader;
     }
@@ -183,6 +173,7 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
 
             serviceMessageSource.setDefaultLocale(defaultLocale);
             serviceMessageSource.setSupportedLocales(supportedLocales);
+            serviceMessageSource.init();
         }
 
         sort(serviceMessageSources);

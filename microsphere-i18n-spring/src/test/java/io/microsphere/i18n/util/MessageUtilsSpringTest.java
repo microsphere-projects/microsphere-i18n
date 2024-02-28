@@ -1,12 +1,12 @@
 package io.microsphere.i18n.util;
 
+import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
 import io.microsphere.i18n.spring.context.I18nConfiguration;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,12 +22,8 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes = {
         I18nConfiguration.class,
         TestServiceMessageSourceConfiguration.class})
-public class MessageUtilsSpringTest {
-
-    @Before
-    public void before() {
-        LocaleContextHolder.resetLocaleContext();
-    }
+@DirtiesContext
+public class MessageUtilsSpringTest extends AbstractSpringTest {
 
     @Test
     public void testGetLocalizedMessage() {

@@ -16,17 +16,19 @@ import static org.junit.Assert.assertNull;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class EmptyServiceMessageSourceTest {
+public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     private EmptyServiceMessageSource serviceMessageSource = EmptyServiceMessageSource.INSTANCE;
 
     @Before
     public void before() {
+        super.before();
         serviceMessageSource.init();
     }
 
     @After
     public void after() {
+        super.after();
         serviceMessageSource.destroy();
     }
 

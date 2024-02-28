@@ -1,9 +1,9 @@
 package io.microsphere.i18n.spring.context;
 
-import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
+import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBeanLifecyclePostProcessor;
 import io.microsphere.i18n.util.I18nUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -28,7 +29,6 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.COMMON_SERVICE_
 import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_ENABLED;
 import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
-import static io.microsphere.spring.util.BeanUtils.getSortedBeans;
 
 /**
  * Internationalization Configuration class
@@ -36,13 +36,16 @@ import static io.microsphere.spring.util.BeanUtils.getSortedBeans;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
+@Import(value = {
+        ServiceMessageSourceBeanLifecyclePostProcessor.class
+})
 public class I18nConfiguration implements DisposableBean {
 
     private static final Logger logger = LoggerFactory.getLogger(I18nConfiguration.class);
 
     @Autowired
-    @Qualifier(SERVICE_MESSAGE_SOURCE_BEAN_NAME)
-    public void init(ServiceMessageSource serviceMessageSource) {
+    public void init(@Qualifier(SERVICE_MESSAGE_SOURCE_BEAN_NAME)
+                     ServiceMessageSource serviceMessageSource) {
         I18nUtils.setServiceMessageSource(serviceMessageSource);
     }
 
@@ -60,8 +63,8 @@ public class I18nConfiguration implements DisposableBean {
 
     @Bean(name = SERVICE_MESSAGE_SOURCE_BEAN_NAME)
     @Primary
-    public DelegatingServiceMessageSource serviceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSources) {
-        return new DelegatingServiceMessageSource(serviceMessageSources);
+    public DelegatingServiceMessageSource serviceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider) {
+        return new DelegatingServiceMessageSource(serviceMessageSourcesProvider);
     }
 
     @Bean

@@ -1,14 +1,13 @@
 package io.microsphere.i18n.util;
 
+import io.microsphere.i18n.AbstractI18nTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Locale;
 
-import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
 import static org.junit.Assert.assertEquals;
 
@@ -16,18 +15,14 @@ import static org.junit.Assert.assertEquals;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class MessageUtilsTest {
+public class MessageUtilsTest extends AbstractI18nTest {
 
     @Before
     public void before() {
+        super.before();
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
         serviceMessageSource.init();
         setServiceMessageSource(serviceMessageSource);
-    }
-
-    @After
-    public void after() {
-        destroyServiceMessageSource();
     }
 
     @Test

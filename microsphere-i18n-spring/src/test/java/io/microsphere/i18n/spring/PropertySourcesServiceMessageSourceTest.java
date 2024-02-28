@@ -1,6 +1,6 @@
 package io.microsphere.i18n.spring;
 
-import org.junit.After;
+import io.microsphere.i18n.AbstractSpringTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -20,16 +20,12 @@ import static org.junit.Assert.assertEquals;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class PropertySourcesServiceMessageSourceTest {
+public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
 
     @Before
     public void before() {
+        super.before();
         LocaleContextHolder.setLocale(Locale.SIMPLIFIED_CHINESE);
-    }
-
-    @After
-    public void after() {
-        LocaleContextHolder.resetLocaleContext();
     }
 
     @Test
