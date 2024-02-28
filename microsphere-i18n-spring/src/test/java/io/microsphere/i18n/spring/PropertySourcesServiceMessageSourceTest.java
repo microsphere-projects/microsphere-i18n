@@ -1,12 +1,16 @@
 package io.microsphere.i18n.spring;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.mock.env.MockEnvironment;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,6 +21,16 @@ import static org.junit.Assert.assertEquals;
  * @since 1.0.0
  */
 public class PropertySourcesServiceMessageSourceTest {
+
+    @Before
+    public void before() {
+        LocaleContextHolder.setLocale(Locale.SIMPLIFIED_CHINESE);
+    }
+
+    @After
+    public void after() {
+        LocaleContextHolder.resetLocaleContext();
+    }
 
     @Test
     public void test() throws IOException {
