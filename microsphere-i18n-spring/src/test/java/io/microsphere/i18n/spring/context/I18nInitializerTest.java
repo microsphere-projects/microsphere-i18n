@@ -21,7 +21,10 @@ import static org.junit.Assert.assertEquals;
  * @since 1.0.0
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(initializers = I18nInitializer.class, loader = AnnotationConfigContextLoader.class, classes = I18nInitializerTest.class)
+@ContextConfiguration(
+        initializers = I18nInitializer.class,
+        loader = AnnotationConfigContextLoader.class,
+        classes = I18nInitializerTest.class)
 @Configuration
 public class I18nInitializerTest {
 
