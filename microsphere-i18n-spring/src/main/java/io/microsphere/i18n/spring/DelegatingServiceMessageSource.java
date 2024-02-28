@@ -30,7 +30,8 @@ import static org.springframework.core.annotation.AnnotationAwareOrderComparator
  * @see ServiceMessageSource
  * @since 1.0.0
  */
-public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource, InitializingBean, SmartInitializingSingleton, DisposableBean {
+public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource,
+        InitializingBean, SmartInitializingSingleton, DisposableBean {
 
     private static final Logger logger = LoggerFactory.getLogger(DelegatingServiceMessageSource.class);
 
@@ -145,4 +146,5 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
     public Charset getEncoding() {
         return this.delegate.getEncoding();
     }
+
 }
