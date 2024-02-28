@@ -19,7 +19,9 @@ import static org.junit.Assert.assertEquals;
  * @since 1.0.0
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {I18nConfiguration.class, I18nUtils.class, TestServiceMessageSourceConfiguration.class})
+@ContextConfiguration(classes = {
+        I18nConfiguration.class,
+        TestServiceMessageSourceConfiguration.class})
 public class MessageUtilsSpringTest {
 
     @Before
