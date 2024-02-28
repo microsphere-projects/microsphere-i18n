@@ -78,19 +78,6 @@ public class I18nConfiguration implements DisposableBean {
         processAcceptHeaderLocaleContextResolver(context);
     }
 
-    @EventListener(ResourceServiceMessageSourceChangedEvent.class)
-    public void onResourceServiceMessageSourceChangedEvent(ResourceServiceMessageSourceChangedEvent event) {
-        ApplicationContext context = event.getApplicationContext();
-        Iterable<String> changedResources = event.getChangedResources();
-        logger.debug("Receive event change resource: {}", changedResources);
-        for (ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource : getSortedBeans(context, ReloadableResourceServiceMessageSource.class)) {
-            if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
-                reloadableResourceServiceMessageSource.reload(changedResources);
-                logger.debug("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
-            }
-        }
-    }
-
     private void processAcceptHeaderLocaleContextResolver(ApplicationContext context) {
         ObjectProvider<AcceptHeaderLocaleResolver> localeContextResolverProvider = context.getBeanProvider(AcceptHeaderLocaleResolver.class);
         localeContextResolverProvider.ifAvailable(localeContextResolver -> {
