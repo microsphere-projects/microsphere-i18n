@@ -1,18 +1,24 @@
 package io.microsphere.i18n;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.Nonnull;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
 import static io.microsphere.collection.ListUtils.forEach;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;
 import static java.util.Collections.sort;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * The Composite {@link ServiceMessageSource} class
@@ -24,31 +30,69 @@ import static java.util.Collections.sort;
  * @see ReloadableResourceServiceMessageSource
  * @since 1.0.0
  */
-public class CompositeServiceMessageSource extends AbstractServiceMessageSource implements ReloadableResourceServiceMessageSource {
+public class CompositeServiceMessageSource implements ReloadableResourceServiceMessageSource {
+
+    private static final Logger logger = LoggerFactory.getLogger(CompositeServiceMessageSource.class);
 
     private List<? extends ServiceMessageSource> serviceMessageSources;
 
     public CompositeServiceMessageSource() {
-        super("Composite");
+        this.serviceMessageSources = emptyList();
     }
 
     public CompositeServiceMessageSource(List<? extends ServiceMessageSource> serviceMessageSources) {
-        super("Composite");
         setServiceMessageSources(serviceMessageSources);
     }
 
     @Override
     public void init() {
         forEach(this.serviceMessageSources, ServiceMessageSource::init);
-        this.initDefaultLocale();
-        this.initSupportedLocales();
+    }
+
+    @Nonnull
+    @Override
+    public String getMessage(String code, Locale locale, Object... args) {
+        String message = null;
+        for (ServiceMessageSource serviceMessageSource : serviceMessageSources) {
+            message = serviceMessageSource.getMessage(code, locale, args);
+            if (message != null) {
+                break;
+            }
+        }
+        return message;
+    }
+
+    @Nonnull
+    @Override
+    public Locale getLocale() {
+        ServiceMessageSource serviceMessageSource = getFirstServiceMessageSource();
+        return serviceMessageSource == null ? getDefaultLocale() : serviceMessageSource.getLocale();
+    }
+
+    @Nonnull
+    @Override
+    public Locale getDefaultLocale() {
+        ServiceMessageSource serviceMessageSource = getFirstServiceMessageSource();
+        return serviceMessageSource == null ? ReloadableResourceServiceMessageSource.super.getDefaultLocale() : serviceMessageSource.getLocale();
+    }
+
+    @Nonnull
+    @Override
+    public List<Locale> getSupportedLocales() {
+        List<Locale> supportedLocales = new LinkedList<>();
+        iterate(serviceMessageSource -> {
+            for (Locale locale : serviceMessageSource.getSupportedLocales()) {
+                if (!supportedLocales.contains(locale)) {
+                    supportedLocales.add(locale);
+                }
+            }
+        });
+        return unmodifiableList(supportedLocales);
     }
 
     @Override
-    public void destroy() {
-        List<? extends ServiceMessageSource> serviceMessageSources = this.serviceMessageSources;
-        forEach(serviceMessageSources, ServiceMessageSource::destroy);
-        serviceMessageSources.clear();
+    public String getSource() {
+        return ReloadableResourceServiceMessageSource.super.getSource();
     }
 
     public void setServiceMessageSources(List<? extends ServiceMessageSource> serviceMessageSources) {
@@ -60,58 +104,6 @@ public class CompositeServiceMessageSource extends AbstractServiceMessageSource 
         }
         this.serviceMessageSources = newServiceMessageSources;
         logger.debug("Source '{}' sets ServiceMessageSource list, original : {} , sorted : {}", serviceMessageSources, newServiceMessageSources);
-    }
-
-    protected Locale resolveLocale(Locale locale) {
-
-        Locale defaultLocale = getDefaultLocale();
-
-        if (locale == null || Objects.equals(defaultLocale, locale)) { // If it's the default Locale
-            return defaultLocale;
-        }
-
-        if (supports(locale)) { // If it matches the supported Locale list
-            return locale;
-        }
-
-        Locale resolvedLocale = null;
-
-        List<Locale> derivedLocales = resolveDerivedLocales(locale);
-        for (Locale derivedLocale : derivedLocales) {
-            if (supports(derivedLocale)) {
-                resolvedLocale = derivedLocale;
-                break;
-            }
-        }
-
-        return resolvedLocale == null ? defaultLocale : resolvedLocale;
-    }
-
-    @Override
-    protected String getInternalMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object... args) {
-        String message = null;
-        for (ServiceMessageSource serviceMessageSource : serviceMessageSources) {
-            message = serviceMessageSource.getMessage(resolvedCode, resolvedLocale, args);
-            if (message != null) {
-                break;
-            }
-        }
-
-        if (message == null) {
-            Locale defaultLocale = getDefaultLocale();
-            if (!Objects.equals(defaultLocale, resolvedLocale)) { // Use the default Locale as the bottom pocket
-                message = getInternalMessage(resolvedCode, resolvedCode, defaultLocale, defaultLocale, args);
-            }
-        }
-
-        return message;
-    }
-
-    @Override
-    public String toString() {
-        return "CompositeServiceMessageSource{" +
-                "serviceMessageSources=" + serviceMessageSources +
-                '}';
     }
 
     @Override
@@ -146,12 +138,30 @@ public class CompositeServiceMessageSource extends AbstractServiceMessageSource 
         iterate(ResourceServiceMessageSource.class, resourceServiceMessageSource -> {
             resources.addAll(resourceServiceMessageSource.getInitializeResources());
         });
-        return resources;
+        return unmodifiableSet(resources);
     }
 
     @Override
     public Charset getEncoding() {
         return ReloadableResourceServiceMessageSource.super.getEncoding();
+    }
+
+    @Override
+    public void destroy() {
+        List<? extends ServiceMessageSource> serviceMessageSources = this.serviceMessageSources;
+        forEach(serviceMessageSources, ServiceMessageSource::destroy);
+        serviceMessageSources.clear();
+    }
+
+    @Override
+    public String toString() {
+        return "CompositeServiceMessageSource{" +
+                "serviceMessageSources=" + serviceMessageSources +
+                '}';
+    }
+
+    private ServiceMessageSource getFirstServiceMessageSource() {
+        return this.serviceMessageSources.isEmpty() ? null : this.serviceMessageSources.get(0);
     }
 
     private <T> void iterate(Class<T> serviceMessageSourceType, Consumer<T> consumer) {
@@ -161,18 +171,7 @@ public class CompositeServiceMessageSource extends AbstractServiceMessageSource 
                 .forEach(consumer);
     }
 
-    private void initDefaultLocale() {
-        Locale defaultLocale = serviceMessageSources.isEmpty() ? super.getDefaultLocale() : serviceMessageSources.get(0).getDefaultLocale();
-        setDefaultLocale(defaultLocale);
-    }
-
-    private void initSupportedLocales() {
-        List<Locale> allSupportedLocales = new LinkedList<>();
-        for (ServiceMessageSource serviceMessageSource : serviceMessageSources) {
-            for (Locale supportedLocale : serviceMessageSource.getSupportedLocales()) {
-                allSupportedLocales.add(supportedLocale);
-            }
-        }
-        setSupportedLocales(allSupportedLocales);
+    private <T> void iterate(Consumer<ServiceMessageSource> consumer) {
+        this.serviceMessageSources.forEach(consumer);
     }
 }
