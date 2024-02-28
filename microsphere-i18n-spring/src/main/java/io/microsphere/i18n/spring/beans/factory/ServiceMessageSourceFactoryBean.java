@@ -4,6 +4,7 @@ import io.microsphere.i18n.AbstractServiceMessageSource;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.Ordered;
@@ -32,6 +34,7 @@ import java.util.stream.Collectors;
 
 import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
+import static io.microsphere.spring.util.BeanUtils.getSortedBeans;
 import static io.microsphere.spring.util.BeanUtils.invokeAwareInterfaces;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
@@ -49,6 +52,7 @@ import static org.springframework.util.StringUtils.hasText;
  * @since 1.0.0
  */
 public final class ServiceMessageSourceFactoryBean implements ReloadableResourceServiceMessageSource,
+        ApplicationListener<ResourceServiceMessageSourceChangedEvent>,
         FactoryBean<ReloadableResourceServiceMessageSource>, InitializingBean, EnvironmentAware, BeanClassLoaderAware,
         ApplicationContextAware, DisposableBean, Ordered {
 
@@ -179,7 +183,6 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
 
             serviceMessageSource.setDefaultLocale(defaultLocale);
             serviceMessageSource.setSupportedLocales(supportedLocales);
-            serviceMessageSource.init();
         }
 
         sort(serviceMessageSources);
@@ -251,5 +254,18 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
             logger.debug("List of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
         }
         return unmodifiableList(supportedLocales);
+    }
+
+    @Override
+    public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
+        ApplicationContext context = event.getApplicationContext();
+        Iterable<String> changedResources = event.getChangedResources();
+        logger.debug("Receive event change resource: {}", changedResources);
+        for (ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource : getSortedBeans(context, ReloadableResourceServiceMessageSource.class)) {
+            if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
+                reloadableResourceServiceMessageSource.reload(changedResources);
+                logger.debug("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
+            }
+        }
     }
 }
