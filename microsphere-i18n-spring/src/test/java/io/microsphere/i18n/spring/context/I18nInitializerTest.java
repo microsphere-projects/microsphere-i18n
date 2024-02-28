@@ -1,7 +1,7 @@
 package io.microsphere.i18n.spring.context;
 
-import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +35,6 @@ public class I18nInitializerTest {
 
     @Test
     public void test() {
-        assertEquals(CompositeServiceMessageSource.class, serviceMessageSource.getClass());
+        assertEquals(DelegatingServiceMessageSource.class, serviceMessageSource.getClass());
     }
 }

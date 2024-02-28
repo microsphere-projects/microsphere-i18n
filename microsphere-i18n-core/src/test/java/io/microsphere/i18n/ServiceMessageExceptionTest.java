@@ -20,7 +20,6 @@ import io.microsphere.i18n.util.I18nUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -40,7 +39,6 @@ public class ServiceMessageExceptionTest {
 
     @BeforeClass
     public static void init() {
-        LocaleContextHolder.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
         serviceMessageSource.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
         serviceMessageSource.setSupportedLocales(asList(Locale.SIMPLIFIED_CHINESE));
@@ -51,7 +49,6 @@ public class ServiceMessageExceptionTest {
     @AfterClass
     public static void afterClass() {
         I18nUtils.setServiceMessageSource(null);
-        LocaleContextHolder.resetLocaleContext();
     }
 
     @Test

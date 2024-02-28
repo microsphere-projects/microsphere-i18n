@@ -19,6 +19,8 @@
     <description>Microsphere Internationalisation Parent</description>
 
     <properties>
+        <microsphere.version>${revision}</microsphere.version>
+        <microsphere-spring.version>${revision}</microsphere-spring.version>
         <apache.commons.lang3.version>3.4</apache.commons.lang3.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
         <apache.commons.collections.version>3.2.2</apache.commons.collections.version>
@@ -48,15 +50,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <!-- Resilience4j Dependencies -->
-                <groupId>io.github.resilience4j</groupId>
-                <artifactId>resilience4j-bom</artifactId>
-                <version>${resilience4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -119,6 +112,24 @@
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>sentinel-core</artifactId>
                 <version>${alibaba.sentinel.version}</version>
+            </dependency>
+
+            <!-- Microsphere Dependencies -->
+            <dependency>
+                <groupId>io.github.microsphere-projects</groupId>
+                <artifactId>microsphere-dependencies</artifactId>
+                <version>${microsphere.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Microsphere Spring Dependencies -->
+            <dependency>
+                <groupId>io.github.microsphere-projects</groupId>
+                <artifactId>microsphere-spring-dependencies</artifactId>
+                <version>${microsphere-spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- Testing -->

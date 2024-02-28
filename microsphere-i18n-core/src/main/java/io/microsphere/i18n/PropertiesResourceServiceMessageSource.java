@@ -1,6 +1,6 @@
 package io.microsphere.i18n;
 
-import org.springframework.util.CollectionUtils;
+import io.microsphere.collection.MapUtils;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,6 +11,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+import static io.microsphere.collection.CollectionUtils.isEmpty;
+import static io.microsphere.text.FormatUtils.format;
 import static java.util.Collections.emptyMap;
 
 /**
@@ -30,12 +32,12 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         Map<String, String> messages = emptyMap();
         try {
             Properties properties = loadAllProperties(locale, resource);
-            if (!CollectionUtils.isEmpty(properties)) {
+            if (!MapUtils.isEmpty(properties)) {
                 messages = new HashMap<>(properties.size());
                 messages.putAll((Map) properties);
             }
         } catch (IOException e) {
-            throw new RuntimeException(slf4jFormat("Source '{}' Messages Properties Resource[locale : {}, name : {}] loading is failed", source, locale, resource), e);
+            throw new RuntimeException(format("Source '{}' Messages Properties Resource[locale : {}, name : {}] loading is failed", source, locale, resource), e);
         }
         return Collections.unmodifiableMap(messages);
     }
@@ -43,7 +45,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
     private Properties loadAllProperties(Locale locale, String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(locale, resource);
         logger.debug("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);
-        if (CollectionUtils.isEmpty(propertiesResources)) {
+        if (isEmpty(propertiesResources)) {
             return null;
         }
         Properties properties = new Properties();

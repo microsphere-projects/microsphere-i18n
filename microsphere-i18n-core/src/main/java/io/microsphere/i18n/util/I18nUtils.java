@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class I18nUtils {
+public abstract class I18nUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(I18nUtils.class);
 
@@ -27,7 +27,7 @@ public class I18nUtils {
 
     public static void setServiceMessageSource(ServiceMessageSource serviceMessageSource) {
         I18nUtils.serviceMessageSource = serviceMessageSource;
-        logger.debug("serviceMessageSource is initialized");
+        logger.debug("I18nUtils.serviceMessageSource is initialized : {}", serviceMessageSource);
     }
 
     public static void destroyServiceMessageSource() {

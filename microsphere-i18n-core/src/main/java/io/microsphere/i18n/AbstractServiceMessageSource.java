@@ -3,16 +3,17 @@ package io.microsphere.i18n;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.helpers.MessageFormatter;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.util.Assert;
 
+import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.StringUtils.isNotBlank;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
-import static org.springframework.util.StringUtils.isEmpty;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Abstract {@link ServiceMessageSource}
@@ -38,7 +39,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     private Locale defaultLocale;
 
     public AbstractServiceMessageSource(String source) {
-        Assert.notNull(source, "'source' argument must not be null");
+        requireNonNull(source, "'source' argument must not be null");
         this.source = source;
         this.codePrefix = source + SOURCE_SEPARATOR;
     }
@@ -71,7 +72,18 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     @Override
     public final Locale getLocale() {
-        return ServiceMessageSource.super.getLocale();
+        Locale locale = getInternalLocale();
+        return locale == null ? getDefaultLocale() : locale;
+    }
+
+    /**
+     * Get the internal {@link Locale}
+     *
+     * @return the internal {@link Locale}
+     */
+    @Nullable
+    protected Locale getInternalLocale() {
+        return null;
     }
 
     @Override
@@ -97,7 +109,6 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     public void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
-        LocaleContextHolder.setDefaultLocale(defaultLocale);
         logger.debug("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
     }
 
@@ -142,8 +153,8 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         String region = locale.getCountry();
         String variant = locale.getVariant();
 
-        boolean hasRegion = !isEmpty(region);
-        boolean hasVariant = !isEmpty(variant);
+        boolean hasRegion = isNotBlank(region);
+        boolean hasVariant = isNotBlank(variant);
 
         if (!hasRegion && !hasVariant) {
             return emptyList();
@@ -165,20 +176,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     protected String formatMessage(String message, Object... args) {
         // Using slf4j format, future subclasses may re-implement formatting
-        return slf4jFormat(message, args);
-    }
-
-    /**
-     * Use the slf4j API to format the content
-     *
-     * @param messagePattern message pattern
-     * @param args           the arguments of message pattern
-     * @return The formatted content
-     * @see MessageFormatter
-     */
-    protected static final String slf4jFormat(String messagePattern, Object... args) {
-        String formattedMessage = MessageFormatter.arrayFormat(messagePattern, args).getMessage();
-        return formattedMessage;
+        return format(message, args);
     }
 
 }

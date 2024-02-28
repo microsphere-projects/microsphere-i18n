@@ -15,8 +15,8 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
 
-    <name>Microsphere :: Java :: Dependencies</name>
-    <description>Microsphere Dependencies</description>
+    <name>Microsphere :: Internationalisation :: Dependencies</name>
+    <description>Microsphere Internationalisation Dependencies</description>
 
     <dependencyManagement>
         <dependencies>
@@ -30,6 +30,12 @@
             <dependency>
                 <groupId>io.github.microsphere-projects</groupId>
                 <artifactId>microsphere-i18n-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.microsphere-projects</groupId>
+                <artifactId>microsphere-i18n-spring</artifactId>
                 <version>${revision}</version>
             </dependency>
 

@@ -3,9 +3,6 @@ package io.microsphere.i18n;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.i18n.LocaleContextHolder;
-
-import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,12 +16,10 @@ public class DefaultServiceMessageSourceTest {
 
     @BeforeClass
     public static void beforeClass() {
-        LocaleContextHolder.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
     }
 
     @AfterClass
     public static void afterClass() {
-        LocaleContextHolder.resetLocaleContext();
     }
 
     @Test

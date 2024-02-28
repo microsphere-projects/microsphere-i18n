@@ -14,11 +14,27 @@ import java.util.Set;
 public interface ResourceServiceMessageSource extends ServiceMessageSource {
 
     /**
-     * Gets a list of all {@link Locale} resources
+     * Initializes the resource
+     *
+     * @param resource the resource to be loaded for messages
+     */
+    void initializeResource(String resource);
+
+    /**
+     * Initializes the multiple resources
+     *
+     * @param resources the resources to be loaded for messages
+     */
+    default void initializeResources(Iterable<String> resources) {
+        resources.forEach(this::initializeResource);
+    }
+
+    /**
+     * Gets a list of all initialized {@link Locale} resources
      *
      * @return
      */
-    Set<String> getResources();
+    Set<String> getInitializeResources();
 
     /**
      * Gets the resource content character encoding

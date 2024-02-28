@@ -3,10 +3,12 @@ package io.microsphere.i18n.spring.beans.factory;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -40,6 +42,9 @@ public class ServiceMessageSourceFactoryBeanTest {
     private ServiceMessageSource serviceMessageSource;
 
     @Autowired
+    private ApplicationContext context;
+
+    @Autowired
     private ApplicationEventPublisher eventPublisher;
 
     @Autowired
@@ -49,9 +54,14 @@ public class ServiceMessageSourceFactoryBeanTest {
 
     @Before
     public void before() {
-        LocaleContextHolder.resetLocaleContext();
+        LocaleContextHolder.setLocale(Locale.ENGLISH);
         propertySource = new MockPropertySource("mock");
         environment.getPropertySources().addFirst(propertySource);
+    }
+
+    @After
+    public void after() {
+        LocaleContextHolder.resetLocaleContext();
     }
 
     @Test
@@ -62,7 +72,7 @@ public class ServiceMessageSourceFactoryBeanTest {
         // Test US
         assertNull(serviceMessageSource.getMessage("a", Locale.US));
 
-        ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(Arrays.asList("test.i18n_messages_en.properties"));
+        ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(context, Arrays.asList("test.i18n_messages_en.properties"));
         propertySource.setProperty("test.i18n_messages_en.properties", "test.a=1");
         eventPublisher.publishEvent(event);
         assertEquals("1", serviceMessageSource.getMessage("a"));

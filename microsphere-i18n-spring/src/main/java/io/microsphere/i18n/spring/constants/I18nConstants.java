@@ -1,4 +1,4 @@
-package io.microsphere.i18n.constants;
+package io.microsphere.i18n.spring.constants;
 
 import io.microsphere.i18n.ServiceMessageSource;
 
@@ -33,16 +33,6 @@ public interface I18nConstants {
      * Supported {@link Locale} list property names
      */
     String SUPPORTED_LOCALES_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "supported-locales";
-
-    /**
-     * Message Code pattern prefix
-     */
-    String MESSAGE_PATTERN_PREFIX = "{";
-
-    /**
-     * Message Code pattern suffix
-     */
-    String MESSAGE_PATTERN_SUFFIX = "}";
 
     /**
      * Generic {@link ServiceMessageSource} bean name

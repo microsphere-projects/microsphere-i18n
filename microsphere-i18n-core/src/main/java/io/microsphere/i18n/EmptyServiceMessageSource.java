@@ -29,6 +29,11 @@ public class EmptyServiceMessageSource implements ServiceMessageSource {
     }
 
     @Override
+    public Locale getLocale() {
+        return getDefaultLocale();
+    }
+
+    @Override
     public String getSource() {
         return "Empty";
     }

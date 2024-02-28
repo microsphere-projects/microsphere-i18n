@@ -1,8 +1,8 @@
 package io.microsphere.i18n.spring.context;
 
-import io.microsphere.i18n.CompositeServiceMessageSource;
+import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.constants.I18nConstants;
+import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
 import io.microsphere.i18n.util.I18nUtils;
 import org.slf4j.Logger;
@@ -23,11 +23,12 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import java.util.List;
 import java.util.Locale;
 
-import static io.microsphere.i18n.constants.I18nConstants.COMMON_SERVICE_MESSAGE_SOURCE_BEAN_NAME;
-import static io.microsphere.i18n.constants.I18nConstants.COMMON_SERVICE_MESSAGE_SOURCE_ORDER;
-import static io.microsphere.i18n.constants.I18nConstants.DEFAULT_ENABLED;
-import static io.microsphere.i18n.constants.I18nConstants.ENABLED_PROPERTY_NAME;
-import static io.microsphere.i18n.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.i18n.spring.constants.I18nConstants.COMMON_SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.i18n.spring.constants.I18nConstants.COMMON_SERVICE_MESSAGE_SOURCE_ORDER;
+import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_ENABLED;
+import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERTY_NAME;
+import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.spring.util.BeanUtils.getSortedBeans;
 
 /**
  * Internationalization Configuration class
@@ -40,7 +41,7 @@ public class I18nConfiguration implements DisposableBean {
     private static final Logger logger = LoggerFactory.getLogger(I18nConfiguration.class);
 
     @Autowired
-    @Qualifier(I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME)
+    @Qualifier(SERVICE_MESSAGE_SOURCE_BEAN_NAME)
     public void init(ServiceMessageSource serviceMessageSource) {
         I18nUtils.setServiceMessageSource(serviceMessageSource);
     }
@@ -59,8 +60,8 @@ public class I18nConfiguration implements DisposableBean {
 
     @Bean(name = SERVICE_MESSAGE_SOURCE_BEAN_NAME)
     @Primary
-    public CompositeServiceMessageSource serviceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSources) {
-        return new CompositeServiceMessageSource(serviceMessageSources);
+    public DelegatingServiceMessageSource serviceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSources) {
+        return new DelegatingServiceMessageSource(serviceMessageSources);
     }
 
     @Bean
@@ -75,6 +76,19 @@ public class I18nConfiguration implements DisposableBean {
     public void onContextRefreshedEvent(ContextRefreshedEvent event) {
         ApplicationContext context = event.getApplicationContext();
         processAcceptHeaderLocaleContextResolver(context);
+    }
+
+    @EventListener(ResourceServiceMessageSourceChangedEvent.class)
+    public void onResourceServiceMessageSourceChangedEvent(ResourceServiceMessageSourceChangedEvent event) {
+        ApplicationContext context = event.getApplicationContext();
+        Iterable<String> changedResources = event.getChangedResources();
+        logger.debug("Receive event change resource: {}", changedResources);
+        for (ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource : getSortedBeans(context, ReloadableResourceServiceMessageSource.class)) {
+            if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
+                reloadableResourceServiceMessageSource.reload(changedResources);
+                logger.debug("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
+            }
+        }
     }
 
     private void processAcceptHeaderLocaleContextResolver(ApplicationContext context) {

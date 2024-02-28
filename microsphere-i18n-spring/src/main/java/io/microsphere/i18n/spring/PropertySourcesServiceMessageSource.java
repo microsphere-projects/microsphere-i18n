@@ -4,9 +4,11 @@ import io.microsphere.i18n.PropertiesResourceServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySources;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -34,6 +36,12 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
     @Override
     protected String getResource(String resourceName) {
         return getSource() + "." + resourceName;
+    }
+
+    @Nullable
+    @Override
+    protected Locale getInternalLocale() {
+        return LocaleContextHolder.getLocale();
     }
 
     @Override

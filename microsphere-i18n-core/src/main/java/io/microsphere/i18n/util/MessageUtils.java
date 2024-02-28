@@ -1,15 +1,14 @@
 package io.microsphere.i18n.util;
 
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.constants.I18nConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
 
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.substringBetween;
-import static org.springframework.util.StringUtils.hasText;
 
 /**
  * Message Utilities class
@@ -20,6 +19,16 @@ import static org.springframework.util.StringUtils.hasText;
 public abstract class MessageUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageUtils.class);
+
+    /**
+     * Message Code pattern prefix
+     */
+    public static final String MESSAGE_PATTERN_PREFIX = "{";
+
+    /**
+     * Message Code pattern suffix
+     */
+    public static final String MESSAGE_PATTERN_SUFFIX = "}";
 
     private MessageUtils() {
     }
@@ -81,7 +90,7 @@ public abstract class MessageUtils {
 
         ServiceMessageSource serviceMessageSource = serviceMessageSource();
         String localizedMessage = serviceMessageSource.getMessage(messageCode, locale, args);
-        if (hasText(localizedMessage)) {
+        if (isNotBlank(localizedMessage)) {
             logger.debug("Message Pattern ['{}'] corresponds to Locale ['{}'] with MessageSage:'{}'", messagePattern, locale, localizedMessage);
         } else {
             int afterDotIndex = messageCode.indexOf(".") + 1;
@@ -97,7 +106,7 @@ public abstract class MessageUtils {
     }
 
     public static String resolveMessageCode(String messagePattern) {
-        String messageCode = substringBetween(messagePattern, I18nConstants.MESSAGE_PATTERN_PREFIX, I18nConstants.MESSAGE_PATTERN_SUFFIX);
+        String messageCode = substringBetween(messagePattern, MESSAGE_PATTERN_PREFIX, MESSAGE_PATTERN_SUFFIX);
         return messageCode;
     }
 }

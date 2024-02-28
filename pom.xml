@@ -46,6 +46,8 @@
         <module>microsphere-i18n-parent</module>
         <module>microsphere-i18n-dependencies</module>
         <module>microsphere-i18n-core</module>
+        <module>microsphere-i18n-openfeign</module>
+        <module>microsphere-i18n-spring</module>
     </modules>
 
     <distributionManagement>

@@ -1,9 +1,8 @@
 package io.microsphere.i18n;
 
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
+import io.microsphere.lang.Prioritized;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,7 +14,7 @@ import static java.util.Arrays.asList;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public interface ServiceMessageSource {
+public interface ServiceMessageSource extends Prioritized {
 
     /**
      * Common internationalizing message sources
@@ -38,9 +37,9 @@ public interface ServiceMessageSource {
      * @param code   message Code
      * @param locale {@link Locale}
      * @param args   the argument of message pattern
-     * @return 如果获取到，返回器内容，获取不到，返回 <code>null</code>
+     * @return <code>null</code> if message can't be found
      */
-    @Nullable
+    @Nonnull
     String getMessage(String code, Locale locale, Object... args);
 
     default String getMessage(String code, Object... args) {
@@ -52,18 +51,15 @@ public interface ServiceMessageSource {
      *
      * @return {@link Locale}
      */
-    @NonNull
-    default Locale getLocale() {
-        Locale locale = LocaleContextHolder.getLocale();
-        return locale == null ? getDefaultLocale() : locale;
-    }
+    @Nonnull
+    Locale getLocale();
 
     /**
      * Get the default {@link Locale}
      *
      * @return {@link Locale#SIMPLIFIED_CHINESE} as default
      */
-    @NonNull
+    @Nonnull
     default Locale getDefaultLocale() {
         return Locale.SIMPLIFIED_CHINESE;
     }
@@ -73,7 +69,7 @@ public interface ServiceMessageSource {
      *
      * @return Non-null {@link List}, simplified Chinese and English by default
      */
-    @NonNull
+    @Nonnull
     default List<Locale> getSupportedLocales() {
         return asList(getDefaultLocale(), Locale.ENGLISH);
     }

@@ -12,10 +12,10 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
 
     /**
      * Reload if {@link #canReload(Iterable)} returns <code>true</code>,
-     * The calling {@link #init()} as default
+     * The calling {@link #initializeResources(Iterable)} as default
      */
-    default void reload() {
-        init();
+    default void reload(Iterable<String> changedResources) {
+        initializeResources(changedResources);
     }
 
     /**
@@ -25,7 +25,7 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
      * @return Supported by default, returning <code>true<code>
      */
     default boolean canReload(Iterable<String> changedResources) {
-        Set<String> resources = getResources();
+        Set<String> resources = getInitializeResources();
         boolean reloadable = false;
         for (String changedResource : changedResources) {
             if (reloadable = resources.contains(changedResource)) {

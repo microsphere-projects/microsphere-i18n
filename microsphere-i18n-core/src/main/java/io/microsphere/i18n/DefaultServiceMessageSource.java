@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import static io.microsphere.text.FormatUtils.format;
+
 /**
  * Default {@link ServiceMessageSource} Class
  *
@@ -27,7 +29,7 @@ public class DefaultServiceMessageSource extends PropertiesResourceServiceMessag
     }
 
     protected String getResource(String resourceName) {
-        return slf4jFormat(RESOURCE_LOCATION_PATTERN, getSource(), resourceName);
+        return format(RESOURCE_LOCATION_PATTERN, getSource(), resourceName);
     }
 
     @Override

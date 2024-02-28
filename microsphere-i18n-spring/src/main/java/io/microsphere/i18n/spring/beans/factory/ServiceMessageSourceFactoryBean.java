@@ -1,38 +1,45 @@
 package io.microsphere.i18n.spring.beans.factory;
 
 import io.microsphere.i18n.AbstractServiceMessageSource;
+import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.constants.I18nConstants;
-import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationListener;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.Ordered;
-import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_PROPERTY_NAME;
+import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
+import static io.microsphere.spring.util.BeanUtils.invokeAwareInterfaces;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
 import static org.springframework.beans.BeanUtils.instantiateClass;
+import static org.springframework.core.annotation.AnnotationAwareOrderComparator.sort;
+import static org.springframework.core.io.support.SpringFactoriesLoader.loadFactoryNames;
 import static org.springframework.util.ClassUtils.getConstructorIfAvailable;
 import static org.springframework.util.ClassUtils.resolveClassName;
-import static org.springframework.util.StringUtils.arrayToCommaDelimitedString;
 import static org.springframework.util.StringUtils.hasText;
 
 /**
@@ -41,59 +48,87 @@ import static org.springframework.util.StringUtils.hasText;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public final class ServiceMessageSourceFactoryBean extends AbstractServiceMessageSource implements FactoryBean<ServiceMessageSource>,
-        ApplicationListener<ResourceServiceMessageSourceChangedEvent>, InitializingBean, EnvironmentAware, BeanClassLoaderAware, DisposableBean, Ordered {
+public final class ServiceMessageSourceFactoryBean implements ReloadableResourceServiceMessageSource,
+        FactoryBean<ReloadableResourceServiceMessageSource>, InitializingBean, EnvironmentAware, BeanClassLoaderAware,
+        ApplicationContextAware, DisposableBean, Ordered {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceMessageSourceFactoryBean.class);
+
+    private final String source;
+
+    private CompositeServiceMessageSource delegate;
 
     private ClassLoader classLoader;
 
     private ConfigurableEnvironment environment;
 
-    private List<AbstractServiceMessageSource> serviceMessageSources;
+    private ApplicationContext context;
+
 
     private int order;
 
     public ServiceMessageSourceFactoryBean(String source) {
-        super(source);
+        this.source = source;
+        this.delegate = new CompositeServiceMessageSource();
     }
 
     @Override
-    public ServiceMessageSource getObject() throws Exception {
+    public ReloadableResourceServiceMessageSource getObject() throws Exception {
         return this;
     }
 
     @Override
-    public Class<?> getObjectType() {
-        return ServiceMessageSource.class;
+    public Class<ReloadableResourceServiceMessageSource> getObjectType() {
+        return ReloadableResourceServiceMessageSource.class;
     }
 
     @Override
     public void init() {
-        if (this.serviceMessageSources == null) {
-            this.serviceMessageSources = loadServiceMessageSources();
-        }
+        this.delegate.setServiceMessageSources(initServiceMessageSources());
+        this.delegate.init();
     }
 
     @Override
     public void destroy() {
-        serviceMessageSources.forEach(ServiceMessageSource::destroy);
+        this.delegate.destroy();
+    }
+
+    @Nonnull
+    @Override
+    public String getMessage(String code, Locale locale, Object... args) {
+        return this.delegate.getMessage(code, locale, args);
     }
 
     @Override
-    protected String getInternalMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object... args) {
-        String message = null;
-        for (AbstractServiceMessageSource serviceMessageSource : serviceMessageSources) {
-            message = serviceMessageSource.getMessage(resolvedCode, resolvedLocale, args);
-            if (message != null) {
-                break;
-            }
+    public String getMessage(String code, Object... args) {
+        return this.delegate.getMessage(code, args);
+    }
+
+    @Nonnull
+    @Override
+    public Locale getLocale() {
+        Locale locale = LocaleContextHolder.getLocale();
+        if (locale == null) {
+            locale = this.delegate.getLocale();
         }
-        if (message == null && logger.isDebugEnabled()) {
-            logger.debug("Source '{}' Message not found[code : '{}' , resolvedCode : '{}' , locale : '{}' , resolvedLocale : '{}', args : '{}']",
-                    source, code, resolvedCode, locale, resolvedLocale, arrayToCommaDelimitedString(args));
-        }
-        return message;
+        return locale;
+    }
+
+    @Nonnull
+    @Override
+    public Locale getDefaultLocale() {
+        return this.delegate.getDefaultLocale();
+    }
+
+    @Nonnull
+    @Override
+    public List<Locale> getSupportedLocales() {
+        return this.delegate.getSupportedLocales();
+    }
+
+    @Override
+    public String getSource() {
+        return source;
     }
 
     @Override
@@ -113,6 +148,11 @@ public final class ServiceMessageSourceFactoryBean extends AbstractServiceMessag
     }
 
     @Override
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+        this.context = context;
+    }
+
+    @Override
     public int getOrder() {
         return order;
     }
@@ -121,14 +161,11 @@ public final class ServiceMessageSourceFactoryBean extends AbstractServiceMessag
         this.order = order;
     }
 
-    private List<AbstractServiceMessageSource> loadServiceMessageSources() {
-        List<String> factoryNames = SpringFactoriesLoader.loadFactoryNames(AbstractServiceMessageSource.class, classLoader);
+    private List<AbstractServiceMessageSource> initServiceMessageSources() {
+        List<String> factoryNames = loadFactoryNames(AbstractServiceMessageSource.class, classLoader);
 
-        Locale defaultLocale = initDefaultLocale(environment);
-        List<Locale> supportedLocales = initSupportedLocales(environment);
-
-        setDefaultLocale(defaultLocale);
-        setSupportedLocales(supportedLocales);
+        Locale defaultLocale = resolveDefaultLocale(environment);
+        List<Locale> supportedLocales = resolveSupportedLocales(environment);
 
         List<AbstractServiceMessageSource> serviceMessageSources = new ArrayList<>(factoryNames.size());
 
@@ -138,25 +175,62 @@ public final class ServiceMessageSourceFactoryBean extends AbstractServiceMessag
             AbstractServiceMessageSource serviceMessageSource = (AbstractServiceMessageSource) instantiateClass(constructor, source);
             serviceMessageSources.add(serviceMessageSource);
 
-            if (serviceMessageSource instanceof EnvironmentAware) {
-                ((EnvironmentAware) serviceMessageSource).setEnvironment(environment);
-            }
+            invokeAwareInterfaces(serviceMessageSource, context);
+
             serviceMessageSource.setDefaultLocale(defaultLocale);
             serviceMessageSource.setSupportedLocales(supportedLocales);
             serviceMessageSource.init();
         }
 
-        AnnotationAwareOrderComparator.sort(serviceMessageSources);
+        sort(serviceMessageSources);
 
         return serviceMessageSources;
     }
 
-    private Locale initDefaultLocale(ConfigurableEnvironment environment) {
-        String propertyName = I18nConstants.DEFAULT_LOCALE_PROPERTY_NAME;
+    @Override
+    public void reload(Iterable<String> changedResources) {
+        this.delegate.reload(changedResources);
+    }
+
+    @Override
+    public boolean canReload(Iterable<String> changedResources) {
+        return this.delegate.canReload(changedResources);
+    }
+
+    @Override
+    public void initializeResource(String resource) {
+        this.delegate.initializeResource(resource);
+    }
+
+    @Override
+    public void initializeResources(Iterable<String> resources) {
+        this.delegate.initializeResources(resources);
+    }
+
+    @Override
+    public Set<String> getInitializeResources() {
+        return this.delegate.getInitializeResources();
+    }
+
+    @Override
+    public Charset getEncoding() {
+        return this.delegate.getEncoding();
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceMessageSourceFactoryBean{" +
+                "delegate=" + delegate +
+                ", order=" + order +
+                '}';
+    }
+
+    private Locale resolveDefaultLocale(ConfigurableEnvironment environment) {
+        String propertyName = DEFAULT_LOCALE_PROPERTY_NAME;
         String localeValue = environment.getProperty(propertyName);
         final Locale locale;
         if (!hasText(localeValue)) {
-            locale = super.getDefaultLocale();
+            locale = ReloadableResourceServiceMessageSource.super.getDefaultLocale();
             logger.debug("Default Locale configuration property [name : '{}'] not found, use default value: '{}'", propertyName, locale);
         } else {
             locale = StringUtils.parseLocale(localeValue);
@@ -165,40 +239,17 @@ public final class ServiceMessageSourceFactoryBean extends AbstractServiceMessag
         return locale;
     }
 
-    private List<Locale> initSupportedLocales(ConfigurableEnvironment environment) {
+    private List<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
         final List<Locale> supportedLocales;
-        String propertyName = I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
+        String propertyName = SUPPORTED_LOCALES_PROPERTY_NAME;
         List<String> locales = environment.getProperty(propertyName, List.class, emptyList());
         if (locales.isEmpty()) {
-            supportedLocales = super.getSupportedLocales();
+            supportedLocales = ReloadableResourceServiceMessageSource.super.getSupportedLocales();
             logger.debug("Support Locale list configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
         } else {
             supportedLocales = locales.stream().map(StringUtils::parseLocale).collect(Collectors.toList());
             logger.debug("List of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
         }
         return unmodifiableList(supportedLocales);
-    }
-
-    @Override
-    public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
-        Iterable<String> changedResources = event.getChangedResources();
-        logger.debug("Receive event change resource: {}", changedResources);
-        for (AbstractServiceMessageSource serviceMessageSource : serviceMessageSources) {
-            if (serviceMessageSource instanceof ReloadableResourceServiceMessageSource) {
-                ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource = (ReloadableResourceServiceMessageSource) serviceMessageSource;
-                if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
-                    reloadableResourceServiceMessageSource.reload();
-                    logger.debug("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
-                }
-            }
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "ServiceMessageSourceFactoryBean{" +
-                "serviceMessageSources=" + serviceMessageSources +
-                ", order=" + order +
-                '}';
     }
 }

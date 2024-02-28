@@ -11,19 +11,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.microsphere-projects</groupId>
-    <artifactId>microsphere-i18n-core</artifactId>
+    <artifactId>microsphere-i18n-spring</artifactId>
     <version>${revision}</version>
     <packaging>jar</packaging>
 
-    <name>Microsphere :: Internationalisation :: Core</name>
-    <description>Microsphere Internationalisation Core</description>
+    <name>Microsphere :: Internationalisation :: Spring</name>
+    <description>Microsphere Internationalisation Spring</description>
 
     <dependencies>
 
         <!-- Microsphere -->
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
-            <artifactId>microsphere-core</artifactId>
+            <artifactId>microsphere-i18n-core</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.microsphere-projects</groupId>
+            <artifactId>microsphere-spring-context</artifactId>
         </dependency>
 
         <!-- Servlet API -->
@@ -31,6 +37,20 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- Bean Validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- slf4j API -->
@@ -50,12 +70,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
             <scope>test</scope>
         </dependency>
 
