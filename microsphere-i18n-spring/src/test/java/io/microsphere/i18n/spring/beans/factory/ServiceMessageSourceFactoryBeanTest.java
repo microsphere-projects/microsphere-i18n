@@ -72,8 +72,8 @@ public class ServiceMessageSourceFactoryBeanTest {
         assertEquals("test-a", serviceMessageSource.getMessage("a"));
         assertEquals("Hello,World", serviceMessageSource.getMessage("hello", "World"));
 
-        // Test US
-        assertNull(serviceMessageSource.getMessage("a", Locale.US));
+        // Test FRANCE
+        assertNull(serviceMessageSource.getMessage("a", Locale.FRANCE));
 
         ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(context, Arrays.asList("test.i18n_messages_en.properties"));
         propertySource.setProperty("test.i18n_messages_en.properties", "test.a=1");
