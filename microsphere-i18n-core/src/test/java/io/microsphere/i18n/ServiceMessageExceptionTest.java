@@ -48,7 +48,7 @@ public class ServiceMessageExceptionTest {
 
     @AfterClass
     public static void afterClass() {
-        I18nUtils.setServiceMessageSource(null);
+        I18nUtils.destroyServiceMessageSource();
     }
 
     @Test
