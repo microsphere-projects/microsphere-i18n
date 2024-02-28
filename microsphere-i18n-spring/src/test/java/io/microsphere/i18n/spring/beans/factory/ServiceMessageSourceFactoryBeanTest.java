@@ -31,7 +31,10 @@ import static org.junit.Assert.assertNull;
  * @since 1.0.0
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {ServiceMessageSourceFactoryBeanTest.class, TestServiceMessageSourceConfiguration.class})
+@ContextConfiguration(classes = {
+        ServiceMessageSourceFactoryBeanTest.class,
+        TestServiceMessageSourceConfiguration.class
+})
 @TestPropertySource(properties = {
         "microsphere.i18n.default-locale=en",
         "microsphere.i18n.supported-locales=en",
