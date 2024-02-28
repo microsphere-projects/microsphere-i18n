@@ -14,14 +14,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class DefaultServiceMessageSourceTest {
 
-    @BeforeClass
-    public static void beforeClass() {
-    }
-
-    @AfterClass
-    public static void afterClass() {
-    }
-
     @Test
     public void test() {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
