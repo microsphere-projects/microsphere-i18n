@@ -24,7 +24,10 @@ import static org.junit.Assert.assertSame;
  * @since 1.0.0
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {I18nConfiguration.class, TestServiceMessageSourceConfiguration.class})
+@ContextConfiguration(classes = {
+        I18nConfiguration.class,
+        TestServiceMessageSourceConfiguration.class
+})
 public class I18nConfigurationTest {
 
     @Before
