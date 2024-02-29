@@ -2,6 +2,7 @@ package io.microsphere.i18n.spring.context;
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
 import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBeanLifecyclePostProcessor;
 import io.microsphere.i18n.util.I18nUtils;
@@ -34,6 +35,7 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE
  * Internationalization Configuration class
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EnableI18n
  * @since 1.0.0
  */
 @Import(value = {
