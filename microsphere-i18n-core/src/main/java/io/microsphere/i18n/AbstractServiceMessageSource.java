@@ -2,7 +2,6 @@ package io.microsphere.i18n;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.helpers.MessageFormatter;
 
 import javax.annotation.Nullable;
 import java.util.LinkedList;
