@@ -15,8 +15,6 @@ import static org.junit.Assert.assertSame;
  */
 public class I18nUtilsTest extends AbstractI18nTest {
 
-    private I18nUtils i18nUtils;
-
     @Test
     public void test() {
         assertSame(EmptyServiceMessageSource.INSTANCE, I18nUtils.serviceMessageSource());
@@ -26,6 +24,4 @@ public class I18nUtilsTest extends AbstractI18nTest {
 
         assertSame(defaultServiceMessageSource, I18nUtils.serviceMessageSource());
     }
-
-
 }
