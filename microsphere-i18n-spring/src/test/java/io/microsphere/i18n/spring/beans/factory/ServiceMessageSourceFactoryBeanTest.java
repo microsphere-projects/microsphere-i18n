@@ -4,7 +4,6 @@ import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +13,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.mock.env.MockPropertySource;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -41,7 +39,6 @@ import static org.junit.Assert.assertNull;
         "microsphere.i18n.default-locale=en",
         "microsphere.i18n.supported-locales=en",
 })
-@DirtiesContext
 public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     @Autowired

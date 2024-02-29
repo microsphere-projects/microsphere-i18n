@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
@@ -50,8 +52,9 @@ import static org.springframework.util.StringUtils.hasText;
  * @since 1.0.0
  */
 public final class ServiceMessageSourceFactoryBean implements ReloadableResourceServiceMessageSource,
-        ApplicationListener<ResourceServiceMessageSourceChangedEvent>, EnvironmentAware, BeanClassLoaderAware,
-        ApplicationContextAware, FactoryBean<ReloadableResourceServiceMessageSource>, Ordered {
+        InitializingBean, DisposableBean, EnvironmentAware, BeanClassLoaderAware, ApplicationContextAware,
+        FactoryBean<ReloadableResourceServiceMessageSource>, ApplicationListener<ResourceServiceMessageSourceChangedEvent>,
+        Ordered {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceMessageSourceFactoryBean.class);
 
@@ -80,6 +83,11 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
     @Override
     public Class<ReloadableResourceServiceMessageSource> getObjectType() {
         return ReloadableResourceServiceMessageSource.class;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        init();
     }
 
     @Override

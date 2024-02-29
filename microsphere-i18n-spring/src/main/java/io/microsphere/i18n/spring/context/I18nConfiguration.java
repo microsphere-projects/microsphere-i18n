@@ -44,8 +44,8 @@ public class I18nConfiguration implements DisposableBean {
     private static final Logger logger = LoggerFactory.getLogger(I18nConfiguration.class);
 
     @Autowired
-    public void init(@Qualifier(SERVICE_MESSAGE_SOURCE_BEAN_NAME)
-                     ServiceMessageSource serviceMessageSource) {
+    @Qualifier(SERVICE_MESSAGE_SOURCE_BEAN_NAME)
+    public void setServiceMessageSource(ServiceMessageSource serviceMessageSource) {
         I18nUtils.setServiceMessageSource(serviceMessageSource);
     }
 

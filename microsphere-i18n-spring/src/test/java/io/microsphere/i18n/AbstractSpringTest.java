@@ -17,7 +17,7 @@
 package io.microsphere.i18n;
 
 import io.microsphere.i18n.util.I18nUtils;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.springframework.context.i18n.LocaleContextHolder;
 
@@ -31,11 +31,11 @@ public abstract class AbstractSpringTest {
 
     @Before
     public void before() {
-        I18nUtils.destroyServiceMessageSource();
+        LocaleContextHolder.resetLocaleContext();
     }
 
-    @After
-    public void after() {
+    @AfterClass
+    public static void afterClass() {
         I18nUtils.destroyServiceMessageSource();
         LocaleContextHolder.resetLocaleContext();
     }

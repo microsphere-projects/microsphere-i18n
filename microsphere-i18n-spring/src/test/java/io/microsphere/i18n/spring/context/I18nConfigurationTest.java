@@ -3,6 +3,8 @@ package io.microsphere.i18n.spring.context;
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
+import io.microsphere.i18n.util.I18nUtils;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,6 @@ import static org.junit.Assert.assertSame;
         I18nConfiguration.class,
         TestServiceMessageSourceConfiguration.class
 })
-@DirtiesContext
 public class I18nConfigurationTest extends AbstractSpringTest {
 
     @Autowired
