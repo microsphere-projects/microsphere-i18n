@@ -6,15 +6,11 @@ import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.util.Assert;
 
 import javax.annotation.Nonnull;
 import java.nio.charset.Charset;
@@ -33,8 +29,8 @@ import static org.springframework.core.annotation.AnnotationAwareOrderComparator
  * @see ServiceMessageSource
  * @since 1.0.0
  */
-public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource, BeanFactoryAware,
-        InitializingBean, DisposableBean {
+public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource, InitializingBean,
+        DisposableBean {
 
     private static final Logger logger = LoggerFactory.getLogger(DelegatingServiceMessageSource.class);
 
@@ -126,12 +122,6 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
     @Override
     public Charset getEncoding() {
         return this.delegate.getEncoding();
-    }
-
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        Assert.isInstanceOf(ListableBeanFactory.class, beanFactory, "The 'beanFactory' must be an instance of ListableBeanFactory class");
-        this.beanFactory = (ListableBeanFactory) beanFactory;
     }
 
     @Override
