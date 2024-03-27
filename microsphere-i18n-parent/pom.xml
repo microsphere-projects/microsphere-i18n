@@ -19,23 +19,14 @@
     <description>Microsphere Internationalisation Parent</description>
 
     <properties>
-        <microsphere.version>${revision}</microsphere.version>
-        <microsphere-spring.version>${revision}</microsphere-spring.version>
-        <apache.commons.lang3.version>3.4</apache.commons.lang3.version>
+        <microsphere-spring-cloud.version>${revision}</microsphere-spring-cloud.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
         <apache.commons.collections.version>3.2.2</apache.commons.collections.version>
 
         <jsr305.version>3.0.1</jsr305.version>
         <javax.ws.rs.version>2.1</javax.ws.rs.version>
         <fastjson.version>1.2.83_noneautotype</fastjson.version>
-        <feign.version>10.2.3</feign.version>
-        <p6spy.version>3.9.1</p6spy.version>
-        <alibaba.sentinel.version>1.8.6</alibaba.sentinel.version>
 
-        <spring-boot.version>2.7.18</spring-boot.version>
-        <resilience4j.version>1.7.0</resilience4j.version>
-
-        <junit.version>4.7</junit.version>
         <jmh.version>1.36</jmh.version>
         <antlr.version>4.13.1</antlr.version>
     </properties>
@@ -45,52 +36,20 @@
 
         <dependencies>
 
-            <!-- Spring Boot Dependencies -->
+            <!-- Microsphere Spring Cloud Dependencies -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <groupId>io.github.microsphere-projects</groupId>
+                <artifactId>microsphere-spring-cloud-dependencies</artifactId>
+                <version>${microsphere-spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <!-- Java API Dependencies -->
-            <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <version>${jsr305.version}</version>
-            </dependency>
-
-            <!-- Apache Commons Dependencies -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${apache.commons.lang3.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>${apache.commons.collections.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${apache.commons.io.version}</version>
-            </dependency>
-
-            <!-- Third-Party Dependencies -->
+            <!-- Alibaba Fastjson Dependencies -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.openfeign</groupId>
-                <artifactId>feign-core</artifactId>
-                <version>${feign.version}</version>
             </dependency>
 
             <!-- JAX-RS API -->
@@ -98,38 +57,6 @@
                 <groupId>javax.ws.rs</groupId>
                 <artifactId>javax.ws.rs-api</artifactId>
                 <version>${javax.ws.rs.version}</version>
-            </dependency>
-
-            <!-- JDBC -->
-            <dependency>
-                <groupId>p6spy</groupId>
-                <artifactId>p6spy</artifactId>
-                <version>${p6spy.version}</version>
-            </dependency>
-
-            <!-- Alibaba Sentinel -->
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-core</artifactId>
-                <version>${alibaba.sentinel.version}</version>
-            </dependency>
-
-            <!-- Microsphere Dependencies -->
-            <dependency>
-                <groupId>io.github.microsphere-projects</groupId>
-                <artifactId>microsphere-dependencies</artifactId>
-                <version>${microsphere.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- Microsphere Spring Dependencies -->
-            <dependency>
-                <groupId>io.github.microsphere-projects</groupId>
-                <artifactId>microsphere-spring-dependencies</artifactId>
-                <version>${microsphere-spring.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <!-- Testing -->
