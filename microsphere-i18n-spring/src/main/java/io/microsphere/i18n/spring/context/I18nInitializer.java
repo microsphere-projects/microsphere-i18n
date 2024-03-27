@@ -13,6 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigRegistry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
+import static io.microsphere.i18n.spring.context.I18nConfiguration.isEnabled;
 import static org.springframework.util.ObjectUtils.toObjectArray;
 
 /**
@@ -36,7 +37,7 @@ public class I18nInitializer implements ApplicationContextInitializer<Configurab
     }
 
     private boolean shouldInitialization(ConfigurableApplicationContext context) {
-        if (!I18nConfiguration.isEnabled(context)) {
+        if (!isEnabled(context)) {
             return false;
         }
         if (isProcessed(context)) {
