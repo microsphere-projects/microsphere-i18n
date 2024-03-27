@@ -71,7 +71,12 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
     private int order;
 
     public ServiceMessageSourceFactoryBean(String source) {
+        this(source, Ordered.LOWEST_PRECEDENCE);
+    }
+
+    public ServiceMessageSourceFactoryBean(String source, int order) {
         this.source = source;
+        this.order = order;
         this.delegate = new CompositeServiceMessageSource();
     }
 
