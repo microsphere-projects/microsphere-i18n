@@ -20,10 +20,10 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
+import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -105,7 +105,7 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
         this.delegate.destroy();
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public String getMessage(String code, Locale locale, Object... args) {
         return this.delegate.getMessage(code, locale, args);
@@ -116,7 +116,7 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
         return this.delegate.getMessage(code, args);
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public Locale getLocale() {
         Locale locale = LocaleContextHolder.getLocale();
@@ -126,13 +126,13 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
         return locale;
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public Locale getDefaultLocale() {
         return this.delegate.getDefaultLocale();
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public List<Locale> getSupportedLocales() {
         return this.delegate.getSupportedLocales();
