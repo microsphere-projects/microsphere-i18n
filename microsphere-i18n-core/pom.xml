@@ -26,6 +26,13 @@
             <artifactId>microsphere-java-core</artifactId>
         </dependency>
 
+        <!-- Java API Dependencies -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- Servlet API -->
         <dependency>
             <groupId>javax.servlet</groupId>
