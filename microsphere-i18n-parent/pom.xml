@@ -19,7 +19,7 @@
     <description>Microsphere Internationalisation Parent</description>
 
     <properties>
-        <microsphere-spring-cloud.version>${revision}</microsphere-spring-cloud.version>
+        <microsphere-spring-cloud.version>0.0.1</microsphere-spring-cloud.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
         <apache.commons.collections.version>3.2.2</apache.commons.collections.version>
 
