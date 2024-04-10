@@ -14,38 +14,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.microsphere.i18n;
+package io.microsphere.i18n.spring.util;
 
-import io.microsphere.i18n.util.I18nUtils;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.i18n.LocaleContext;
+import org.springframework.lang.Nullable;
 
 import java.util.Locale;
 
+import static org.springframework.context.i18n.LocaleContextHolder.getLocaleContext;
+
 /**
- * Abstract Spring Test
+ * The utilities class for {@link Locale} in the Spring
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see LocaleContext
+ * @see Locale
  * @since 1.0.0
  */
-public abstract class AbstractSpringTest {
+public abstract class LocaleUtils {
 
-    @BeforeClass
-    public static void beforeClass() {
-        // Set the simplified Chinese as the default Locale
-        Locale.setDefault(Locale.SIMPLIFIED_CHINESE);
-    }
-
-    @Before
-    public void before() {
-        LocaleContextHolder.resetLocaleContext();
-    }
-
-    @AfterClass
-    public static void afterClass() {
-        I18nUtils.destroyServiceMessageSource();
-        LocaleContextHolder.resetLocaleContext();
+    /**
+     * Get the {@link Locale} from Thread-Locale scoped {@link LocaleContext}
+     *
+     * @return <code>null</code> if can't be found
+     */
+    @Nullable
+    public static Locale getLocaleFromLocaleContext() {
+        LocaleContext localeContext = getLocaleContext();
+        return localeContext == null ? null : localeContext.getLocale();
     }
 }

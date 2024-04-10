@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
 import static org.springframework.core.annotation.AnnotationAwareOrderComparator.sort;
 
 /**
@@ -73,7 +74,7 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
     @NonNull
     @Override
     public Locale getLocale() {
-        Locale locale = LocaleContextHolder.getLocale();
+        Locale locale = getLocaleFromLocaleContext();
         return locale == null ? this.delegate.getLocale() : locale;
     }
 
