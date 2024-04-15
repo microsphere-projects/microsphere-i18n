@@ -3,6 +3,7 @@ package io.microsphere.i18n;
 import io.microsphere.lang.Prioritized;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,7 +40,7 @@ public interface ServiceMessageSource extends Prioritized {
      * @param args   the argument of message pattern
      * @return <code>null</code> if message can't be found
      */
-    @Nonnull
+    @Nullable
     String getMessage(String code, Locale locale, Object... args);
 
     default String getMessage(String code, Object... args) {
