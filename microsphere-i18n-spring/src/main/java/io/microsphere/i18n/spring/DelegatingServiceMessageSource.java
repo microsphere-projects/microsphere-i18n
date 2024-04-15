@@ -11,14 +11,15 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.lang.NonNull;
 
-import javax.annotation.Nonnull;
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
 import static org.springframework.core.annotation.AnnotationAwareOrderComparator.sort;
 
 /**
@@ -59,7 +60,7 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
         init();
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public String getMessage(String code, Locale locale, Object... args) {
         return this.delegate.getMessage(code, locale, args);
@@ -70,20 +71,20 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
         return this.delegate.getMessage(code, args);
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public Locale getLocale() {
-        Locale locale = LocaleContextHolder.getLocale();
+        Locale locale = getLocaleFromLocaleContext();
         return locale == null ? this.delegate.getLocale() : locale;
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public Locale getDefaultLocale() {
         return this.delegate.getDefaultLocale();
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public List<Locale> getSupportedLocales() {
         return this.delegate.getSupportedLocales();

@@ -7,8 +7,8 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySources;
+import org.springframework.lang.Nullable;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;

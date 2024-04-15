@@ -19,6 +19,9 @@ package io.microsphere.i18n;
 import io.microsphere.i18n.util.I18nUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
+
+import java.util.Locale;
 
 /**
  * Abstract Spring Test
@@ -27,6 +30,12 @@ import org.junit.Before;
  * @since 1.0.0
  */
 public abstract class AbstractI18nTest {
+
+    @BeforeClass
+    public static void beforeClass() {
+        // Set the simplified Chinese as the default Locale
+        Locale.setDefault(Locale.SIMPLIFIED_CHINESE);
+    }
 
     @Before
     public void before() {

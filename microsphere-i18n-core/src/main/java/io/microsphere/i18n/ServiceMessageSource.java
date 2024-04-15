@@ -58,11 +58,11 @@ public interface ServiceMessageSource extends Prioritized {
     /**
      * Get the default {@link Locale}
      *
-     * @return {@link Locale#SIMPLIFIED_CHINESE} as default
+     * @return {@link Locale#getDefault()} as default
      */
     @Nonnull
     default Locale getDefaultLocale() {
-        return Locale.SIMPLIFIED_CHINESE;
+        return Locale.getDefault();
     }
 
     /**
