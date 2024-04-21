@@ -272,4 +272,8 @@ public final class ServiceMessageSourceFactoryBean implements ReloadableResource
             }
         }
     }
+
+    public CompositeServiceMessageSource getDelegate() {
+        return delegate;
+    }
 }

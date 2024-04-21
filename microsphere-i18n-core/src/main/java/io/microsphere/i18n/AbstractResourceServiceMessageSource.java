@@ -171,7 +171,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     protected abstract Map<String, String> loadMessages(Locale locale, String resource);
 
-    protected final Map<String, String> getMessages(Locale locale) {
+    public final Map<String, String> getMessages(Locale locale) {
         return localizedMessages.getOrDefault(locale, emptyMap());
     }
 

@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration
+io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration,\
+io.microsphere.i18n.spring.boot.actuate.autoconfigure.I18nEndpointAutoConfiguration

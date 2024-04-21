@@ -135,6 +135,15 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
         return "ServiceMessageSources{" + "delegate=" + delegate + '}';
     }
 
+    /**
+     * Get the {@link CompositeServiceMessageSource}
+     *
+     * @return the {@link CompositeServiceMessageSource}
+     */
+    public CompositeServiceMessageSource getDelegate() {
+        return delegate;
+    }
+
     private List<ServiceMessageSource> getServiceMessageSourceBeans() {
         List<ServiceMessageSource> serviceMessageSources = new LinkedList<>();
         serviceMessageSourcesProvider.forEach(serviceMessageSources::add);

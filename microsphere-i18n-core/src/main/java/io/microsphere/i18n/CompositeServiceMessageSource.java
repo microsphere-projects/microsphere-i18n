@@ -146,6 +146,16 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
         return ReloadableResourceServiceMessageSource.super.getEncoding();
     }
 
+    /**
+     * Get the read-only list of the composited {@link ServiceMessageSource}
+     *
+     * @return non-null
+     */
+    @Nonnull
+    public List<ServiceMessageSource> getServiceMessageSources() {
+        return unmodifiableList(serviceMessageSources);
+    }
+
     @Override
     public void destroy() {
         List<? extends ServiceMessageSource> serviceMessageSources = this.serviceMessageSources;
