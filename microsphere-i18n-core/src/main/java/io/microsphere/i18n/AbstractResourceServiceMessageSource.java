@@ -78,10 +78,12 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     protected String getInternalMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object[] args) {
         String message = null;
         Map<String, String> messages = getMessages(resolvedLocale);
-        String messagePattern = messages.get(resolvedCode);
-        if (messagePattern != null) {
-            message = resolveMessage(messagePattern, args);
-            logMessage(code, resolvedCode, locale, resolvedLocale, args, messagePattern, message);
+        if (messages != null) {
+            String messagePattern = messages.get(resolvedCode);
+            if (messagePattern != null) {
+                message = resolveMessage(messagePattern, args);
+                logMessage(code, resolvedCode, locale, resolvedLocale, args, messagePattern, message);
+            }
         }
         return message;
     }
@@ -155,12 +157,12 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     private void initializeResource(String resource, Map<String, Map<String, String>> localizedResourceMessages) {
         Map<String, String> messages = loadMessages(resource);
+        logger.debug("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
+
         if (messages == null) {
-            logger.debug("Source '{}' Locale resource ['{}'] messages was not found", source, resource);
             return;
         }
 
-        logger.debug("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
         validateMessages(messages, resource);
         // Override the localized message if present
         localizedResourceMessages.put(resource, messages);
