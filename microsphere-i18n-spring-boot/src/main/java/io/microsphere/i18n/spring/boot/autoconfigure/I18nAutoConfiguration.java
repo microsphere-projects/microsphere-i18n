@@ -18,10 +18,6 @@ package io.microsphere.i18n.spring.boot.autoconfigure;
 
 import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nEnabled;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-
-import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERTY_NAME;
 
 /**
  * I18n Auto-Configuration

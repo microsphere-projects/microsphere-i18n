@@ -18,9 +18,7 @@ package io.microsphere.i18n;
 
 import io.microsphere.i18n.util.I18nUtils;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
