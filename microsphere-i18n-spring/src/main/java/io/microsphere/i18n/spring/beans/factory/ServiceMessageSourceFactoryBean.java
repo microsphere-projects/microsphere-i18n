@@ -202,7 +202,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
         Iterable<String> changedResources = event.getChangedResources();
         logger.debug("Receive event change resource: {}", changedResources);
-        for (ServiceMessageSource serviceMessageSource : getServiceMessageSources()) {
+        for (ServiceMessageSource serviceMessageSource : getAllServiceMessageSources()) {
             if (serviceMessageSource instanceof ReloadableResourceServiceMessageSource) {
                 ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource = (ReloadableResourceServiceMessageSource) serviceMessageSource;
                 if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
