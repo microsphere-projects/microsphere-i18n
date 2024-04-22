@@ -87,7 +87,13 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
                 }
             }
         });
-        return unmodifiableList(supportedLocales);
+
+        return supportedLocales.isEmpty() ? getDefaultSupportedLocales() :
+                unmodifiableList(supportedLocales);
+    }
+
+    public List<Locale> getDefaultSupportedLocales() {
+        return ReloadableResourceServiceMessageSource.super.getSupportedLocales();
     }
 
     @Override
