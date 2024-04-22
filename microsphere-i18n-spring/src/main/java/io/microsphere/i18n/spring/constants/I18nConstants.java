@@ -42,16 +42,6 @@ public interface I18nConstants {
     String SUPPORTED_LOCALES_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "supported-locales";
 
     /**
-     * Generic {@link ServiceMessageSource} bean name
-     */
-    String COMMON_SERVICE_MESSAGE_SOURCE_BEAN_NAME = "commonServiceMessageSource";
-
-    /**
-     * Generic {@link ServiceMessageSource} Bean Priority
-     */
-    int COMMON_SERVICE_MESSAGE_SOURCE_ORDER = 500;
-
-    /**
      * The Primary {@link ServiceMessageSource} Bean Bean
      */
     String SERVICE_MESSAGE_SOURCE_BEAN_NAME = "serviceMessageSource";
