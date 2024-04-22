@@ -33,7 +33,10 @@ import java.lang.annotation.Target;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 
 /**
- * Enables the extension for Spring Internationalisation
+ * Enables the extension for Spring Internationalisation.
+ * <p>
+ * The feature could be disabled by the Spring property if
+ * {@link I18nConstants#ENABLED_PROPERTY_NAME "microsphere.i18n.enabled"} is <code>false</code>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see I18nImportBeanDefinitionRegistrar
@@ -48,13 +51,20 @@ import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 public @interface EnableI18n {
 
     /**
-     * Declares the sources of the {@link ServiceMessageSource} as the {@link ServiceMessageSourceFactoryBean} Spring Beans
-     * to be registered.
+     * Declares the sources of the {@link ServiceMessageSource} to register the {@link ServiceMessageSourceFactoryBean}
+     * Spring Beans whose names are composed by their source content appending "ServiceMessageSource", the default value
+     * is {@value ServiceMessageSource#COMMON_SOURCE "common"} indicates that the named "commonServiceMessageSource"
+     * Spring Bean will be registered.
      * <p>
-     * The attribute value will be merged from the Spring property whose name is {@link I18nConstants#SOURCES_PROPERTY_NAME}
+     * Besides the attribute value, the sources will be extended from the Spring property whose name is
+     * {@link I18nConstants#SOURCES_PROPERTY_NAME "microsphere.i18n.sources"}.
+     * <p>
+     * Finally, all sourced {@link ServiceMessageSource} Spring Beans as the members will be composited into
+     * a Primary Spring Bean named {@link I18nConstants#SERVICE_MESSAGE_SOURCE_BEAN_NAME "serviceMessageSource"}.
      *
-     * @return {@link ServiceMessageSource#COMMON_SOURCE} as the default
+     * @return {@link ServiceMessageSource#COMMON_SOURCE "common"} as the default
      * @see I18nConstants#SOURCES_PROPERTY_NAME
+     * @see I18nConstants#SERVICE_MESSAGE_SOURCE_BEAN_NAME
      */
     String[] sources() default {COMMON_SOURCE};
 

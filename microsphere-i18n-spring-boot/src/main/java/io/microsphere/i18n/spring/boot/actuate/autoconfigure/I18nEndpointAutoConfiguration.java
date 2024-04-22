@@ -18,9 +18,9 @@ package io.microsphere.i18n.spring.boot.actuate.autoconfigure;
 
 import io.microsphere.i18n.spring.boot.actuate.I18nEndpoint;
 import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
+import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nEnabled;
 import org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -33,10 +33,9 @@ import org.springframework.context.annotation.Bean;
  * @since 1.0.0
  */
 @ConditionalOnClass(name = {
-        "io.microsphere.i18n.ServiceMessageSource", // microsphere-i18n-core
-        "io.microsphere.i18n.spring.context.I18nConfiguration", // microsphere-i18n-spring
         "org.springframework.boot.actuate.endpoint.annotation.Endpoint", // spring-boot-actuator-autoconfigure
 })
+@ConditionalOnI18nEnabled
 @ConditionalOnAvailableEndpoint(endpoint = I18nEndpoint.class)
 @AutoConfigureAfter(I18nAutoConfiguration.class)
 public class I18nEndpointAutoConfiguration {

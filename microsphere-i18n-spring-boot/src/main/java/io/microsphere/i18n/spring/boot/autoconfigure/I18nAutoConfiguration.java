@@ -16,21 +16,20 @@
  */
 package io.microsphere.i18n.spring.boot.autoconfigure;
 
-import io.microsphere.i18n.spring.context.I18nConfiguration;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
+import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nEnabled;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+
+import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERTY_NAME;
 
 /**
  * I18n Auto-Configuration
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see I18nConfiguration
  * @since 1.0.0
  */
-@ConditionalOnClass(name = {
-        "io.microsphere.i18n.ServiceMessageSource", // microsphere-i18n-core
-        "io.microsphere.i18n.spring.context.I18nConfiguration", // microsphere-i18n-spring
-})
-@Import(I18nConfiguration.class)
+@ConditionalOnI18nEnabled
+@EnableI18n
 public class I18nAutoConfiguration {
 }
