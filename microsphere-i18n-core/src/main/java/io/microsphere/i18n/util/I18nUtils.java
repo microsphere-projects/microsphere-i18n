@@ -1,9 +1,15 @@
 package io.microsphere.i18n.util;
 
+import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.EmptyServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
 
 /**
  * Internationalization Utilities class
@@ -33,5 +39,23 @@ public abstract class I18nUtils {
     public static void destroyServiceMessageSource() {
         serviceMessageSource = null;
         logger.debug("serviceMessageSource is destroyed");
+    }
+
+    public static List<ServiceMessageSource> findAllServiceMessageSources(ServiceMessageSource serviceMessageSource) {
+        List<ServiceMessageSource> allServiceMessageSources = new LinkedList<>();
+        initServiceMessageSources(serviceMessageSource, allServiceMessageSources);
+        return unmodifiableList(allServiceMessageSources);
+    }
+
+    public static void initServiceMessageSources(ServiceMessageSource serviceMessageSource,
+                                                 List<ServiceMessageSource> allServiceMessageSources) {
+        if (serviceMessageSource instanceof CompositeServiceMessageSource) {
+            CompositeServiceMessageSource compositeServiceMessageSource = (CompositeServiceMessageSource) serviceMessageSource;
+            for (ServiceMessageSource subServiceMessageSource : compositeServiceMessageSource.getServiceMessageSources()) {
+                initServiceMessageSources(subServiceMessageSource, allServiceMessageSources);
+            }
+        } else {
+            allServiceMessageSources.add(serviceMessageSource);
+        }
     }
 }
