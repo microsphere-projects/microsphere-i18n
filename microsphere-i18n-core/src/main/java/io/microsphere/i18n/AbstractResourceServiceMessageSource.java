@@ -141,6 +141,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     protected abstract String getResource(String resourceName);
 
+    @Nullable
     protected abstract Map<String, String> loadMessages(String resource);
 
     @Nullable

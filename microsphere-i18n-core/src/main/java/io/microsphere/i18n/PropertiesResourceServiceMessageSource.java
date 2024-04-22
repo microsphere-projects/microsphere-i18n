@@ -11,7 +11,6 @@ import java.util.Properties;
 
 import static io.microsphere.collection.CollectionUtils.isEmpty;
 import static io.microsphere.text.FormatUtils.format;
-import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
 
 /**
@@ -28,7 +27,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
 
     @Override
     protected final Map<String, String> loadMessages(String resource) {
-        Map<String, String> messages = emptyMap();
+        Map<String, String> messages = null;
         try {
             Properties properties = loadAllProperties(resource);
             if (!MapUtils.isEmpty(properties)) {
@@ -38,7 +37,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         } catch (IOException e) {
             throw new RuntimeException(format("Source '{}' Messages Properties Resource[name : {}] loading is failed", source, resource), e);
         }
-        return unmodifiableMap(messages);
+        return messages == null ? null : unmodifiableMap(messages);
     }
 
     private Properties loadAllProperties(String resource) throws IOException {
