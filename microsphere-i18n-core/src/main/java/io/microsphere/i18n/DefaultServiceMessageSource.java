@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 import static io.microsphere.text.FormatUtils.format;
 
@@ -33,7 +32,7 @@ public class DefaultServiceMessageSource extends PropertiesResourceServiceMessag
     }
 
     @Override
-    protected List<Reader> loadAllPropertiesResources(Locale locale, String resource) throws IOException {
+    protected List<Reader> loadAllPropertiesResources(String resource) throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         Enumeration<URL> resources = classLoader.getResources(resource);
         List<Reader> propertiesResources = new LinkedList<>();

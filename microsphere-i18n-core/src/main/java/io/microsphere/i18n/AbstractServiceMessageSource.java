@@ -173,8 +173,8 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     }
 
 
-    protected String formatMessage(String message, Object... args) {
-        // Using slf4j format, future subclasses may re-implement formatting
+    protected String resolveMessage(String message, Object... args) {
+        // Using FormatUtils#format, future subclasses may re-implement formatting
         return format(message, args);
     }
 

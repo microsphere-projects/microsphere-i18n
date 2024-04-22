@@ -4,16 +4,15 @@ import io.microsphere.collection.MapUtils;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
 import static io.microsphere.collection.CollectionUtils.isEmpty;
 import static io.microsphere.text.FormatUtils.format;
 import static java.util.Collections.emptyMap;
+import static java.util.Collections.unmodifiableMap;
 
 /**
  * {@link Properties} Resource {@link ServiceMessageSource} Class
@@ -28,22 +27,22 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
     }
 
     @Override
-    protected final Map<String, String> loadMessages(Locale locale, String resource) {
+    protected final Map<String, String> loadMessages(String resource) {
         Map<String, String> messages = emptyMap();
         try {
-            Properties properties = loadAllProperties(locale, resource);
+            Properties properties = loadAllProperties(resource);
             if (!MapUtils.isEmpty(properties)) {
                 messages = new HashMap<>(properties.size());
                 messages.putAll((Map) properties);
             }
         } catch (IOException e) {
-            throw new RuntimeException(format("Source '{}' Messages Properties Resource[locale : {}, name : {}] loading is failed", source, locale, resource), e);
+            throw new RuntimeException(format("Source '{}' Messages Properties Resource[name : {}] loading is failed", source, resource), e);
         }
-        return Collections.unmodifiableMap(messages);
+        return unmodifiableMap(messages);
     }
 
-    private Properties loadAllProperties(Locale locale, String resource) throws IOException {
-        List<Reader> propertiesResources = loadAllPropertiesResources(locale, resource);
+    private Properties loadAllProperties(String resource) throws IOException {
+        List<Reader> propertiesResources = loadAllPropertiesResources(resource);
         logger.debug("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);
         if (isEmpty(propertiesResources)) {
             return null;
@@ -60,5 +59,5 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
 
     protected abstract String getResource(String resourceName);
 
-    protected abstract List<Reader> loadAllPropertiesResources(Locale locale, String resource) throws IOException;
+    protected abstract List<Reader> loadAllPropertiesResources(String resource) throws IOException;
 }

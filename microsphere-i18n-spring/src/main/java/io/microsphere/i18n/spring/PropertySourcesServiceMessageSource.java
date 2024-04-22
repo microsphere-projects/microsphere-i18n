@@ -45,7 +45,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
     }
 
     @Override
-    protected List<Reader> loadAllPropertiesResources(Locale locale, String resource) throws IOException {
+    protected List<Reader> loadAllPropertiesResources(String resource) throws IOException {
         String propertyName = resource;
         String propertiesContent = environment.getProperty(propertyName);
         return hasText(propertiesContent) ? asList(new StringReader(propertiesContent)) : emptyList();

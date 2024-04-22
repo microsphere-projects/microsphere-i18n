@@ -3,19 +3,17 @@ package io.microsphere.i18n;
 import io.microsphere.collection.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import static io.microsphere.collection.MapUtils.isEmpty;
 import static io.microsphere.text.FormatUtils.format;
 import static java.util.Collections.emptyMap;
-import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
-import static java.util.Collections.unmodifiableSet;
+import static java.util.Collections.unmodifiableMap;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -27,18 +25,16 @@ import static java.util.Objects.requireNonNull;
 public abstract class AbstractResourceServiceMessageSource extends AbstractServiceMessageSource implements ResourceServiceMessageSource {
 
     /**
-     * Message Resource name prefix
+     * The default prefix of of message resource name
      */
-    protected static final String RESOURCE_NAME_PREFIX = "i18n_messages_";
+    protected static final String DEFAULT_RESOURCE_NAME_PREFIX = "i18n_messages_";
 
     /**
-     * Message Resource Name Suffix
+     * The default suffix of message resource name
      */
-    protected static final String RESOURCE_NAME_SUFFIX = ".properties";
+    protected static final String DEFAULT_RESOURCE_NAME_SUFFIX = ".properties";
 
-    private volatile Map<Locale, Map<String, String>> localizedMessages = emptyMap();
-
-    private volatile Set<String> initializedResources = emptySet();
+    private volatile Map<String, Map<String, String>> localizedResourceMessages = emptyMap();
 
     public AbstractResourceServiceMessageSource(String source) {
         super(source);
@@ -57,19 +53,12 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void initializeResources(Iterable<String> resources) {
-        List<Locale> supportedLocales = getSupportedLocales();
-        assertSupportedLocales(supportedLocales);
-
-        // Copy the current messages and initialized resources
-        Map<Locale, Map<String, String>> localizedMessages = new HashMap<>(this.localizedMessages);
-        Set<String> initializedResources = new LinkedHashSet<>(this.initializedResources);
-
-        initializeResources(resources, supportedLocales, localizedMessages, initializedResources);
-
-        // Exchange the field
         synchronized (this) {
-            this.localizedMessages = localizedMessages;
-            this.initializedResources = initializedResources;
+            // Copy the current messages and initialized resources
+            Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(this.localizedResourceMessages);
+            initializeResources(resources, localizedResourceMessages);
+            // Exchange the field
+            this.localizedResourceMessages = localizedResourceMessages;
         }
     }
 
@@ -91,23 +80,10 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         Map<String, String> messages = getMessages(resolvedLocale);
         String messagePattern = messages.get(resolvedCode);
         if (messagePattern != null) {
-            message = formatMessage(messagePattern, args);
+            message = resolveMessage(messagePattern, args);
             logMessage(code, resolvedCode, locale, resolvedLocale, args, messagePattern, message);
         }
         return message;
-    }
-
-    protected void logMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object[] args,
-                              String messagePattern, String message) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("Source '{}' gets Message[code : '{}' , resolvedCode : '{}' , locale : '{}' , resolvedLocale : '{}', args : '{}' , pattern : '{}'] : '{}'",
-                    source, code, resolvedCode, locale, resolvedLocale, ArrayUtils.toString(args), messagePattern, message);
-        }
-    }
-
-    @Override
-    public Set<String> getInitializeResources() {
-        return unmodifiableSet(initializedResources);
     }
 
     /**
@@ -116,18 +92,14 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     protected final void initialize() {
         List<Locale> supportedLocales = getSupportedLocales();
         assertSupportedLocales(supportedLocales);
-        Map<Locale, Map<String, String>> localizedMessages = new HashMap<>(supportedLocales.size());
-        Set<String> initializedResources = new LinkedHashSet<>();
+        Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(supportedLocales.size());
         for (Locale resolveLocale : supportedLocales) {
             String resource = getResource(resolveLocale);
-            initializeResource(resource, resolveLocale, localizedMessages, initializedResources);
+            initializeResource(resource, localizedResourceMessages);
         }
         // Exchange the field
-        synchronized (this) {
-            this.localizedMessages = localizedMessages;
-            this.initializedResources = initializedResources;
-        }
-        logger.debug("Source '{}' Initialization is completed , resources : {} , localizedMessages : {}", source, initializedResources, localizedMessages);
+        this.localizedResourceMessages = localizedResourceMessages;
+        logger.debug("Source '{}' Initialization is completed , localizedResourceMessages : {}", source, localizedResourceMessages);
     }
 
     private void assertSupportedLocales(List<Locale> supportedLocales) {
@@ -137,10 +109,8 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     }
 
     protected final void clearAllMessages() {
-        this.localizedMessages.clear();
-        this.initializedResources.clear();
-        this.localizedMessages = null;
-        this.initializedResources = null;
+        this.localizedResourceMessages.clear();
+        this.localizedResourceMessages = null;
     }
 
     private void validateMessages(Map<String, String> messages, String resourceName) {
@@ -159,60 +129,68 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     }
 
     private String getResource(Locale locale) {
-        String resourceName = getResourceName(locale);
+        String resourceName = buildResourceName(locale);
         return getResource(resourceName);
     }
 
-    private String getResourceName(Locale locale) {
-        return RESOURCE_NAME_PREFIX + locale + RESOURCE_NAME_SUFFIX;
+    protected String buildResourceName(Locale locale) {
+        return DEFAULT_RESOURCE_NAME_PREFIX + locale + DEFAULT_RESOURCE_NAME_SUFFIX;
     }
 
     protected abstract String getResource(String resourceName);
 
-    protected abstract Map<String, String> loadMessages(Locale locale, String resource);
+    protected abstract Map<String, String> loadMessages(String resource);
 
+    @Nullable
     public final Map<String, String> getMessages(Locale locale) {
-        return localizedMessages.getOrDefault(locale, emptyMap());
+        String resource = getResource(locale);
+        return localizedResourceMessages.get(resource);
+    }
+
+    private void initializeResources(Iterable<String> resources, Map<String, Map<String, String>> localizedResourceMessages) {
+        for (String resource : resources) {
+            initializeResource(resource, localizedResourceMessages);
+        }
+    }
+
+    private void initializeResource(String resource, Map<String, Map<String, String>> localizedResourceMessages) {
+        Map<String, String> messages = loadMessages(resource);
+        if (messages == null) {
+            logger.debug("Source '{}' Locale resource ['{}'] messages was not found", source, resource);
+            return;
+        }
+
+        logger.debug("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
+        validateMessages(messages, resource);
+        // Override the localized message if present
+        localizedResourceMessages.put(resource, messages);
+    }
+
+    protected void logMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object[] args,
+                              String messagePattern, String message) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Source '{}' gets Message[code : '{}' , resolvedCode : '{}' , locale : '{}' , resolvedLocale : '{}', args : '{}' , pattern : '{}'] : '{}'",
+                    source, code, resolvedCode, locale, resolvedLocale, ArrayUtils.toString(args), messagePattern, message);
+        }
+    }
+
+    public Map<String, Map<String, String>> getLocalizedResourceMessages() {
+        return unmodifiableMap(this.localizedResourceMessages);
+    }
+
+    @Override
+    public Set<String> getInitializeResources() {
+        return localizedResourceMessages.keySet();
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(getClass().getSimpleName())
                 .append("{source='").append(source).append('\'')
-                .append(", initializedResources=").append(initializedResources)
                 .append(", defaultLocale=").append(getDefaultLocale())
                 .append(", supportedLocales=").append(getSupportedLocales())
-                .append(", localizedMessages=").append(localizedMessages)
+                .append(", localizedResourceMessages=").append(localizedResourceMessages)
                 .append('}');
         return sb.toString();
-    }
-
-    private void initializeResources(Iterable<String> resources, List<Locale> supportedLocales,
-                                     Map<Locale, Map<String, String>> localizedMessages, Set<String> initializedResources) {
-
-        for (Locale locale : supportedLocales) {
-            initializeResources(resources, locale, localizedMessages, initializedResources);
-        }
-    }
-
-    private void initializeResources(Iterable<String> resources, Locale locale, Map<Locale, Map<String, String>> localizedMessages,
-                                     Set<String> initializedResources) {
-        for (String resource : resources) {
-            initializeResource(resource, locale, localizedMessages, initializedResources);
-        }
-    }
-
-    private void initializeResource(String resource, Locale locale, Map<Locale, Map<String, String>> localizedMessages,
-                                    Set<String> initializedResources) {
-        Map<String, String> messages = loadMessages(locale, resource);
-        validateMessages(messages, resource);
-        if (!isEmpty(messages)) {
-            logger.debug("Source '{}' loads the Locale '{}' resource['{}'] messages : {}", source, locale, resource, messages);
-        } else {
-            logger.debug("Source '{}' Locale '{}' resource not found['{}'] messages", source, locale, resource);
-        }
-        initializedResources.add(resource);
-        // Override the localized message if present
-        localizedMessages.put(locale, messages);
     }
 }
