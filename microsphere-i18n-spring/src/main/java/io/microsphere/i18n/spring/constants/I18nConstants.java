@@ -25,6 +25,13 @@ public interface I18nConstants {
     boolean DEFAULT_ENABLED = true;
 
     /**
+     * The property name of the {@link ServiceMessageSource#getSource() sources} of {@link ServiceMessageSource}
+     *
+     * @see ServiceMessageSource#getSource()
+     */
+    String SOURCES_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "sources";
+
+    /**
      * Default {@link Locale} property name
      */
     String DEFAULT_LOCALE_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "default-locale";
@@ -45,7 +52,7 @@ public interface I18nConstants {
     int COMMON_SERVICE_MESSAGE_SOURCE_ORDER = 500;
 
     /**
-     * Primary {@link ServiceMessageSource} Bean
+     * The Primary {@link ServiceMessageSource} Bean Bean
      */
     String SERVICE_MESSAGE_SOURCE_BEAN_NAME = "serviceMessageSource";
 }

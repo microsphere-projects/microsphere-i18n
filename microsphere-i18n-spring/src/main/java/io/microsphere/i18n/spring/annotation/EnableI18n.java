@@ -16,8 +16,12 @@
  */
 package io.microsphere.i18n.spring.annotation;
 
-import io.microsphere.i18n.spring.context.I18nConfiguration;
+import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
+import io.microsphere.i18n.spring.constants.I18nConstants;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -26,17 +30,41 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
+
 /**
  * Enables the extension for Spring Internationalisation
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
- * @see I18nConfiguration
+ * @see I18nImportBeanDefinitionRegistrar
+ * @see ServiceMessageSourceFactoryBean
  * @since 1.0.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Documented
 @Inherited
-@Import(I18nConfiguration.class)
+@Import(I18nImportBeanDefinitionRegistrar.class)
 public @interface EnableI18n {
+
+    /**
+     * Declares the sources of the {@link ServiceMessageSource} as the {@link ServiceMessageSourceFactoryBean} Spring Beans
+     * to be registered.
+     * <p>
+     * The attribute value will be merged from the Spring property whose name is {@link I18nConstants#SOURCES_PROPERTY_NAME}
+     *
+     * @return {@link ServiceMessageSource#COMMON_SOURCE} as the default
+     * @see I18nConstants#SOURCES_PROPERTY_NAME
+     */
+    String[] sources() default {COMMON_SOURCE};
+
+    /**
+     * Whether to expose {@link I18nConstants#SERVICE_MESSAGE_SOURCE_BEAN_NAME the primary Spring Bean}
+     * {@link ServiceMessageSource} as the {@link MessageSource}
+     *
+     * @return <code>true</code> as default
+     * @see AbstractApplicationContext#MESSAGE_SOURCE_BEAN_NAME
+     * @see MessageSource
+     */
+    boolean exposeMessageSource() default true;
 }

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.lang.NonNull;
 
 import java.nio.charset.Charset;

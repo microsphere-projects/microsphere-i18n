@@ -37,7 +37,9 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see EnableI18n
  * @since 1.0.0
+ * @deprecated use {@link EnableI18n}
  */
+@Deprecated
 @Import(value = {
         ServiceMessageSourceBeanLifecyclePostProcessor.class
 })
