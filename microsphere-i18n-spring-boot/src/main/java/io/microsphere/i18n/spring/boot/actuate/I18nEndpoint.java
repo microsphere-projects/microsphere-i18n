@@ -17,48 +17,41 @@
 package io.microsphere.i18n.spring.boot.actuate;
 
 import io.microsphere.i18n.AbstractResourceServiceMessageSource;
-import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
-import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
-import javax.annotation.PostConstruct;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static java.util.Collections.emptyList;
-import static org.springframework.util.CollectionUtils.isEmpty;
 
 /**
  * I18n Spring Boot Actuator Endpoint
- * <prev>
+ * <pre>
  * {
- * "common" : {
- * "zh_CN" : {
- * "error.a" : "a"
- * }
- * },
- * "test" : {
- * "test.i18n_messages_zh_CN.properties" : {
+ * "test.i18n_messages_zh.properties": {
  *
  * },
- * "META-INF/i18n/test/i18n_messages_en.properties":{
- * "test.a" : "test-a"
- * "test.hello" : "Hello,{}"
+ * "META-INF/i18n/test/i18n_messages_zh_CN.properties": {
+ * "test.a": "测试-a",
+ * "test.hello": "您好,{}"
+ * },
+ * "META-INF/i18n/test/i18n_messages_en.properties": {
+ * "test.a": "test-a",
+ * "test.hello": "Hello,{}"
+ * },
+ * "META-INF/i18n/common/i18n_messages_zh_CN.properties": {
+ * "common.a": "a"
  * }
- * ...
  * }
- * }
- * </prev>
+ * </pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
@@ -80,43 +73,21 @@ public class I18nEndpoint {
     }
 
     @ReadOperation
-    public Map<String, Object> invoke() {
+    public Map<String, Map<String, String>> invoke() {
         List<ServiceMessageSource> serviceMessageSources = this.serviceMessageSources;
         int size = serviceMessageSources.size();
-        Map<String, Object> result = new HashMap<>(size);
+        Map<String, Map<String, String>> allLocalizedResourceMessages = new HashMap<>(size);
         for (int i = 0; i < size; i++) {
             ServiceMessageSource serviceMessageSource = serviceMessageSources.get(i);
-            if (serviceMessageSource instanceof CompositeServiceMessageSource) {
-                CompositeServiceMessageSource compositeServiceMessageSource = (CompositeServiceMessageSource) serviceMessageSource;
-                for (ServiceMessageSource sms : compositeServiceMessageSource.getServiceMessageSources()) {
-                    if (sms instanceof AbstractResourceServiceMessageSource) {
-                        AbstractResourceServiceMessageSource resourceServiceMessageSource = (AbstractResourceServiceMessageSource) sms;
-                        String source = serviceMessageSource.getSource();
-                        List<Locale> supportedLocales = resourceServiceMessageSource.getSupportedLocales();
-                        Map<String, Map<String, String>> localizedMessages = new HashMap<>(supportedLocales.size());
-
-
-                        for (Locale supportedLocale : supportedLocales) {
-                            Map<String, String> messages = resourceServiceMessageSource.getMessages(supportedLocale);
-                            if (!isEmpty(messages)) {
-                                localizedMessages.put(supportedLocale.toString(), messages);
-                            }
-                        }
-
-                        result.put(source, localizedMessages);
-                    }
+            List<ServiceMessageSource> subServiceMessageSources = findAllServiceMessageSources(serviceMessageSource);
+            for (ServiceMessageSource subServiceMessageSource : subServiceMessageSources) {
+                if (subServiceMessageSource instanceof AbstractResourceServiceMessageSource) {
+                    AbstractResourceServiceMessageSource resourceServiceMessageSource = (AbstractResourceServiceMessageSource) subServiceMessageSource;
+                    Map<String, Map<String, String>> localizedResourceMessages = resourceServiceMessageSource.getLocalizedResourceMessages();
+                    allLocalizedResourceMessages.putAll(localizedResourceMessages);
                 }
             }
-
         }
-        return result;
-    }
-
-    private AbstractResourceServiceMessageSource getResourceServiceMessageSource(ServiceMessageSource serviceMessageSource) {
-        if (serviceMessageSource instanceof ServiceMessageSourceFactoryBean) {
-            ServiceMessageSourceFactoryBean smffb = (ServiceMessageSourceFactoryBean) serviceMessageSource;
-            CompositeServiceMessageSource compositeServiceMessageSource = smffb.getDelegate();
-        }
-        return null;
+        return allLocalizedResourceMessages;
     }
 }
