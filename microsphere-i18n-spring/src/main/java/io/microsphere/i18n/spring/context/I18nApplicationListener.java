@@ -86,6 +86,7 @@ public class I18nApplicationListener implements SmartApplicationListener {
     }
 
 
+    @SuppressWarnings("unchecked")
     private void initializeAcceptHeaderLocaleResolver(ApplicationContext context) {
         if (ACCEPT_HEADER_LOCALE_RESOLVER_CLASS == null) {
             logger.debug("The class '{}' was not found!", ACCEPT_HEADER_LOCALE_RESOLVER_CLASS_NAME);

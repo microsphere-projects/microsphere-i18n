@@ -1,5 +1,6 @@
 package io.microsphere.i18n;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 /**
@@ -28,6 +29,7 @@ public class EmptyServiceMessageSource implements ServiceMessageSource {
         return null;
     }
 
+    @Nonnull
     @Override
     public Locale getLocale() {
         return getDefaultLocale();

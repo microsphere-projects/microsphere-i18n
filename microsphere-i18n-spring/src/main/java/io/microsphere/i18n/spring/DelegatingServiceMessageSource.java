@@ -59,7 +59,6 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
         init();
     }
 
-    @NonNull
     @Override
     public String getMessage(String code, Locale locale, Object... args) {
         return this.delegate.getMessage(code, locale, args);
