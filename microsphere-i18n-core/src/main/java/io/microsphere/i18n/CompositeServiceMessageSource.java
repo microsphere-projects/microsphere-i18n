@@ -49,7 +49,6 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
         forEach(this.serviceMessageSources, ServiceMessageSource::init);
     }
 
-    @Nonnull
     @Override
     public String getMessage(String code, Locale locale, Object... args) {
         String message = null;
@@ -109,7 +108,7 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
             oldServiceMessageSources.clear();
         }
         this.serviceMessageSources = newServiceMessageSources;
-        logger.debug("Source '{}' sets ServiceMessageSource list, original : {} , sorted : {}", serviceMessageSources, newServiceMessageSources);
+        logger.debug("Source '{}' sets ServiceMessageSource list, sorted : {}", serviceMessageSources, newServiceMessageSources);
     }
 
     @Override
@@ -182,7 +181,7 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
     private <T> void iterate(Class<T> serviceMessageSourceType, Consumer<T> consumer) {
         this.serviceMessageSources.stream()
-                .filter(serviceMessageSource -> serviceMessageSourceType.isInstance(serviceMessageSource))
+                .filter(serviceMessageSourceType::isInstance)
                 .map(serviceMessageSourceType::cast)
                 .forEach(consumer);
     }

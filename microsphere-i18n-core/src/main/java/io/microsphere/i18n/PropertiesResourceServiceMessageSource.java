@@ -26,6 +26,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         super(source);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     protected final Map<String, String> loadMessages(String resource) {
         Map<String, String> messages = null;

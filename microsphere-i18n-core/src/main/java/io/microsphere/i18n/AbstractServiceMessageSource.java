@@ -3,6 +3,7 @@ package io.microsphere.i18n;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,6 +70,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         return message;
     }
 
+    @Nonnull
     @Override
     public final Locale getLocale() {
         Locale locale = getInternalLocale();
@@ -85,6 +87,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         return null;
     }
 
+    @Nonnull
     @Override
     public final Locale getDefaultLocale() {
         if (defaultLocale != null) {
@@ -93,6 +96,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         return ServiceMessageSource.super.getDefaultLocale();
     }
 
+    @Nonnull
     @Override
     public final List<Locale> getSupportedLocales() {
         if (supportedLocales != null) {
