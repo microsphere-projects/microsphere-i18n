@@ -83,7 +83,10 @@ public class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRe
         }
 
         // Register DelegatingServiceMessageSource as the Spring Primary Bean
-        BeanDefinition primaryBeanDefinition = rootBeanDefinition(DelegatingServiceMessageSource.class).setPrimary(true).getBeanDefinition();
+        BeanDefinition primaryBeanDefinition =
+                rootBeanDefinition(DelegatingServiceMessageSource.class)
+                .setPrimary(true)
+                .getBeanDefinition();
         registry.registerBeanDefinition(SERVICE_MESSAGE_SOURCE_BEAN_NAME, primaryBeanDefinition);
     }
 
