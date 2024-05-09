@@ -79,6 +79,7 @@ public class I18nEndpoint {
         int size = serviceMessageSources.size();
         Map<String, Map<String, String>> allLocalizedResourceMessages = new LinkedHashMap<>(size);
         for (int i = 0; i < size; i++) {
+            // FIXME
             ServiceMessageSource serviceMessageSource = serviceMessageSources.get(i);
             List<ServiceMessageSource> subServiceMessageSources = findAllServiceMessageSources(serviceMessageSource);
             for (ServiceMessageSource subServiceMessageSource : subServiceMessageSources) {
