@@ -11,11 +11,33 @@ import java.util.Set;
 public interface ReloadableResourceServiceMessageSource extends ResourceServiceMessageSource {
 
     /**
+     * Reload if {@link #canReload(String)} returns <code>true</code>,
+     * The calling {@link #initializeResource(String)} as default
+     *
+     * @param changedResource Changes in the resource
+     */
+    default void reload(String changedResource) {
+        initializeResource(changedResource);
+    }
+
+    /**
      * Reload if {@link #canReload(Iterable)} returns <code>true</code>,
      * The calling {@link #initializeResources(Iterable)} as default
+     * @param changedResources  Changes in the resources
      */
     default void reload(Iterable<String> changedResources) {
         initializeResources(changedResources);
+    }
+
+    /**
+     * Whether the specified resource can be overloaded
+     *
+     * @param changedResource Changes in the resource
+     * @return Supported by default, returning <code>true<code>
+     */
+    default boolean canReload(String changedResource) {
+        Set<String> resources = getInitializeResources();
+        return resources.contains(changedResource);
     }
 
     /**

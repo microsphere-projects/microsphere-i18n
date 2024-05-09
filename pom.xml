@@ -62,6 +62,7 @@
         <module>microsphere-i18n-openfeign</module>
         <module>microsphere-i18n-spring</module>
         <module>microsphere-i18n-spring-boot</module>
+        <module>microsphere-i18n-spring-cloud</module>
     </modules>
 
     <distributionManagement>
