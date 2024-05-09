@@ -25,6 +25,7 @@ import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +77,7 @@ public class I18nEndpoint {
     public Map<String, Map<String, String>> invoke() {
         List<ServiceMessageSource> serviceMessageSources = this.serviceMessageSources;
         int size = serviceMessageSources.size();
-        Map<String, Map<String, String>> allLocalizedResourceMessages = new HashMap<>(size);
+        Map<String, Map<String, String>> allLocalizedResourceMessages = new LinkedHashMap<>(size);
         for (int i = 0; i < size; i++) {
             ServiceMessageSource serviceMessageSource = serviceMessageSources.get(i);
             List<ServiceMessageSource> subServiceMessageSources = findAllServiceMessageSources(serviceMessageSource);
