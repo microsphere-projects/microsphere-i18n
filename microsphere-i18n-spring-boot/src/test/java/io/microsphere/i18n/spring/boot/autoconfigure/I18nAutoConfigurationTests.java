@@ -12,11 +12,7 @@ import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class I18nAutoConfigurationTests {
 
@@ -32,19 +28,20 @@ class I18nAutoConfigurationTests {
         applicationContextRunner.withPropertyValues("spring.application.name=I18nAutoConfigurationTests")
                 .withConfiguration(AutoConfigurations.of(I18nAutoConfiguration.class, PropertyPlaceholderAutoConfiguration.class))
                 .run(context -> {
-                    assertTrue(context.containsBean("applicationServiceMessageSource"));
-                    assertEquals("I18nAutoConfigurationTests",
-                            context.getBean("applicationServiceMessageSource", ServiceMessageSourceFactoryBean.class).getSource());
+                    assertThat(context)
+                            .hasBean("applicationServiceMessageSource")
+                            .getBean("applicationServiceMessageSource")
+                            .hasFieldOrPropertyWithValue("source", "I18nAutoConfigurationTests");
 
-                    assertFalse(context.getBeansOfType(ServiceMessageSourceFactoryBean.class).isEmpty());
-                    assertInstanceOf(DelegatingServiceMessageSource.class, context.getBean("serviceMessageSource"));
 
-                    assertTrue(context.containsBean("messageSource"));
-                    assertInstanceOf(MessageSourceAdapter.class, context.getBean("messageSource"));
+                    assertThat(context).getBeans(ServiceMessageSourceFactoryBean.class).hasSizeGreaterThanOrEqualTo(1);
 
-                    assertNotNull(context.getBean(I18nApplicationListener.class));
-                    assertNotNull(context.getBean(I18nBeanPostProcessor.class));
-                    assertNotNull(context.getBean(ServiceMessageSourceBeanLifecyclePostProcessor.class));
+                    assertThat(context).getBean("serviceMessageSource").isInstanceOf(DelegatingServiceMessageSource.class);
+                    assertThat(context).getBean("messageSource").isInstanceOf(MessageSourceAdapter.class);
+
+                    assertThat(context).hasSingleBean(I18nApplicationListener.class)
+                            .hasSingleBean(I18nBeanPostProcessor.class)
+                            .hasSingleBean(ServiceMessageSourceBeanLifecyclePostProcessor.class);
                 });
     }
 }

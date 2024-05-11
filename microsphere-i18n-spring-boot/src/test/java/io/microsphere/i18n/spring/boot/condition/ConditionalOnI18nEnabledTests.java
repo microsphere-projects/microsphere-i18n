@@ -7,8 +7,7 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 
 class ConditionalOnI18nEnabledTests {
@@ -23,22 +22,23 @@ class ConditionalOnI18nEnabledTests {
     @Test
     void shouldEnableI18nByDefault() {
         applicationContextRunner.withUserConfiguration(Config.class)
-                .run(context -> assertTrue(context.containsBean("a")));
+                .run(context -> assertThat(context).hasBean("a"));
     }
 
     @Test
     void shouldEnableI18nWhenPropertyIsTrue() {
         applicationContextRunner.withUserConfiguration(Config.class)
                 .withPropertyValues("microsphere.i18n.enabled=true")
-                .run(context -> assertTrue(context.containsBean("a")));
+                .run(context -> assertThat(context).hasBean("a"));
     }
 
     @Test
     void shouldDisableI18nWhenPropertyIsFalse() {
         applicationContextRunner.withUserConfiguration(Config.class)
                 .withPropertyValues("microsphere.i18n.enabled=false")
-                .run(context -> assertFalse(context.containsBean("a")));
+                .run(context -> assertThat(context).doesNotHaveBean("a"));
     }
+
     @Test
     void shouldDisableI18nWhenMissingClass() {
         applicationContextRunner.withUserConfiguration(Config.class)
@@ -46,7 +46,7 @@ class ConditionalOnI18nEnabledTests {
                 .withClassLoader(new FilteredClassLoader(
                         "io.microsphere.i18n.ServiceMessageSource",
                         "io.microsphere.i18n.spring.annotation.EnableI18n"))
-                .run(context -> assertFalse(context.containsBean("a")));
+                .run(context -> assertThat(context).doesNotHaveBean("a"));
     }
 
     @Configuration
