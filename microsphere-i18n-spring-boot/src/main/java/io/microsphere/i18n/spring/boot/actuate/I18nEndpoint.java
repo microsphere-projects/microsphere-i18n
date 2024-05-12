@@ -24,7 +24,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,7 +85,10 @@ public class I18nEndpoint {
                 if (subServiceMessageSource instanceof AbstractResourceServiceMessageSource) {
                     AbstractResourceServiceMessageSource resourceServiceMessageSource = (AbstractResourceServiceMessageSource) subServiceMessageSource;
                     Map<String, Map<String, String>> localizedResourceMessages = resourceServiceMessageSource.getLocalizedResourceMessages();
-                    allLocalizedResourceMessages.putAll(localizedResourceMessages);
+//                    allLocalizedResourceMessages.putAll(localizedResourceMessages);
+                    localizedResourceMessages.forEach(
+                            (k, v) -> allLocalizedResourceMessages.merge(k, v, (oldValue, value) -> value.isEmpty() ? oldValue : value)
+                    );
                 }
             }
         }
