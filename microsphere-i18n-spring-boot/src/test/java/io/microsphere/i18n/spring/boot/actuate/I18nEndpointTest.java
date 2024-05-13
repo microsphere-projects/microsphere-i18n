@@ -3,12 +3,14 @@ package io.microsphere.i18n.spring.boot.actuate;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import io.microsphere.i18n.spring.annotation.EnableI18n;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Locale;
 import java.util.Map;
 
 import static com.jayway.jsonpath.JsonPath.using;
@@ -18,6 +20,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 class I18nEndpointTest {
     ApplicationContextRunner applicationContextRunner;
+
+    @BeforeAll
+    static void init() {
+        Locale.setDefault(Locale.CHINA);
+    }
 
     @BeforeEach
     void setup() {
