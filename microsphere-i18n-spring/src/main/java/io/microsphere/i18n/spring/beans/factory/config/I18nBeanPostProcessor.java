@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import static io.microsphere.spring.util.BeanUtils.getOptionalBean;
 import static io.microsphere.util.ClassLoaderUtils.resolveClass;
 import static org.springframework.aop.support.AopUtils.getTargetClass;
 
@@ -46,10 +47,14 @@ public class I18nBeanPostProcessor implements BeanPostProcessor {
 
         Class<?> beanType = getTargetClass(bean);
         if (LOCAL_VALIDATOR_FACTORY_BEAN_CLASS.equals(beanType)) {
-            MessageSourceAdapter messageSourceAdapter = context.getBean(MessageSourceAdapter.class);
-            LocalValidatorFactoryBean localValidatorFactoryBean = (LocalValidatorFactoryBean) bean;
-            localValidatorFactoryBean.setValidationMessageSource(messageSourceAdapter);
-            logger.debug("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
+            MessageSourceAdapter messageSourceAdapter = getOptionalBean(this.context, MessageSourceAdapter.class);
+            if (messageSourceAdapter == null) {
+                logger.warn("No MessageSourceAdapter BeanDefinition was found!");
+            }else{
+                LocalValidatorFactoryBean localValidatorFactoryBean = (LocalValidatorFactoryBean) bean;
+                localValidatorFactoryBean.setValidationMessageSource(messageSourceAdapter);
+                logger.debug("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
+            }
         }
 
         return bean;
