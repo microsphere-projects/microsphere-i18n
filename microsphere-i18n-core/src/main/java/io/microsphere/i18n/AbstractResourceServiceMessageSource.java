@@ -130,7 +130,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         }
     }
 
-    private String getResource(Locale locale) {
+    public String getResource(Locale locale) {
         String resourceName = buildResourceName(locale);
         return getResource(resourceName);
     }
