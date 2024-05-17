@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
@@ -42,7 +43,12 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         return messages == null ? emptyMap() : unmodifiableMap(messages);
     }
 
-    private Properties loadAllProperties(String resource) throws IOException {
+    public Properties loadAllProperties(Locale locale) throws IOException {
+        String resource = getResource(locale);
+        return loadAllProperties(resource);
+    }
+
+    public Properties loadAllProperties(String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(resource);
         logger.debug("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);
         if (isEmpty(propertiesResources)) {

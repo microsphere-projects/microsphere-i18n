@@ -19,13 +19,22 @@ package io.microsphere.i18n.spring.boot.actuate;
 import io.microsphere.i18n.AbstractResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
+import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Selector;
+import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 import org.springframework.cglib.core.Local;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.MapPropertySource;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertySources;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -34,6 +43,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Properties;
 import java.util.Set;
 
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
@@ -69,7 +80,12 @@ import static org.springframework.util.StringUtils.hasText;
 @Endpoint(id = "i18n")
 public class I18nEndpoint {
 
+    public static final String PROPERTY_SOURCE_NAME = "i18nEndpointPropertySource";
+
     private List<ServiceMessageSource> serviceMessageSources;
+
+    @Autowired
+    private ConfigurableEnvironment environment;
 
     @Autowired
     @Qualifier(SERVICE_MESSAGE_SOURCE_BEAN_NAME)
@@ -145,6 +161,59 @@ public class I18nEndpoint {
             }
         }
         return messageMaps;
+    }
+
+    @WriteOperation
+    public Map<String, Object> addMessage(String source, Locale locale, String code, String message) throws IOException {
+        PropertySourcesServiceMessageSource serviceMessageSource = getPropertySourcesServiceMessageSource(source);
+        Properties properties = loadProperties(serviceMessageSource, locale);
+        // Add a new code with message
+        properties.setProperty(code, message);
+
+        String propertyName = serviceMessageSource.getPropertyName(locale);
+        StringWriter stringWriter = new StringWriter();
+        // Properties -> StringWriter
+        properties.store(stringWriter, "");
+        // StringWriter -> String
+        String propertyValue = stringWriter.toString();
+
+        MapPropertySource propertySource = getPropertySource();
+        Map<String, Object> newProperties = propertySource.getSource();
+        newProperties.put(propertyName, propertyValue);
+
+        serviceMessageSource.init();
+        return newProperties;
+    }
+
+    private Properties loadProperties(PropertySourcesServiceMessageSource serviceMessageSource, Locale locale) throws IOException {
+        Properties properties = serviceMessageSource.loadAllProperties(locale);
+        return properties == null ? new Properties() : properties;
+    }
+
+    private MapPropertySource getPropertySource() {
+        MutablePropertySources propertySources = environment.getPropertySources();
+        String name = PROPERTY_SOURCE_NAME;
+        MapPropertySource propertySource = (MapPropertySource) propertySources.get(name);
+        if (propertySource == null) {
+            Map<String, Object> properties = new HashMap<>();
+            propertySource = new MapPropertySource(name, properties);
+            propertySources.addFirst(propertySource);
+        }
+        return propertySource;
+    }
+
+    private PropertySourcesServiceMessageSource getPropertySourcesServiceMessageSource(String source) {
+        return serviceMessageSources.stream()
+                .filter(serviceMessageSource ->
+                        Objects.equals(source, serviceMessageSource.getSource()))
+                .filter(this::isPropertySourcesServiceMessageSource)
+                .map(PropertySourcesServiceMessageSource.class::cast)
+                .findFirst()
+                .get();
+    }
+
+    private boolean isPropertySourcesServiceMessageSource(ServiceMessageSource serviceMessageSource) {
+        return serviceMessageSource instanceof PropertySourcesServiceMessageSource;
     }
 
     private String getResource(ServiceMessageSource serviceMessageSource, Locale locale) {
