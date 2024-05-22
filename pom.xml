@@ -63,6 +63,7 @@
         <module>microsphere-i18n-spring</module>
         <module>microsphere-i18n-spring-boot</module>
         <module>microsphere-i18n-spring-cloud</module>
+        <module>microsphere-i18n-spring-cloud-server</module>
     </modules>
 
     <distributionManagement>
