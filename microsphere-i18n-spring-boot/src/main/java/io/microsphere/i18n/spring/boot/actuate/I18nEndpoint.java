@@ -26,7 +26,10 @@ import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.cglib.core.Local;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
@@ -87,9 +90,14 @@ public class I18nEndpoint {
     @Autowired
     private ConfigurableEnvironment environment;
 
-    @Autowired
-    @Qualifier(SERVICE_MESSAGE_SOURCE_BEAN_NAME)
-    public void initServiceMessageSources(ServiceMessageSource serviceMessageSource) {
+    @EventListener(ApplicationReadyEvent.class)
+    public void onApplicationReadyEvent(ApplicationReadyEvent event) {
+        ConfigurableApplicationContext context = event.getApplicationContext();
+        ServiceMessageSource serviceMessageSource = context.getBean(SERVICE_MESSAGE_SOURCE_BEAN_NAME, ServiceMessageSource.class);
+        initServiceMessageSources(serviceMessageSource);
+    }
+
+    private void initServiceMessageSources(ServiceMessageSource serviceMessageSource) {
         List<ServiceMessageSource> serviceMessageSources = emptyList();
         if (serviceMessageSource instanceof DelegatingServiceMessageSource) {
             DelegatingServiceMessageSource delegatingServiceMessageSource = (DelegatingServiceMessageSource) serviceMessageSource;
@@ -107,6 +115,7 @@ public class I18nEndpoint {
         this.serviceMessageSources = allServiceMessageSources;
 
     }
+
 
     @ReadOperation
     public Map<String, Map<String, String>> invoke() {
