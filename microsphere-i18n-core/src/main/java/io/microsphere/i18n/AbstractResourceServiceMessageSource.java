@@ -27,12 +27,12 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     /**
      * The default prefix of of message resource name
      */
-    protected static final String DEFAULT_RESOURCE_NAME_PREFIX = "i18n_messages_";
+    public static final String DEFAULT_RESOURCE_NAME_PREFIX = "i18n_messages_";
 
     /**
      * The default suffix of message resource name
      */
-    protected static final String DEFAULT_RESOURCE_NAME_SUFFIX = ".properties";
+    public static final String DEFAULT_RESOURCE_NAME_SUFFIX = ".properties";
 
     private volatile Map<String, Map<String, String>> localizedResourceMessages = emptyMap();
 
