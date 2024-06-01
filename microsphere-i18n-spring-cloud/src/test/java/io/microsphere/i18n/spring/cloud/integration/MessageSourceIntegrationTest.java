@@ -11,11 +11,13 @@ import org.assertj.core.util.Maps;
 import org.assertj.core.util.Sets;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
 
@@ -26,7 +28,13 @@ import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-@SpringBootTest(classes = MessageSourceIntegrationTest.Config.class)
+@SpringBootTest(
+        classes = MessageSourceIntegrationTest.Config.class,
+        properties = {
+                "management.endpoint.i18n.enabled=true" ,
+                "management.endpoints.web.exposure.include=*"
+        }
+)
 class MessageSourceIntegrationTest {
 
     @Test
@@ -51,14 +59,11 @@ class MessageSourceIntegrationTest {
 
     @ImportAutoConfiguration(classes = {
             I18nAutoConfiguration.class,
-            I18nEndpointAutoConfiguration.class
+            I18nEndpointAutoConfiguration.class,
+            PropertyPlaceholderAutoConfiguration.class
     })
+    @Import(value = {ReloadableResourceServiceMessageSourceListener.class})
     static class Config {
-
-        @Bean
-        ReloadableResourceServiceMessageSourceListener reloadableResourceServiceMessageSourceListener() {
-            return new ReloadableResourceServiceMessageSourceListener();
-        }
 
     }
 }

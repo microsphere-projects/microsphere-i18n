@@ -21,14 +21,16 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * I18n Bootstrap
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @since TODO
+ * @since 1.0.0
  */
 @EnableAutoConfiguration
+@PropertySource(value = "classpath:/i18n-bootstrap.properties")
 public class I18nBootstrap {
 
     public static void main(String[] args) {
