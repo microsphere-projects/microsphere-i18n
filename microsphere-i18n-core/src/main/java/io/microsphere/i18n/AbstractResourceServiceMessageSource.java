@@ -25,7 +25,7 @@ import static java.util.Objects.requireNonNull;
 public abstract class AbstractResourceServiceMessageSource extends AbstractServiceMessageSource implements ResourceServiceMessageSource {
 
     /**
-     * The default prefix of of message resource name
+     * The default prefix of message resource name
      */
     public static final String DEFAULT_RESOURCE_NAME_PREFIX = "i18n_messages_";
 

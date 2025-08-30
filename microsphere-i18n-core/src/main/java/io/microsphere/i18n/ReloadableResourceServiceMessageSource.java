@@ -50,7 +50,7 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
         Set<String> resources = getInitializeResources();
         boolean reloadable = false;
         for (String changedResource : changedResources) {
-            if (reloadable = resources.contains(changedResource)) {
+            if (reloadable == resources.contains(changedResource)) {
                 break;
             }
         }
