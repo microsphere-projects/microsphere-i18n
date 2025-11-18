@@ -18,8 +18,13 @@ package io.microsphere.i18n;
 
 import io.microsphere.i18n.util.MessageUtils;
 
-import java.util.Arrays;
 import java.util.StringJoiner;
+
+import static io.microsphere.constants.SymbolConstants.COMMA;
+import static io.microsphere.constants.SymbolConstants.LEFT_SQUARE_BRACKET;
+import static io.microsphere.constants.SymbolConstants.RIGHT_SQUARE_BRACKET;
+import static io.microsphere.constants.SymbolConstants.SPACE;
+import static io.microsphere.util.ArrayUtils.arrayToString;
 
 /**
  * Service Message Exception
@@ -30,6 +35,7 @@ import java.util.StringJoiner;
 public class ServiceMessageException extends RuntimeException {
 
     private final String message;
+
     private final Object[] args;
 
     public ServiceMessageException(String message, Object... args) {
@@ -49,10 +55,11 @@ public class ServiceMessageException extends RuntimeException {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", ServiceMessageException.class.getSimpleName() + "[", "]")
+        return new StringJoiner(COMMA + SPACE, ServiceMessageException.class.getSimpleName() +
+                LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET)
                 .add("message='" + message + "'")
-                .add("args=" + Arrays.toString(args))
-                .add("localized message='" + getLocalizedMessage()+"'")
+                .add("args=" + arrayToString(args))
+                .add("localized message='" + getLocalizedMessage() + "'")
                 .toString();
     }
 }

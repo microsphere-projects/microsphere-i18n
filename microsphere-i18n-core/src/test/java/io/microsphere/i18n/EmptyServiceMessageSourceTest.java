@@ -4,9 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Locale;
-
-import static java.util.Arrays.asList;
+import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertNull;
  */
 public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
-    private EmptyServiceMessageSource serviceMessageSource = EmptyServiceMessageSource.INSTANCE;
+    private EmptyServiceMessageSource serviceMessageSource = INSTANCE;
 
     @Before
     public void before() {
@@ -36,7 +37,7 @@ public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
     public void testGetMessage() {
         assertNull(serviceMessageSource.getMessage("test"));
         assertNull(serviceMessageSource.getMessage("test", "a"));
-        assertNull(serviceMessageSource.getMessage("test", Locale.ENGLISH, "a"));
+        assertNull(serviceMessageSource.getMessage("test", ENGLISH, "a"));
     }
 
     @Test
@@ -46,16 +47,16 @@ public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     public void testGetDefaultLocale() {
-        assertEquals(Locale.SIMPLIFIED_CHINESE, serviceMessageSource.getDefaultLocale());
+        assertEquals(SIMPLIFIED_CHINESE, serviceMessageSource.getDefaultLocale());
     }
 
     @Test
     public void testGetLocale() {
-        assertEquals(Locale.SIMPLIFIED_CHINESE, serviceMessageSource.getLocale());
+        assertEquals(SIMPLIFIED_CHINESE, serviceMessageSource.getLocale());
     }
 
     @Test
     public void testGetSupportedLocales() {
-        assertEquals(asList(Locale.SIMPLIFIED_CHINESE, Locale.ENGLISH), serviceMessageSource.getSupportedLocales());
+        assertEquals(ofList(SIMPLIFIED_CHINESE, ENGLISH), serviceMessageSource.getSupportedLocales());
     }
 }

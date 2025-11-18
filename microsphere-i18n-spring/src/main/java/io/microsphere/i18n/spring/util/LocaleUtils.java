@@ -43,4 +43,7 @@ public abstract class LocaleUtils {
         LocaleContext localeContext = getLocaleContext();
         return localeContext == null ? null : localeContext.getLocale();
     }
+
+    private LocaleUtils() {
+    }
 }

@@ -19,18 +19,10 @@ package io.microsphere.i18n.spring.cloud.server.controller;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
 import io.microsphere.i18n.spring.boot.actuate.I18nEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import static io.microsphere.i18n.AbstractResourceServiceMessageSource.DEFAULT_RESOURCE_NAME_PREFIX;
-import static io.microsphere.i18n.AbstractResourceServiceMessageSource.DEFAULT_RESOURCE_NAME_SUFFIX;
-import static io.microsphere.spring.util.PropertySourcesUtils.findPropertyNames;
 
 /**
  * The REST-Controler for I18n server

@@ -1,9 +1,10 @@
 package io.microsphere.i18n;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Set;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Resource {@link ServiceMessageSource}
@@ -42,6 +43,6 @@ public interface ResourceServiceMessageSource extends ServiceMessageSource {
      * @return The default is utf-8
      */
     default Charset getEncoding() {
-        return StandardCharsets.UTF_8;
+        return UTF_8;
     }
 }

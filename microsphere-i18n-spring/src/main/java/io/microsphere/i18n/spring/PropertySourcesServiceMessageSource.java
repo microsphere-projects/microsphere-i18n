@@ -15,7 +15,8 @@ import java.io.StringReader;
 import java.util.List;
 import java.util.Locale;
 
-import static java.util.Arrays.asList;
+import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
 import static java.util.Collections.emptyList;
 import static org.springframework.util.StringUtils.hasText;
 
@@ -35,7 +36,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
 
     @Override
     protected String getResource(String resourceName) {
-        return getSource() + "." + resourceName;
+        return getSource() + SOURCE_SEPARATOR + resourceName;
     }
 
     @Nullable
@@ -47,7 +48,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
     @Override
     protected List<Reader> loadAllPropertiesResources(String resource) throws IOException {
         String propertiesContent = getPropertiesContent(resource);
-        return hasText(propertiesContent) ? asList(new StringReader(propertiesContent)) : emptyList();
+        return hasText(propertiesContent) ? ofList(new StringReader(propertiesContent)) : emptyList();
     }
 
     protected String getPropertiesContent(String resource) {

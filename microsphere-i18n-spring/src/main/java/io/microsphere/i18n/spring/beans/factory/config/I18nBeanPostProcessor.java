@@ -1,15 +1,15 @@
 package io.microsphere.i18n.spring.beans.factory.config;
 
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import static io.microsphere.spring.util.BeanUtils.getOptionalBean;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.BeanUtils.getOptionalBean;
 import static io.microsphere.util.ClassLoaderUtils.resolveClass;
 import static org.springframework.aop.support.AopUtils.getTargetClass;
 
@@ -25,7 +25,7 @@ import static org.springframework.aop.support.AopUtils.getTargetClass;
  */
 public class I18nBeanPostProcessor implements BeanPostProcessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(I18nBeanPostProcessor.class);
+    private static final Logger logger = getLogger(I18nBeanPostProcessor.class);
 
     private static final ClassLoader classLoader = I18nBeanPostProcessor.class.getClassLoader();
 
@@ -53,7 +53,7 @@ public class I18nBeanPostProcessor implements BeanPostProcessor {
             }else{
                 LocalValidatorFactoryBean localValidatorFactoryBean = (LocalValidatorFactoryBean) bean;
                 localValidatorFactoryBean.setValidationMessageSource(messageSourceAdapter);
-                logger.debug("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
+                logger.trace("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
             }
         }
 

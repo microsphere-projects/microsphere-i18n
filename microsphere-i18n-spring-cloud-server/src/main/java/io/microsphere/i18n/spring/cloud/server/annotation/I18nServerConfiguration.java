@@ -25,23 +25,17 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.Environment;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import static io.microsphere.i18n.AbstractResourceServiceMessageSource.DEFAULT_RESOURCE_NAME_PREFIX;
-import static io.microsphere.i18n.AbstractResourceServiceMessageSource.DEFAULT_RESOURCE_NAME_SUFFIX;
-import static io.microsphere.spring.util.PropertySourcesUtils.findPropertyNames;
-import static java.util.Arrays.asList;
+import static io.microsphere.collection.Lists.ofList;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.getDefault;
 
 /**
  * The Configuration Class for I18n Server
@@ -81,10 +75,9 @@ public class I18nServerConfiguration {
         PropertySourcesServiceMessageSource serviceMessageSource = new PropertySourcesServiceMessageSource(service);
         serviceMessageSource.setEnvironment(environment);
         // FIXME Hardcode
-        serviceMessageSource.setDefaultLocale(Locale.getDefault());
-        serviceMessageSource.setSupportedLocales(asList(Locale.getDefault(), Locale.ENGLISH));
+        serviceMessageSource.setDefaultLocale(getDefault());
+        serviceMessageSource.setSupportedLocales(ofList(getDefault(), ENGLISH));
         serviceMessageSource.init();
         return serviceMessageSource;
     }
-
 }
