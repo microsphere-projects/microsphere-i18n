@@ -2,7 +2,7 @@ package io.microsphere.i18n;
 
 import io.microsphere.collection.CollectionUtils;
 
-import javax.annotation.Nullable;
+import io.microsphere.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;

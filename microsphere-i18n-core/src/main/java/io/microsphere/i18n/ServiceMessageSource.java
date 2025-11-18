@@ -2,8 +2,8 @@ package io.microsphere.i18n;
 
 import io.microsphere.lang.Prioritized;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import io.microsphere.annotation.Nonnull;
+import io.microsphere.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 

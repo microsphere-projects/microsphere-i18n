@@ -2,7 +2,7 @@ package io.microsphere.i18n;
 
 import io.microsphere.logging.Logger;
 
-import javax.annotation.Nonnull;
+import io.microsphere.annotation.Nonnull;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
