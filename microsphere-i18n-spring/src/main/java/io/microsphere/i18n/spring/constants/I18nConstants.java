@@ -3,7 +3,6 @@ package io.microsphere.i18n.spring.constants;
 import io.microsphere.annotation.ConfigurationProperty;
 import io.microsphere.i18n.ServiceMessageSource;
 
-import java.util.List;
 import java.util.Locale;
 
 import static io.microsphere.annotation.ConfigurationProperty.APPLICATION_SOURCE;
@@ -57,7 +56,7 @@ public interface I18nConstants {
      * Supported {@link Locale} list property names
      */
     @ConfigurationProperty(
-            type = List.class,
+            type = String[].class,
             source = APPLICATION_SOURCE
     )
     String SUPPORTED_LOCALES_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "supported-locales";
