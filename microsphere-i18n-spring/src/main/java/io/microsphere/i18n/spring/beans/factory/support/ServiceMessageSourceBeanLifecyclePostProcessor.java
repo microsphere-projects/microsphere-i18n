@@ -21,9 +21,10 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor;
 import org.springframework.beans.factory.support.RootBeanDefinition;
-import org.springframework.util.StringUtils;
 
+import static io.microsphere.util.ClassUtils.isAssignableFrom;
 import static org.springframework.beans.factory.support.AbstractBeanDefinition.INFER_METHOD;
+import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * The PostProcessor processes the lifecycle of {@link ServiceMessageSource} Beans automatically.
@@ -37,20 +38,20 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
 
     @Override
     public void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName) {
-        if (ServiceMessageSource.class.isAssignableFrom(beanType)) {
+        if (isAssignableFrom(ServiceMessageSource.class, beanType)) {
             setInitMethodName(beanDefinition, beanType);
             setDestroyMethodName(beanDefinition, beanType);
         }
     }
 
     private void setInitMethodName(RootBeanDefinition beanDefinition, Class<?> beanType) {
-        if (InitializingBean.class.isAssignableFrom(beanType)) {
+        if (isAssignableFrom(InitializingBean.class, beanType)) {
             // If ServiceMessageSource bean implements the interface InitializingBean,
             // it's ignored immediately.
             return;
         }
         String initMethodName = beanDefinition.getInitMethodName();
-        if (StringUtils.isEmpty(initMethodName)) {
+        if (isEmpty(initMethodName)) {
             // If The BeanDefinition does not declare the initialization method,
             // ServiceMessageSource#init() method should be a candidate.
             beanDefinition.setInitMethodName("init");
@@ -58,7 +59,7 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
     }
 
     private void setDestroyMethodName(RootBeanDefinition beanDefinition, Class<?> beanType) {
-        if (DisposableBean.class.isAssignableFrom(beanType)) {
+        if (isAssignableFrom(DisposableBean.class, beanType)) {
             // If ServiceMessageSource bean implements the interface DisposableBean,
             // it's ignored immediately.
             return;
@@ -69,7 +70,7 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
             // If the "(inferred)" method was found, return immediately.
             return;
         }
-        if (StringUtils.isEmpty(destroyMethodName)) {
+        if (isEmpty(destroyMethodName)) {
             // If The BeanDefinition does not declare the destroy method,
             // ServiceMessageSource#destroy() method should be a candidate.
             beanDefinition.setDestroyMethodName("destroy");
