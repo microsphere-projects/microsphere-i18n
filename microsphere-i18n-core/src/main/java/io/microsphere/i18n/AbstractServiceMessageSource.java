@@ -1,19 +1,20 @@
 package io.microsphere.i18n;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.annotation.Nonnull;
+import io.microsphere.annotation.Nullable;
+import io.microsphere.logging.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
+import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.Assert.assertNotNull;
 import static io.microsphere.util.StringUtils.isNotBlank;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Abstract {@link ServiceMessageSource}
@@ -23,12 +24,7 @@ import static java.util.Objects.requireNonNull;
  */
 public abstract class AbstractServiceMessageSource implements ServiceMessageSource {
 
-    /*
-     * Message Source separator
-     */
-    protected static final String SOURCE_SEPARATOR = ".";
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
+    protected final Logger logger = getLogger(getClass());
 
     protected final String source;
 
@@ -39,7 +35,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     private Locale defaultLocale;
 
     public AbstractServiceMessageSource(String source) {
-        requireNonNull(source, "'source' argument must not be null");
+        assertNotNull(source, () -> "'source' argument must not be null");
         this.source = source;
         this.codePrefix = source + SOURCE_SEPARATOR;
     }
@@ -112,12 +108,12 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     public void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
-        logger.debug("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
+        logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
     }
 
     public void setSupportedLocales(List<Locale> supportedLocales) {
         this.supportedLocales = resolveLocales(supportedLocales);
-        logger.debug("Source '{}' sets the supported Locales : {}", source, supportedLocales);
+        logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
     }
 
     protected String resolveMessageCode(String code) {

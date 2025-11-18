@@ -5,8 +5,7 @@ import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.DisposableBean;
@@ -33,7 +32,8 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_
 import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
-import static io.microsphere.spring.util.BeanUtils.invokeAwareInterfaces;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.BeanUtils.invokeAwareInterfaces;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.sort;
 import static java.util.Collections.unmodifiableList;
@@ -55,7 +55,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         ApplicationContextAware, FactoryBean<ReloadableResourceServiceMessageSource>,
         ApplicationListener<ResourceServiceMessageSourceChangedEvent>, Ordered {
 
-    private static final Logger logger = LoggerFactory.getLogger(ServiceMessageSourceFactoryBean.class);
+    private static final Logger logger = getLogger(ServiceMessageSourceFactoryBean.class);
 
     private final String source;
 
@@ -176,10 +176,10 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         final Locale locale;
         if (!hasText(localeValue)) {
             locale = getDefaultLocale();
-            logger.debug("Default Locale configuration property [name : '{}'] not found, use default value: '{}'", propertyName, locale);
+            logger.trace("Default Locale configuration property [name : '{}'] not found, use default value: '{}'", propertyName, locale);
         } else {
             locale = parseLocale(localeValue);
-            logger.debug("Default Locale : '{}' parsed by configuration properties [name : '{}']", propertyName, locale);
+            logger.trace("Default Locale : '{}' parsed by configuration properties [name : '{}']", propertyName, locale);
         }
         return locale;
     }
@@ -190,10 +190,10 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         List<String> locales = environment.getProperty(propertyName, List.class, emptyList());
         if (locales.isEmpty()) {
             supportedLocales = getSupportedLocales();
-            logger.debug("Support Locale list configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
+            logger.trace("Support Locale list configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
         } else {
             supportedLocales = locales.stream().map(StringUtils::parseLocale).collect(Collectors.toList());
-            logger.debug("List of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
+            logger.trace("List of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
         }
         return unmodifiableList(supportedLocales);
     }
@@ -201,13 +201,13 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     @Override
     public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
         Iterable<String> changedResources = event.getChangedResources();
-        logger.debug("Receive event change resource: {}", changedResources);
+        logger.trace("Receive event change resource: {}", changedResources);
         for (ServiceMessageSource serviceMessageSource : getAllServiceMessageSources()) {
             if (serviceMessageSource instanceof ReloadableResourceServiceMessageSource) {
                 ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource = (ReloadableResourceServiceMessageSource) serviceMessageSource;
                 if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
                     reloadableResourceServiceMessageSource.reload(changedResources);
-                    logger.debug("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
+                    logger.trace("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
                 }
             }
         }

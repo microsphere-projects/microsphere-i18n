@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Locale;
-
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.US;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
@@ -46,10 +46,10 @@ public class EnableI18nTest extends AbstractSpringTest {
         assertNull(serviceMessageSource.getMessage("code-not-found"));
 
         // Test English, because the English Message resource does not exist
-        assertEquals("Hello,World", serviceMessageSource.getMessage("hello", Locale.ENGLISH, "World"));
+        assertEquals("Hello,World", serviceMessageSource.getMessage("hello", ENGLISH, "World"));
 
         // Returns null if code does not exist
-        assertNull(serviceMessageSource.getMessage("code-not-found", Locale.US));
+        assertNull(serviceMessageSource.getMessage("code-not-found", US));
     }
 
     @Test

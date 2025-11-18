@@ -16,12 +16,11 @@
  */
 package io.microsphere.i18n.spring.cloud;
 
-import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
-import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
+
+import static org.springframework.boot.WebApplicationType.SERVLET;
 
 /**
  * I18n Bootstrap
@@ -35,7 +34,7 @@ public class I18nBootstrap {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(I18nBootstrap.class)
-                .web(WebApplicationType.SERVLET)
+                .web(SERVLET)
                 .properties("common.i18n_messages_en.properties=common.a = common-a-2024")
                 .run(args);
     }

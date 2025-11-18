@@ -17,8 +17,7 @@
 package io.microsphere.i18n.spring.context;
 
 import io.microsphere.i18n.ServiceMessageSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
@@ -33,8 +32,9 @@ import java.util.Locale;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
-import static io.microsphere.spring.util.BeanUtils.getOptionalBean;
-import static io.microsphere.spring.util.BeanUtils.getSortedBeans;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.BeanUtils.getOptionalBean;
+import static io.microsphere.spring.beans.BeanUtils.getSortedBeans;
 import static io.microsphere.util.ClassLoaderUtils.resolveClass;
 import static org.springframework.util.ObjectUtils.containsElement;
 
@@ -47,7 +47,7 @@ import static org.springframework.util.ObjectUtils.containsElement;
  */
 public class I18nApplicationListener implements SmartApplicationListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(I18nApplicationListener.class);
+    private static final Logger logger = getLogger(I18nApplicationListener.class);
 
     private static final String ACCEPT_HEADER_LOCALE_RESOLVER_CLASS_NAME = "org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver";
 
@@ -85,11 +85,10 @@ public class I18nApplicationListener implements SmartApplicationListener {
         setServiceMessageSource(serviceMessageSource);
     }
 
-
     @SuppressWarnings("unchecked")
     private void initializeAcceptHeaderLocaleResolver(ApplicationContext context) {
         if (ACCEPT_HEADER_LOCALE_RESOLVER_CLASS == null) {
-            logger.debug("The class '{}' was not found!", ACCEPT_HEADER_LOCALE_RESOLVER_CLASS_NAME);
+            logger.trace("The class '{}' was not found!", ACCEPT_HEADER_LOCALE_RESOLVER_CLASS_NAME);
             return;
         }
 
@@ -98,7 +97,7 @@ public class I18nApplicationListener implements SmartApplicationListener {
         List<AcceptHeaderLocaleResolver> acceptHeaderLocaleResolvers = getSortedBeans(context, beanClass);
 
         if (acceptHeaderLocaleResolvers.isEmpty()) {
-            logger.debug("The '{}' Spring Bean was not found!", ACCEPT_HEADER_LOCALE_RESOLVER_CLASS_NAME);
+            logger.trace("The '{}' Spring Bean was not found!", ACCEPT_HEADER_LOCALE_RESOLVER_CLASS_NAME);
             return;
         }
 
@@ -109,7 +108,7 @@ public class I18nApplicationListener implements SmartApplicationListener {
             List<Locale> supportedLocales = serviceMessageSource.getSupportedLocales();
             acceptHeaderLocaleResolver.setDefaultLocale(defaultLocale);
             acceptHeaderLocaleResolver.setSupportedLocales(supportedLocales);
-            logger.debug("AcceptHeaderLocaleResolver Bean associated with default Locale : '{}' , list of supported Locales : {}", defaultLocale, supportedLocales);
+            logger.trace("AcceptHeaderLocaleResolver Bean associated with default Locale : '{}' , list of supported Locales : {}", defaultLocale, supportedLocales);
         }
     }
 
