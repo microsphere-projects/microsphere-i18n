@@ -7,8 +7,7 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.Arrays;
-
+import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.i18n.feign.AcceptLanguageHeaderRequestInterceptor.HEADER_NAME;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -46,7 +45,7 @@ public class AcceptLanguageHeaderRequestInterceptorTest {
     public void testApply() {
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(requestTemplate);
-        assertEquals(Arrays.asList("en"), requestTemplate.headers().get("Accept-Language"));
+        assertEquals(ofList("en"), requestTemplate.headers().get("Accept-Language"));
     }
 
     @Test
