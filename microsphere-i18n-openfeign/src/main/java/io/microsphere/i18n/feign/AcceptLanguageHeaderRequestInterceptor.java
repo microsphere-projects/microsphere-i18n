@@ -29,7 +29,7 @@ public class AcceptLanguageHeaderRequestInterceptor implements RequestIntercepto
     public void apply(RequestTemplate template) {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         if (!(requestAttributes instanceof ServletRequestAttributes)) {
-            logger.debug("Feign calls in non-Spring WebMVC scenarios, ignoring setting request headers: '{}'", HEADER_NAME);
+            logger.trace("Feign calls in non-Spring WebMVC scenarios, ignoring setting request headers: '{}'", HEADER_NAME);
             return;
         }
 
@@ -41,9 +41,9 @@ public class AcceptLanguageHeaderRequestInterceptor implements RequestIntercepto
 
         if (StringUtils.hasText(acceptLanguage)) {
             template.header(HEADER_NAME, acceptLanguage);
-            logger.debug("Feign has set HTTP request header [name : '{}' , value : '{}']", HEADER_NAME, acceptLanguage);
+            logger.trace("Feign has set HTTP request header [name : '{}' , value : '{}']", HEADER_NAME, acceptLanguage);
         } else {
-            logger.debug("Feign could not set HTTP request header [name : '{}'] because the requester did not pass: '{}'", HEADER_NAME, acceptLanguage);
+            logger.trace("Feign could not set HTTP request header [name : '{}'] because the requester did not pass: '{}'", HEADER_NAME, acceptLanguage);
         }
 
     }

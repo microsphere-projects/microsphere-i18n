@@ -53,7 +53,7 @@ public class I18nBeanPostProcessor implements BeanPostProcessor {
             }else{
                 LocalValidatorFactoryBean localValidatorFactoryBean = (LocalValidatorFactoryBean) bean;
                 localValidatorFactoryBean.setValidationMessageSource(messageSourceAdapter);
-                logger.debug("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
+                logger.trace("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
             }
         }
 

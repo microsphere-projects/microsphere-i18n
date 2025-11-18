@@ -146,7 +146,7 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
         List<ServiceMessageSource> serviceMessageSources = new LinkedList<>();
         serviceMessageSourcesProvider.forEach(serviceMessageSources::add);
         sort(serviceMessageSources);
-        logger.debug("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
+        logger.trace("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
         return serviceMessageSources;
     }
 }
