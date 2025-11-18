@@ -3,16 +3,16 @@ package io.microsphere.i18n.spring;
 import io.microsphere.i18n.AbstractSpringTest;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.mock.env.MockEnvironment;
-import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static org.junit.Assert.assertEquals;
+import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
+import static org.springframework.util.StreamUtils.copyToString;
 
 /**
  * {@link PropertySourcesServiceMessageSource} Test
@@ -25,7 +25,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     @Before
     public void before() {
         super.before();
-        LocaleContextHolder.setLocale(Locale.SIMPLIFIED_CHINESE);
+        setLocale(SIMPLIFIED_CHINESE);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
         MockEnvironment environment = new MockEnvironment();
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("META-INF/i18n/test/i18n_messages_zh_CN.properties");
-        String propertiesContent = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        String propertiesContent = copyToString(inputStream, UTF_8);
         environment.setProperty("test.i18n_messages_zh_CN.properties", propertiesContent);
 
         PropertySourcesServiceMessageSource serviceMessageSource = new PropertySourcesServiceMessageSource("test");
@@ -46,6 +46,5 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
 
     @Test
     public void testNotFound() {
-
     }
 }
