@@ -26,11 +26,11 @@
             <artifactId>microsphere-java-core</artifactId>
         </dependency>
 
-        <!-- Servlet API -->
+        <!-- Jakarta Servlet API -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- slf4j API -->
