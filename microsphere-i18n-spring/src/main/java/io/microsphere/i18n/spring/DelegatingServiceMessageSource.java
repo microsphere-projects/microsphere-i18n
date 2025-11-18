@@ -5,7 +5,6 @@ import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.logging.Logger;
-import io.microsphere.logging.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.ListableBeanFactory;
@@ -19,6 +18,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
+import static io.microsphere.logging.LoggerFactory.getLogger;
 import static org.springframework.core.annotation.AnnotationAwareOrderComparator.sort;
 
 /**
@@ -32,7 +32,7 @@ import static org.springframework.core.annotation.AnnotationAwareOrderComparator
 public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource, InitializingBean,
         DisposableBean {
 
-    private static final Logger logger = LoggerFactory.getLogger(DelegatingServiceMessageSource.class);
+    private static final Logger logger = getLogger(DelegatingServiceMessageSource.class);
 
     private final ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider;
 
@@ -149,5 +149,4 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
         logger.debug("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
         return serviceMessageSources;
     }
-
 }

@@ -6,7 +6,6 @@ import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
 import io.microsphere.logging.Logger;
-import io.microsphere.logging.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.DisposableBean;
@@ -33,7 +32,8 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_
 import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
-import static io.microsphere.spring.util.BeanUtils.invokeAwareInterfaces;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.BeanUtils.invokeAwareInterfaces;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.sort;
 import static java.util.Collections.unmodifiableList;
@@ -55,7 +55,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         ApplicationContextAware, FactoryBean<ReloadableResourceServiceMessageSource>,
         ApplicationListener<ResourceServiceMessageSourceChangedEvent>, Ordered {
 
-    private static final Logger logger = LoggerFactory.getLogger(ServiceMessageSourceFactoryBean.class);
+    private static final Logger logger = getLogger(ServiceMessageSourceFactoryBean.class);
 
     private final String source;
 

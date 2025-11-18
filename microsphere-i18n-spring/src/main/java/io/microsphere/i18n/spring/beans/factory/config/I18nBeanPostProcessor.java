@@ -2,14 +2,14 @@ package io.microsphere.i18n.spring.beans.factory.config;
 
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import io.microsphere.logging.Logger;
-import io.microsphere.logging.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import static io.microsphere.spring.util.BeanUtils.getOptionalBean;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.BeanUtils.getOptionalBean;
 import static io.microsphere.util.ClassLoaderUtils.resolveClass;
 import static org.springframework.aop.support.AopUtils.getTargetClass;
 
@@ -25,7 +25,7 @@ import static org.springframework.aop.support.AopUtils.getTargetClass;
  */
 public class I18nBeanPostProcessor implements BeanPostProcessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(I18nBeanPostProcessor.class);
+    private static final Logger logger = getLogger(I18nBeanPostProcessor.class);
 
     private static final ClassLoader classLoader = I18nBeanPostProcessor.class.getClassLoader();
 

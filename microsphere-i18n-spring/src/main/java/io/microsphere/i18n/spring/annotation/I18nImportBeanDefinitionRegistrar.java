@@ -23,7 +23,6 @@ import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBean
 import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import io.microsphere.logging.Logger;
-import io.microsphere.logging.LoggerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.EnvironmentAware;
@@ -41,7 +40,8 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_ENABLED
 import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SOURCES_PROPERTY_NAME;
-import static io.microsphere.spring.util.BeanRegistrar.registerBeanDefinition;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.factory.support.BeanRegistrar.registerBeanDefinition;
 import static io.microsphere.util.ArrayUtils.EMPTY_STRING_ARRAY;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.rootBeanDefinition;
 import static org.springframework.context.support.AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME;
@@ -59,7 +59,7 @@ public class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRe
 
     private static final Class<? extends Annotation> ANNOTATION_TYPE = EnableI18n.class;
 
-    private static Logger logger = LoggerFactory.getLogger(ANNOTATION_TYPE);
+    private static Logger logger = getLogger(ANNOTATION_TYPE);
 
     private Environment environment;
 
@@ -85,8 +85,8 @@ public class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRe
         // Register DelegatingServiceMessageSource as the Spring Primary Bean
         BeanDefinition primaryBeanDefinition =
                 rootBeanDefinition(DelegatingServiceMessageSource.class)
-                .setPrimary(true)
-                .getBeanDefinition();
+                        .setPrimary(true)
+                        .getBeanDefinition();
         registry.registerBeanDefinition(SERVICE_MESSAGE_SOURCE_BEAN_NAME, primaryBeanDefinition);
     }
 
