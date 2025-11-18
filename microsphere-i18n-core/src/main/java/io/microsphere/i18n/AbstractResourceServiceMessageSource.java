@@ -1,8 +1,8 @@
 package io.microsphere.i18n;
 
+import io.microsphere.annotation.Nullable;
 import io.microsphere.collection.CollectionUtils;
 
-import io.microsphere.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -22,7 +22,8 @@ import static java.util.Objects.requireNonNull;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public abstract class AbstractResourceServiceMessageSource extends AbstractServiceMessageSource implements ResourceServiceMessageSource {
+public abstract class AbstractResourceServiceMessageSource extends AbstractServiceMessageSource implements
+        ResourceServiceMessageSource {
 
     /**
      * The default prefix of of message resource name

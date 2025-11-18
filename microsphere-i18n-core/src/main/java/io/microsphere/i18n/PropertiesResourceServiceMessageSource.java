@@ -1,7 +1,5 @@
 package io.microsphere.i18n;
 
-import io.microsphere.collection.MapUtils;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
@@ -11,6 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import static io.microsphere.collection.CollectionUtils.isEmpty;
+import static io.microsphere.collection.MapUtils.isNotEmpty;
 import static io.microsphere.text.FormatUtils.format;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
@@ -33,7 +32,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         Map<String, String> messages = null;
         try {
             Properties properties = loadAllProperties(resource);
-            if (!MapUtils.isEmpty(properties)) {
+            if (isNotEmpty(properties)) {
                 messages = new HashMap<>(properties.size());
                 messages.putAll((Map) properties);
             }

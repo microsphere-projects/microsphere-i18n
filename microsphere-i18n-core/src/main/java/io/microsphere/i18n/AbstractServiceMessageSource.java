@@ -1,20 +1,20 @@
 package io.microsphere.i18n;
 
-import io.microsphere.logging.Logger;
-
 import io.microsphere.annotation.Nonnull;
 import io.microsphere.annotation.Nullable;
+import io.microsphere.logging.Logger;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import static io.microsphere.constants.SymbolConstants.DOT;
+import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.Assert.assertNotNull;
 import static io.microsphere.util.StringUtils.isNotBlank;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Abstract {@link ServiceMessageSource}
@@ -23,12 +23,6 @@ import static java.util.Objects.requireNonNull;
  * @since 1.0.0
  */
 public abstract class AbstractServiceMessageSource implements ServiceMessageSource {
-
-
-    /*
-     * Message Source separator
-     */
-    protected static final String SOURCE_SEPARATOR = DOT;
 
     protected final Logger logger = getLogger(getClass());
 
@@ -41,7 +35,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     private Locale defaultLocale;
 
     public AbstractServiceMessageSource(String source) {
-        requireNonNull(source, "'source' argument must not be null");
+        assertNotNull(source, () -> "'source' argument must not be null");
         this.source = source;
         this.codePrefix = source + SOURCE_SEPARATOR;
     }

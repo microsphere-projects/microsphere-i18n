@@ -1,13 +1,15 @@
 package io.microsphere.i18n;
 
-import io.microsphere.lang.Prioritized;
-
 import io.microsphere.annotation.Nonnull;
 import io.microsphere.annotation.Nullable;
+import io.microsphere.lang.Prioritized;
+
 import java.util.List;
 import java.util.Locale;
 
-import static java.util.Arrays.asList;
+import static io.microsphere.collection.Lists.ofList;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.getDefault;
 
 /**
  * Service internationalization message source
@@ -62,7 +64,7 @@ public interface ServiceMessageSource extends Prioritized {
      */
     @Nonnull
     default Locale getDefaultLocale() {
-        return Locale.getDefault();
+        return getDefault();
     }
 
     /**
@@ -72,7 +74,7 @@ public interface ServiceMessageSource extends Prioritized {
      */
     @Nonnull
     default List<Locale> getSupportedLocales() {
-        return asList(getDefaultLocale(), Locale.ENGLISH);
+        return ofList(getDefaultLocale(), ENGLISH);
     }
 
     /**

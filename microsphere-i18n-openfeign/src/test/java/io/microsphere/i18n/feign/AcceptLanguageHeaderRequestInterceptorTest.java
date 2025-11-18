@@ -5,7 +5,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Arrays;
@@ -13,6 +12,8 @@ import java.util.Arrays;
 import static io.microsphere.i18n.feign.AcceptLanguageHeaderRequestInterceptor.HEADER_NAME;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.springframework.web.context.request.RequestContextHolder.resetRequestAttributes;
+import static org.springframework.web.context.request.RequestContextHolder.setRequestAttributes;
 
 /**
  * {@link AcceptLanguageHeaderRequestInterceptor} Test
@@ -30,7 +31,7 @@ public class AcceptLanguageHeaderRequestInterceptorTest {
     public void before() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.addHeader(HEADER_NAME, "en");
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        setRequestAttributes(new ServletRequestAttributes(request));
 
         this.requestInterceptor = new AcceptLanguageHeaderRequestInterceptor();
         this.requestTemplate = new RequestTemplate();
@@ -38,7 +39,7 @@ public class AcceptLanguageHeaderRequestInterceptorTest {
 
     @After
     public void after(){
-        RequestContextHolder.resetRequestAttributes();
+        resetRequestAttributes();
     }
 
     @Test
@@ -50,7 +51,7 @@ public class AcceptLanguageHeaderRequestInterceptorTest {
 
     @Test
     public void testApplyNoWebMvc() {
-        RequestContextHolder.resetRequestAttributes();
+        resetRequestAttributes();
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(new RequestTemplate());
         assertTrue(requestTemplate.headers().isEmpty());

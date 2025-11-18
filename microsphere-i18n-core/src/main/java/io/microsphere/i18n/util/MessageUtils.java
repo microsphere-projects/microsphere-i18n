@@ -5,6 +5,9 @@ import io.microsphere.logging.Logger;
 
 import java.util.Locale;
 
+import static io.microsphere.constants.SymbolConstants.DOT;
+import static io.microsphere.constants.SymbolConstants.LEFT_CURLY_BRACE;
+import static io.microsphere.constants.SymbolConstants.RIGHT_CURLY_BRACE;
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.util.StringUtils.isNotBlank;
@@ -23,12 +26,17 @@ public abstract class MessageUtils {
     /**
      * Message Code pattern prefix
      */
-    public static final String MESSAGE_PATTERN_PREFIX = "{";
+    public static final String MESSAGE_PATTERN_PREFIX = LEFT_CURLY_BRACE;
 
     /**
      * Message Code pattern suffix
      */
-    public static final String MESSAGE_PATTERN_SUFFIX = "}";
+    public static final String MESSAGE_PATTERN_SUFFIX = RIGHT_CURLY_BRACE;
+
+    /*
+     * Message Source separator
+     */
+    public static final String SOURCE_SEPARATOR = DOT;
 
     /**
      * Get I18n Message
@@ -90,7 +98,7 @@ public abstract class MessageUtils {
         if (isNotBlank(localizedMessage)) {
             logger.trace("Message Pattern ['{}'] corresponds to Locale ['{}'] with MessageSage:'{}'", messagePattern, locale, localizedMessage);
         } else {
-            int afterDotIndex = messageCode.indexOf(".") + 1;
+            int afterDotIndex = messageCode.indexOf(SOURCE_SEPARATOR) + 1;
             if (afterDotIndex > 0 && afterDotIndex < messageCode.length()) {
                 localizedMessage = messageCode.substring(afterDotIndex);
             } else {
