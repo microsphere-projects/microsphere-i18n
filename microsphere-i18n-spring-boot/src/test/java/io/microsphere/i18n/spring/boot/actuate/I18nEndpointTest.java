@@ -18,6 +18,8 @@ import java.util.Map;
 
 import static com.jayway.jsonpath.JsonPath.using;
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
+import static java.util.Locale.CHINA;
+import static java.util.Locale.setDefault;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -32,7 +34,7 @@ class I18nEndpointTest {
 
     @BeforeAll
     static void init() {
-        Locale.setDefault(Locale.CHINA);
+        setDefault(CHINA);
     }
 
     @Autowired
