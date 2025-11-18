@@ -16,10 +16,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Locale;
-
 import static io.microsphere.collection.Lists.ofList;
 import static java.util.Locale.ENGLISH;
+import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -70,7 +69,7 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
         assertEquals("Hello,World", serviceMessageSource.getMessage("hello", "World"));
 
         // Test FRANCE
-        assertNull(serviceMessageSource.getMessage("a", Locale.FRANCE));
+        assertNull(serviceMessageSource.getMessage("a", FRANCE));
 
         ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(context, ofList("test.i18n_messages_en.properties"));
         propertySource.setProperty("test.i18n_messages_en.properties", "test.a=1");
