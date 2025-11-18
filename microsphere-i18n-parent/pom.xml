@@ -20,14 +20,8 @@
 
     <properties>
         <!-- BOM versions -->
-        <microsphere-spring-cloud.version>0.1.4</microsphere-spring-cloud.version>
+        <microsphere-spring-cloud.version>0.1.5</microsphere-spring-cloud.version>
         <testcontainers.version>2.0.1</testcontainers.version>
-
-        <javax.ws.rs.version>2.1</javax.ws.rs.version>
-        <fastjson.version>1.2.83_noneautotype</fastjson.version>
-
-        <jmh.version>1.36</jmh.version>
-        <antlr.version>4.13.1</antlr.version>
     </properties>
 
 
@@ -78,33 +72,6 @@
                 <version>${microsphere-spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <!-- Alibaba Fastjson Dependencies -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-
-            <!-- JAX-RS API -->
-            <dependency>
-                <groupId>javax.ws.rs</groupId>
-                <artifactId>javax.ws.rs-api</artifactId>
-                <version>${javax.ws.rs.version}</version>
-            </dependency>
-
-            <!-- Testing -->
-            <dependency>
-                <groupId>org.openjdk.jmh</groupId>
-                <artifactId>jmh-core</artifactId>
-                <version>${jmh.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.openjdk.jmh</groupId>
-                <artifactId>jmh-generator-annprocess</artifactId>
-                <version>${jmh.version}</version>
             </dependency>
 
         </dependencies>
