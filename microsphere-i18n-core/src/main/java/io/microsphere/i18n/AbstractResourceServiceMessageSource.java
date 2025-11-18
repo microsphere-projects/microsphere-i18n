@@ -1,7 +1,6 @@
 package io.microsphere.i18n;
 
 import io.microsphere.collection.CollectionUtils;
-import org.apache.commons.lang3.ArrayUtils;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -11,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.ArrayUtils.arrayToString;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.singleton;
 import static java.util.Collections.unmodifiableMap;
@@ -101,7 +101,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         }
         // Exchange the field
         this.localizedResourceMessages = localizedResourceMessages;
-        logger.debug("Source '{}' Initialization is completed , localizedResourceMessages : {}", source, localizedResourceMessages);
+        logger.trace("Source '{}' Initialization is completed , localizedResourceMessages : {}", source, localizedResourceMessages);
     }
 
     private void assertSupportedLocales(List<Locale> supportedLocales) {
@@ -158,7 +158,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     private void initializeResource(String resource, Map<String, Map<String, String>> localizedResourceMessages) {
         Map<String, String> messages = loadMessages(resource);
-        logger.debug("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
+        logger.trace("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
 
         if (messages == null) {
             return;
@@ -171,10 +171,8 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     protected void logMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object[] args,
                               String messagePattern, String message) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("Source '{}' gets Message[code : '{}' , resolvedCode : '{}' , locale : '{}' , resolvedLocale : '{}', args : '{}' , pattern : '{}'] : '{}'",
-                    source, code, resolvedCode, locale, resolvedLocale, ArrayUtils.toString(args), messagePattern, message);
-        }
+        logger.trace("Source '{}' gets Message[code : '{}' , resolvedCode : '{}' , locale : '{}' , resolvedLocale : '{}', args : '{}' , pattern : '{}'] : '{}'",
+                source, code, resolvedCode, locale, resolvedLocale, arrayToString(args), messagePattern, message);
     }
 
     public Map<String, Map<String, String>> getLocalizedResourceMessages() {

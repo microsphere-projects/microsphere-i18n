@@ -17,8 +17,8 @@
 package io.microsphere.i18n.spring.context;
 
 import io.microsphere.i18n.ServiceMessageSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
+import io.microsphere.logging.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;

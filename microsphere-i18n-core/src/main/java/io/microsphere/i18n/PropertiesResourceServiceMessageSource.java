@@ -50,7 +50,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
 
     public Properties loadAllProperties(String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(resource);
-        logger.debug("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);
+        logger.trace("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);
         if (isEmpty(propertiesResources)) {
             return null;
         }
@@ -60,7 +60,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
                 properties.load(reader);
             }
         }
-        logger.debug("Source '{}' loads all Properties Resources[name :{}] : {}", source, resource, properties);
+        logger.trace("Source '{}' loads all Properties Resources[name :{}] : {}", source, resource, properties);
         return properties;
     }
 

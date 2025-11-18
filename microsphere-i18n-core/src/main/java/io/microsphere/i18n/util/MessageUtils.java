@@ -1,14 +1,14 @@
 package io.microsphere.i18n.util;
 
 import io.microsphere.i18n.ServiceMessageSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
 
 import java.util.Locale;
 
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.apache.commons.lang3.StringUtils.substringBetween;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.util.StringUtils.isNotBlank;
+import static io.microsphere.util.StringUtils.substringBetween;
 
 /**
  * Message Utilities class
@@ -18,7 +18,7 @@ import static org.apache.commons.lang3.StringUtils.substringBetween;
  */
 public abstract class MessageUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(MessageUtils.class);
+    private static final Logger logger = getLogger(MessageUtils.class);
 
     /**
      * Message Code pattern prefix
@@ -29,9 +29,6 @@ public abstract class MessageUtils {
      * Message Code pattern suffix
      */
     public static final String MESSAGE_PATTERN_SUFFIX = "}";
-
-    private MessageUtils() {
-    }
 
     /**
      * Get I18n Message
@@ -48,7 +45,7 @@ public abstract class MessageUtils {
 
     /**
      * Get I18n Message
-     * <pre>
+     * <pre>{@code
      * // Testing Simplified Chinese
      * // null
      * assertEquals(null, MessageUtils.getLocalizedMessage(null));
@@ -69,7 +66,7 @@ public abstract class MessageUtils {
      * // The test of English
      * assertEquals("hello", MessageUtils.getLocalizedMessage("hello", Locale.ENGLISH, "World"));
      * assertEquals("Hello,World", MessageUtils.getLocalizedMessage("{hello}", Locale.ENGLISH, "World"));
-     * </pre>
+     * }</pre>
      *
      * @param messagePattern Message or Message Pattern
      * @param locale         {@link Locale}
@@ -84,14 +81,14 @@ public abstract class MessageUtils {
         String messageCode = resolveMessageCode(messagePattern);
 
         if (messageCode == null) {
-            logger.debug("Message code not found in messagePattern'{}", messagePattern);
+            logger.trace("Message code not found in messagePattern'{}", messagePattern);
             return messagePattern;
         }
 
         ServiceMessageSource serviceMessageSource = serviceMessageSource();
         String localizedMessage = serviceMessageSource.getMessage(messageCode, locale, args);
         if (isNotBlank(localizedMessage)) {
-            logger.debug("Message Pattern ['{}'] corresponds to Locale ['{}'] with MessageSage:'{}'", messagePattern, locale, localizedMessage);
+            logger.trace("Message Pattern ['{}'] corresponds to Locale ['{}'] with MessageSage:'{}'", messagePattern, locale, localizedMessage);
         } else {
             int afterDotIndex = messageCode.indexOf(".") + 1;
             if (afterDotIndex > 0 && afterDotIndex < messageCode.length()) {
@@ -99,7 +96,7 @@ public abstract class MessageUtils {
             } else {
                 localizedMessage = messagePattern;
             }
-            logger.debug("No Message['{}'] found for Message Pattern ['{}'], returned: {}", messagePattern, locale, localizedMessage);
+            logger.trace("No Message['{}'] found for Message Pattern ['{}'], returned: {}", messagePattern, locale, localizedMessage);
         }
 
         return localizedMessage;
@@ -108,5 +105,8 @@ public abstract class MessageUtils {
     public static String resolveMessageCode(String messagePattern) {
         String messageCode = substringBetween(messagePattern, MESSAGE_PATTERN_PREFIX, MESSAGE_PATTERN_SUFFIX);
         return messageCode;
+    }
+
+    private MessageUtils() {
     }
 }

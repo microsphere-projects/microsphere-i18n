@@ -1,8 +1,8 @@
 package io.microsphere.i18n.spring.beans.factory.config;
 
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
+import io.microsphere.logging.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ConfigurableApplicationContext;

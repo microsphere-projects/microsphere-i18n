@@ -1,7 +1,6 @@
 package io.microsphere.i18n;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
 
 import javax.annotation.Nonnull;
 import java.nio.charset.Charset;
@@ -14,6 +13,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 import static io.microsphere.collection.ListUtils.forEach;
+import static io.microsphere.logging.LoggerFactory.getLogger;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;
 import static java.util.Collections.sort;
@@ -32,7 +32,7 @@ import static java.util.Collections.unmodifiableSet;
  */
 public class CompositeServiceMessageSource implements ReloadableResourceServiceMessageSource {
 
-    private static final Logger logger = LoggerFactory.getLogger(CompositeServiceMessageSource.class);
+    private static final Logger logger = getLogger(CompositeServiceMessageSource.class);
 
     private List<? extends ServiceMessageSource> serviceMessageSources;
 
@@ -108,7 +108,7 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
             oldServiceMessageSources.clear();
         }
         this.serviceMessageSources = newServiceMessageSources;
-        logger.debug("Source '{}' sets ServiceMessageSource list, sorted : {}", serviceMessageSources, newServiceMessageSources);
+        logger.trace("Source '{}' sets ServiceMessageSource list, sorted : {}", serviceMessageSources, newServiceMessageSources);
     }
 
     @Override

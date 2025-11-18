@@ -2,8 +2,8 @@ package io.microsphere.i18n.feign;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
+import io.microsphere.logging.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;

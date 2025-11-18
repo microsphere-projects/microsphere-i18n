@@ -1,7 +1,6 @@
 package io.microsphere.i18n;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -9,6 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import static io.microsphere.constants.SymbolConstants.DOT;
+import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.StringUtils.isNotBlank;
 import static java.util.Collections.emptyList;
@@ -23,12 +24,13 @@ import static java.util.Objects.requireNonNull;
  */
 public abstract class AbstractServiceMessageSource implements ServiceMessageSource {
 
+
     /*
      * Message Source separator
      */
-    protected static final String SOURCE_SEPARATOR = ".";
+    protected static final String SOURCE_SEPARATOR = DOT;
 
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
+    protected final Logger logger = getLogger(getClass());
 
     protected final String source;
 
@@ -112,12 +114,12 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     public void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
-        logger.debug("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
+        logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
     }
 
     public void setSupportedLocales(List<Locale> supportedLocales) {
         this.supportedLocales = resolveLocales(supportedLocales);
-        logger.debug("Source '{}' sets the supported Locales : {}", source, supportedLocales);
+        logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
     }
 
     protected String resolveMessageCode(String code) {
