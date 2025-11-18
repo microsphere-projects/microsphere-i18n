@@ -85,7 +85,6 @@ public class I18nApplicationListener implements SmartApplicationListener {
         setServiceMessageSource(serviceMessageSource);
     }
 
-
     @SuppressWarnings("unchecked")
     private void initializeAcceptHeaderLocaleResolver(ApplicationContext context) {
         if (ACCEPT_HEADER_LOCALE_RESOLVER_CLASS == null) {
