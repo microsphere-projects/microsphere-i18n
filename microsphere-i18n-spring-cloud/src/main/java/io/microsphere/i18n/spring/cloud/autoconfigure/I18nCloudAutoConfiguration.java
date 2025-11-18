@@ -31,9 +31,6 @@ import org.springframework.context.annotation.Import;
 @ConditionalOnClass(name = {
         "org.springframework.cloud.context.environment.EnvironmentChangeEvent", // spring-cloud-context
 })
-@Import({
-        ReloadableResourceServiceMessageSourceListener.class
-})
+@Import(ReloadableResourceServiceMessageSourceListener.class)
 public class I18nCloudAutoConfiguration {
-
 }
