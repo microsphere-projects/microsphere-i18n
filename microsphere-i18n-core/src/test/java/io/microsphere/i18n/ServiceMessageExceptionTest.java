@@ -16,16 +16,16 @@
  */
 package io.microsphere.i18n;
 
-import io.microsphere.i18n.util.I18nUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Locale;
-
+import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
+import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
+import static io.microsphere.util.ArrayUtils.arrayToString;
 import static java.lang.String.format;
-import static java.util.Arrays.asList;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -40,15 +40,15 @@ public class ServiceMessageExceptionTest {
     @Before
     public void before() {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
-        serviceMessageSource.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
-        serviceMessageSource.setSupportedLocales(asList(Locale.SIMPLIFIED_CHINESE));
+        serviceMessageSource.setDefaultLocale(SIMPLIFIED_CHINESE);
+        serviceMessageSource.setSupportedLocales(ofList(SIMPLIFIED_CHINESE));
         serviceMessageSource.init();
-        I18nUtils.setServiceMessageSource(serviceMessageSource);
+        setServiceMessageSource(serviceMessageSource);
     }
 
     @After
     public void after() {
-        I18nUtils.destroyServiceMessageSource();
+        destroyServiceMessageSource();
     }
 
     @Test
@@ -62,6 +62,6 @@ public class ServiceMessageExceptionTest {
         assertTrue(exception instanceof RuntimeException);
         assertEquals(message, exception.getMessage());
         assertEquals(localizedMessage, exception.getLocalizedMessage());
-        assertEquals(format("ServiceMessageException[message='%s', args=%s, localized message='%s']", message, Arrays.toString(args), localizedMessage), exception.toString());
+        assertEquals(format("ServiceMessageException[message='%s', args=%s, localized message='%s']", message, arrayToString(args), localizedMessage), exception.toString());
     }
 }

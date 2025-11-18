@@ -10,19 +10,19 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.mock.env.MockPropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
-import java.util.Locale;
-
-import static java.util.Arrays.asList;
+import static io.microsphere.collection.Lists.ofList;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.FRANCE;
+import static java.util.Locale.US;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
 
 /**
  * {@link ServiceMessageSourceFactoryBean} Test
@@ -58,7 +58,7 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     @Before
     public void before() {
         super.before();
-        LocaleContextHolder.setLocale(Locale.ENGLISH);
+        setLocale(ENGLISH);
         propertySource = new MockPropertySource("mock");
         environment.getPropertySources().addFirst(propertySource);
     }
@@ -69,9 +69,9 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
         assertEquals("Hello,World", serviceMessageSource.getMessage("hello", "World"));
 
         // Test FRANCE
-        assertNull(serviceMessageSource.getMessage("a", Locale.FRANCE));
+        assertNull(serviceMessageSource.getMessage("a", FRANCE));
 
-        ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(context, Arrays.asList("test.i18n_messages_en.properties"));
+        ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(context, ofList("test.i18n_messages_en.properties"));
         propertySource.setProperty("test.i18n_messages_en.properties", "test.a=1");
         eventPublisher.publishEvent(event);
         assertEquals("1", serviceMessageSource.getMessage("a"));
@@ -79,21 +79,21 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     @Test
     public void testGetLocale() {
-        assertEquals(Locale.ENGLISH, serviceMessageSource.getLocale());
+        assertEquals(ENGLISH, serviceMessageSource.getLocale());
 
         // Test US
-        LocaleContextHolder.setLocale(Locale.US);
-        assertEquals(Locale.US, serviceMessageSource.getLocale());
+        setLocale(US);
+        assertEquals(US, serviceMessageSource.getLocale());
     }
 
     @Test
     public void testGetDefaultLocale() {
-        assertEquals(Locale.ENGLISH, serviceMessageSource.getDefaultLocale());
+        assertEquals(ENGLISH, serviceMessageSource.getDefaultLocale());
     }
 
     @Test
     public void testGetSupportedLocales() {
-        assertEquals(asList(Locale.ENGLISH), serviceMessageSource.getSupportedLocales());
+        assertEquals(ofList(ENGLISH), serviceMessageSource.getSupportedLocales());
     }
 
     @Test

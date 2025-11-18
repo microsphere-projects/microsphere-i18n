@@ -23,6 +23,10 @@ import org.junit.BeforeClass;
 
 import java.util.Locale;
 
+import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
+import static java.util.Locale.setDefault;
+
 /**
  * Abstract Spring Test
  *
@@ -34,16 +38,16 @@ public abstract class AbstractI18nTest {
     @BeforeClass
     public static void beforeClass() {
         // Set the simplified Chinese as the default Locale
-        Locale.setDefault(Locale.SIMPLIFIED_CHINESE);
+        setDefault(SIMPLIFIED_CHINESE);
     }
 
     @Before
     public void before() {
-        I18nUtils.destroyServiceMessageSource();
+        destroyServiceMessageSource();
     }
 
     @After
     public void after() {
-        I18nUtils.destroyServiceMessageSource();
+        destroyServiceMessageSource();
     }
 }

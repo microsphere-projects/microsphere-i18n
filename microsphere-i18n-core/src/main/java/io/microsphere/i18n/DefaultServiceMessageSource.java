@@ -21,7 +21,7 @@ public class DefaultServiceMessageSource extends PropertiesResourceServiceMessag
     /**
      * Resource path pattern
      */
-    protected static final String RESOURCE_LOCATION_PATTERN = "META-INF/i18n/{}/{}";
+    public static final String RESOURCE_LOCATION_PATTERN = "META-INF/i18n/{}/{}";
 
     public DefaultServiceMessageSource(String source) {
         super(source);

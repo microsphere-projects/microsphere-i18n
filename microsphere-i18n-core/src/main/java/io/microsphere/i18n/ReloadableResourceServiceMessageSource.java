@@ -23,7 +23,8 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
     /**
      * Reload if {@link #canReload(Iterable)} returns <code>true</code>,
      * The calling {@link #initializeResources(Iterable)} as default
-     * @param changedResources  Changes in the resources
+     *
+     * @param changedResources Changes in the resources
      */
     default void reload(Iterable<String> changedResources) {
         initializeResources(changedResources);

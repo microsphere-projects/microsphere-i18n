@@ -6,9 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Locale;
-
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
+import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -45,7 +44,7 @@ public class MessageUtilsTest extends AbstractI18nTest {
         assertEquals("code-not-found", MessageUtils.getLocalizedMessage("{common.code-not-found}"));
 
         // The test of English
-        assertEquals("hello", MessageUtils.getLocalizedMessage("hello", Locale.ENGLISH, "World"));
-        assertEquals("Hello,World", MessageUtils.getLocalizedMessage("{hello}", Locale.ENGLISH, "World"));
+        assertEquals("hello", MessageUtils.getLocalizedMessage("hello", ENGLISH, "World"));
+        assertEquals("Hello,World", MessageUtils.getLocalizedMessage("{hello}", ENGLISH, "World"));
     }
 }

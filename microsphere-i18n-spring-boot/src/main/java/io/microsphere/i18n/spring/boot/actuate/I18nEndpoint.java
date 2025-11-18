@@ -21,20 +21,16 @@ import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
-import org.springframework.core.env.PropertySources;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -58,7 +54,7 @@ import static org.springframework.util.StringUtils.hasText;
 
 /**
  * I18n Spring Boot Actuator Endpoint
- * <pre>
+ * <pre>{@code
  * {
  * "test.i18n_messages_zh.properties": {
  *
@@ -75,7 +71,7 @@ import static org.springframework.util.StringUtils.hasText;
  * "common.a": "a"
  * }
  * }
- * </pre>
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
@@ -115,7 +111,6 @@ public class I18nEndpoint {
         this.serviceMessageSources = allServiceMessageSources;
 
     }
-
 
     @ReadOperation
     public Map<String, Map<String, String>> invoke() {
@@ -244,8 +239,5 @@ public class I18nEndpoint {
         } else {
             return singleton(locale);
         }
-
     }
-
-
 }
