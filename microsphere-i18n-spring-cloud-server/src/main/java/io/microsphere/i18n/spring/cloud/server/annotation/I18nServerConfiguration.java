@@ -33,7 +33,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.asList;
+import static io.microsphere.collection.Lists.ofList;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 
@@ -76,7 +76,7 @@ public class I18nServerConfiguration {
         serviceMessageSource.setEnvironment(environment);
         // FIXME Hardcode
         serviceMessageSource.setDefaultLocale(getDefault());
-        serviceMessageSource.setSupportedLocales(asList(getDefault(), ENGLISH));
+        serviceMessageSource.setSupportedLocales(ofList(getDefault(), ENGLISH));
         serviceMessageSource.init();
         return serviceMessageSource;
     }
