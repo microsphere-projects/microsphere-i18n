@@ -1,8 +1,8 @@
 package io.microsphere.i18n.spring;
 
 import io.microsphere.i18n.AbstractSpringTest;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.env.MockEnvironment;
 
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
 import static org.springframework.util.StreamUtils.copyToString;
 
@@ -20,10 +20,10 @@ import static org.springframework.util.StreamUtils.copyToString;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
+class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
 
-    @Before
-    public void before() {
+    @BeforeEach
+    protected void before() {
         super.before();
         setLocale(SIMPLIFIED_CHINESE);
     }

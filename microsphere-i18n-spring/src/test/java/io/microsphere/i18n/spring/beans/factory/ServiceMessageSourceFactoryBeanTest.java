@@ -4,9 +4,9 @@ import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
@@ -14,14 +14,14 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.mock.env.MockPropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.microsphere.collection.Lists.ofList;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
 
 /**
@@ -30,7 +30,7 @@ import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {
         ServiceMessageSourceFactoryBeanTest.class,
         TestServiceMessageSourceConfiguration.class
@@ -55,8 +55,8 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     private MockPropertySource propertySource;
 
-    @Before
-    public void before() {
+    @BeforeEach
+    protected void before() {
         super.before();
         setLocale(ENGLISH);
         propertySource = new MockPropertySource("mock");
@@ -64,7 +64,7 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     }
 
     @Test
-    public void testGetMessage() {
+    void testGetMessage() {
         assertEquals("test-a", serviceMessageSource.getMessage("a"));
         assertEquals("Hello,World", serviceMessageSource.getMessage("hello", "World"));
 
@@ -78,7 +78,7 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     }
 
     @Test
-    public void testGetLocale() {
+    void testGetLocale() {
         assertEquals(ENGLISH, serviceMessageSource.getLocale());
 
         // Test US
@@ -87,17 +87,17 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     }
 
     @Test
-    public void testGetDefaultLocale() {
+    void testGetDefaultLocale() {
         assertEquals(ENGLISH, serviceMessageSource.getDefaultLocale());
     }
 
     @Test
-    public void testGetSupportedLocales() {
+    void testGetSupportedLocales() {
         assertEquals(ofList(ENGLISH), serviceMessageSource.getSupportedLocales());
     }
 
     @Test
-    public void testGetSource() {
+    void testGetSource() {
         assertEquals("test", serviceMessageSource.getSource());
     }
 
