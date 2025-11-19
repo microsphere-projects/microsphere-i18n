@@ -1,8 +1,9 @@
 package io.microsphere.i18n;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * {@link DefaultServiceMessageSource} Test
@@ -13,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class DefaultServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
-    public void test() {
+    void test() {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
         serviceMessageSource.init();
 
@@ -23,10 +24,11 @@ public class DefaultServiceMessageSourceTest extends AbstractI18nTest {
         serviceMessageSource.destroy();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void testValidateMessageCode() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("error");
-        serviceMessageSource.init();
+    @Test
+    void testValidateMessageCode() {
+        assertThrows(IllegalStateException.class, () -> {
+            DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("error");
+            serviceMessageSource.init();
+        });
     }
-
 }

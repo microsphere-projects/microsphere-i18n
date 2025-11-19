@@ -2,10 +2,12 @@ package io.microsphere.i18n.util;
 
 import io.microsphere.i18n.AbstractI18nTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
-import io.microsphere.i18n.EmptyServiceMessageSource;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertSame;
+import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
+import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
+import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * {@link I18nUtils} Test
@@ -13,15 +15,15 @@ import static org.junit.Assert.assertSame;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class I18nUtilsTest extends AbstractI18nTest {
+class I18nUtilsTest extends AbstractI18nTest {
 
     @Test
-    public void test() {
-        assertSame(EmptyServiceMessageSource.INSTANCE, I18nUtils.serviceMessageSource());
+    void test() {
+        assertSame(INSTANCE, serviceMessageSource());
 
         DefaultServiceMessageSource defaultServiceMessageSource = new DefaultServiceMessageSource("test");
-        I18nUtils.setServiceMessageSource(defaultServiceMessageSource);
+        setServiceMessageSource(defaultServiceMessageSource);
 
-        assertSame(defaultServiceMessageSource, I18nUtils.serviceMessageSource());
+        assertSame(defaultServiceMessageSource, serviceMessageSource());
     }
 }

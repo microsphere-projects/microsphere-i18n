@@ -16,12 +16,9 @@
  */
 package io.microsphere.i18n;
 
-import io.microsphere.i18n.util.I18nUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-
-import java.util.Locale;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
@@ -35,19 +32,19 @@ import static java.util.Locale.setDefault;
  */
 public abstract class AbstractI18nTest {
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         // Set the simplified Chinese as the default Locale
         setDefault(SIMPLIFIED_CHINESE);
     }
 
-    @Before
-    public void before() {
+    @BeforeEach
+    protected void before() {
         destroyServiceMessageSource();
     }
 
-    @After
-    public void after() {
+    @AfterEach
+    protected void after() {
         destroyServiceMessageSource();
     }
 }
