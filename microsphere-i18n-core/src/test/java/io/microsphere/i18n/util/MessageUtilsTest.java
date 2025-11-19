@@ -6,11 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
+import static io.microsphere.i18n.util.MessageUtils.MESSAGE_PATTERN_PREFIX;
+import static io.microsphere.i18n.util.MessageUtils.MESSAGE_PATTERN_SUFFIX;
+import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
 import static io.microsphere.i18n.util.MessageUtils.getLocalizedMessage;
 import static java.util.Locale.ENGLISH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
+ * {@link MessageUtils} Test
+ *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
@@ -22,6 +27,13 @@ class MessageUtilsTest extends AbstractI18nTest {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
         serviceMessageSource.init();
         setServiceMessageSource(serviceMessageSource);
+    }
+
+    @Test
+    void testConstants() {
+        assertEquals("{", MESSAGE_PATTERN_PREFIX);
+        assertEquals("}", MESSAGE_PATTERN_SUFFIX);
+        assertEquals(".", SOURCE_SEPARATOR);
     }
 
     @Test
@@ -46,5 +58,8 @@ class MessageUtilsTest extends AbstractI18nTest {
         // The test of English
         assertEquals("hello", getLocalizedMessage("hello", ENGLISH, "World"));
         assertEquals("Hello,World", getLocalizedMessage("{hello}", ENGLISH, "World"));
+
+
+        assertEquals("{a.}", getLocalizedMessage("{a.}", ENGLISH, "World"));
     }
 }
