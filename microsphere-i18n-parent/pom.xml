@@ -22,11 +22,21 @@
         <!-- BOM versions -->
         <microsphere-spring-cloud.version>0.2.5</microsphere-spring-cloud.version>
         <testcontainers.version>2.0.1</testcontainers.version>
+        <junit.version>6.0.1</junit.version>
     </properties>
 
     <dependencyManagement>
 
         <dependencies>
+
+            <!-- JUnit BOM -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- Testcontainers Dependencies -->
             <dependency>
