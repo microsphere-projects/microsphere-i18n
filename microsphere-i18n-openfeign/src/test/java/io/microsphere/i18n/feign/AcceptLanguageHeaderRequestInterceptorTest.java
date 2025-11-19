@@ -9,7 +9,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.i18n.feign.AcceptLanguageHeaderRequestInterceptor.HEADER_NAME;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.web.context.request.RequestContextHolder.resetRequestAttributes;
 import static org.springframework.web.context.request.RequestContextHolder.setRequestAttributes;
