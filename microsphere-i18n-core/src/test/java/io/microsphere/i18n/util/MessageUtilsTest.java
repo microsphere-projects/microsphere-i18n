@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class MessageUtilsTest extends AbstractI18nTest {
+class MessageUtilsTest extends AbstractI18nTest {
 
     @BeforeEach
     protected void before() {

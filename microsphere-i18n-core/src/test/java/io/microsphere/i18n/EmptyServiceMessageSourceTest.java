@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
+class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     private EmptyServiceMessageSource serviceMessageSource = INSTANCE;
 

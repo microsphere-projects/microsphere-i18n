@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class DefaultServiceMessageSourceTest extends AbstractI18nTest {
+class DefaultServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     void test() {
