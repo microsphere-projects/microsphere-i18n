@@ -1,12 +1,19 @@
 package io.microsphere.i18n.util;
 
 import io.microsphere.i18n.AbstractI18nTest;
+import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.DefaultServiceMessageSource;
+import io.microsphere.i18n.ServiceMessageSource;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
+import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
@@ -25,5 +32,12 @@ class I18nUtilsTest extends AbstractI18nTest {
         setServiceMessageSource(defaultServiceMessageSource);
 
         assertSame(defaultServiceMessageSource, serviceMessageSource());
+    }
+
+    @Test
+    void testFindAllServiceMessageSources() {
+        List<ServiceMessageSource> serviceMessageSources = ofList(INSTANCE);
+        CompositeServiceMessageSource compositeServiceMessageSource = new CompositeServiceMessageSource(ofList(INSTANCE));
+        assertEquals(serviceMessageSources, findAllServiceMessageSources(compositeServiceMessageSource));
     }
 }
