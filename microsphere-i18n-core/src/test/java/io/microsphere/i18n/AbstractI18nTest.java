@@ -32,6 +32,10 @@ import static java.util.Locale.setDefault;
  */
 public abstract class AbstractI18nTest {
 
+    public static final String TEST_SOURCE = "test";
+
+    public static final String ERROR_SOURCE = "error";
+
     @BeforeClass
     public static void beforeClass() {
         // Set the simplified Chinese as the default Locale

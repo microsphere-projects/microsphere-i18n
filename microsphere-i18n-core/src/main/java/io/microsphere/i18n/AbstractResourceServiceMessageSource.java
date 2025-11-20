@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import static io.microsphere.collection.MapUtils.isEmpty;
 import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ArrayUtils.arrayToString;
 import static java.util.Collections.emptyMap;
@@ -41,7 +42,6 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void init() {
-        super.init();
         requireNonNull(this.source, "The 'source' attribute must be assigned before initialization!");
         initialize();
     }
@@ -64,10 +64,10 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void destroy() {
-        super.destroy();
         clearAllMessages();
     }
 
+    @Override
     protected String resolveMessageCode(String code) {
         if (code.startsWith(codePrefix)) { // The complete Message code
             return code;
@@ -155,7 +155,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         Map<String, String> messages = loadMessages(resource);
         logger.trace("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
 
-        if (messages == null) {
+        if (isEmpty(messages)) {
             return;
         }
 

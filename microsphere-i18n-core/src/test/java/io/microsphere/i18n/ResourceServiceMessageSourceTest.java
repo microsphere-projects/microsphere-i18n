@@ -34,21 +34,21 @@ import static org.junit.Assert.assertEquals;
 public class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
 
     @Override
-    protected TestResourceServiceMessageSource createServiceMessageSource() {
+    protected ResourceServiceMessageSource createServiceMessageSource() {
         return new TestResourceServiceMessageSource();
     }
 
     @Test
     public void testResources() {
-        TestResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
-        Iterable<String> resources = ofSet("test");
+        ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        Iterable<String> resources = ofSet(TEST_SOURCE);
         serviceMessageSource.initializeResources(resources);
         assertEquals(resources, serviceMessageSource.getInitializedResources());
     }
 
     @Test
     public void testGetEncoding() {
-        TestResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertEquals(UTF_8, serviceMessageSource.getEncoding());
     }
 }

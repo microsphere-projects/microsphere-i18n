@@ -20,7 +20,6 @@ package io.microsphere.i18n;
 import java.util.Locale;
 import java.util.Set;
 
-import static io.microsphere.util.StringUtils.EMPTY_STRING;
 import static java.util.Locale.getDefault;
 
 /**
@@ -42,7 +41,7 @@ class TestServiceMessageSource implements ServiceMessageSource {
 
     @Override
     public String getMessage(String code, Locale locale, Object... args) {
-        return EMPTY_STRING;
+        return null;
     }
 
     @Override

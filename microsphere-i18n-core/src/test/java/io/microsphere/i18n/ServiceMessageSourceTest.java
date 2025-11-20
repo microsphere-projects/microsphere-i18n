@@ -22,14 +22,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Locale;
-
 import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
-import static io.microsphere.util.StringUtils.EMPTY_STRING;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
 /**
@@ -39,7 +37,7 @@ import static org.junit.Assert.assertSame;
  * @see ServiceMessageSource
  * @since 1.0.0
  */
-public class ServiceMessageSourceTest {
+public class ServiceMessageSourceTest extends AbstractI18nTest {
 
     private ServiceMessageSource serviceMessageSource;
 
@@ -69,8 +67,8 @@ public class ServiceMessageSourceTest {
 
     @Test
     public void testGetMessage() {
-        assertSame(EMPTY_STRING, this.serviceMessageSource.getMessage("code"));
-        assertSame(EMPTY_STRING, this.serviceMessageSource.getMessage("code", Locale.ENGLISH));
+        assertNull(this.serviceMessageSource.getMessage("code"));
+        assertNull(this.serviceMessageSource.getMessage("code", ENGLISH));
     }
 
     @Test

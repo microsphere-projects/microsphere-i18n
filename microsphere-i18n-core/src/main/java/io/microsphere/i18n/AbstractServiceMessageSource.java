@@ -43,14 +43,6 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     }
 
     @Override
-    public void init() {
-    }
-
-    @Override
-    public void destroy() {
-    }
-
-    @Override
     public final String getMessage(String code, Object... args) {
         return ServiceMessageSource.super.getMessage(code, args);
     }
@@ -128,9 +120,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     }
 
     @Nonnull
-    protected String resolveMessageCode(@Nonnull String code) {
-        return code;
-    }
+    protected abstract String resolveMessageCode(@Nonnull String code);
 
     @Nullable
     protected abstract String getInternalMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale,
