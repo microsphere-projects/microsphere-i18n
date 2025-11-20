@@ -4,17 +4,19 @@ import io.microsphere.annotation.Nonnull;
 import io.microsphere.annotation.Nullable;
 import io.microsphere.logging.Logger;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
+import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.Assert.assertNoNullElements;
+import static io.microsphere.util.Assert.assertNotEmpty;
 import static io.microsphere.util.Assert.assertNotNull;
-import static io.microsphere.util.StringUtils.isNotBlank;
-import static java.util.Collections.emptyList;
-import static java.util.Collections.unmodifiableList;
+import static io.microsphere.util.StringUtils.isBlank;
 
 /**
  * Abstract {@link ServiceMessageSource}
@@ -58,9 +60,13 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         String message = null;
         if (code != null) {
             String resolvedCode = resolveMessageCode(code);
-            if (resolvedCode != null) {
-                Locale resolvedLocale = resolveLocale(locale);
-                message = getInternalMessage(code, resolvedCode, locale, resolvedLocale, args);
+            Locale resolvedLocale = resolveLocale(locale);
+            message = getInternalMessage(code, resolvedCode, locale, resolvedLocale, args);
+            if (message == null) {
+                resolvedLocale = new Locale(locale.getLanguage());
+                if (!resolvedLocale.equals(locale)) {
+                    message = getInternalMessage(code, resolvedCode, locale, resolvedLocale, args);
+                }
             }
         }
         return message;
@@ -86,8 +92,8 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     @Nonnull
     @Override
     public final Locale getDefaultLocale() {
-        if (defaultLocale != null) {
-            return defaultLocale;
+        if (this.defaultLocale != null) {
+            return this.defaultLocale;
         }
         return ServiceMessageSource.super.getDefaultLocale();
     }
@@ -95,87 +101,94 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     @Nonnull
     @Override
     public final List<Locale> getSupportedLocales() {
-        if (supportedLocales != null) {
-            return supportedLocales;
+        if (this.supportedLocales != null) {
+            return this.supportedLocales;
         }
         return ServiceMessageSource.super.getSupportedLocales();
     }
 
     @Override
     public final String getSource() {
-        return source;
+        return this.source;
     }
 
     public void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
-        logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
+        this.logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
     }
 
     public void setSupportedLocales(List<Locale> supportedLocales) {
-        this.supportedLocales = resolveLocales(supportedLocales);
-        logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
+        this.supportedLocales = resolveHierarchicalLocales(supportedLocales);
+        this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
     }
 
-    protected String resolveMessageCode(String code) {
+    protected void assertSupportedLocales(List<Locale> supportedLocales) {
+        assertNotEmpty(supportedLocales, () -> "The 'supportedLocales' must not be empty!");
+        assertNoNullElements(supportedLocales, () -> "Any element of 'supportedLocales' must not be null!");
+    }
+
+    @Nonnull
+    protected String resolveMessageCode(@Nonnull String code) {
         return code;
     }
 
-    protected Locale resolveLocale(Locale locale) {
-        return locale;
-    }
-
-    protected abstract String getInternalMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object... args);
+    @Nullable
+    protected abstract String getInternalMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale,
+                                                 Object... args);
 
     protected boolean supports(Locale locale) {
-        return getSupportedLocales().contains(locale);
+        List<Locale> hierarchicalLocales = resolveHierarchicalLocales(locale);
+        return hierarchicalLocales.contains(locale);
     }
 
-    protected static List<Locale> resolveLocales(List<Locale> supportedLocales) {
-        List<Locale> resolvedLocales = new LinkedList<>();
+    @Nonnull
+    protected List<Locale> resolveHierarchicalLocales(List<Locale> supportedLocales) {
+        assertSupportedLocales(supportedLocales);
+        List<Locale> hierarchicalLocales = new ArrayList<>(supportedLocales.size() * 2);
         for (Locale supportedLocale : supportedLocales) {
-            addLocale(resolvedLocales, supportedLocale);
-            for (Locale derivedLocale : resolveDerivedLocales(supportedLocale)) {
-                addLocale(resolvedLocales, derivedLocale);
+            addLocale(hierarchicalLocales, supportedLocale);
+            for (Locale locale : resolveHierarchicalLocales(supportedLocale)) {
+                addLocale(hierarchicalLocales, locale);
             }
         }
-        return unmodifiableList(resolvedLocales);
+        return hierarchicalLocales;
     }
 
-    protected static void addLocale(List<Locale> locales, Locale locale) {
+    protected void addLocale(Collection<Locale> locales, Locale locale) {
         if (!locales.contains(locale)) {
             locales.add(locale);
         }
     }
 
-    protected static List<Locale> resolveDerivedLocales(Locale locale) {
-        String language = locale.getLanguage();
-        String region = locale.getCountry();
-        String variant = locale.getVariant();
+    @Nonnull
+    protected List<Locale> resolveHierarchicalLocales(Locale locale) {
+        Locale resolvedLocale = resolveLocale(locale);
 
-        boolean hasRegion = isNotBlank(region);
-        boolean hasVariant = isNotBlank(variant);
-
-        if (!hasRegion && !hasVariant) {
-            return emptyList();
+        String country = resolvedLocale.getCountry();
+        if (isBlank(country)) {
+            return ofList(locale);
         }
 
-        List<Locale> derivedLocales = new LinkedList<>();
+        List<Locale> hierarchicalLocales = new ArrayList<>(2);
 
-        if (hasVariant) {
-            derivedLocales.add(new Locale(language, region));
-        }
-
-        if (hasRegion) {
-            derivedLocales.add(new Locale(language));
-        }
-
-        return derivedLocales;
+        hierarchicalLocales.add(resolvedLocale);
+        hierarchicalLocales.add(new Locale(resolvedLocale.getLanguage()));
+        return hierarchicalLocales;
     }
 
+    @Nonnull
+    protected Locale resolveLocale(Locale locale) {
+        String language = locale.getLanguage();
+        String region = locale.getCountry();
+        if (isBlank(region)) {
+            return locale;
+        }
+        return new Locale(language, region);
+    }
 
+    @Nonnull
     protected String resolveMessage(String message, Object... args) {
         // Using FormatUtils#format, future subclasses may re-implement formatting
         return format(message, args);
     }
-
 }
