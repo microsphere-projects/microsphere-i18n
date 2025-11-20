@@ -30,6 +30,7 @@ import java.util.function.Supplier;
 
 import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.collection.Sets.ofSet;
+import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -66,7 +67,7 @@ class CompositeServiceMessageSourceTest {
 
     @BeforeEach
     void setUp() {
-        this.defaultServiceMessageSource = new DefaultServiceMessageSource("test");
+        this.defaultServiceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
         this.serviceMessageSources = ofList(INSTANCE, this.defaultServiceMessageSource);
         this.compositeServiceMessageSource = new CompositeServiceMessageSource(serviceMessageSources);
         this.emptyCompositeServiceMessageSource = new CompositeServiceMessageSource();
@@ -83,7 +84,7 @@ class CompositeServiceMessageSourceTest {
 
     @Test
     void testGetMessage() {
-        assertGetMessage("test");
+        assertGetMessage(TEST_SOURCE);
         assertGetMessage("a");
         assertGetMessage("hello", "world");
         assertGetMessage(null);
@@ -153,7 +154,7 @@ class CompositeServiceMessageSourceTest {
     void testGetInitializedResources() {
         this.compositeServiceMessageSource.initializeResources(this.resources);
         this.emptyCompositeServiceMessageSource.initializeResources(this.resources);
-        assertTrue(this.compositeServiceMessageSource.getInitializedResources().contains(this.defaultServiceMessageSource.getSource()));
+        assertTrue(this.compositeServiceMessageSource.getInitializedResources().containsAll(this.defaultServiceMessageSource.getInitializedResources()));
         assertTrue(this.emptyCompositeServiceMessageSource.getInitializedResources().isEmpty());
     }
 

@@ -28,7 +28,7 @@ class I18nUtilsTest extends AbstractI18nTest {
     void test() {
         assertSame(INSTANCE, serviceMessageSource());
 
-        DefaultServiceMessageSource defaultServiceMessageSource = new DefaultServiceMessageSource("test");
+        DefaultServiceMessageSource defaultServiceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
         setServiceMessageSource(defaultServiceMessageSource);
 
         assertSame(defaultServiceMessageSource, serviceMessageSource());

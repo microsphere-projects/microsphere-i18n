@@ -46,6 +46,7 @@ public interface ServiceMessageSource extends Prioritized {
     @Nullable
     String getMessage(String code, Locale locale, Object... args);
 
+    @Nullable
     default String getMessage(String code, Object... args) {
         return getMessage(code, getLocale(), args);
     }

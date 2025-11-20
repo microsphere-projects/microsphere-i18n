@@ -43,14 +43,14 @@ class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageS
     @Test
     void testReload() {
         TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
-        serviceMessageSource.reload("test");
-        assertEquals(ofSet("test"), serviceMessageSource.getInitializedResources());
+        serviceMessageSource.reload(TEST_SOURCE);
+        assertEquals(ofSet(TEST_SOURCE), serviceMessageSource.getInitializedResources());
     }
 
     @Test
     void testReloadWithIterable() {
         TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
-        Iterable<String> resources = ofSet("test");
+        Iterable<String> resources = ofSet(TEST_SOURCE);
         serviceMessageSource.reload(resources);
         assertEquals(ofSet(resources), serviceMessageSource.getInitializedResources());
     }
@@ -58,15 +58,15 @@ class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageS
     @Test
     void testCanReload() {
         TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
-        assertFalse(serviceMessageSource.canReload("test"));
-        serviceMessageSource.reload("test");
-        assertTrue(serviceMessageSource.canReload("test"));
+        assertFalse(serviceMessageSource.canReload(TEST_SOURCE));
+        serviceMessageSource.reload(TEST_SOURCE);
+        assertTrue(serviceMessageSource.canReload(TEST_SOURCE));
     }
 
     @Test
     void testCanReloadWithIterable() {
         TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
-        Iterable<String> resources = ofSet("test");
+        Iterable<String> resources = ofSet(TEST_SOURCE);
         assertFalse(serviceMessageSource.canReload(resources));
         serviceMessageSource.reload(resources);
         assertTrue(serviceMessageSource.canReload(resources));

@@ -24,7 +24,7 @@ class MessageUtilsTest extends AbstractI18nTest {
     @BeforeEach
     protected void before() {
         super.before();
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
         serviceMessageSource.init();
         setServiceMessageSource(serviceMessageSource);
     }

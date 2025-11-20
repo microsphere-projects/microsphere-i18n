@@ -25,12 +25,16 @@ import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static java.util.Locale.setDefault;
 
 /**
- * Abstract Spring Test
+ * Abstract i18n Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
 public abstract class AbstractI18nTest {
+
+    public static final String TEST_SOURCE = "test";
+
+    public static final String ERROR_SOURCE = "error";
 
     @BeforeAll
     public static void beforeClass() {

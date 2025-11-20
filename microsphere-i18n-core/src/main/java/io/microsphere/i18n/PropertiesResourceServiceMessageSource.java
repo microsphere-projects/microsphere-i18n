@@ -1,5 +1,7 @@
 package io.microsphere.i18n;
 
+import io.microsphere.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
@@ -42,11 +44,13 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         return messages == null ? emptyMap() : unmodifiableMap(messages);
     }
 
+    @Nullable
     public Properties loadAllProperties(Locale locale) throws IOException {
         String resource = getResource(locale);
         return loadAllProperties(resource);
     }
 
+    @Nullable
     public Properties loadAllProperties(String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(resource);
         logger.trace("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);

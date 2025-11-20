@@ -45,6 +45,7 @@ public interface ResourceServiceMessageSource extends ServiceMessageSource {
      *
      * @return The default is utf-8
      */
+    @Nonnull
     default Charset getEncoding() {
         return UTF_8;
     }

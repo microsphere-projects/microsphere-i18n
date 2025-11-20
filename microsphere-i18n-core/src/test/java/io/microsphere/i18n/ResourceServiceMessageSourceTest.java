@@ -34,21 +34,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
 
     @Override
-    protected TestResourceServiceMessageSource createServiceMessageSource() {
+    protected ResourceServiceMessageSource createServiceMessageSource() {
         return new TestResourceServiceMessageSource();
     }
 
     @Test
     void testResources() {
-        TestResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
-        Iterable<String> resources = ofSet("test");
-        serviceMessageSource.initializeResources(resources);
+        ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        Iterable<String> resources = ofSet(TEST_SOURCE);
+        serviceMessageSource.initializeResource(TEST_SOURCE);
         assertEquals(resources, serviceMessageSource.getInitializedResources());
     }
 
     @Test
     void testGetEncoding() {
-        TestResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertEquals(UTF_8, serviceMessageSource.getEncoding());
     }
 }

@@ -36,9 +36,9 @@ class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     void testGetMessage() {
-        assertNull(serviceMessageSource.getMessage("test"));
-        assertNull(serviceMessageSource.getMessage("test", "a"));
-        assertNull(serviceMessageSource.getMessage("test", ENGLISH, "a"));
+        assertNull(serviceMessageSource.getMessage(TEST_SOURCE));
+        assertNull(serviceMessageSource.getMessage(TEST_SOURCE, "a"));
+        assertNull(serviceMessageSource.getMessage(TEST_SOURCE, ENGLISH, "a"));
     }
 
     @Test
