@@ -24,7 +24,7 @@ package io.microsphere.i18n;
  * @see ReloadableResourceServiceMessageSource
  * @since 1.0.0
  */
-public class TestReloadableResourceServiceMessageSource extends TestResourceServiceMessageSource
+class TestReloadableResourceServiceMessageSource extends TestResourceServiceMessageSource
         implements ReloadableResourceServiceMessageSource {
 
     @Override
