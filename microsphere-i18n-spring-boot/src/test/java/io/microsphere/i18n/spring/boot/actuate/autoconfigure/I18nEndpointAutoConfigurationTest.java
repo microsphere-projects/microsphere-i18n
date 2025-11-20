@@ -2,8 +2,8 @@ package io.microsphere.i18n.spring.boot.actuate.autoconfigure;
 
 import io.microsphere.i18n.spring.boot.actuate.I18nEndpoint;
 import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.Before;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 
@@ -14,7 +14,7 @@ class I18nEndpointAutoConfigurationTest {
 
     ApplicationContextRunner applicationContextRunner;
 
-    @BeforeEach
+    @Before
     void setup() {
         applicationContextRunner = new ApplicationContextRunner()
                 .withConfiguration(AutoConfigurations.of(

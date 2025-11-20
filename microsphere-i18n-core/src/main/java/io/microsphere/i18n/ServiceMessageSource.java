@@ -6,8 +6,9 @@ import io.microsphere.lang.Prioritized;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
-import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 
@@ -68,13 +69,13 @@ public interface ServiceMessageSource extends Prioritized {
     }
 
     /**
-     * Gets a list of supported {@link Locale}
+     * Gets the supported {@link Locale locales}
      *
      * @return Non-null {@link List}, simplified Chinese and English by default
      */
     @Nonnull
-    default List<Locale> getSupportedLocales() {
-        return ofList(getDefaultLocale(), ENGLISH);
+    default Set<Locale> getSupportedLocales() {
+        return ofSet(getDefaultLocale(), ENGLISH);
     }
 
     /**

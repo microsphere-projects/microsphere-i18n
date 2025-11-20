@@ -1,7 +1,7 @@
 package io.microsphere.i18n.spring.boot.condition;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.Before;
 import org.springframework.boot.test.context.FilteredClassLoader;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ class ConditionalOnI18nEnabledTests {
 
     ApplicationContextRunner applicationContextRunner;
 
-    @BeforeEach
+    @Before
     void setup() {
         applicationContextRunner = new ApplicationContextRunner();
     }

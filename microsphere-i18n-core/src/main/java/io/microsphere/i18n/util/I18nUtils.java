@@ -58,4 +58,7 @@ public abstract class I18nUtils {
             allServiceMessageSources.add(serviceMessageSource);
         }
     }
+
+    private I18nUtils() {
+    }
 }

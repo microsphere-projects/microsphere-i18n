@@ -28,5 +28,4 @@ public class DefaultServiceMessageSourceTest extends AbstractI18nTest {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("error");
         serviceMessageSource.init();
     }
-
 }

@@ -55,7 +55,7 @@ import static org.springframework.core.annotation.AnnotationAttributes.fromMap;
  * @see EnableI18n
  * @since 1.0.0
  */
-public class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
+class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 
     private static final Class<? extends Annotation> ANNOTATION_TYPE = EnableI18n.class;
 

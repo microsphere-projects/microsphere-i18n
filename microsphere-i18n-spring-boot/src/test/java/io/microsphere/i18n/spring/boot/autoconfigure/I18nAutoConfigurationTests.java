@@ -6,8 +6,8 @@ import io.microsphere.i18n.spring.beans.factory.config.I18nBeanPostProcessor;
 import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBeanLifecyclePostProcessor;
 import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.Before;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
@@ -18,7 +18,7 @@ class I18nAutoConfigurationTests {
 
     ApplicationContextRunner applicationContextRunner;
 
-    @BeforeEach
+    @Before
     void setup() {
         applicationContextRunner = new ApplicationContextRunner();
     }

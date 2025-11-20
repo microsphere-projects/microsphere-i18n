@@ -37,7 +37,7 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
      * @return Supported by default, returning <code>true<code>
      */
     default boolean canReload(String changedResource) {
-        Set<String> resources = getInitializeResources();
+        Set<String> resources = getInitializedResources();
         return resources.contains(changedResource);
     }
 
@@ -48,7 +48,7 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
      * @return Supported by default, returning <code>true<code>
      */
     default boolean canReload(Iterable<String> changedResources) {
-        Set<String> resources = getInitializeResources();
+        Set<String> resources = getInitializedResources();
         boolean reloadable = false;
         for (String changedResource : changedResources) {
             if (reloadable = resources.contains(changedResource)) {

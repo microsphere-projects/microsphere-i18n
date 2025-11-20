@@ -17,6 +17,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
@@ -93,7 +94,7 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     @Test
     public void testGetSupportedLocales() {
-        assertEquals(ofList(ENGLISH), serviceMessageSource.getSupportedLocales());
+        assertEquals(ofSet(ENGLISH), serviceMessageSource.getSupportedLocales());
     }
 
     @Test

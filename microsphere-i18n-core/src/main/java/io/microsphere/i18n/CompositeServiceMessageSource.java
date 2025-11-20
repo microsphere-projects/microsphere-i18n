@@ -6,7 +6,6 @@ import io.microsphere.logging.Logger;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -77,21 +76,19 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
     @Nonnull
     @Override
-    public List<Locale> getSupportedLocales() {
-        List<Locale> supportedLocales = new LinkedList<>();
+    public Set<Locale> getSupportedLocales() {
+        Set<Locale> supportedLocales = new LinkedHashSet<>();
         iterate(serviceMessageSource -> {
             for (Locale locale : serviceMessageSource.getSupportedLocales()) {
-                if (!supportedLocales.contains(locale)) {
-                    supportedLocales.add(locale);
-                }
+                supportedLocales.add(locale);
             }
         });
 
         return supportedLocales.isEmpty() ? getDefaultSupportedLocales() :
-                unmodifiableList(supportedLocales);
+                unmodifiableSet(supportedLocales);
     }
 
-    public List<Locale> getDefaultSupportedLocales() {
+    public Set<Locale> getDefaultSupportedLocales() {
         return ReloadableResourceServiceMessageSource.super.getSupportedLocales();
     }
 
@@ -138,10 +135,10 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     }
 
     @Override
-    public Set<String> getInitializeResources() {
+    public Set<String> getInitializedResources() {
         Set<String> resources = new LinkedHashSet<>();
         iterate(ResourceServiceMessageSource.class, resourceServiceMessageSource -> {
-            resources.addAll(resourceServiceMessageSource.getInitializeResources());
+            resources.addAll(resourceServiceMessageSource.getInitializedResources());
         });
         return unmodifiableSet(resources);
     }

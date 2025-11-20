@@ -16,12 +16,9 @@
  */
 package io.microsphere.i18n;
 
-import io.microsphere.i18n.util.I18nUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-
-import java.util.Locale;
 
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static java.util.Locale.SIMPLIFIED_CHINESE;

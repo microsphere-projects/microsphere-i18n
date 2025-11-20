@@ -28,7 +28,9 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
+import static io.microsphere.collection.ListUtils.ofList;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
@@ -105,9 +107,9 @@ public class I18nApplicationListener implements SmartApplicationListener {
 
         for (AcceptHeaderLocaleResolver acceptHeaderLocaleResolver : acceptHeaderLocaleResolvers) {
             Locale defaultLocale = serviceMessageSource.getDefaultLocale();
-            List<Locale> supportedLocales = serviceMessageSource.getSupportedLocales();
+            Set<Locale> supportedLocales = serviceMessageSource.getSupportedLocales();
             acceptHeaderLocaleResolver.setDefaultLocale(defaultLocale);
-            acceptHeaderLocaleResolver.setSupportedLocales(supportedLocales);
+            acceptHeaderLocaleResolver.setSupportedLocales(ofList(supportedLocales));
             logger.trace("AcceptHeaderLocaleResolver Bean associated with default Locale : '{}' , list of supported Locales : {}", defaultLocale, supportedLocales);
         }
     }
