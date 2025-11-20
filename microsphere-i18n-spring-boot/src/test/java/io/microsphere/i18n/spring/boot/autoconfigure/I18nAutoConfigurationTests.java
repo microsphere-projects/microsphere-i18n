@@ -17,6 +17,7 @@ import static org.springframework.boot.autoconfigure.AutoConfigurations.of;
 /**
  * {@link I18nAutoConfiguration} Test
  *
+ * @author li.qi
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see I18nAutoConfiguration
  * @since 1.0.0
