@@ -61,6 +61,8 @@ class CompositeServiceMessageSourceTest {
 
     private DefaultServiceMessageSource defaultServiceMessageSource;
 
+    private TestReloadableResourceServiceMessageSource testReloadableResourceServiceMessageSource;
+
     private List<String> resources;
 
     private Set<Locale> locales = ofSet(getDefault(), ENGLISH);
@@ -68,7 +70,8 @@ class CompositeServiceMessageSourceTest {
     @BeforeEach
     void setUp() {
         this.defaultServiceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
-        this.serviceMessageSources = ofList(INSTANCE, this.defaultServiceMessageSource);
+        this.testReloadableResourceServiceMessageSource = new TestReloadableResourceServiceMessageSource();
+        this.serviceMessageSources = ofList(INSTANCE, this.defaultServiceMessageSource, this.testReloadableResourceServiceMessageSource);
         this.compositeServiceMessageSource = new CompositeServiceMessageSource(serviceMessageSources);
         this.emptyCompositeServiceMessageSource = new CompositeServiceMessageSource();
         this.resources = ofList(this.defaultServiceMessageSource.getSource());
@@ -128,14 +131,21 @@ class CompositeServiceMessageSourceTest {
 
     @Test
     void testReload() {
-        assertFalse(this.compositeServiceMessageSource.canReload(this.resources.get(0)));
-        assertFalse(this.emptyCompositeServiceMessageSource.canReload(this.resources.get(0)));
+        this.compositeServiceMessageSource.reload(this.resources);
+        this.compositeServiceMessageSource.reload(this.resources.get(0));
+        this.emptyCompositeServiceMessageSource.reload(this.resources);
+        this.emptyCompositeServiceMessageSource.reload(this.resources.get(0));
+
+        assertReload(this.compositeServiceMessageSource);
+        assertReload(this.emptyCompositeServiceMessageSource);
     }
 
     @Test
     void testCanReload() {
         assertTrue(this.compositeServiceMessageSource.canReload(this.resources));
+        assertFalse(this.compositeServiceMessageSource.canReload(this.resources.get(0)));
         assertTrue(this.emptyCompositeServiceMessageSource.canReload(this.resources));
+        assertFalse(this.emptyCompositeServiceMessageSource.canReload(this.resources.get(0)));
     }
 
     @Test
@@ -166,7 +176,7 @@ class CompositeServiceMessageSourceTest {
 
     @Test
     void testGetServiceMessageSources() {
-        assertEquals(ofList(INSTANCE, this.defaultServiceMessageSource), this.compositeServiceMessageSource.getServiceMessageSources());
+        assertEquals(ofList(INSTANCE, this.defaultServiceMessageSource, this.testReloadableResourceServiceMessageSource), this.compositeServiceMessageSource.getServiceMessageSources());
         assertEquals(emptyList(), this.emptyCompositeServiceMessageSource.getServiceMessageSources());
     }
 
@@ -187,5 +197,10 @@ class CompositeServiceMessageSourceTest {
         assertEquals(this.locales.size(), supportedLocales.size());
         assertTrue(this.locales.containsAll(supportedLocales));
         assertTrue(supportedLocales.containsAll(this.locales));
+    }
+
+    void assertReload(CompositeServiceMessageSource compositeServiceMessageSource) {
+        Set<String> initializedResources = compositeServiceMessageSource.getInitializedResources();
+        compositeServiceMessageSource.reload(initializedResources);
     }
 }
