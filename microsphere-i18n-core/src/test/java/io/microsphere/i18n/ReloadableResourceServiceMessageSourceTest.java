@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see TestReloadableResourceServiceMessageSource
  * @since 1.0.0
  */
-public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
+class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
 
     @Override
     protected TestReloadableResourceServiceMessageSource createServiceMessageSource() {
