@@ -2,8 +2,14 @@ package io.microsphere.i18n;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Locale;
+
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.getDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link DefaultServiceMessageSource} Test
@@ -30,5 +36,24 @@ class DefaultServiceMessageSourceTest extends AbstractI18nTest {
             DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("error");
             serviceMessageSource.init();
         });
+    }
+
+    @Test
+    void testGetInternalLocale() {
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test") {
+
+            @Override
+            protected Locale getInternalLocale() {
+                return getDefaultLocale();
+            }
+        };
+        assertSame(serviceMessageSource.getLocale(), serviceMessageSource.getDefaultLocale());
+    }
+
+    @Test
+    void testSupports() {
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
+        assertTrue(serviceMessageSource.supports(getDefault()));
+        assertTrue(serviceMessageSource.supports(ENGLISH));
     }
 }
