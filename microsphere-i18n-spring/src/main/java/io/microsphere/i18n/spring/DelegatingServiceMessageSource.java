@@ -114,8 +114,8 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
     }
 
     @Override
-    public Set<String> getInitializeResources() {
-        return this.delegate.getInitializeResources();
+    public Set<String> getInitializedResources() {
+        return this.delegate.getInitializedResources();
     }
 
     @Override

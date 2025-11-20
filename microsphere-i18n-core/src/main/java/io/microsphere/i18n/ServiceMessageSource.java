@@ -69,7 +69,7 @@ public interface ServiceMessageSource extends Prioritized {
     }
 
     /**
-     * Gets a list of supported {@link Locale}
+     * Gets the supported {@link Locale locales}
      *
      * @return Non-null {@link List}, simplified Chinese and English by default
      */

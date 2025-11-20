@@ -135,10 +135,10 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     }
 
     @Override
-    public Set<String> getInitializeResources() {
+    public Set<String> getInitializedResources() {
         Set<String> resources = new LinkedHashSet<>();
         iterate(ResourceServiceMessageSource.class, resourceServiceMessageSource -> {
-            resources.addAll(resourceServiceMessageSource.getInitializeResources());
+            resources.addAll(resourceServiceMessageSource.getInitializedResources());
         });
         return unmodifiableSet(resources);
     }

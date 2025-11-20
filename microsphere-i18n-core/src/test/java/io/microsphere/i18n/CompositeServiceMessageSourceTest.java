@@ -150,11 +150,11 @@ class CompositeServiceMessageSourceTest {
     }
 
     @Test
-    void testGetInitializeResources() {
+    void testGetInitializedResources() {
         this.compositeServiceMessageSource.initializeResources(this.resources);
         this.emptyCompositeServiceMessageSource.initializeResources(this.resources);
-        assertTrue(this.compositeServiceMessageSource.getInitializeResources().contains(this.defaultServiceMessageSource.getSource()));
-        assertTrue(this.emptyCompositeServiceMessageSource.getInitializeResources().isEmpty());
+        assertTrue(this.compositeServiceMessageSource.getInitializedResources().contains(this.defaultServiceMessageSource.getSource()));
+        assertTrue(this.emptyCompositeServiceMessageSource.getInitializedResources().isEmpty());
     }
 
     @Test

@@ -45,7 +45,7 @@ public class TestResourceServiceMessageSource extends TestServiceMessageSource i
     }
 
     @Override
-    public Set<String> getInitializeResources() {
+    public Set<String> getInitializedResources() {
         return unmodifiableSet(this.resources);
     }
 

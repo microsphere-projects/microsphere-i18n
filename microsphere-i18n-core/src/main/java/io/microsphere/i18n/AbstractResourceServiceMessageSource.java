@@ -175,7 +175,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     }
 
     @Override
-    public Set<String> getInitializeResources() {
+    public Set<String> getInitializedResources() {
         return localizedResourceMessages.keySet();
     }
 

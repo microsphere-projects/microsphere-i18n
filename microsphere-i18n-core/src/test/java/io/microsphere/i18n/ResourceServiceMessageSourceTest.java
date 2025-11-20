@@ -43,7 +43,7 @@ class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
         TestResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         Iterable<String> resources = ofSet("test");
         serviceMessageSource.initializeResources(resources);
-        assertEquals(resources, serviceMessageSource.getInitializeResources());
+        assertEquals(resources, serviceMessageSource.getInitializedResources());
     }
 
     @Test

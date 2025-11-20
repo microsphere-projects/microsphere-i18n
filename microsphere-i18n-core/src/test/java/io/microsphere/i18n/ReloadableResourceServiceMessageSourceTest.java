@@ -44,7 +44,7 @@ public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceM
     void testReload() {
         TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         serviceMessageSource.reload("test");
-        assertEquals(ofSet("test"), serviceMessageSource.getInitializeResources());
+        assertEquals(ofSet("test"), serviceMessageSource.getInitializedResources());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceM
         TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         Iterable<String> resources = ofSet("test");
         serviceMessageSource.reload(resources);
-        assertEquals(ofSet(resources), serviceMessageSource.getInitializeResources());
+        assertEquals(ofSet(resources), serviceMessageSource.getInitializedResources());
     }
 
     @Test
