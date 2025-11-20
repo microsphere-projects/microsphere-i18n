@@ -41,7 +41,6 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void init() {
-        super.init();
         requireNonNull(this.source, "The 'source' attribute must be assigned before initialization!");
         initialize();
     }
@@ -64,10 +63,10 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void destroy() {
-        super.destroy();
         clearAllMessages();
     }
 
+    @Override
     protected String resolveMessageCode(String code) {
         if (code.startsWith(codePrefix)) { // The complete Message code
             return code;
