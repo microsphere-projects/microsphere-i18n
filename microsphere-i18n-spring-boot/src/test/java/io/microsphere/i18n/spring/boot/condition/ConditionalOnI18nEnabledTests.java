@@ -12,6 +12,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 /**
  * {@link ConditionalOnI18nEnabled} Test
  *
+ * @author li.qi
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see ConditionalOnI18nEnabled
  * @since 1.0.0
