@@ -22,6 +22,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -180,8 +181,8 @@ class CompositeServiceMessageSourceTest {
         assertNull(this.emptyCompositeServiceMessageSource.getMessage(code, args));
     }
 
-    void assertSupportedLocales(Supplier<List<Locale>> localsSupplier) {
-        List<Locale> supportedLocales = localsSupplier.get();
+    void assertSupportedLocales(Supplier<Collection<Locale>> localsSupplier) {
+        Collection<Locale> supportedLocales = localsSupplier.get();
         assertEquals(this.locales.size(), supportedLocales.size());
         assertTrue(this.locales.containsAll(supportedLocales));
         assertTrue(supportedLocales.containsAll(this.locales));

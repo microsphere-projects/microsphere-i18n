@@ -4,10 +4,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
 import static java.util.Locale.ENGLISH;
-import static java.util.Locale.SIMPLIFIED_CHINESE;
+import static java.util.Locale.getDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -47,16 +47,16 @@ class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     void testGetDefaultLocale() {
-        assertEquals(SIMPLIFIED_CHINESE, serviceMessageSource.getDefaultLocale());
+        assertEquals(getDefault(), serviceMessageSource.getDefaultLocale());
     }
 
     @Test
     void testGetLocale() {
-        assertEquals(SIMPLIFIED_CHINESE, serviceMessageSource.getLocale());
+        assertEquals(getDefault(), serviceMessageSource.getLocale());
     }
 
     @Test
     void testGetSupportedLocales() {
-        assertEquals(ofList(SIMPLIFIED_CHINESE, ENGLISH), serviceMessageSource.getSupportedLocales());
+        assertEquals(ofSet(getDefault(), ENGLISH), serviceMessageSource.getSupportedLocales());
     }
 }

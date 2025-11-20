@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
-import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 import static io.microsphere.util.StringUtils.EMPTY_STRING;
 import static java.util.Locale.ENGLISH;
@@ -86,7 +86,7 @@ class ServiceMessageSourceTest {
 
     @Test
     void testGetSupportedLocales() {
-        assertEquals(ofList(getDefault(), ENGLISH), this.serviceMessageSource.getSupportedLocales());
+        assertEquals(ofSet(getDefault(), ENGLISH), this.serviceMessageSource.getSupportedLocales());
     }
 
     @Test

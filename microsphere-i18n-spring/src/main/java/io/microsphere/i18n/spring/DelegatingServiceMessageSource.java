@@ -84,7 +84,7 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
 
     @NonNull
     @Override
-    public List<Locale> getSupportedLocales() {
+    public Set<Locale> getSupportedLocales() {
         return this.delegate.getSupportedLocales();
     }
 

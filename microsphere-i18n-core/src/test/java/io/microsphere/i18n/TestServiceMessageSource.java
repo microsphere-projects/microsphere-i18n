@@ -17,8 +17,8 @@
 
 package io.microsphere.i18n;
 
-import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import static io.microsphere.util.StringUtils.EMPTY_STRING;
 import static java.util.Locale.getDefault;
@@ -61,7 +61,7 @@ class TestServiceMessageSource implements ServiceMessageSource {
     }
 
     @Override
-    public List<Locale> getSupportedLocales() {
+    public Set<Locale> getSupportedLocales() {
         return ServiceMessageSource.super.getSupportedLocales();
     }
 

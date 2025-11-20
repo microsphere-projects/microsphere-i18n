@@ -3,7 +3,6 @@ package io.microsphere.i18n;
 import io.microsphere.annotation.Nullable;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -94,8 +93,8 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
      * Initialization
      */
     protected final void initialize() {
-        List<Locale> supportedLocales = getSupportedLocales();
-        List<Locale> hierarchicalLocales = resolveHierarchicalLocales(supportedLocales);
+        Set<Locale> supportedLocales = getSupportedLocales();
+        Set<Locale> hierarchicalLocales = resolveHierarchicalLocales(supportedLocales);
         Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(hierarchicalLocales.size());
         for (Locale hierarchicalLocale : hierarchicalLocales) {
             String resource = getResource(hierarchicalLocale);

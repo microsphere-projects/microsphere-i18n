@@ -4,12 +4,13 @@ import io.microsphere.annotation.Nonnull;
 import io.microsphere.annotation.Nullable;
 import io.microsphere.logging.Logger;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
-import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.SetUtils.newFixedLinkedHashSet;
+import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.text.FormatUtils.format;
@@ -32,7 +33,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     protected final String codePrefix;
 
-    private List<Locale> supportedLocales;
+    private Set<Locale> supportedLocales;
 
     private Locale defaultLocale;
 
@@ -100,7 +101,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     @Nonnull
     @Override
-    public final List<Locale> getSupportedLocales() {
+    public final Set<Locale> getSupportedLocales() {
         if (this.supportedLocales != null) {
             return this.supportedLocales;
         }
@@ -122,7 +123,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
     }
 
-    protected void assertSupportedLocales(List<Locale> supportedLocales) {
+    protected void assertSupportedLocales(Collection<Locale> supportedLocales) {
         assertNotEmpty(supportedLocales, () -> "The 'supportedLocales' must not be empty!");
         assertNoNullElements(supportedLocales, () -> "Any element of 'supportedLocales' must not be null!");
     }
@@ -137,14 +138,14 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
                                                  Object... args);
 
     protected boolean supports(Locale locale) {
-        List<Locale> hierarchicalLocales = resolveHierarchicalLocales(locale);
+        Set<Locale> hierarchicalLocales = resolveHierarchicalLocales(locale);
         return hierarchicalLocales.contains(locale);
     }
 
     @Nonnull
-    protected List<Locale> resolveHierarchicalLocales(List<Locale> supportedLocales) {
+    protected Set<Locale> resolveHierarchicalLocales(Collection<Locale> supportedLocales) {
         assertSupportedLocales(supportedLocales);
-        List<Locale> hierarchicalLocales = new ArrayList<>(supportedLocales.size() * 2);
+        Set<Locale> hierarchicalLocales = newFixedLinkedHashSet(supportedLocales.size() * 2);
         for (Locale supportedLocale : supportedLocales) {
             addLocale(hierarchicalLocales, supportedLocale);
             for (Locale locale : resolveHierarchicalLocales(supportedLocale)) {
@@ -161,19 +162,13 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     }
 
     @Nonnull
-    protected List<Locale> resolveHierarchicalLocales(Locale locale) {
+    protected Set<Locale> resolveHierarchicalLocales(Locale locale) {
         Locale resolvedLocale = resolveLocale(locale);
-
         String country = resolvedLocale.getCountry();
         if (isBlank(country)) {
-            return ofList(locale);
+            return ofSet(locale);
         }
-
-        List<Locale> hierarchicalLocales = new ArrayList<>(2);
-
-        hierarchicalLocales.add(resolvedLocale);
-        hierarchicalLocales.add(new Locale(resolvedLocale.getLanguage()));
-        return hierarchicalLocales;
+        return ofSet(resolvedLocale, new Locale(resolvedLocale.getLanguage()));
     }
 
     @Nonnull
