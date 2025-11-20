@@ -4,8 +4,8 @@ import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import io.microsphere.i18n.spring.boot.actuate.autoconfigure.I18nEndpointAutoConfiguration;
 import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;
@@ -22,6 +22,14 @@ import static java.util.Locale.setDefault;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+/**
+ * {@link I18nEndpoint} Test
+ *
+ * @author li.qi
+ * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see I18nEndpoint
+ * @since 1.0.0
+ */
 @SpringBootTest(
         classes = I18nEndpointTest.EndpointConfiguration.class,
         properties = {

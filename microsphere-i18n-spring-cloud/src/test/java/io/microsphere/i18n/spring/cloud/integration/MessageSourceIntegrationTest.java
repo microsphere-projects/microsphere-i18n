@@ -9,7 +9,7 @@ import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
 import org.assertj.core.util.Maps;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +26,9 @@ import static java.util.Locale.ENGLISH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+/**
+ * @author li.qi
+ */
 @SpringBootTest(
         classes = MessageSourceIntegrationTest.Config.class,
         properties = {
