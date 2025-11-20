@@ -12,9 +12,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * {@link EmptyServiceMessageSource} 测试
+ * {@link EmptyServiceMessageSource} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EmptyServiceMessageSource
  * @since 1.0.0
  */
 public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
