@@ -1,0 +1,192 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.microsphere.i18n;
+
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Locale;
+
+import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
+import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Collections.emptyList;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
+import static java.util.Locale.getDefault;
+import static java.util.Locale.setDefault;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * {@link CompositeServiceMessageSource} Test
+ *
+ * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
+ * @see CompositeServiceMessageSource
+ * @since 1.0.0
+ */
+class CompositeServiceMessageSourceTest {
+
+    private static final Locale DEFAULT_LOCALE = getDefault();
+
+    private CompositeServiceMessageSource compositeServiceMessageSource;
+
+    private CompositeServiceMessageSource emptyCompositeServiceMessageSource;
+
+    private List<ServiceMessageSource> serviceMessageSources;
+
+    private DefaultServiceMessageSource defaultServiceMessageSource;
+
+    private List<String> resources;
+
+    @BeforeAll
+    static void beforeAll() {
+        setDefault(SIMPLIFIED_CHINESE);
+    }
+
+    @AfterEach
+    void afterAll() {
+        setDefault(DEFAULT_LOCALE);
+    }
+
+    @BeforeEach
+    void setUp() {
+        this.defaultServiceMessageSource = new DefaultServiceMessageSource("test");
+        this.serviceMessageSources = ofList(INSTANCE, this.defaultServiceMessageSource);
+        this.compositeServiceMessageSource = new CompositeServiceMessageSource(serviceMessageSources);
+        this.emptyCompositeServiceMessageSource = new CompositeServiceMessageSource();
+        this.resources = ofList(this.defaultServiceMessageSource.getSource());
+
+        this.compositeServiceMessageSource.init();
+        this.emptyCompositeServiceMessageSource.init();
+    }
+
+    @AfterEach
+    void tearDown() {
+        this.compositeServiceMessageSource.destroy();
+    }
+
+    @Test
+    void testGetMessage() {
+        assertGetMessage("test");
+        assertGetMessage("a");
+        assertGetMessage("hello", "world");
+        assertGetMessage(null);
+    }
+
+    @Test
+    void testGetLocale() {
+        assertEquals(getDefault(), this.compositeServiceMessageSource.getLocale());
+        assertEquals(getDefault(), this.emptyCompositeServiceMessageSource.getLocale());
+    }
+
+    @Test
+    void testGetDefaultLocale() {
+        assertEquals(getDefault(), this.compositeServiceMessageSource.getDefaultLocale());
+        assertEquals(getDefault(), this.emptyCompositeServiceMessageSource.getDefaultLocale());
+    }
+
+    @Test
+    void testGetSupportedLocales() {
+        assertEquals(ofList(getDefault(), ENGLISH), this.compositeServiceMessageSource.getSupportedLocales());
+        assertEquals(ofList(getDefault(), ENGLISH), this.emptyCompositeServiceMessageSource.getSupportedLocales());
+    }
+
+    @Test
+    void testGetDefaultSupportedLocales() {
+        assertEquals(ofList(getDefault(), ENGLISH), this.compositeServiceMessageSource.getDefaultSupportedLocales());
+        assertEquals(ofList(getDefault(), ENGLISH), this.emptyCompositeServiceMessageSource.getDefaultSupportedLocales());
+    }
+
+    @Test
+    void testGetSource() {
+        assertSame(COMMON_SOURCE, this.compositeServiceMessageSource.getSource());
+        assertSame(COMMON_SOURCE, this.emptyCompositeServiceMessageSource.getSource());
+    }
+
+    @Test
+    void testSetServiceMessageSources() {
+        this.compositeServiceMessageSource.setServiceMessageSources(emptyList());
+        this.emptyCompositeServiceMessageSource.setServiceMessageSources(emptyList());
+    }
+
+    @Test
+    void testReload() {
+        assertFalse(this.compositeServiceMessageSource.canReload(this.resources.get(0)));
+        assertFalse(this.emptyCompositeServiceMessageSource.canReload(this.resources.get(0)));
+    }
+
+    @Test
+    void testCanReload() {
+        assertTrue(this.compositeServiceMessageSource.canReload(this.resources));
+        assertTrue(this.emptyCompositeServiceMessageSource.canReload(this.resources));
+    }
+
+    @Test
+    void testInitializeResource() {
+        this.compositeServiceMessageSource.initializeResource(this.resources.get(0));
+        this.emptyCompositeServiceMessageSource.initializeResource(this.resources.get(0));
+    }
+
+    @Test
+    void testInitializeResources() {
+        this.compositeServiceMessageSource.initializeResources(this.resources);
+        this.emptyCompositeServiceMessageSource.initializeResources(this.resources);
+    }
+
+    @Test
+    void testGetInitializeResources() {
+        this.compositeServiceMessageSource.initializeResources(this.resources);
+        this.emptyCompositeServiceMessageSource.initializeResources(this.resources);
+        assertTrue(this.compositeServiceMessageSource.getInitializeResources().contains(this.defaultServiceMessageSource.getSource()));
+        assertTrue(this.emptyCompositeServiceMessageSource.getInitializeResources().isEmpty());
+    }
+
+    @Test
+    void testGetEncoding() {
+        assertEquals(UTF_8, this.compositeServiceMessageSource.getEncoding());
+        assertEquals(UTF_8, this.emptyCompositeServiceMessageSource.getEncoding());
+    }
+
+    @Test
+    void testGetServiceMessageSources() {
+        assertEquals(ofList(INSTANCE, this.defaultServiceMessageSource), this.compositeServiceMessageSource.getServiceMessageSources());
+        assertEquals(emptyList(), this.emptyCompositeServiceMessageSource.getServiceMessageSources());
+    }
+
+    @Test
+    void testToString() {
+        assertNotNull(this.compositeServiceMessageSource.toString());
+        assertNotNull(this.emptyCompositeServiceMessageSource.toString());
+    }
+
+    void assertGetMessage(String code, Object... args) {
+        assertEquals(this.defaultServiceMessageSource.getMessage(code, args),
+                this.compositeServiceMessageSource.getMessage(code, args));
+        assertNull(this.emptyCompositeServiceMessageSource.getMessage(code, args));
+    }
+}
