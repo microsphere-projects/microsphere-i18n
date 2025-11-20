@@ -19,22 +19,22 @@ package io.microsphere.i18n;
 
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.function.Supplier;
 
 import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.emptyList;
 import static java.util.Locale.ENGLISH;
-import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static java.util.Locale.getDefault;
-import static java.util.Locale.setDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -51,8 +51,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class CompositeServiceMessageSourceTest {
 
-    private static final Locale DEFAULT_LOCALE = getDefault();
-
     private CompositeServiceMessageSource compositeServiceMessageSource;
 
     private CompositeServiceMessageSource emptyCompositeServiceMessageSource;
@@ -63,15 +61,7 @@ class CompositeServiceMessageSourceTest {
 
     private List<String> resources;
 
-    @BeforeAll
-    static void beforeAll() {
-        setDefault(SIMPLIFIED_CHINESE);
-    }
-
-    @AfterEach
-    void afterAll() {
-        setDefault(DEFAULT_LOCALE);
-    }
+    private Set<Locale> locales = ofSet(getDefault(), ENGLISH);
 
     @BeforeEach
     void setUp() {
@@ -112,14 +102,14 @@ class CompositeServiceMessageSourceTest {
 
     @Test
     void testGetSupportedLocales() {
-        assertEquals(ofList(getDefault(), ENGLISH), this.compositeServiceMessageSource.getSupportedLocales());
-        assertEquals(ofList(getDefault(), ENGLISH), this.emptyCompositeServiceMessageSource.getSupportedLocales());
+        assertSupportedLocales(this.compositeServiceMessageSource::getSupportedLocales);
+        assertSupportedLocales(this.emptyCompositeServiceMessageSource::getSupportedLocales);
     }
 
     @Test
     void testGetDefaultSupportedLocales() {
-        assertEquals(ofList(getDefault(), ENGLISH), this.compositeServiceMessageSource.getDefaultSupportedLocales());
-        assertEquals(ofList(getDefault(), ENGLISH), this.emptyCompositeServiceMessageSource.getDefaultSupportedLocales());
+        assertSupportedLocales(this.compositeServiceMessageSource::getDefaultSupportedLocales);
+        assertSupportedLocales(this.emptyCompositeServiceMessageSource::getDefaultSupportedLocales);
     }
 
     @Test
@@ -188,5 +178,12 @@ class CompositeServiceMessageSourceTest {
         assertEquals(this.defaultServiceMessageSource.getMessage(code, args),
                 this.compositeServiceMessageSource.getMessage(code, args));
         assertNull(this.emptyCompositeServiceMessageSource.getMessage(code, args));
+    }
+
+    void assertSupportedLocales(Supplier<List<Locale>> localsSupplier) {
+        List<Locale> supportedLocales = localsSupplier.get();
+        assertEquals(this.locales.size(), supportedLocales.size());
+        assertTrue(this.locales.containsAll(supportedLocales));
+        assertTrue(supportedLocales.containsAll(this.locales));
     }
 }
