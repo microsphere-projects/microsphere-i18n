@@ -26,7 +26,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
@@ -36,7 +36,8 @@ import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.BeanUtils.invokeAwareInterfaces;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.sort;
-import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableSet;
+import static java.util.stream.Collectors.toSet;
 import static org.springframework.beans.BeanUtils.instantiateClass;
 import static org.springframework.core.io.support.SpringFactoriesLoader.loadFactoryNames;
 import static org.springframework.util.ClassUtils.getConstructorIfAvailable;
@@ -140,7 +141,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         List<String> factoryNames = loadFactoryNames(AbstractServiceMessageSource.class, classLoader);
 
         Locale defaultLocale = resolveDefaultLocale(environment);
-        List<Locale> supportedLocales = resolveSupportedLocales(environment);
+        Set<Locale> supportedLocales = resolveSupportedLocales(environment);
 
         List<AbstractServiceMessageSource> serviceMessageSources = new ArrayList<>(factoryNames.size());
 
@@ -184,18 +185,20 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         return locale;
     }
 
-    private List<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
-        final List<Locale> supportedLocales;
+    private Set<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
+        final Set<Locale> supportedLocales;
         String propertyName = SUPPORTED_LOCALES_PROPERTY_NAME;
         List<String> locales = environment.getProperty(propertyName, List.class, emptyList());
         if (locales.isEmpty()) {
             supportedLocales = getSupportedLocales();
-            logger.trace("Support Locale list configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
+            logger.trace("Support Locale set configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
         } else {
-            supportedLocales = locales.stream().map(StringUtils::parseLocale).collect(Collectors.toList());
-            logger.trace("List of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
+            supportedLocales = locales.stream()
+                    .map(StringUtils::parseLocale)
+                    .collect(toSet());
+            logger.trace("The set of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
         }
-        return unmodifiableList(supportedLocales);
+        return unmodifiableSet(supportedLocales);
     }
 
     @Override

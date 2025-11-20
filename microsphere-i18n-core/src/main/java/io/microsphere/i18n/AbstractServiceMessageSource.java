@@ -5,7 +5,6 @@ import io.microsphere.annotation.Nullable;
 import io.microsphere.logging.Logger;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -118,7 +117,7 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         this.logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
     }
 
-    public void setSupportedLocales(List<Locale> supportedLocales) {
+    public void setSupportedLocales(Collection<Locale> supportedLocales) {
         this.supportedLocales = resolveHierarchicalLocales(supportedLocales);
         this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
     }
