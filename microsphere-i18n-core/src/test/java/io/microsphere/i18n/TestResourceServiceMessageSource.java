@@ -30,7 +30,7 @@ import static java.util.Collections.unmodifiableSet;
  * @see ResourceServiceMessageSource
  * @since 1.0.0
  */
-public class TestResourceServiceMessageSource extends TestServiceMessageSource implements ResourceServiceMessageSource {
+class TestResourceServiceMessageSource extends TestServiceMessageSource implements ResourceServiceMessageSource {
 
     protected Set<String> resources = new LinkedHashSet<>();
 
