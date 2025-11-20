@@ -12,9 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * {@link EmptyServiceMessageSource} 测试
+ * {@link EmptyServiceMessageSource} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EmptyServiceMessageSource
  * @since 1.0.0
  */
 class EmptyServiceMessageSourceTest extends AbstractI18nTest {
