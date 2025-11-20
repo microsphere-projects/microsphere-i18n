@@ -1,7 +1,6 @@
 package io.microsphere.i18n;
 
 import io.microsphere.annotation.Nullable;
-import io.microsphere.collection.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +42,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void init() {
+        super.init();
         requireNonNull(this.source, "The 'source' attribute must be assigned before initialization!");
         initialize();
     }
@@ -65,6 +65,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void destroy() {
+        super.destroy();
         clearAllMessages();
     }
 
@@ -94,21 +95,15 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
      */
     protected final void initialize() {
         List<Locale> supportedLocales = getSupportedLocales();
-        assertSupportedLocales(supportedLocales);
-        Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(supportedLocales.size());
-        for (Locale resolveLocale : supportedLocales) {
-            String resource = getResource(resolveLocale);
+        List<Locale> hierarchicalLocales = resolveHierarchicalLocales(supportedLocales);
+        Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(hierarchicalLocales.size());
+        for (Locale hierarchicalLocale : hierarchicalLocales) {
+            String resource = getResource(hierarchicalLocale);
             initializeResource(resource, localizedResourceMessages);
         }
         // Exchange the field
         this.localizedResourceMessages = localizedResourceMessages;
         logger.trace("Source '{}' Initialization is completed , localizedResourceMessages : {}", source, localizedResourceMessages);
-    }
-
-    private void assertSupportedLocales(List<Locale> supportedLocales) {
-        if (CollectionUtils.isEmpty(supportedLocales)) {
-            throw new IllegalStateException(format("{}.getSupportedLocales() Methods cannot return an empty list of locales!", this.getClass()));
-        }
     }
 
     protected final void clearAllMessages() {
