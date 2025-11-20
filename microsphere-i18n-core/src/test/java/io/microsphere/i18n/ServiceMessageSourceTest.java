@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
-import static io.microsphere.util.StringUtils.EMPTY_STRING;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
@@ -67,8 +67,8 @@ class ServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     void testGetMessage() {
-        assertSame(EMPTY_STRING, this.serviceMessageSource.getMessage("code"));
-        assertSame(EMPTY_STRING, this.serviceMessageSource.getMessage("code", ENGLISH));
+        assertNull(this.serviceMessageSource.getMessage("code"));
+        assertNull(this.serviceMessageSource.getMessage("code", ENGLISH));
     }
 
 
