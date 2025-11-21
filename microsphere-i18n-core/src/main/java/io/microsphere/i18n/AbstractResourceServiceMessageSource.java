@@ -7,7 +7,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import static io.microsphere.collection.MapUtils.isEmpty;
 import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ArrayUtils.arrayToString;
 import static java.util.Collections.emptyMap;
@@ -155,7 +154,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         Map<String, String> messages = loadMessages(resource);
         logger.trace("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
 
-        if (isEmpty(messages)) {
+        if (messages == null) {
             return;
         }
 
