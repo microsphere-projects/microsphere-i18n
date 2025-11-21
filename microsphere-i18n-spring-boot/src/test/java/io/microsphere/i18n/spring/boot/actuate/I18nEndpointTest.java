@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Locale;
 import java.util.Map;
 
 import static com.jayway.jsonpath.JsonPath.using;
@@ -23,6 +22,14 @@ import static java.util.Locale.setDefault;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+/**
+ * {@link I18nEndpoint} Test
+ *
+ * @author li.qi
+ * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see I18nEndpoint
+ * @since 1.0.0
+ */
 @SpringBootTest(
         classes = I18nEndpointTest.EndpointConfiguration.class,
         properties = {

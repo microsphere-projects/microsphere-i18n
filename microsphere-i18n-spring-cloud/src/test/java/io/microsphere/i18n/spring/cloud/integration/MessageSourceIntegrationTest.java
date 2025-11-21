@@ -26,6 +26,9 @@ import static java.util.Locale.ENGLISH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+/**
+ * @author li.qi
+ */
 @SpringBootTest(
         classes = MessageSourceIntegrationTest.Config.class,
         properties = {

@@ -23,8 +23,8 @@ import org.junit.Test;
 import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
+import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ArrayUtils.arrayToString;
-import static java.lang.String.format;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -62,6 +62,6 @@ public class ServiceMessageExceptionTest {
         assertTrue(exception instanceof RuntimeException);
         assertEquals(message, exception.getMessage());
         assertEquals(localizedMessage, exception.getLocalizedMessage());
-        assertEquals(format("ServiceMessageException[message='%s', args=%s, localized message='%s']", message, arrayToString(args), localizedMessage), exception.toString());
+        assertEquals(format("ServiceMessageException[message='{}', args={}, localized message='{}']", message, arrayToString(args), localizedMessage), exception.toString());
     }
 }
