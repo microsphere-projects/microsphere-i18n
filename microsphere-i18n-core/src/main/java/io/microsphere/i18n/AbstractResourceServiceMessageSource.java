@@ -102,7 +102,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         }
         // Exchange the field
         this.localizedResourceMessages = localizedResourceMessages;
-        logger.trace("Source '{}' Initialization is completed , localizedResourceMessages : {}", source, localizedResourceMessages);
+        logger.trace("The initialization[Source '{}'] is completed , localizedResourceMessages : {}", source, localizedResourceMessages);
     }
 
     protected final void clearAllMessages() {
