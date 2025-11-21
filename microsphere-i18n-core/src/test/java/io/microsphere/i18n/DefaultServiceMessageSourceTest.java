@@ -92,7 +92,7 @@ public class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourc
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         Map<String, Map<String, String>> localizedResourceMessages = serviceMessageSource.getLocalizedResourceMessages();
-        assertEquals(2, localizedResourceMessages.size());
+        assertEquals(3, localizedResourceMessages.size());
     }
 
     @Test

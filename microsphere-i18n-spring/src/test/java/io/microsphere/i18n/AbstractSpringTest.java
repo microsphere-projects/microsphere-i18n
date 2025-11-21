@@ -33,6 +33,8 @@ import static org.springframework.context.i18n.LocaleContextHolder.resetLocaleCo
  */
 public abstract class AbstractSpringTest {
 
+    public static final String TEST_SOURCE = "test";
+
     @BeforeClass
     public static void beforeClass() {
         // Set the simplified Chinese as the default Locale
@@ -40,12 +42,12 @@ public abstract class AbstractSpringTest {
     }
 
     @Before
-    public void before() {
+    public void before() throws Throwable {
         resetLocaleContext();
     }
 
     @AfterClass
-    public static void afterClass() {
+    public static void afterClass() throws Throwable {
         destroyServiceMessageSource();
         resetLocaleContext();
     }

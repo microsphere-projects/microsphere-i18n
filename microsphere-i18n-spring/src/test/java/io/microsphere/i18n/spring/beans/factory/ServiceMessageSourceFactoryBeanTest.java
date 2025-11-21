@@ -57,7 +57,7 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     private MockPropertySource propertySource;
 
     @Before
-    public void before() {
+    public void before() throws Throwable {
         super.before();
         setLocale(ENGLISH);
         propertySource = new MockPropertySource("mock");
