@@ -35,6 +35,17 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
     }
 
     @Override
+    public boolean canReload(Iterable<String> changedResources) {
+        for (String changedResource : changedResources) {
+            String propertyName = getPropertyName(changedResource);
+            if (this.environment.containsProperty(propertyName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     protected String getResource(String resourceName) {
         return getSource() + SOURCE_SEPARATOR + resourceName;
     }
