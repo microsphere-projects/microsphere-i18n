@@ -94,13 +94,23 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
     }
 
     @Override
+    public boolean canReload(Iterable<String> changedResources) {
+        return this.delegate.canReload(changedResources);
+    }
+
+    @Override
+    public boolean canReload(String changedResource) {
+        return this.delegate.canReload(changedResource);
+    }
+
+    @Override
     public void reload(Iterable<String> changedResources) {
         this.delegate.reload(changedResources);
     }
 
     @Override
-    public boolean canReload(Iterable<String> changedResources) {
-        return this.delegate.canReload(changedResources);
+    public void reload(String changedResource) {
+        this.delegate.reload(changedResource);
     }
 
     @Override

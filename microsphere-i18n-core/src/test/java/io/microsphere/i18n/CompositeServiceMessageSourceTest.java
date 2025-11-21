@@ -28,6 +28,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import static io.microsphere.collection.ListUtils.ofList;
 import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
@@ -38,7 +39,6 @@ import static java.util.Collections.emptyList;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -74,10 +74,11 @@ class CompositeServiceMessageSourceTest {
         this.serviceMessageSources = ofList(INSTANCE, this.defaultServiceMessageSource, this.testReloadableResourceServiceMessageSource);
         this.compositeServiceMessageSource = new CompositeServiceMessageSource(serviceMessageSources);
         this.emptyCompositeServiceMessageSource = new CompositeServiceMessageSource();
-        this.resources = ofList(this.defaultServiceMessageSource.getSource());
 
         this.compositeServiceMessageSource.init();
         this.emptyCompositeServiceMessageSource.init();
+
+        this.resources = ofList(this.defaultServiceMessageSource.getInitializedResources());
     }
 
     @AfterEach
@@ -143,9 +144,9 @@ class CompositeServiceMessageSourceTest {
     @Test
     void testCanReload() {
         assertTrue(this.compositeServiceMessageSource.canReload(this.resources));
-        assertFalse(this.compositeServiceMessageSource.canReload(this.resources.get(0)));
+        assertTrue(this.compositeServiceMessageSource.canReload(this.resources.get(0)));
         assertTrue(this.emptyCompositeServiceMessageSource.canReload(this.resources));
-        assertFalse(this.emptyCompositeServiceMessageSource.canReload(this.resources.get(0)));
+        assertTrue(this.emptyCompositeServiceMessageSource.canReload(this.resources.get(0)));
     }
 
     @Test

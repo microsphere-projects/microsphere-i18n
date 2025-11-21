@@ -17,6 +17,8 @@
 
 package io.microsphere.i18n;
 
+import java.util.Set;
+
 /**
  * {@link ReloadableResourceServiceMessageSource} for testing
  *
@@ -39,7 +41,8 @@ class TestReloadableResourceServiceMessageSource extends TestResourceServiceMess
 
     @Override
     public boolean canReload(String changedResource) {
-        return ReloadableResourceServiceMessageSource.super.canReload(changedResource);
+        Set<String> resources = getInitializedResources();
+        return resources.contains(changedResource);
     }
 
     @Override

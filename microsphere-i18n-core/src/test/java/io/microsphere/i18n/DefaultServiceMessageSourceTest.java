@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
 
+import static io.microsphere.collection.Sets.ofSet;
+import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.getDefault;
@@ -23,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
+class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMessageSourceTest {
 
     @Override
     protected DefaultServiceMessageSource createServiceMessageSource() {
@@ -63,7 +65,7 @@ class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
 
     @Test
     void testGetInternalLocale() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE) {
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE, getDefaultClassLoader()) {
 
             @Override
             protected Locale getInternalLocale() {
@@ -95,7 +97,7 @@ class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         Map<String, Map<String, String>> localizedResourceMessages = serviceMessageSource.getLocalizedResourceMessages();
-        assertEquals(3, localizedResourceMessages.size());
+        assertEquals(2, localizedResourceMessages.size());
     }
 
     @Test
@@ -106,5 +108,33 @@ class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
         }
 
         assertNull(serviceMessageSource.loadAllProperties(FRANCE));
+    }
+
+    @Test
+    @Override
+    void testCanReload() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        assertFalse(serviceMessageSource.canReload(TEST_SOURCE));
+    }
+
+    @Test
+    @Override
+    void testCanReloadWithIterable() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        assertFalse(serviceMessageSource.canReload(ofSet(TEST_SOURCE)));
+    }
+
+    @Test
+    @Override
+    void testReload() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        serviceMessageSource.reload(TEST_SOURCE);
+    }
+
+    @Test
+    @Override
+    void testReloadWithIterable() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        serviceMessageSource.reload(ofSet(TEST_SOURCE));
     }
 }
