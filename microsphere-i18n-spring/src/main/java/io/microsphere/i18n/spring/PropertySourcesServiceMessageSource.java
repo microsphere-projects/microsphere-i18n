@@ -26,7 +26,8 @@ import static org.springframework.util.StringUtils.hasText;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class PropertySourcesServiceMessageSource extends PropertiesResourceServiceMessageSource implements ReloadableResourceServiceMessageSource, EnvironmentAware {
+public class PropertySourcesServiceMessageSource extends PropertiesResourceServiceMessageSource implements
+        ReloadableResourceServiceMessageSource, EnvironmentAware {
 
     private Environment environment;
 
@@ -37,12 +38,17 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
     @Override
     public boolean canReload(Iterable<String> changedResources) {
         for (String changedResource : changedResources) {
-            String propertyName = getPropertyName(changedResource);
-            if (this.environment.containsProperty(propertyName)) {
+            if (canReload(changedResource)) {
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean canReload(String changedResource) {
+        String propertyName = getPropertyName(changedResource);
+        return this.environment.containsProperty(propertyName);
     }
 
     @Override
