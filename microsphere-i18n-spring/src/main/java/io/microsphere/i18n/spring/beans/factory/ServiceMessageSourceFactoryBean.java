@@ -31,7 +31,6 @@ import java.util.Set;
 import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
-import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.BeanUtils.invokeAwareInterfaces;
 import static java.util.Collections.emptyList;
@@ -166,8 +165,11 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     @Override
     public String toString() {
         return "ServiceMessageSourceFactoryBean{" +
-                "serviceMessageSources = " + getServiceMessageSources() +
+                "source='" + this.source + '\'' +
+                ", supportedLocales=" + getSupportedLocales() +
+                ", defaultLocale=" + getDefaultLocale() +
                 ", order=" + order +
+                ", serviceMessageSources=" + getServiceMessageSources() +
                 '}';
     }
 
@@ -205,18 +207,6 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
         Iterable<String> changedResources = event.getChangedResources();
         logger.trace("Receive event change resource: {}", changedResources);
-        for (ServiceMessageSource serviceMessageSource : getAllServiceMessageSources()) {
-            if (serviceMessageSource instanceof ReloadableResourceServiceMessageSource) {
-                ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource = (ReloadableResourceServiceMessageSource) serviceMessageSource;
-                if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
-                    reloadableResourceServiceMessageSource.reload(changedResources);
-                    logger.trace("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
-                }
-            }
-        }
-    }
-
-    public List<ServiceMessageSource> getAllServiceMessageSources() {
-        return findAllServiceMessageSources(this);
+        super.reload(changedResources);
     }
 }
