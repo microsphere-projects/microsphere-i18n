@@ -27,6 +27,7 @@ import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -71,7 +72,6 @@ class ServiceMessageSourceTest extends AbstractI18nTest {
         assertNull(this.serviceMessageSource.getMessage("code", ENGLISH));
     }
 
-
     @Test
     void testGetLocale() {
         assertSame(getDefault(), this.serviceMessageSource.getLocale());
@@ -90,5 +90,10 @@ class ServiceMessageSourceTest extends AbstractI18nTest {
     @Test
     void testGetSource() {
         assertEquals(COMMON_SOURCE, this.serviceMessageSource.getSource());
+    }
+
+    @Test
+    void testToString() {
+        assertNotNull(this.serviceMessageSource.toString());
     }
 }
