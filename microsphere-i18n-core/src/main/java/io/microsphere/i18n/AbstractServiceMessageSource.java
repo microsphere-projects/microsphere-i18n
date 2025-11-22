@@ -178,11 +178,10 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" +
-                "source='" + this.source + '\'' +
-                ", codePrefix='" + this.codePrefix + '\'' +
-                ", supportedLocales=" + getSupportedLocales() +
-                ", defaultLocale=" + getDefaultLocale() +
-                '}';
+        return getClass().getSimpleName() + " - " +
+                "source = '" + this.source + '\'' +
+                ", codePrefix = '" + this.codePrefix + '\'' +
+                ", supportedLocales = " + getSupportedLocales() +
+                ", defaultLocale = " + getDefaultLocale();
     }
 }
