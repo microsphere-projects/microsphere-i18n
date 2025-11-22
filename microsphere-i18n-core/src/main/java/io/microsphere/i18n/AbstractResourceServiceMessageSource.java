@@ -182,12 +182,6 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" +
-                "source='" + this.source + '\'' +
-                ", codePrefix='" + this.codePrefix + '\'' +
-                ", supportedLocales=" + getSupportedLocales() +
-                ", defaultLocale=" + getDefaultLocale() +
-                ", localizedResourceMessages=" + this.localizedResourceMessages +
-                '}';
+        return super.toString() + ", localizedResourceMessages = " + this.localizedResourceMessages;
     }
 }
