@@ -23,12 +23,14 @@ import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
 
 /**
  * {@link ServiceMessageSourceFactoryBean} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see ServiceMessageSourceFactoryBean
  * @since 1.0.0
  */
 @ExtendWith(SpringExtension.class)
@@ -44,6 +46,9 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     @Autowired
     private ServiceMessageSource serviceMessageSource;
+
+    @Autowired
+    private ServiceMessageSourceFactoryBean serviceMessageSourceFactoryBean;
 
     @Autowired
     private ApplicationContext context;
@@ -102,4 +107,14 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
         assertEquals("test", serviceMessageSource.getSource());
     }
 
+    @Test
+    void testSetOrder() {
+        serviceMessageSourceFactoryBean.setOrder(1);
+        assertEquals(1, serviceMessageSourceFactoryBean.getOrder());
+    }
+
+    @Test
+    void testToString() {
+        assertTrue(serviceMessageSource.toString().startsWith("ServiceMessageSourceFactoryBean"));
+    }
 }
