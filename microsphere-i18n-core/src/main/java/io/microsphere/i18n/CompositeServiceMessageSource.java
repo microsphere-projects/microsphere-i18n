@@ -115,6 +115,7 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
         iterate(ReloadableResourceServiceMessageSource.class, reloadableResourceServiceMessageSource -> {
             if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
                 reloadableResourceServiceMessageSource.reload(changedResources);
+                logger.trace("The '{}' reloaded the changed resources: {}", reloadableResourceServiceMessageSource, changedResources);
             }
         });
     }
@@ -179,9 +180,7 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
     @Override
     public String toString() {
-        return "CompositeServiceMessageSource{" +
-                "serviceMessageSources=" + serviceMessageSources +
-                '}';
+        return "CompositeServiceMessageSource{" + "serviceMessageSources=" + serviceMessageSources + '}';
     }
 
     private ServiceMessageSource getFirstServiceMessageSource() {
