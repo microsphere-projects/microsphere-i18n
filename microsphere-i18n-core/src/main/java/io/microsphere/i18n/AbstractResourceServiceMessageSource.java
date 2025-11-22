@@ -179,14 +179,15 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         return localizedResourceMessages.keySet();
     }
 
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder(getClass().getSimpleName())
-                .append("{source='").append(source).append('\'')
-                .append(", defaultLocale=").append(getDefaultLocale())
-                .append(", supportedLocales=").append(getSupportedLocales())
-                .append(", localizedResourceMessages=").append(localizedResourceMessages)
-                .append('}');
-        return sb.toString();
+        return getClass().getSimpleName() + "{" +
+                "source='" + this.source + '\'' +
+                ", codePrefix='" + this.codePrefix + '\'' +
+                ", supportedLocales=" + getSupportedLocales() +
+                ", defaultLocale=" + getDefaultLocale() +
+                ", localizedResourceMessages=" + this.localizedResourceMessages +
+                '}';
     }
 }
