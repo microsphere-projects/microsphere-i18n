@@ -17,6 +17,7 @@
 package io.microsphere.i18n.spring.beans.factory.support;
 
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor;
@@ -32,6 +33,7 @@ import static org.springframework.beans.factory.support.AbstractBeanDefinition.I
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see ServiceMessageSource
  * @see MergedBeanDefinitionPostProcessor
+ * @see EnableI18n
  * @since 1.0.0
  */
 public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBeanDefinitionPostProcessor {
