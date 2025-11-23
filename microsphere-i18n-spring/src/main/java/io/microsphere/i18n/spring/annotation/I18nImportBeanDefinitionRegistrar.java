@@ -18,7 +18,7 @@ package io.microsphere.i18n.spring.annotation;
 
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
-import io.microsphere.i18n.spring.beans.factory.config.I18nBeanPostProcessor;
+import io.microsphere.i18n.spring.beans.factory.config.I18nLocalValidatorFactoryBeanPostProcessor;
 import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBeanLifecyclePostProcessor;
 import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
@@ -115,7 +115,7 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
     }
 
     private void registerBeanPostProcessorBeanDefinitions(BeanDefinitionRegistry registry) {
-        registerBeanDefinition(registry, I18nBeanPostProcessor.class);
+        registerBeanDefinition(registry, I18nLocalValidatorFactoryBeanPostProcessor.class);
         registerBeanDefinition(registry, ServiceMessageSourceBeanLifecyclePostProcessor.class);
     }
 
