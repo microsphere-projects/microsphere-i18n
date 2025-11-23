@@ -5,6 +5,7 @@ import io.microsphere.i18n.AbstractServiceMessageSource;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
 import io.microsphere.logging.Logger;
 import org.springframework.beans.BeansException;
@@ -48,6 +49,7 @@ import static org.springframework.util.StringUtils.parseLocale;
  * {@link ServiceMessageSource} {@link FactoryBean} Implementation
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EnableI18n
  * @since 1.0.0
  */
 public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessageSource implements
