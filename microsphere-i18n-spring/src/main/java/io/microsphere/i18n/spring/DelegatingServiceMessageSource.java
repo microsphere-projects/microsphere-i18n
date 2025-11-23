@@ -5,15 +5,17 @@ import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.logging.Logger;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.ObjectProvider;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import static io.microsphere.logging.LoggerFactory.getLogger;
-import static org.springframework.core.annotation.AnnotationAwareOrderComparator.sort;
+import static io.microsphere.spring.beans.BeanUtils.getSortedBeans;
 
 /**
  * The delegating {@link ServiceMessageSource} class is composited by the Spring {@link ServiceMessageSource} beans
@@ -24,24 +26,21 @@ import static org.springframework.core.annotation.AnnotationAwareOrderComparator
  * @since 1.0.0
  */
 public class DelegatingServiceMessageSource extends CompositeServiceMessageSource
-        implements ReloadableResourceServiceMessageSource, InitializingBean, DisposableBean {
+        implements ReloadableResourceServiceMessageSource, InitializingBean, DisposableBean, BeanFactoryAware {
 
     private static final Logger logger = getLogger(DelegatingServiceMessageSource.class);
 
-    private final ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider;
-
-    public DelegatingServiceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider) {
-        this.serviceMessageSourcesProvider = serviceMessageSourcesProvider;
-    }
+    private BeanFactory beanFactory;
 
     @Override
-    public void init() {
+    public void afterPropertiesSet() {
+        super.init();
         this.setServiceMessageSources(findServiceMessageSourceBeans());
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        init();
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
     }
 
     @Override
@@ -49,24 +48,11 @@ public class DelegatingServiceMessageSource extends CompositeServiceMessageSourc
         super.destroy();
     }
 
-    /**
-     * Get the {@link CompositeServiceMessageSource}
-     *
-     * @return the {@link CompositeServiceMessageSource}
-     */
-    public CompositeServiceMessageSource getDelegate() {
-        return this;
-    }
-
     private List<ServiceMessageSource> findServiceMessageSourceBeans() {
-        List<ServiceMessageSource> serviceMessageSources = new LinkedList<>();
-        for (ServiceMessageSource serviceMessageSource : serviceMessageSourcesProvider) {
-            if(serviceMessageSource!=this) {
-                serviceMessageSources.add(serviceMessageSource);
-            }
-        }
-        sort(serviceMessageSources);
+        List<ServiceMessageSource> serviceMessageSources = new ArrayList<>(getSortedBeans(this.beanFactory, ServiceMessageSource.class));
+        serviceMessageSources.remove(this);
         logger.trace("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
         return serviceMessageSources;
     }
+
 }
