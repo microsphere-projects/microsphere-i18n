@@ -2,11 +2,9 @@ package io.microsphere.i18n.spring;
 
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
-import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.io.StringBuilderWriter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
@@ -126,8 +124,8 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
 
         @Bean
         @Primary
-        public DelegatingServiceMessageSource delegatingServiceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider) {
-            return new DelegatingServiceMessageSource(serviceMessageSourcesProvider);
+        public DelegatingServiceMessageSource delegatingServiceMessageSource() {
+            return new DelegatingServiceMessageSource();
         }
     }
 }
