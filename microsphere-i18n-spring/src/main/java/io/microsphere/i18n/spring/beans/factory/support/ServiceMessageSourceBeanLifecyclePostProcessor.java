@@ -23,8 +23,8 @@ import org.springframework.beans.factory.support.MergedBeanDefinitionPostProcess
 import org.springframework.beans.factory.support.RootBeanDefinition;
 
 import static io.microsphere.util.ClassUtils.isAssignableFrom;
+import static io.microsphere.util.StringUtils.isBlank;
 import static org.springframework.beans.factory.support.AbstractBeanDefinition.INFER_METHOD;
-import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * The PostProcessor processes the lifecycle of {@link ServiceMessageSource} Beans automatically.
@@ -51,7 +51,7 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
             return;
         }
         String initMethodName = beanDefinition.getInitMethodName();
-        if (isEmpty(initMethodName)) {
+        if (isBlank(initMethodName)) {
             // If The BeanDefinition does not declare the initialization method,
             // ServiceMessageSource#init() method should be a candidate.
             beanDefinition.setInitMethodName("init");
@@ -70,7 +70,7 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
             // If the "(inferred)" method was found, return immediately.
             return;
         }
-        if (isEmpty(destroyMethodName)) {
+        if (isBlank(destroyMethodName)) {
             // If The BeanDefinition does not declare the destroy method,
             // ServiceMessageSource#destroy() method should be a candidate.
             beanDefinition.setDestroyMethodName("destroy");
