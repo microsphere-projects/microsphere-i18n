@@ -1,6 +1,7 @@
 package io.microsphere.i18n.spring.context;
 
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -19,6 +20,7 @@ import static io.microsphere.spring.beans.BeanUtils.getSortedBeans;
  * Spring {@link MessageSource} Adapter
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EnableI18n#exposeMessageSource()
  * @since 1.0.0
  */
 public class MessageSourceAdapter implements MessageSource, SmartInitializingSingleton, BeanFactoryAware {
