@@ -1,5 +1,6 @@
 package io.microsphere.i18n.spring.beans.factory;
 
+import io.microsphere.annotation.Nonnull;
 import io.microsphere.i18n.AbstractServiceMessageSource;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
@@ -18,8 +19,6 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.lang.NonNull;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Constructor;
@@ -33,6 +32,7 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCAL
 import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.BeanUtils.invokeAwareInterfaces;
+import static io.microsphere.spring.core.env.EnvironmentUtils.asConfigurableEnvironment;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.sort;
 import static java.util.Collections.unmodifiableSet;
@@ -68,16 +68,16 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     private int order;
 
     public ServiceMessageSourceFactoryBean(String source) {
-        this(source, Ordered.LOWEST_PRECEDENCE);
+        this(source, LOWEST_PRECEDENCE);
     }
 
     public ServiceMessageSourceFactoryBean(String source, int order) {
         this.source = source;
-        this.order = order;
+        setOrder(order);
     }
 
     @Override
-    public ReloadableResourceServiceMessageSource getObject() throws Exception {
+    public ReloadableResourceServiceMessageSource getObject() {
         return this;
     }
 
@@ -96,7 +96,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         this.setServiceMessageSources(initServiceMessageSources());
     }
 
-    @NonNull
+    @Nonnull
     @Override
     public Locale getLocale() {
         Locale locale = getLocaleFromLocaleContext();
@@ -118,8 +118,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
 
     @Override
     public void setEnvironment(Environment environment) {
-        Assert.isInstanceOf(ConfigurableEnvironment.class, environment, "The 'environment' parameter must be of type ConfigurableEnvironment");
-        this.environment = (ConfigurableEnvironment) environment;
+        this.environment = asConfigurableEnvironment(environment);
     }
 
     @Override
