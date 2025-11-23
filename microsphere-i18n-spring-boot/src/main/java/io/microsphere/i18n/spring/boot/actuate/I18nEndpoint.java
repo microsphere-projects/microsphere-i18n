@@ -99,7 +99,7 @@ public class I18nEndpoint {
         List<ServiceMessageSource> serviceMessageSources = emptyList();
         if (serviceMessageSource instanceof DelegatingServiceMessageSource) {
             DelegatingServiceMessageSource delegatingServiceMessageSource = (DelegatingServiceMessageSource) serviceMessageSource;
-            serviceMessageSources = delegatingServiceMessageSource.getDelegate().getServiceMessageSources();
+            serviceMessageSources = delegatingServiceMessageSource.getServiceMessageSources();
         }
 
         LinkedList<ServiceMessageSource> allServiceMessageSources = new LinkedList<>();
