@@ -46,6 +46,8 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 
+import static io.microsphere.collection.ListUtils.first;
+import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static java.util.Collections.emptyList;
@@ -207,13 +209,9 @@ public class I18nEndpoint {
     }
 
     private PropertySourcesServiceMessageSource getPropertySourcesServiceMessageSource(String source) {
-        return serviceMessageSources.stream()
-                .filter(serviceMessageSource ->
-                        Objects.equals(source, serviceMessageSource.getSource()))
-                .filter(this::isPropertySourcesServiceMessageSource)
-                .map(PropertySourcesServiceMessageSource.class::cast)
-                .findFirst()
-                .get();
+        List<PropertySourcesServiceMessageSource> propertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(
+                this.serviceMessageSources, serviceMessageSource -> Objects.equals(source, serviceMessageSource.getSource()));
+        return first(propertySourcesServiceMessageSources);
     }
 
     private boolean isPropertySourcesServiceMessageSource(ServiceMessageSource serviceMessageSource) {
