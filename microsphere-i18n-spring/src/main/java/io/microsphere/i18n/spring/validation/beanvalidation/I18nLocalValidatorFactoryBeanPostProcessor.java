@@ -1,4 +1,4 @@
-package io.microsphere.i18n.spring.beans.factory.config;
+package io.microsphere.i18n.spring.validation.beanvalidation;
 
 import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
@@ -11,6 +11,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import static io.microsphere.logging.LoggerFactory.getLogger;
+import static org.springframework.util.ClassUtils.isPresent;
 
 
 /**
@@ -23,6 +24,8 @@ import static io.microsphere.logging.LoggerFactory.getLogger;
  * @since 1.0.0
  */
 public class I18nLocalValidatorFactoryBeanPostProcessor extends GenericBeanPostProcessorAdapter<LocalValidatorFactoryBean> {
+
+    private static final String VALIDATOR_FACTORY_CLASS_NAME = "jakarta.validation.ValidatorFactory";
 
     private static final Logger logger = getLogger(I18nLocalValidatorFactoryBeanPostProcessor.class);
 
@@ -38,5 +41,9 @@ public class I18nLocalValidatorFactoryBeanPostProcessor extends GenericBeanPostP
             localValidatorFactoryBean.setValidationMessageSource(messageSourceAdapter);
             logger.trace("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
         });
+    }
+
+    public static boolean isValidatorFactoryPresent(ClassLoader classLoader) {
+        return isPresent(VALIDATOR_FACTORY_CLASS_NAME, classLoader);
     }
 }

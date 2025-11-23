@@ -20,6 +20,7 @@ package io.microsphere.i18n.spring.beans.factory.config;
 
 import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
+import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator;

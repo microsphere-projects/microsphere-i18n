@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package io.microsphere.i18n.spring.beans.factory.config;
+package io.microsphere.i18n.spring.web.servlet;
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.annotation.EnableI18n;
@@ -34,6 +34,7 @@ import java.util.Set;
 import static io.microsphere.collection.ListUtils.ofList;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.logging.LoggerFactory.getLogger;
+import static org.springframework.util.ClassUtils.isPresent;
 
 /**
  * The {@link BeanPostProcessor} to set the default {@link Locale locale} and supported {@link Locale locales}
@@ -47,6 +48,8 @@ import static io.microsphere.logging.LoggerFactory.getLogger;
  * @since 1.0.0
  */
 public class AcceptHeaderLocaleResolverBeanPostProcessor extends GenericBeanPostProcessorAdapter<AcceptHeaderLocaleResolver> implements ApplicationContextAware {
+
+    private static final String CLASS_NAME = "org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver";
 
     private static final Logger logger = getLogger(AcceptHeaderLocaleResolverBeanPostProcessor.class);
 
@@ -65,5 +68,9 @@ public class AcceptHeaderLocaleResolverBeanPostProcessor extends GenericBeanPost
     @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {
         this.context = context;
+    }
+
+    public static boolean isAcceptHeaderLocaleResolverPresent(ClassLoader classLoader) {
+        return isPresent(CLASS_NAME, classLoader);
     }
 }
