@@ -7,7 +7,6 @@ import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.logging.Logger;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.lang.NonNull;
 
@@ -37,8 +36,6 @@ public class DelegatingServiceMessageSource implements ReloadableResourceService
     private final ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider;
 
     private CompositeServiceMessageSource delegate;
-
-    private ListableBeanFactory beanFactory;
 
     public DelegatingServiceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider) {
         this.serviceMessageSourcesProvider = serviceMessageSourcesProvider;
