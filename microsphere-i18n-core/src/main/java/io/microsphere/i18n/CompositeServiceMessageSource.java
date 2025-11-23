@@ -180,7 +180,7 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
     @Override
     public String toString() {
-        return "CompositeServiceMessageSource{" + "serviceMessageSources=" + serviceMessageSources + '}';
+        return this.getClass().getSimpleName() + " - serviceMessageSources = " + serviceMessageSources + '}';
     }
 
     private ServiceMessageSource getFirstServiceMessageSource() {
