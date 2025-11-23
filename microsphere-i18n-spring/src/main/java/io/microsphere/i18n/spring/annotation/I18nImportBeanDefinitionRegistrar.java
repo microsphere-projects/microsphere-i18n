@@ -46,7 +46,7 @@ import static io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverB
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.factory.support.BeanRegistrar.registerBeanDefinition;
 import static io.microsphere.util.ArrayUtils.EMPTY_STRING_ARRAY;
-import static io.microsphere.util.ClassLoaderUtils.getClassLoader;
+import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.rootBeanDefinition;
 import static org.springframework.context.support.AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME;
 import static org.springframework.core.annotation.AnnotationAttributes.fromMap;
@@ -125,7 +125,7 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
 
     private void registerBeanPostProcessorBeanDefinitions(BeanDefinitionRegistry registry) {
         registerBeanDefinition(registry, ServiceMessageSourceBeanLifecyclePostProcessor.class);
-        ClassLoader classLoader = getClassLoader(this.getClass());
+        ClassLoader classLoader = getDefaultClassLoader();
         if (isValidatorFactoryPresent(classLoader)) {
             registerBeanDefinition(registry, I18nLocalValidatorFactoryBeanPostProcessor.class);
         }
