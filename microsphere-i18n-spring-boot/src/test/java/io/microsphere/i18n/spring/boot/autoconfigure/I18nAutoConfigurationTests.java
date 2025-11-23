@@ -2,7 +2,7 @@ package io.microsphere.i18n.spring.boot.autoconfigure;
 
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
-import io.microsphere.i18n.spring.beans.factory.config.I18nBeanPostProcessor;
+import io.microsphere.i18n.spring.beans.factory.config.I18nLocalValidatorFactoryBeanPostProcessor;
 import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBeanLifecyclePostProcessor;
 import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
@@ -47,7 +47,7 @@ class I18nAutoConfigurationTests {
                     assertThat(context).getBean("messageSource").isInstanceOf(MessageSourceAdapter.class);
 
                     assertThat(context).hasSingleBean(I18nApplicationListener.class)
-                            .hasSingleBean(I18nBeanPostProcessor.class)
+                            .hasSingleBean(I18nLocalValidatorFactoryBeanPostProcessor.class)
                             .hasSingleBean(ServiceMessageSourceBeanLifecyclePostProcessor.class);
                 });
     }
