@@ -129,7 +129,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
      */
     @Nonnull
     public static List<PropertySourcesServiceMessageSource> findAllPropertySourcesServiceMessageSources(
-            Collection<ServiceMessageSource> serviceMessageSources,
+            Collection<? extends ServiceMessageSource> serviceMessageSources,
             Predicate<? super PropertySourcesServiceMessageSource>... predicates) {
         if (isEmpty(serviceMessageSources)) {
             return emptyList();
