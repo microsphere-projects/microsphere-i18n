@@ -22,7 +22,7 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableSet;
 
 /**
- * The Composite {@link ServiceMessageSource} class
+ * The Composite {@link ServiceMessageSource} class, No thread safe.
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see AbstractServiceMessageSource
@@ -100,14 +100,16 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     }
 
     public void setServiceMessageSources(List<? extends ServiceMessageSource> serviceMessageSources) {
-        List<? extends ServiceMessageSource> oldServiceMessageSources = this.serviceMessageSources;
         List<ServiceMessageSource> newServiceMessageSources = new ArrayList<>(serviceMessageSources);
         sort(newServiceMessageSources);
+
+        List<? extends ServiceMessageSource> oldServiceMessageSources = this.serviceMessageSources;
+        this.serviceMessageSources = newServiceMessageSources;
+        logger.trace("The ServiceMessageSource original: '{}' , sorted : '{}'", serviceMessageSources, newServiceMessageSources);
+
         if (oldServiceMessageSources != null) {
             oldServiceMessageSources.clear();
         }
-        this.serviceMessageSources = newServiceMessageSources;
-        logger.trace("Source '{}' sets ServiceMessageSource list, sorted : {}", serviceMessageSources, newServiceMessageSources);
     }
 
     @Override
