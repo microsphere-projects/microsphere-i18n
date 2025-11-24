@@ -16,9 +16,11 @@
  */
 package io.microsphere.i18n.spring.boot.actuate;
 
+import io.microsphere.annotation.Nonnull;
 import io.microsphere.i18n.AbstractResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
+import io.microsphere.logging.Logger;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Selector;
@@ -31,7 +33,6 @@ import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -44,37 +45,25 @@ import static io.microsphere.collection.ListUtils.first;
 import static io.microsphere.collection.ListUtils.newArrayList;
 import static io.microsphere.collection.MapUtils.newFixedLinkedHashMap;
 import static io.microsphere.collection.MapUtils.ofMap;
+import static io.microsphere.constants.SeparatorConstants.LINE_SEPARATOR;
+import static io.microsphere.constants.SymbolConstants.EQUAL;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
 import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static java.util.Collections.emptyMap;
 import static java.util.Collections.singleton;
 
 /**
  * I18n Spring Boot Actuator Endpoint
- * <pre>{@code
- * {
- * "test.i18n_messages_zh.properties": {
- *
- * },
- * "META-INF/i18n/test/i18n_messages_zh_CN.properties": {
- * "test.a": "测试-a",
- * "test.hello": "您好,{}"
- * },
- * "META-INF/i18n/test/i18n_messages_en.properties": {
- * "test.a": "test-a",
- * "test.hello": "Hello,{}"
- * },
- * "META-INF/i18n/common/i18n_messages_zh_CN.properties": {
- * "common.a": "a"
- * }
- * }
- * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
 @Endpoint(id = "i18n")
 public class I18nEndpoint {
+
+    private static final Logger logger = getLogger(I18nEndpoint.class);
 
     public static final String PROPERTY_SOURCE_NAME = "i18nEndpointPropertySource";
 
@@ -95,6 +84,29 @@ public class I18nEndpoint {
         this.environment = context.getEnvironment();
     }
 
+    /**
+     * List all localized resource messages:
+     * <pre>{@code
+     * {
+     *  "test.i18n_messages_zh.properties": {
+     *  },
+     *  "META-INF/i18n/test/i18n_messages_zh_CN.properties": {
+     *  "test.a": "测试-a",
+     *  "test.hello": "您好,{}"
+     *  },
+     *  "META-INF/i18n/test/i18n_messages_en.properties": {
+     *  "test.a": "test-a",
+     *  "test.hello": "Hello,{}"
+     *  },
+     *  "META-INF/i18n/common/i18n_messages_zh_CN.properties": {
+     *  "common.a": "a"
+     *  }
+     * }
+     * }</pre>
+     *
+     * @return non-null
+     */
+    @Nonnull
     @ReadOperation
     public Map<String, Map<String, String>> invoke() {
         List<AbstractResourceServiceMessageSource> resourceServiceMessageSources = this.resourceServiceMessageSources;
@@ -108,11 +120,103 @@ public class I18nEndpoint {
         return allLocalizedResourceMessages;
     }
 
+    /**
+     * Get the list of messages by the specified code in all supported {@link Locale locales}:
+     * <pre>{@code
+     * [
+     * {
+     * "code": "a",
+     * "locale": "en",
+     * "source": "common",
+     * "resource": "common.i18n_messages_en.properties",
+     * "message": null
+     * },
+     * {
+     * "code": "a",
+     * "locale": "zh_CN",
+     * "source": "common",
+     * "resource": "common.i18n_messages_zh_CN.properties",
+     * "message": null
+     * },
+     * {
+     * "code": "a",
+     * "locale": "zh",
+     * "source": "common",
+     * "resource": "common.i18n_messages_zh.properties",
+     * "message": null
+     * },
+     * {
+     * "code": "a",
+     * "locale": "en",
+     * "source": "common",
+     * "resource": "META-INF\/i18n\/common\/i18n_messages_en.properties",
+     * "message": "a"
+     * },
+     * {
+     * "code": "a",
+     * "locale": "zh_CN",
+     * "source": "common",
+     * "resource": "META-INF\/i18n\/common\/i18n_messages_zh_CN.properties",
+     * "message": "啊"
+     * },
+     * {
+     * "code": "a",
+     * "locale": "zh",
+     * "source": "common",
+     * "resource": "META-INF\/i18n\/common\/i18n_messages_zh.properties",
+     * "message": null
+     * }
+     * ]
+     * }</pre>
+     *
+     * @param code the message code
+     * @return non-null
+     */
+    @Nonnull
     @ReadOperation
     public List<Map<String, String>> getMessage(@Selector String code) {
         return getMessage(code, null);
     }
 
+    /**
+     * Get the list of messages by the specified code and {@link Locale locale}.
+     * For a instance for {@link Locale#SIMPLIFIED_CHINESE simplified Chinese}:
+     * <pre>{@code
+     * [
+     * {
+     * "code": "a",
+     * "locale": "zh_CN",
+     * "source": "common",
+     * "resource": "common.i18n_messages_zh_CN.properties",
+     * "message": null
+     * },
+     * {
+     * "code": "a",
+     * "locale": "zh",
+     * "source": "common",
+     * "resource": "common.i18n_messages_zh.properties",
+     * "message": null
+     * },
+     * {
+     * "code": "a",
+     * "locale": "zh_CN",
+     * "source": "common",
+     * "resource": "META-INF\/i18n\/common\/i18n_messages_zh_CN.properties",
+     * "message": "啊"
+     * },
+     * {
+     * "code": "a",
+     * "locale": "zh",
+     * "source": "common",
+     * "resource": "META-INF\/i18n\/common\/i18n_messages_zh.properties",
+     * "message": null
+     * }
+     * ]
+     * }</pre>
+     *
+     * @param code the message code
+     * @return non-null
+     */
     @ReadOperation
     public List<Map<String, String>> getMessage(@Selector String code, @Selector Locale locale) {
         Set<Locale> supportedLocales = getSupportedLocales(locale);
@@ -141,26 +245,48 @@ public class I18nEndpoint {
         return messageMaps;
     }
 
+    /**
+     * Add a new message to the specified source, {@link Locale locale}, and code.
+     *
+     * @param source  the {@link PropertySourcesServiceMessageSource#getSource()}
+     * @param locale  {@link Locale locale}
+     * @param code    the message code
+     * @param message the content of message
+     * @return non-null
+     * @throws IOException
+     */
+    @Nonnull
     @WriteOperation
     public Map<String, Object> addMessage(String source, Locale locale, String code, String message) throws IOException {
         PropertySourcesServiceMessageSource serviceMessageSource = getPropertySourcesServiceMessageSource(source);
+        if (serviceMessageSource == null) {
+            logger.trace("No PropertySourcesServiceMessageSource Bean was found by the source : '{}'", source);
+            return emptyMap();
+        }
         Properties properties = loadProperties(serviceMessageSource, locale);
         // Add a new code with message
         properties.setProperty(code, message);
 
-        String propertyName = serviceMessageSource.getPropertyName(locale);
-        StringWriter stringWriter = new StringWriter();
-        // Properties -> StringWriter
-        properties.store(stringWriter, null);
-        // StringWriter -> String
-        String propertyValue = stringWriter.toString();
+        String resourceName = serviceMessageSource.getResource(locale);
+        String propertiesContent = createPropertiesContent(properties);
 
         MapPropertySource propertySource = getPropertySource();
         Map<String, Object> newProperties = propertySource.getSource();
-        newProperties.put(propertyName, propertyValue);
+        newProperties.put(resourceName, propertiesContent);
 
         serviceMessageSource.init();
         return newProperties;
+    }
+
+    private String createPropertiesContent(Properties properties) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String propertyName : properties.stringPropertyNames()) {
+            stringBuilder.append(propertyName)
+                    .append(EQUAL)
+                    .append(properties.getProperty(propertyName))
+                    .append(LINE_SEPARATOR);
+        }
+        return stringBuilder.toString();
     }
 
     private Properties loadProperties(PropertySourcesServiceMessageSource serviceMessageSource, Locale locale) throws IOException {
