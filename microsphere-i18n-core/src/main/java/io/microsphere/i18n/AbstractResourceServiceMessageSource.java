@@ -189,12 +189,12 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     @Nonnull
     public final Set<String> getResources() {
         Set<Locale> supportedLocales = getSupportedLocales();
-        Set<String> supportedResources = newFixedLinkedHashSet(supportedLocales.size());
+        Set<String> resources = newFixedLinkedHashSet(supportedLocales.size());
         for (Locale supportedLocale : supportedLocales) {
             String resource = getResource(supportedLocale);
-            supportedResources.add(resource);
+            resources.add(resource);
         }
-        return unmodifiableSet(supportedResources);
+        return unmodifiableSet(resources);
     }
 
 
