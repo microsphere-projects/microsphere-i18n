@@ -18,6 +18,7 @@ package io.microsphere.i18n.spring.context;
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.annotation.EnableI18n;
+import io.microsphere.spring.config.env.event.PropertySourcesChangedEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
@@ -26,7 +27,10 @@ import org.springframework.context.event.EventListener;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
-import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import java.util.Map;
+
+import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.reloadAll;
+import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
 
@@ -52,8 +56,15 @@ public class I18nApplicationListener {
         destroyServiceMessageSource();
     }
 
+    @EventListener(PropertySourcesChangedEvent.class)
+    public void onPropertySourcesChangedEvent(PropertySourcesChangedEvent event) {
+        Map<String, Object> changedProperties = event.getChangedProperties();
+        ApplicationContext context = event.getApplicationContext();
+        reloadAll(context, changedProperties.keySet());
+    }
+
     private void initializeServiceMessageSource(ApplicationContext context) {
-        ServiceMessageSource serviceMessageSource = context.getBean(SERVICE_MESSAGE_SOURCE_BEAN_NAME, ServiceMessageSource.class);
+        ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
         setServiceMessageSource(serviceMessageSource);
     }
 }
