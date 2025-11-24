@@ -25,6 +25,7 @@ import static com.jayway.jsonpath.JsonPath.using;
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static java.util.Collections.emptyMap;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static java.util.Locale.getDefault;
@@ -33,6 +34,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
@@ -109,6 +111,12 @@ class I18nEndpointTest {
 
         properties = this.i18nEndpoint.addMessage(COMMON_SOURCE, FRANCE, "a", "$a");
         assertEquals(1, properties.size());
+
+        properties = this.i18nEndpoint.addMessage(COMMON_SOURCE, FRANCE, "b", "$b");
+        assertEquals(1, properties.size());
+
+        properties = this.i18nEndpoint.addMessage("not-found-source", FRANCE, "b", "$b");
+        assertSame(emptyMap(), properties);
     }
 
     void assertGetMessage(List<Map<String, String>> messagesList, int expectedSize) {
