@@ -29,6 +29,7 @@ import static org.junit.Assert.assertTrue;
  * {@link PropertySourcesServiceMessageSource} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see PropertySourcesServiceMessageSource
  * @since 1.0.0
  */
 public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
@@ -109,6 +110,11 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     @Test
     public void testFindAllPropertySourcesServiceMessageSourcesOnEmptyCollection() {
         assertSame(emptyList(), findAllPropertySourcesServiceMessageSources(emptyList()));
+    }
+
+    @Test
+    public void testGetResource() {
+        assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getResource("i18n_messages_zh_CN.properties"));
     }
 
     static class SingleBeanConfig {
