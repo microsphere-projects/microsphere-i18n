@@ -30,6 +30,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.spring.beans.BeanUtils.getBeanIfAvailable;
+import static io.microsphere.util.ClassUtils.cast;
 import static org.springframework.context.support.AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME;
 
 /**
@@ -66,7 +67,7 @@ public abstract class I18nBeanUtils {
     @Nullable
     public static MessageSourceAdapter getMessageSourceAdapter(@Nonnull BeanFactory beanFactory) {
         MessageSource messageSource = getMessageSource(beanFactory);
-        return messageSource instanceof MessageSourceAdapter ? (MessageSourceAdapter) messageSource : null;
+        return cast(messageSource, MessageSourceAdapter.class);
     }
 
     /**
