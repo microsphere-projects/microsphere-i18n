@@ -20,12 +20,16 @@ package io.microsphere.i18n.spring.context;
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
+import io.microsphere.spring.config.env.event.PropertySourcesChangedEvent;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.env.MockPropertySource;
 
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
 import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
+import static io.microsphere.spring.config.env.event.PropertySourceChangedEvent.added;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
@@ -42,6 +46,19 @@ class I18nApplicationListenerTest {
         testInSpringContainer((context, environment) -> {
             ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
             assertSame(serviceMessageSource(), serviceMessageSource);
+
+            assertEquals("测试-a", serviceMessageSource.getMessage("a"));
+            assertEquals("您好,World", serviceMessageSource.getMessage("hello", "World"));
+
+            MockPropertySource mockPropertySource = new MockPropertySource("test");
+            mockPropertySource.setProperty("test.i18n_messages_zh_CN.properties", "test.a = 测试-test");
+            environment.getPropertySources().addLast(mockPropertySource);
+
+            context.publishEvent(new PropertySourcesChangedEvent(context));
+
+            PropertySourcesChangedEvent event = new PropertySourcesChangedEvent(context, added(context, mockPropertySource));
+            context.publishEvent(event);
+            assertEquals("测试-test", serviceMessageSource.getMessage("a"));
         }, TestSourceEnableI18nConfiguration.class);
         assertSame(INSTANCE, serviceMessageSource());
     }
