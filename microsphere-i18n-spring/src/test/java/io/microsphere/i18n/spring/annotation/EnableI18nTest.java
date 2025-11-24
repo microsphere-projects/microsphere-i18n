@@ -33,15 +33,7 @@ class EnableI18nTest extends AbstractSpringTest {
 
     @Test
     void testGetMessage() {
-        // Testing Simplified Chinese
-        // If the Message Code is "a"
-        assertEquals("测试-a", serviceMessageSource.getMessage("a"));
-
-        // The same is true for overloaded methods with Message Pattern arguments
-        assertEquals("您好,World", serviceMessageSource.getMessage("hello", "World"));
-
-        // Returns null if code does not exist
-        assertNull(serviceMessageSource.getMessage("code-not-found"));
+        assertGetMessage(this.serviceMessageSource);
 
         // Test English, because the English Message resource does not exist
         assertEquals("Hello,World", serviceMessageSource.getMessage("hello", ENGLISH, "World"));
