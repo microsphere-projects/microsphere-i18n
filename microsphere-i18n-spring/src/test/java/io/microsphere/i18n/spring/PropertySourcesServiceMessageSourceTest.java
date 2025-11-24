@@ -19,6 +19,7 @@ import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.fin
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -115,6 +116,11 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     @Test
     public void testGetResource() {
         assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getResource("i18n_messages_zh_CN.properties"));
+    }
+    
+    @Test
+    public void testGetPropertyName() {
+        assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getPropertyName(SIMPLIFIED_CHINESE));
     }
 
     static class SingleBeanConfig {
