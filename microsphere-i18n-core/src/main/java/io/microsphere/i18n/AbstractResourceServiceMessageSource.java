@@ -8,7 +8,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import static io.microsphere.collection.MapUtils.isEmpty;
 import static io.microsphere.collection.SetUtils.newFixedLinkedHashSet;
 import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ArrayUtils.arrayToString;
@@ -137,7 +136,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     protected abstract String getResource(String resourceName);
 
-    @Nullable
+    @Nonnull
     protected abstract Map<String, String> loadMessages(String resource);
 
     @Nullable
@@ -154,12 +153,8 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     private void initializeResource(String resource, Map<String, Map<String, String>> localizedResourceMessages) {
         Map<String, String> messages = loadMessages(resource);
-        logger.trace("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
-
-        if (isEmpty(messages)) {
-            return;
-        }
-
+        logger.trace("The loaded resource[name : '{}' ,source : '{}'] messages : {}", resource, this.source, messages);
+        assertNotNull(messages, () -> format("The loaded resource[name : '{}' ,source : '{}'] messages must not be null", resource, this.source));
         validateMessages(messages, resource);
         // Override the localized message if present
         localizedResourceMessages.put(resource, messages);
