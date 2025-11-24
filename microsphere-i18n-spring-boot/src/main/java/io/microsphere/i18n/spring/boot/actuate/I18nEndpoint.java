@@ -18,9 +18,7 @@ package io.microsphere.i18n.spring.boot.actuate;
 
 import io.microsphere.i18n.AbstractResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Selector;
@@ -34,11 +32,7 @@ import org.springframework.core.env.MutablePropertySources;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -47,12 +41,13 @@ import java.util.Properties;
 import java.util.Set;
 
 import static io.microsphere.collection.ListUtils.first;
+import static io.microsphere.collection.ListUtils.newArrayList;
+import static io.microsphere.collection.MapUtils.newFixedLinkedHashMap;
+import static io.microsphere.collection.MapUtils.ofMap;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
 import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
-import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;
-import static org.springframework.util.StringUtils.hasText;
 
 /**
  * I18n Spring Boot Actuator Endpoint
@@ -83,86 +78,63 @@ public class I18nEndpoint {
 
     public static final String PROPERTY_SOURCE_NAME = "i18nEndpointPropertySource";
 
-    private List<ServiceMessageSource> serviceMessageSources;
+    private ServiceMessageSource primaryServiceMessageSource;
 
-    @Autowired
+    private List<AbstractResourceServiceMessageSource> resourceServiceMessageSources;
+
     private ConfigurableEnvironment environment;
 
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReadyEvent(ApplicationReadyEvent event) {
-        ConfigurableApplicationContext context = event.getApplicationContext();
-        ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
-        initServiceMessageSources(serviceMessageSource);
+        init(event.getApplicationContext());
     }
 
-    private void initServiceMessageSources(ServiceMessageSource serviceMessageSource) {
-        List<ServiceMessageSource> serviceMessageSources = emptyList();
-        if (serviceMessageSource instanceof DelegatingServiceMessageSource) {
-            DelegatingServiceMessageSource delegatingServiceMessageSource = (DelegatingServiceMessageSource) serviceMessageSource;
-            serviceMessageSources = delegatingServiceMessageSource.getServiceMessageSources();
-        }
-
-        LinkedList<ServiceMessageSource> allServiceMessageSources = new LinkedList<>();
-
-        int size = serviceMessageSources.size();
-        for (int i = 0; i < size; i++) {
-            List<ServiceMessageSource> subServiceMessageSources = findAllServiceMessageSources(serviceMessageSources.get(i));
-            allServiceMessageSources.addAll(subServiceMessageSources);
-        }
-
-        this.serviceMessageSources = allServiceMessageSources;
-
+    private void init(ConfigurableApplicationContext context) {
+        this.primaryServiceMessageSource = getServiceMessageSource(context);
+        this.resourceServiceMessageSources = findAllServiceMessageSources(this.primaryServiceMessageSource, AbstractResourceServiceMessageSource.class);
+        this.environment = context.getEnvironment();
     }
 
     @ReadOperation
     public Map<String, Map<String, String>> invoke() {
-        List<ServiceMessageSource> serviceMessageSources = this.serviceMessageSources;
-        int size = serviceMessageSources.size();
-        Map<String, Map<String, String>> allLocalizedResourceMessages = new LinkedHashMap<>(size);
+        List<AbstractResourceServiceMessageSource> resourceServiceMessageSources = this.resourceServiceMessageSources;
+        int size = resourceServiceMessageSources.size();
+        Map<String, Map<String, String>> allLocalizedResourceMessages = newFixedLinkedHashMap(size);
         for (int i = 0; i < size; i++) {
-            // FIXME
-            ServiceMessageSource serviceMessageSource = serviceMessageSources.get(i);
-            if (serviceMessageSource instanceof AbstractResourceServiceMessageSource) {
-                AbstractResourceServiceMessageSource resourceServiceMessageSource = (AbstractResourceServiceMessageSource) serviceMessageSource;
-                Map<String, Map<String, String>> localizedResourceMessages = resourceServiceMessageSource.getLocalizedResourceMessages();
-                localizedResourceMessages.forEach(
-                        (k, v) -> allLocalizedResourceMessages.merge(k, v, (oldValue, value) -> value.isEmpty() ? oldValue : value)
-                );
-            }
+            AbstractResourceServiceMessageSource resourceServiceMessageSource = resourceServiceMessageSources.get(i);
+            Map<String, Map<String, String>> localizedResourceMessages = resourceServiceMessageSource.getLocalizedResourceMessages();
+            allLocalizedResourceMessages.putAll(localizedResourceMessages);
         }
         return allLocalizedResourceMessages;
     }
 
     @ReadOperation
-    public Object getMessage(@Selector String code) {
+    public List<Map<String, String>> getMessage(@Selector String code) {
         return getMessage(code, null);
     }
 
     @ReadOperation
     public List<Map<String, String>> getMessage(@Selector String code, @Selector Locale locale) {
         Set<Locale> supportedLocales = getSupportedLocales(locale);
-        List<ServiceMessageSource> serviceMessageSources = this.serviceMessageSources;
-        int size = serviceMessageSources.size();
-        List<Map<String, String>> messageMaps = new ArrayList<>(size * supportedLocales.size());
+        int size = resourceServiceMessageSources.size();
 
+        List<Map<String, String>> messageMaps = newArrayList(size * supportedLocales.size());
+
+        List<AbstractResourceServiceMessageSource> resourceServiceMessageSources = this.resourceServiceMessageSources;
         for (int i = 0; i < size; i++) {
-            ServiceMessageSource serviceMessageSource = serviceMessageSources.get(i);
+            AbstractResourceServiceMessageSource resourceServiceMessageSource = resourceServiceMessageSources.get(i);
             for (Locale supportedLocale : supportedLocales) {
-                Map<String, String> messageMap = new LinkedHashMap<>(5);
-                String message = serviceMessageSource.getMessage(code, supportedLocale);
+                String source = resourceServiceMessageSource.getSource();
+                String resource = resourceServiceMessageSource.getResource(supportedLocale);
+                String message = resourceServiceMessageSource.getMessage(code, supportedLocale);
 
-                messageMap.put("code", code);
-                messageMap.put("source", serviceMessageSource.getSource());
-
-                String resource = getResource(serviceMessageSource, supportedLocale);
-                if (hasText(resource)) {
-                    messageMap.put("resource", resource);
-                }
-
-                if (hasText(message)) {
-                    messageMap.put("message", message);
-                    messageMap.put("locale", supportedLocale.toString());
-                }
+                Map<String, String> messageMap = ofMap(
+                        "code", code,
+                        "locale", supportedLocale.toString(),
+                        "source", source,
+                        "resource", resource,
+                        "message", message
+                );
                 messageMaps.add(messageMap);
             }
         }
@@ -179,7 +151,7 @@ public class I18nEndpoint {
         String propertyName = serviceMessageSource.getPropertyName(locale);
         StringWriter stringWriter = new StringWriter();
         // Properties -> StringWriter
-        properties.store(stringWriter, "");
+        properties.store(stringWriter, null);
         // StringWriter -> String
         String propertyValue = stringWriter.toString();
 
@@ -210,30 +182,13 @@ public class I18nEndpoint {
 
     private PropertySourcesServiceMessageSource getPropertySourcesServiceMessageSource(String source) {
         List<PropertySourcesServiceMessageSource> propertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(
-                this.serviceMessageSources, serviceMessageSource -> Objects.equals(source, serviceMessageSource.getSource()));
+                this.resourceServiceMessageSources, serviceMessageSource -> Objects.equals(source, serviceMessageSource.getSource()));
         return first(propertySourcesServiceMessageSources);
-    }
-
-    private boolean isPropertySourcesServiceMessageSource(ServiceMessageSource serviceMessageSource) {
-        return serviceMessageSource instanceof PropertySourcesServiceMessageSource;
-    }
-
-    private String getResource(ServiceMessageSource serviceMessageSource, Locale locale) {
-        String resource = null;
-        if (serviceMessageSource instanceof AbstractResourceServiceMessageSource) {
-            AbstractResourceServiceMessageSource resourceServiceMessageSource = (AbstractResourceServiceMessageSource) serviceMessageSource;
-            resource = resourceServiceMessageSource.getResource(locale);
-        }
-        return resource;
     }
 
     private Set<Locale> getSupportedLocales(Locale locale) {
         if (locale == null) {
-            Set<Locale> locales = new LinkedHashSet<>();
-            serviceMessageSources.forEach(serviceMessageSource -> {
-                locales.addAll(serviceMessageSource.getSupportedLocales());
-            });
-            return locales;
+            return primaryServiceMessageSource.getSupportedLocales();
         } else {
             return singleton(locale);
         }
