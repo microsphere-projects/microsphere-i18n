@@ -19,6 +19,7 @@ package io.microsphere.i18n.spring.annotation;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
 import io.microsphere.i18n.spring.constants.I18nConstants;
+import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -75,6 +76,7 @@ public @interface EnableI18n {
      *
      * @return <code>true</code> as default
      * @see AbstractApplicationContext#MESSAGE_SOURCE_BEAN_NAME
+     * @see MessageSourceAdapter
      * @see MessageSource
      */
     boolean exposeMessageSource() default true;
