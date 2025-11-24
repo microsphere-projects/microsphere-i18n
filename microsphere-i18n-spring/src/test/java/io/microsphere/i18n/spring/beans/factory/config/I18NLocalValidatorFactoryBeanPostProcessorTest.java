@@ -17,8 +17,7 @@
 
 package io.microsphere.i18n.spring.beans.factory.config;
 
-
-import io.microsphere.i18n.spring.annotation.EnableI18n;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
 import org.junit.Test;
@@ -37,21 +36,20 @@ import static org.junit.Assert.assertTrue;
  * @see I18nLocalValidatorFactoryBeanPostProcessor
  * @since 1.0.0
  */
-@EnableI18n(sources = "test")
 public class I18NLocalValidatorFactoryBeanPostProcessorTest {
 
     @Test
     public void testOnNoLocalValidatorFactoryBean() {
         testInSpringContainer(context -> {
             assertFalse(isBeanPresent(context, LocalValidatorFactoryBean.class));
-        }, I18nLocalValidatorFactoryBeanPostProcessor.class);
+        }, TestSourceEnableI18nConfiguration.class);
     }
 
     @Test
     public void testOnNoMessageSourceAdapterBean() {
         testInSpringContainer(context -> {
             assertTrue(isBeanPresent(context, LocalValidatorFactoryBean.class));
-        }, I18nLocalValidatorFactoryBeanPostProcessor.class, LocalValidatorFactoryBean.class);
+        }, TestSourceEnableI18nConfiguration.class, LocalValidatorFactoryBean.class);
     }
 
     @Test
@@ -60,6 +58,6 @@ public class I18NLocalValidatorFactoryBeanPostProcessorTest {
             assertTrue(isBeanPresent(context, MessageSourceAdapter.class));
             LocalValidatorFactoryBean localValidatorFactoryBean = context.getBean(LocalValidatorFactoryBean.class);
             assertTrue(localValidatorFactoryBean.getMessageInterpolator() instanceof LocaleContextMessageInterpolator);
-        }, I18nLocalValidatorFactoryBeanPostProcessor.class, LocalValidatorFactoryBean.class, this.getClass());
+        }, TestSourceEnableI18nConfiguration.class, LocalValidatorFactoryBean.class, this.getClass());
     }
 }

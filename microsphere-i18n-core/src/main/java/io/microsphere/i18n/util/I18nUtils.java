@@ -1,5 +1,6 @@
 package io.microsphere.i18n.util;
 
+import io.microsphere.annotation.Nonnull;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.logging.Logger;
@@ -10,6 +11,7 @@ import java.util.List;
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Internationalization Utilities class
@@ -23,6 +25,7 @@ public abstract class I18nUtils {
 
     private static volatile ServiceMessageSource serviceMessageSource;
 
+    @Nonnull
     public static ServiceMessageSource serviceMessageSource() {
         if (serviceMessageSource == null) {
             logger.warn("serviceMessageSource is not initialized, EmptyServiceMessageSource will be used");
@@ -42,13 +45,25 @@ public abstract class I18nUtils {
     }
 
     public static List<ServiceMessageSource> findAllServiceMessageSources(ServiceMessageSource serviceMessageSource) {
-        List<ServiceMessageSource> allServiceMessageSources = new LinkedList<>();
-        initServiceMessageSources(serviceMessageSource, allServiceMessageSources);
-        return unmodifiableList(allServiceMessageSources);
+        return unmodifiableList(doFindAllServiceMessageSources(serviceMessageSource));
     }
 
-    public static void initServiceMessageSources(ServiceMessageSource serviceMessageSource,
-                                                 List<ServiceMessageSource> allServiceMessageSources) {
+    public static <S extends ServiceMessageSource> List<S> findAllServiceMessageSources(ServiceMessageSource serviceMessageSource, Class<S> serviceMessageSourceType) {
+        return unmodifiableList(doFindAllServiceMessageSources(serviceMessageSource)
+                .stream()
+                .filter(serviceMessageSourceType::isInstance)
+                .map(serviceMessageSourceType::cast)
+                .collect(toList()));
+    }
+
+    static List<ServiceMessageSource> doFindAllServiceMessageSources(ServiceMessageSource serviceMessageSource) {
+        List<ServiceMessageSource> allServiceMessageSources = new LinkedList<>();
+        initServiceMessageSources(serviceMessageSource, allServiceMessageSources);
+        return allServiceMessageSources;
+    }
+
+    static void initServiceMessageSources(ServiceMessageSource serviceMessageSource,
+                                          List<ServiceMessageSource> allServiceMessageSources) {
         if (serviceMessageSource instanceof CompositeServiceMessageSource) {
             CompositeServiceMessageSource compositeServiceMessageSource = (CompositeServiceMessageSource) serviceMessageSource;
             for (ServiceMessageSource subServiceMessageSource : compositeServiceMessageSource.getServiceMessageSources()) {

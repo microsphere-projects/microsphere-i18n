@@ -23,6 +23,8 @@ import org.junit.BeforeClass;
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static java.util.Locale.setDefault;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.springframework.context.i18n.LocaleContextHolder.resetLocaleContext;
 
 /**
@@ -50,5 +52,17 @@ public abstract class AbstractSpringTest {
     public static void afterClass() throws Throwable {
         destroyServiceMessageSource();
         resetLocaleContext();
+    }
+
+    public void assertGetMessage(ServiceMessageSource serviceMessageSource) {
+        // Testing Simplified Chinese
+        // If the Message Code is "a"
+        assertEquals("测试-a", serviceMessageSource.getMessage("a"));
+
+        // The same is true for overloaded methods with Message Pattern arguments
+        assertEquals("您好,World", serviceMessageSource.getMessage("hello", "World"));
+
+        // Returns null if code does not exist
+        assertNull(serviceMessageSource.getMessage("code-not-found"));
     }
 }

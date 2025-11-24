@@ -19,14 +19,14 @@ package io.microsphere.i18n.spring.beans.factory.config;
 
 
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.spring.annotation.EnableI18n;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
 import org.junit.Test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import static io.microsphere.collection.ListUtils.ofList;
-import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
 import static org.junit.Assert.assertEquals;
 
@@ -37,16 +37,15 @@ import static org.junit.Assert.assertEquals;
  * @see AcceptHeaderLocaleResolverBeanPostProcessor
  * @since 1.0.0
  */
-@EnableI18n
 public class AcceptHeaderLocaleResolverBeanPostProcessorTest {
 
     @Test
     public void test() {
         testInSpringContainer(context -> {
-            ServiceMessageSource serviceMessageSource = context.getBean(SERVICE_MESSAGE_SOURCE_BEAN_NAME, ServiceMessageSource.class);
+            ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
             AcceptHeaderLocaleResolver localeResolver = context.getBean(AcceptHeaderLocaleResolver.class);
             assertEquals(ofList(serviceMessageSource.getSupportedLocales()), localeResolver.getSupportedLocales());
-        }, AcceptHeaderLocaleResolverBeanPostProcessorTest.class);
+        }, TestSourceEnableI18nConfiguration.class, AcceptHeaderLocaleResolverBeanPostProcessorTest.class);
     }
 
     @Bean

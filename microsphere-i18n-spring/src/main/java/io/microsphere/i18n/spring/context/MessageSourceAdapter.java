@@ -84,7 +84,7 @@ public class MessageSourceAdapter implements MessageSource, SmartInitializingSin
                 '}';
     }
 
-    private String getDefaultMessage(String code, Object[] args, String defaultMessage, Locale locale) {
+    protected String getDefaultMessage(String code, Object[] args, String defaultMessage, Locale locale) {
         for (MessageSource defaultMessageSource : this.defaultMessageSources) {
             String message = defaultMessageSource.getMessage(code, args, defaultMessage, locale);
             if (message != null) {

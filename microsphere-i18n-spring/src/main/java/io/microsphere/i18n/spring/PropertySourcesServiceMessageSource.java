@@ -4,6 +4,9 @@ import io.microsphere.annotation.Nonnull;
 import io.microsphere.i18n.PropertiesResourceServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.constants.I18nConstants;
+import io.microsphere.i18n.util.I18nUtils;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -17,13 +20,15 @@ import java.io.StringReader;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.SetUtils.newFixedLinkedHashSet;
+import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
 import static io.microsphere.lang.function.Predicates.and;
-import static io.microsphere.spring.beans.BeanUtils.getOptionalBean;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.springframework.util.CollectionUtils.isEmpty;
@@ -89,7 +94,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
         return propertyName;
     }
 
-    protected String getPropertyName(String resource) {
+    public String getPropertyName(String resource) {
         String propertyName = resource;
         return propertyName;
     }
@@ -100,14 +105,17 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
     }
 
     /**
-     * Find all {@link PropertySourcesServiceMessageSource} beans from the specified {@link ListableBeanFactory}
+     * Find all {@link PropertySourcesServiceMessageSource} beans from the specified {@link BeanFactory}
      *
      * @param beanFactory {@link ListableBeanFactory}
      * @return non-null
+     * @see I18nConstants#SERVICE_MESSAGE_SOURCE_BEAN_NAME
+     * @see I18nUtils#findAllServiceMessageSources(ServiceMessageSource)
+     * @see #findAllPropertySourcesServiceMessageSources(Collection, Predicate...)
      */
     @Nonnull
-    public static List<PropertySourcesServiceMessageSource> findAllPropertySourcesServiceMessageSources(ListableBeanFactory beanFactory) {
-        ServiceMessageSource serviceMessageSource = getOptionalBean(beanFactory, ServiceMessageSource.class);
+    public static List<PropertySourcesServiceMessageSource> findAllPropertySourcesServiceMessageSources(BeanFactory beanFactory) {
+        ServiceMessageSource serviceMessageSource = getServiceMessageSource(beanFactory);
         return serviceMessageSource == null ? emptyList() : findAllPropertySourcesServiceMessageSources(findAllServiceMessageSources(serviceMessageSource));
     }
 
@@ -121,7 +129,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
      */
     @Nonnull
     public static List<PropertySourcesServiceMessageSource> findAllPropertySourcesServiceMessageSources(
-            Collection<ServiceMessageSource> serviceMessageSources,
+            Collection<? extends ServiceMessageSource> serviceMessageSources,
             Predicate<? super PropertySourcesServiceMessageSource>... predicates) {
         if (isEmpty(serviceMessageSources)) {
             return emptyList();
@@ -131,5 +139,29 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
                 .map(PropertySourcesServiceMessageSource.class::cast)
                 .filter(and(predicates))
                 .collect(toList());
+    }
+
+    /**
+     * Reload all {@link PropertySourcesServiceMessageSource} beans from the specified {@link BeanFactory}
+     *
+     * @param beanFactory          {@link BeanFactory}
+     * @param changedPropertyNames {@link Set} of changed property names
+     * @see #findAllPropertySourcesServiceMessageSources(BeanFactory)
+     */
+    public static void reloadAll(BeanFactory beanFactory, Set<String> changedPropertyNames) {
+        List<PropertySourcesServiceMessageSource> propertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(beanFactory);
+        for (PropertySourcesServiceMessageSource propertySourcesServiceMessageSource : propertySourcesServiceMessageSources) {
+            Set<String> resources = propertySourcesServiceMessageSource.getResources();
+            Set<String> changedResources = newFixedLinkedHashSet(changedPropertyNames.size());
+            for (String resource : resources) {
+                String propertyName = propertySourcesServiceMessageSource.getPropertyName(resource);
+                if (changedPropertyNames.contains(propertyName)) {
+                    changedResources.add(resource);
+                }
+            }
+            if (propertySourcesServiceMessageSource.canReload(changedResources)) {
+                propertySourcesServiceMessageSource.reload(changedResources);
+            }
+        }
     }
 }

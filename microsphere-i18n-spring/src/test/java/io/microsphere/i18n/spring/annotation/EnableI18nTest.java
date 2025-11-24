@@ -2,7 +2,7 @@ package io.microsphere.i18n.spring.annotation;
 
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,8 @@ import static org.junit.Assert.assertSame;
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
-        EnableI18nTest.class,
-        TestServiceMessageSourceConfiguration.class
+        TestSourceEnableI18nConfiguration.class
 })
-@EnableI18n
 public class EnableI18nTest extends AbstractSpringTest {
 
     @Autowired
@@ -35,15 +33,7 @@ public class EnableI18nTest extends AbstractSpringTest {
 
     @Test
     public void testGetMessage() {
-        // Testing Simplified Chinese
-        // If the Message Code is "a"
-        assertEquals("测试-a", serviceMessageSource.getMessage("a"));
-
-        // The same is true for overloaded methods with Message Pattern arguments
-        assertEquals("您好,World", serviceMessageSource.getMessage("hello", "World"));
-
-        // Returns null if code does not exist
-        assertNull(serviceMessageSource.getMessage("code-not-found"));
+        assertGetMessage(this.serviceMessageSource);
 
         // Test English, because the English Message resource does not exist
         assertEquals("Hello,World", serviceMessageSource.getMessage("hello", ENGLISH, "World"));

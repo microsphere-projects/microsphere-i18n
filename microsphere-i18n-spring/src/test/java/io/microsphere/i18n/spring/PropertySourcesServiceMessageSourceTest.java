@@ -2,11 +2,11 @@ package io.microsphere.i18n.spring;
 
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.io.StringBuilderWriter;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.mock.env.MockEnvironment;
 
@@ -16,13 +16,13 @@ import java.util.Properties;
 
 import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
+import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -64,9 +64,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
 
     @Test
     public void test() throws IOException {
-        assertEquals("测试-a", this.propertySourcesServiceMessageSource.getMessage("a"));
-        assertEquals("您好,World", this.propertySourcesServiceMessageSource.getMessage("hello", "World"));
-        assertNull(this.propertySourcesServiceMessageSource.getMessage("not-found-code"));
+        assertGetMessage(this.propertySourcesServiceMessageSource);
     }
 
     @Test
@@ -95,7 +93,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
             assertEquals(1, allPropertySourcesServiceMessageSources.size());
             PropertySourcesServiceMessageSource propertySourcesServiceMessageSource = allPropertySourcesServiceMessageSources.get(0);
             assertEquals(TEST_SOURCE, propertySourcesServiceMessageSource.getSource());
-        }, SingleBeanConfig.class);
+        }, TestSourceEnableI18nConfiguration.class);
     }
 
     @Test
@@ -105,7 +103,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
             assertEquals(1, allPropertySourcesServiceMessageSources.size());
             PropertySourcesServiceMessageSource propertySourcesServiceMessageSource = allPropertySourcesServiceMessageSources.get(0);
             assertEquals(TEST_SOURCE, propertySourcesServiceMessageSource.getSource());
-        }, DelegatingBeanConfig.class);
+        }, Config.class);
     }
 
     @Test
@@ -123,20 +121,16 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
         assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getPropertyName(SIMPLIFIED_CHINESE));
     }
 
-    static class SingleBeanConfig {
+    static class Config {
 
         @Bean
         public PropertySourcesServiceMessageSource propertySourcesServiceMessageSource() {
             return new PropertySourcesServiceMessageSource(TEST_SOURCE);
         }
-    }
 
-    @Import(SingleBeanConfig.class)
-    static class DelegatingBeanConfig {
-
-        @Bean
         @Primary
-        public DelegatingServiceMessageSource delegatingServiceMessageSource() {
+        @Bean(name = SERVICE_MESSAGE_SOURCE_BEAN_NAME)
+        public DelegatingServiceMessageSource serviceMessageSource() {
             return new DelegatingServiceMessageSource();
         }
     }
