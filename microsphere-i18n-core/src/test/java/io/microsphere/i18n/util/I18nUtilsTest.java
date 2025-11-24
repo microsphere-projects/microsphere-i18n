@@ -3,6 +3,7 @@ package io.microsphere.i18n.util;
 import io.microsphere.i18n.AbstractI18nTest;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.DefaultServiceMessageSource;
+import io.microsphere.i18n.EmptyServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import org.junit.jupiter.api.Test;
 
@@ -39,5 +40,7 @@ class I18nUtilsTest extends AbstractI18nTest {
         List<ServiceMessageSource> serviceMessageSources = ofList(INSTANCE);
         CompositeServiceMessageSource compositeServiceMessageSource = new CompositeServiceMessageSource(ofList(INSTANCE));
         assertEquals(serviceMessageSources, findAllServiceMessageSources(compositeServiceMessageSource));
+        assertEquals(serviceMessageSources, findAllServiceMessageSources(compositeServiceMessageSource, ServiceMessageSource.class));
+        assertEquals(serviceMessageSources, findAllServiceMessageSources(compositeServiceMessageSource, EmptyServiceMessageSource.class));
     }
 }
