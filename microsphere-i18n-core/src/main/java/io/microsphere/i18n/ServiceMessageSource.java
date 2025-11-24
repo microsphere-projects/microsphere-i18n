@@ -87,4 +87,13 @@ public interface ServiceMessageSource extends Prioritized {
     default String getSource() {
         return COMMON_SOURCE;
     }
+
+    /**
+     * The {@link String} representation of this message service source
+     *
+     * @return non-null
+     */
+    @Override
+    @Nonnull
+    String toString();
 }

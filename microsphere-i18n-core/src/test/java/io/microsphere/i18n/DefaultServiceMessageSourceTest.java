@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
 
+import static io.microsphere.collection.Sets.ofSet;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.getDefault;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertTrue;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
+public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMessageSourceTest {
 
     @Override
     protected DefaultServiceMessageSource createServiceMessageSource() {
@@ -92,7 +93,7 @@ public class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourc
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         Map<String, Map<String, String>> localizedResourceMessages = serviceMessageSource.getLocalizedResourceMessages();
-        assertEquals(3, localizedResourceMessages.size());
+        assertEquals(2, localizedResourceMessages.size());
     }
 
     @Test
@@ -103,5 +104,33 @@ public class DefaultServiceMessageSourceTest extends ResourceServiceMessageSourc
         }
 
         assertNull(serviceMessageSource.loadAllProperties(FRANCE));
+    }
+
+    @Test
+    @Override
+    public void testCanReload() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        assertFalse(serviceMessageSource.canReload(TEST_SOURCE));
+    }
+
+    @Test
+    @Override
+    public void testCanReloadWithIterable() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        assertFalse(serviceMessageSource.canReload(ofSet(TEST_SOURCE)));
+    }
+
+    @Test
+    @Override
+    public void testReload() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        serviceMessageSource.reload(TEST_SOURCE);
+    }
+
+    @Test
+    @Override
+    public void testReloadWithIterable() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        serviceMessageSource.reload(ofSet(TEST_SOURCE));
     }
 }

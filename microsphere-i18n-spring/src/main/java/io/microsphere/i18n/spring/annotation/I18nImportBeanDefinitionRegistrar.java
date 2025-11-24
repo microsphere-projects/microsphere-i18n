@@ -18,10 +18,11 @@ package io.microsphere.i18n.spring.annotation;
 
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
-import io.microsphere.i18n.spring.beans.factory.config.I18nBeanPostProcessor;
 import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBeanLifecyclePostProcessor;
 import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
+import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
+import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
 import io.microsphere.logging.Logger;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -40,9 +41,12 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_ENABLED
 import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SOURCES_PROPERTY_NAME;
+import static io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor.isValidatorFactoryPresent;
+import static io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor.isAcceptHeaderLocaleResolverPresent;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.factory.support.BeanRegistrar.registerBeanDefinition;
 import static io.microsphere.util.ArrayUtils.EMPTY_STRING_ARRAY;
+import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.rootBeanDefinition;
 import static org.springframework.context.support.AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME;
 import static org.springframework.core.annotation.AnnotationAttributes.fromMap;
@@ -51,15 +55,21 @@ import static org.springframework.core.annotation.AnnotationAttributes.fromMap;
  * I18n {@link ImportBeanDefinitionRegistrar}
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
- * @see ImportBeanDefinitionRegistrar
  * @see EnableI18n
+ * @see ImportBeanDefinitionRegistrar
+ * @see ServiceMessageSourceFactoryBean
+ * @see MessageSourceAdapter
+ * @see I18nApplicationListener
+ * @see ServiceMessageSourceBeanLifecyclePostProcessor
+ * @see I18nLocalValidatorFactoryBeanPostProcessor
+ * @see AcceptHeaderLocaleResolverBeanPostProcessor
  * @since 1.0.0
  */
 class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 
     private static final Class<? extends Annotation> ANNOTATION_TYPE = EnableI18n.class;
 
-    private static Logger logger = getLogger(ANNOTATION_TYPE);
+    private static final Logger logger = getLogger(ANNOTATION_TYPE);
 
     private Environment environment;
 
@@ -83,10 +93,9 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
         }
 
         // Register DelegatingServiceMessageSource as the Spring Primary Bean
-        BeanDefinition primaryBeanDefinition =
-                rootBeanDefinition(DelegatingServiceMessageSource.class)
-                        .setPrimary(true)
-                        .getBeanDefinition();
+        BeanDefinition primaryBeanDefinition = rootBeanDefinition(DelegatingServiceMessageSource.class)
+                .setPrimary(true)
+                .getBeanDefinition();
         registry.registerBeanDefinition(SERVICE_MESSAGE_SOURCE_BEAN_NAME, primaryBeanDefinition);
     }
 
@@ -115,8 +124,14 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
     }
 
     private void registerBeanPostProcessorBeanDefinitions(BeanDefinitionRegistry registry) {
-        registerBeanDefinition(registry, I18nBeanPostProcessor.class);
         registerBeanDefinition(registry, ServiceMessageSourceBeanLifecyclePostProcessor.class);
+        ClassLoader classLoader = getDefaultClassLoader();
+        if (isValidatorFactoryPresent(classLoader)) {
+            registerBeanDefinition(registry, I18nLocalValidatorFactoryBeanPostProcessor.class);
+        }
+        if (isAcceptHeaderLocaleResolverPresent(classLoader)) {
+            registerBeanDefinition(registry, AcceptHeaderLocaleResolverBeanPostProcessor.class);
+        }
     }
 
     @Override

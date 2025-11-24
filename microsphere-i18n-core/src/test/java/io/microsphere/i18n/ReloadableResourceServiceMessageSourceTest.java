@@ -36,20 +36,20 @@ import static org.junit.Assert.assertTrue;
 public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
 
     @Override
-    protected TestReloadableResourceServiceMessageSource createServiceMessageSource() {
+    protected ReloadableResourceServiceMessageSource createServiceMessageSource() {
         return new TestReloadableResourceServiceMessageSource();
     }
 
     @Test
     public void testReload() {
-        TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         serviceMessageSource.reload(TEST_SOURCE);
         assertEquals(ofSet(TEST_SOURCE), serviceMessageSource.getInitializedResources());
     }
 
     @Test
     public void testReloadWithIterable() {
-        TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         Iterable<String> resources = ofSet(TEST_SOURCE);
         serviceMessageSource.reload(resources);
         assertEquals(ofSet(resources), serviceMessageSource.getInitializedResources());
@@ -57,7 +57,7 @@ public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceM
 
     @Test
     public void testCanReload() {
-        TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertFalse(serviceMessageSource.canReload(TEST_SOURCE));
         serviceMessageSource.reload(TEST_SOURCE);
         assertTrue(serviceMessageSource.canReload(TEST_SOURCE));
@@ -65,7 +65,7 @@ public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceM
 
     @Test
     public void testCanReloadWithIterable() {
-        TestReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         Iterable<String> resources = ofSet(TEST_SOURCE);
         assertFalse(serviceMessageSource.canReload(resources));
         serviceMessageSource.reload(resources);

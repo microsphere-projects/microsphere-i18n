@@ -53,11 +53,8 @@ public class ReloadableResourceServiceMessageSourceListener implements SmartInit
     @Override
     public void onApplicationEvent(EnvironmentChangeEvent event) {
         Set<String> changedPropertyNames = event.getKeys();
-        for (String changedPropertyName : changedPropertyNames) {
-            String resource = changedPropertyName;
-            if (reloadableResourceServiceMessageSource.canReload(resource)) {
-                reloadableResourceServiceMessageSource.reload(resource);
-            }
+        if (reloadableResourceServiceMessageSource.canReload(changedPropertyNames)) {
+            reloadableResourceServiceMessageSource.reload(changedPropertyNames);
         }
     }
 

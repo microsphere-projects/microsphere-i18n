@@ -5,20 +5,25 @@ import io.microsphere.i18n.DefaultServiceMessageSource;
 import io.microsphere.io.StringBuilderWriter;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.mock.env.MockEnvironment;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import static io.microsphere.collection.Sets.ofSet;
-import static java.nio.charset.StandardCharsets.UTF_8;
+import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
+import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.springframework.util.StreamUtils.copyToString;
 
 /**
  * {@link PropertySourcesServiceMessageSource} Test
@@ -72,5 +77,55 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
         String notFoundResource = "not-found.properties";
         assertFalse(this.propertySourcesServiceMessageSource.canReload(notFoundResource));
         assertFalse(this.propertySourcesServiceMessageSource.canReload(ofSet(notFoundResource)));
+    }
+
+    @Test
+    public void testFindAllPropertySourcesServiceMessageSourcesOnNoBeanDefinition() {
+        testInSpringContainer(context -> {
+            assertTrue(findAllPropertySourcesServiceMessageSources(context).isEmpty());
+        });
+    }
+
+    @Test
+    public void testFindAllPropertySourcesServiceMessageSourcesOnSingleBeanDefinition() {
+        testInSpringContainer(context -> {
+            List<PropertySourcesServiceMessageSource> allPropertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(context);
+            assertEquals(1, allPropertySourcesServiceMessageSources.size());
+            PropertySourcesServiceMessageSource propertySourcesServiceMessageSource = allPropertySourcesServiceMessageSources.get(0);
+            assertEquals(TEST_SOURCE, propertySourcesServiceMessageSource.getSource());
+        }, SingleBeanConfig.class);
+    }
+
+    @Test
+    public void testFindAllPropertySourcesServiceMessageSourcesOnDelegatingBeanDefinition() {
+        testInSpringContainer(context -> {
+            List<PropertySourcesServiceMessageSource> allPropertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(context);
+            assertEquals(1, allPropertySourcesServiceMessageSources.size());
+            PropertySourcesServiceMessageSource propertySourcesServiceMessageSource = allPropertySourcesServiceMessageSources.get(0);
+            assertEquals(TEST_SOURCE, propertySourcesServiceMessageSource.getSource());
+        }, DelegatingBeanConfig.class);
+    }
+
+    @Test
+    public void testFindAllPropertySourcesServiceMessageSourcesOnEmptyCollection() {
+        assertSame(emptyList(), findAllPropertySourcesServiceMessageSources(emptyList()));
+    }
+
+    static class SingleBeanConfig {
+
+        @Bean
+        public PropertySourcesServiceMessageSource propertySourcesServiceMessageSource() {
+            return new PropertySourcesServiceMessageSource(TEST_SOURCE);
+        }
+    }
+
+    @Import(SingleBeanConfig.class)
+    static class DelegatingBeanConfig {
+
+        @Bean
+        @Primary
+        public DelegatingServiceMessageSource delegatingServiceMessageSource() {
+            return new DelegatingServiceMessageSource();
+        }
     }
 }
