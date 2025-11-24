@@ -117,7 +117,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     public void testGetResource() {
         assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getResource("i18n_messages_zh_CN.properties"));
     }
-    
+
     @Test
     public void testGetPropertyName() {
         assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getPropertyName(SIMPLIFIED_CHINESE));
