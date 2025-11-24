@@ -159,12 +159,9 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
                     changedResources.add(resource);
                 }
             }
-            if (!changedResources.isEmpty()) {
-                if (propertySourcesServiceMessageSource.canReload(changedResources)) {
-                    propertySourcesServiceMessageSource.reload(changedResources);
-                }
+            if (propertySourcesServiceMessageSource.canReload(changedResources)) {
+                propertySourcesServiceMessageSource.reload(changedResources);
             }
         }
     }
-
 }
