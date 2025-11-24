@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.SetUtils.newFixedLinkedHashSet;
 import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
@@ -31,7 +32,6 @@ import static io.microsphere.lang.function.Predicates.and;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.springframework.util.CollectionUtils.isEmpty;
-import static org.springframework.util.CollectionUtils.newHashSet;
 import static org.springframework.util.StringUtils.hasText;
 
 /**
@@ -152,7 +152,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
         List<PropertySourcesServiceMessageSource> propertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(beanFactory);
         for (PropertySourcesServiceMessageSource propertySourcesServiceMessageSource : propertySourcesServiceMessageSources) {
             Set<String> resources = propertySourcesServiceMessageSource.getResources();
-            Set<String> changedResources = newHashSet(changedPropertyNames.size());
+            Set<String> changedResources = newFixedLinkedHashSet(changedPropertyNames.size());
             for (String resource : resources) {
                 String propertyName = propertySourcesServiceMessageSource.getPropertyName(resource);
                 if (changedPropertyNames.contains(propertyName)) {
