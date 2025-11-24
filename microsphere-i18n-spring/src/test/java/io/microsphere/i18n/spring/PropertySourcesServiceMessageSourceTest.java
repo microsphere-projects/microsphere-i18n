@@ -23,7 +23,6 @@ import static java.util.Collections.emptySet;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -33,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
+public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
 
     private MockEnvironment environment;
 
@@ -63,10 +62,8 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
     }
 
     @Test
-    void test() throws IOException {
-        assertEquals("测试-a", this.propertySourcesServiceMessageSource.getMessage("a"));
-        assertEquals("您好,World", this.propertySourcesServiceMessageSource.getMessage("hello", "World"));
-        assertNull(this.propertySourcesServiceMessageSource.getMessage("not-found-code"));
+    void test() {
+        assertGetMessage(this.propertySourcesServiceMessageSource);
     }
 
     @Test
