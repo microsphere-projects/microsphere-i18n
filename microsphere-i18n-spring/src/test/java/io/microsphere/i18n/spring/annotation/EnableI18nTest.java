@@ -2,7 +2,7 @@ package io.microsphere.i18n.spring.annotation;
 
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertSame;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {
-        EnableI18nTest.class,
-        TestServiceMessageSourceConfiguration.class
+        TestSourceEnableI18nConfiguration.class
 })
-@EnableI18n
 class EnableI18nTest extends AbstractSpringTest {
 
     @Autowired
