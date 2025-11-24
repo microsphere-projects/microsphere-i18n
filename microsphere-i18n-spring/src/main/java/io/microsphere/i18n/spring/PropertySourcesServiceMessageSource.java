@@ -20,6 +20,7 @@ import java.io.StringReader;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static io.microsphere.collection.Lists.ofList;
@@ -30,6 +31,7 @@ import static io.microsphere.lang.function.Predicates.and;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.springframework.util.CollectionUtils.isEmpty;
+import static org.springframework.util.CollectionUtils.newHashSet;
 import static org.springframework.util.StringUtils.hasText;
 
 /**
@@ -92,7 +94,7 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
         return propertyName;
     }
 
-    protected String getPropertyName(String resource) {
+    public String getPropertyName(String resource) {
         String propertyName = resource;
         return propertyName;
     }
@@ -138,4 +140,31 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
                 .filter(and(predicates))
                 .collect(toList());
     }
+
+    /**
+     * Reload all {@link PropertySourcesServiceMessageSource} beans from the specified {@link BeanFactory}
+     *
+     * @param beanFactory          {@link BeanFactory}
+     * @param changedPropertyNames {@link Set} of changed property names
+     * @see #findAllPropertySourcesServiceMessageSources(BeanFactory)
+     */
+    public static void reloadAll(BeanFactory beanFactory, Set<String> changedPropertyNames) {
+        List<PropertySourcesServiceMessageSource> propertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(beanFactory);
+        for (PropertySourcesServiceMessageSource propertySourcesServiceMessageSource : propertySourcesServiceMessageSources) {
+            Set<String> resources = propertySourcesServiceMessageSource.getResources();
+            Set<String> changedResources = newHashSet(changedPropertyNames.size());
+            for (String resource : resources) {
+                String propertyName = propertySourcesServiceMessageSource.getPropertyName(resource);
+                if (changedPropertyNames.contains(propertyName)) {
+                    changedResources.add(resource);
+                }
+            }
+            if (!changedResources.isEmpty()) {
+                if (propertySourcesServiceMessageSource.canReload(changedResources)) {
+                    propertySourcesServiceMessageSource.reload(changedResources);
+                }
+            }
+        }
+    }
+
 }
