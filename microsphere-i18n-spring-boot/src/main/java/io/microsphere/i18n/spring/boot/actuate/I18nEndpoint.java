@@ -48,7 +48,7 @@ import java.util.Set;
 
 import static io.microsphere.collection.ListUtils.first;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
-import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;
@@ -91,7 +91,7 @@ public class I18nEndpoint {
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReadyEvent(ApplicationReadyEvent event) {
         ConfigurableApplicationContext context = event.getApplicationContext();
-        ServiceMessageSource serviceMessageSource = context.getBean(SERVICE_MESSAGE_SOURCE_BEAN_NAME, ServiceMessageSource.class);
+        ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
         initServiceMessageSources(serviceMessageSource);
     }
 
