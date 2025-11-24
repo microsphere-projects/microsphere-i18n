@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import static io.microsphere.collection.ListUtils.ofList;
-import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -41,7 +41,7 @@ class AcceptHeaderLocaleResolverBeanPostProcessorTest {
     @Test
     void test() {
         testInSpringContainer(context -> {
-            ServiceMessageSource serviceMessageSource = context.getBean(SERVICE_MESSAGE_SOURCE_BEAN_NAME, ServiceMessageSource.class);
+            ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
             AcceptHeaderLocaleResolver localeResolver = context.getBean(AcceptHeaderLocaleResolver.class);
             assertEquals(ofList(serviceMessageSource.getSupportedLocales()), localeResolver.getSupportedLocales());
         }, TestSourceEnableI18nConfiguration.class, AcceptHeaderLocaleResolverBeanPostProcessorTest.class);
