@@ -17,14 +17,15 @@
 package io.microsphere.i18n.spring.beans.factory.support;
 
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 
 import static io.microsphere.util.ClassUtils.isAssignableFrom;
+import static io.microsphere.util.StringUtils.isBlank;
 import static org.springframework.beans.factory.support.AbstractBeanDefinition.INFER_METHOD;
-import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * The PostProcessor processes the lifecycle of {@link ServiceMessageSource} Beans automatically.
@@ -32,6 +33,7 @@ import static org.springframework.util.StringUtils.isEmpty;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see ServiceMessageSource
  * @see MergedBeanDefinitionPostProcessor
+ * @see EnableI18n
  * @since 1.0.0
  */
 public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBeanDefinitionPostProcessor {
@@ -51,7 +53,7 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
             return;
         }
         String initMethodName = beanDefinition.getInitMethodName();
-        if (isEmpty(initMethodName)) {
+        if (isBlank(initMethodName)) {
             // If The BeanDefinition does not declare the initialization method,
             // ServiceMessageSource#init() method should be a candidate.
             beanDefinition.setInitMethodName("init");
@@ -70,7 +72,7 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
             // If the "(inferred)" method was found, return immediately.
             return;
         }
-        if (isEmpty(destroyMethodName)) {
+        if (isBlank(destroyMethodName)) {
             // If The BeanDefinition does not declare the destroy method,
             // ServiceMessageSource#destroy() method should be a candidate.
             beanDefinition.setDestroyMethodName("destroy");

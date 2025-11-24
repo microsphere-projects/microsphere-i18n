@@ -14,7 +14,7 @@ public class EmptyServiceMessageSource implements ServiceMessageSource {
 
     public static final EmptyServiceMessageSource INSTANCE = new EmptyServiceMessageSource();
 
-    private EmptyServiceMessageSource() {
+    public EmptyServiceMessageSource() {
     }
 
     @Override

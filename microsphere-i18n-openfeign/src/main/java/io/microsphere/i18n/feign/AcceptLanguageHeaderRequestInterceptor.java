@@ -10,6 +10,7 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import javax.servlet.http.HttpServletRequest;
 
 import static io.microsphere.logging.LoggerFactory.getLogger;
+import static org.springframework.http.HttpHeaders.ACCEPT_LANGUAGE;
 import static org.springframework.util.StringUtils.hasText;
 import static org.springframework.web.context.request.RequestContextHolder.getRequestAttributes;
 
@@ -24,7 +25,7 @@ public class AcceptLanguageHeaderRequestInterceptor implements RequestIntercepto
 
     private static final Logger logger = getLogger(AcceptLanguageHeaderRequestInterceptor.class);
 
-    public static final String HEADER_NAME = "Accept-Language";
+    public static final String HEADER_NAME = ACCEPT_LANGUAGE;
 
     @Override
     public void apply(RequestTemplate template) {

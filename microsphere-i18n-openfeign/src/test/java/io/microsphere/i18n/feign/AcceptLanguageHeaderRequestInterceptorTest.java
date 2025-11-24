@@ -26,26 +26,34 @@ public class AcceptLanguageHeaderRequestInterceptorTest {
 
     private RequestTemplate requestTemplate;
 
+    private MockHttpServletRequest request;
+
     @Before
     public void before() {
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        request.addHeader(HEADER_NAME, "en");
-        setRequestAttributes(new ServletRequestAttributes(request));
-
+        this.request = new MockHttpServletRequest();
         this.requestInterceptor = new AcceptLanguageHeaderRequestInterceptor();
         this.requestTemplate = new RequestTemplate();
+        setRequestAttributes(new ServletRequestAttributes(request));
     }
 
     @After
-    public void after(){
+    public void after() {
         resetRequestAttributes();
     }
 
     @Test
     public void testApply() {
+        this.request.addHeader(HEADER_NAME, "en");
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(requestTemplate);
         assertEquals(ofList("en"), requestTemplate.headers().get("Accept-Language"));
+    }
+
+    @Test
+    public void testApplyWithoutAcceptLanguageHeader() {
+        assertTrue(requestTemplate.headers().isEmpty());
+        requestInterceptor.apply(requestTemplate);
+        assertTrue(requestTemplate.headers().isEmpty());
     }
 
     @Test

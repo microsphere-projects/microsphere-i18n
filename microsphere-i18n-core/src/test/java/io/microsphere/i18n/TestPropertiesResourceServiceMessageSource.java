@@ -17,36 +17,30 @@
 
 package io.microsphere.i18n;
 
-import java.util.Set;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.List;
 
 /**
- * {@link ReloadableResourceServiceMessageSource} for testing
+ * {@link PropertiesResourceServiceMessageSource} for testing
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @see ReloadableResourceServiceMessageSource
+ * @see PropertiesResourceServiceMessageSource
  * @since 1.0.0
  */
-class TestReloadableResourceServiceMessageSource extends TestResourceServiceMessageSource
-        implements ReloadableResourceServiceMessageSource {
+public class TestPropertiesResourceServiceMessageSource extends PropertiesResourceServiceMessageSource {
 
-    @Override
-    public void reload(String changedResource) {
-        ReloadableResourceServiceMessageSource.super.reload(changedResource);
+    public TestPropertiesResourceServiceMessageSource(String source) {
+        super(source);
     }
 
     @Override
-    public void reload(Iterable<String> changedResources) {
-        ReloadableResourceServiceMessageSource.super.reload(changedResources);
+    protected String getResource(String resourceName) {
+        return "";
     }
 
     @Override
-    public boolean canReload(String changedResource) {
-        Set<String> resources = getInitializedResources();
-        return resources.contains(changedResource);
-    }
-
-    @Override
-    public boolean canReload(Iterable<String> changedResources) {
-        return ReloadableResourceServiceMessageSource.super.canReload(changedResources);
+    protected List<Reader> loadAllPropertiesResources(String resource) throws IOException {
+        throw new IOException("For testing");
     }
 }

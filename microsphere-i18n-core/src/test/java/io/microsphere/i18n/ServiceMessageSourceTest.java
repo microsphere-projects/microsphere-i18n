@@ -27,6 +27,7 @@ import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
@@ -89,5 +90,10 @@ public class ServiceMessageSourceTest extends AbstractI18nTest {
     @Test
     public void testGetSource() {
         assertEquals(COMMON_SOURCE, this.serviceMessageSource.getSource());
+    }
+
+    @Test
+    public void testToString() {
+        assertNotNull(this.serviceMessageSource.toString());
     }
 }

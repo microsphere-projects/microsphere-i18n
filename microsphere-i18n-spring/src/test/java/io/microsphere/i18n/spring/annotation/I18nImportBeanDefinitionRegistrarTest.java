@@ -18,12 +18,22 @@
 package io.microsphere.i18n.spring.annotation;
 
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.spring.config.context.annotation.ResourcePropertySource;
+import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
+import io.microsphere.i18n.spring.beans.factory.support.ServiceMessageSourceBeanLifecyclePostProcessor;
+import io.microsphere.i18n.spring.config.DisabledEnableI18nConfiguration;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
+import io.microsphere.i18n.spring.config.UnexposedMessageSourceEnableI18nConfiguration;
+import io.microsphere.i18n.spring.context.I18nApplicationListener;
+import io.microsphere.i18n.spring.context.MessageSourceAdapter;
+import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
+import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
 import org.junit.Test;
 import org.springframework.context.MessageSource;
 
 import static io.microsphere.spring.beans.BeanUtils.isBeanPresent;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
+import static java.lang.ClassLoader.getSystemClassLoader;
+import static java.lang.Thread.currentThread;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -39,37 +49,62 @@ public class I18nImportBeanDefinitionRegistrarTest {
     @Test
     public void testOnSpecifiedSources() {
         testInSpringContainer((context, environment) -> {
+            assertTrue(isBeanPresent(context, ServiceMessageSourceFactoryBean.class));
+            assertTrue(isBeanPresent(context, MessageSourceAdapter.class));
             assertTrue(isBeanPresent(context, ServiceMessageSource.class));
+            assertTrue(isBeanPresent(context, I18nApplicationListener.class));
+            assertTrue(isBeanPresent(context, ServiceMessageSourceBeanLifecyclePostProcessor.class));
+            assertTrue(isBeanPresent(context, I18nLocalValidatorFactoryBeanPostProcessor.class));
+            assertTrue(isBeanPresent(context, AcceptHeaderLocaleResolverBeanPostProcessor.class));
+
             assertTrue(isBeanPresent(context, MessageSource.class));
             assertTrue(context.containsBean("testServiceMessageSource"));
-        }, SpecifiedSourcesConfig.class);
+        }, TestSourceEnableI18nConfiguration.class);
     }
 
     @Test
     public void testOnDisabled() {
         testInSpringContainer((context, environment) -> {
+            assertFalse(isBeanPresent(context, ServiceMessageSourceFactoryBean.class));
+            assertFalse(isBeanPresent(context, MessageSourceAdapter.class));
             assertFalse(isBeanPresent(context, ServiceMessageSource.class));
-        }, DisabledConfig.class);
+            assertFalse(isBeanPresent(context, I18nApplicationListener.class));
+            assertFalse(isBeanPresent(context, ServiceMessageSourceBeanLifecyclePostProcessor.class));
+            assertFalse(isBeanPresent(context, I18nLocalValidatorFactoryBeanPostProcessor.class));
+            assertFalse(isBeanPresent(context, AcceptHeaderLocaleResolverBeanPostProcessor.class));
+        }, DisabledEnableI18nConfiguration.class);
     }
 
     @Test
     public void testOnUnexposedMessageSource() {
         testInSpringContainer((context, environment) -> {
+            assertTrue(isBeanPresent(context, ServiceMessageSourceFactoryBean.class));
+            assertFalse(isBeanPresent(context, MessageSourceAdapter.class));
             assertTrue(isBeanPresent(context, ServiceMessageSource.class));
-            assertTrue(isBeanPresent(context, MessageSource.class));
-        }, UnexposedMessageSourceConfig.class);
+            assertTrue(isBeanPresent(context, I18nApplicationListener.class));
+            assertTrue(isBeanPresent(context, ServiceMessageSourceBeanLifecyclePostProcessor.class));
+            assertTrue(isBeanPresent(context, I18nLocalValidatorFactoryBeanPostProcessor.class));
+            assertTrue(isBeanPresent(context, AcceptHeaderLocaleResolverBeanPostProcessor.class));
+        }, UnexposedMessageSourceEnableI18nConfiguration.class);
     }
 
-    @EnableI18n(sources = "test")
-    static class SpecifiedSourcesConfig {
+    @Test
+    public void testOnBeanClassAbsent() {
+        ClassLoader classLoader = currentThread().getContextClassLoader();
+        try {
+            currentThread().setContextClassLoader(getSystemClassLoader().getParent());
+            testInSpringContainer((context, environment) -> {
+                assertTrue(isBeanPresent(context, ServiceMessageSourceFactoryBean.class));
+                assertTrue(isBeanPresent(context, MessageSourceAdapter.class));
+                assertTrue(isBeanPresent(context, ServiceMessageSource.class));
+                assertTrue(isBeanPresent(context, I18nApplicationListener.class));
+                assertTrue(isBeanPresent(context, ServiceMessageSourceBeanLifecyclePostProcessor.class));
+                assertFalse(isBeanPresent(context, I18nLocalValidatorFactoryBeanPostProcessor.class));
+                assertFalse(isBeanPresent(context, AcceptHeaderLocaleResolverBeanPostProcessor.class));
+            }, TestSourceEnableI18nConfiguration.class);
+        } finally {
+            currentThread().setContextClassLoader(classLoader);
+        }
     }
 
-    @EnableI18n
-    @ResourcePropertySource("classpath:META-INF/config/disabled-enable-i18n.properties")
-    static class DisabledConfig {
-    }
-
-    @EnableI18n(exposeMessageSource = false)
-    static class UnexposedMessageSourceConfig {
-    }
 }

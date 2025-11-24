@@ -1,5 +1,6 @@
 package io.microsphere.i18n;
 
+import io.microsphere.annotation.Nonnull;
 import io.microsphere.annotation.Nullable;
 
 import java.util.HashMap;
@@ -7,12 +8,14 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import static io.microsphere.collection.SetUtils.newFixedLinkedHashSet;
 import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ArrayUtils.arrayToString;
+import static io.microsphere.util.Assert.assertNotNull;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.singleton;
 import static java.util.Collections.unmodifiableMap;
-import static java.util.Objects.requireNonNull;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * Abstract Resource {@link ServiceMessageSource} Class
@@ -41,7 +44,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     @Override
     public void init() {
-        requireNonNull(this.source, "The 'source' attribute must be assigned before initialization!");
+        assertNotNull(this.source, () -> "The 'source' attribute must be assigned before initialization!");
         initialize();
     }
 
@@ -92,11 +95,9 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
      * Initialization
      */
     protected final void initialize() {
-        Set<Locale> supportedLocales = getSupportedLocales();
-        Set<Locale> hierarchicalLocales = resolveHierarchicalLocales(supportedLocales);
-        Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(hierarchicalLocales.size());
-        for (Locale hierarchicalLocale : hierarchicalLocales) {
-            String resource = getResource(hierarchicalLocale);
+        Set<String> resources = getResources();
+        Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(resources.size());
+        for (String resource : resources) {
             initializeResource(resource, localizedResourceMessages);
         }
         // Exchange the field
@@ -135,7 +136,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     protected abstract String getResource(String resourceName);
 
-    @Nullable
+    @Nonnull
     protected abstract Map<String, String> loadMessages(String resource);
 
     @Nullable
@@ -152,12 +153,8 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
 
     private void initializeResource(String resource, Map<String, Map<String, String>> localizedResourceMessages) {
         Map<String, String> messages = loadMessages(resource);
-        logger.trace("Source '{}' loads the resource['{}'] messages : {}", source, resource, messages);
-
-        if (messages == null) {
-            return;
-        }
-
+        logger.trace("The loaded resource[name : '{}' ,source : '{}'] messages : {}", resource, this.source, messages);
+        assertNotNull(messages, () -> format("The loaded resource[name : '{}' ,source : '{}'] messages must not be null", resource, this.source));
         validateMessages(messages, resource);
         // Override the localized message if present
         localizedResourceMessages.put(resource, messages);
@@ -178,14 +175,26 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         return localizedResourceMessages.keySet();
     }
 
+    /**
+     * Get the resources around {@link #getSupportedLocales() supported locales}.
+     *
+     * @return non-null
+     * @see #getSupportedLocales()
+     */
+    @Nonnull
+    public final Set<String> getResources() {
+        Set<Locale> supportedLocales = getSupportedLocales();
+        Set<String> resources = newFixedLinkedHashSet(supportedLocales.size());
+        for (Locale supportedLocale : supportedLocales) {
+            String resource = getResource(supportedLocale);
+            resources.add(resource);
+        }
+        return unmodifiableSet(resources);
+    }
+
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder(getClass().getSimpleName())
-                .append("{source='").append(source).append('\'')
-                .append(", defaultLocale=").append(getDefaultLocale())
-                .append(", supportedLocales=").append(getSupportedLocales())
-                .append(", localizedResourceMessages=").append(localizedResourceMessages)
-                .append('}');
-        return sb.toString();
+        return super.toString() + ", localizedResourceMessages = " + this.localizedResourceMessages;
     }
 }

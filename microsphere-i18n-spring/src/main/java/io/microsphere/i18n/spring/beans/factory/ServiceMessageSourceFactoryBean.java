@@ -1,9 +1,11 @@
 package io.microsphere.i18n.spring.beans.factory;
 
+import io.microsphere.annotation.Nonnull;
 import io.microsphere.i18n.AbstractServiceMessageSource;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
 import io.microsphere.logging.Logger;
 import org.springframework.beans.BeansException;
@@ -18,8 +20,6 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.lang.NonNull;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Constructor;
@@ -31,9 +31,9 @@ import java.util.Set;
 import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
-import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.BeanUtils.invokeAwareInterfaces;
+import static io.microsphere.spring.core.env.EnvironmentUtils.asConfigurableEnvironment;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.sort;
 import static java.util.Collections.unmodifiableSet;
@@ -49,6 +49,7 @@ import static org.springframework.util.StringUtils.parseLocale;
  * {@link ServiceMessageSource} {@link FactoryBean} Implementation
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EnableI18n
  * @since 1.0.0
  */
 public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessageSource implements
@@ -69,16 +70,16 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     private int order;
 
     public ServiceMessageSourceFactoryBean(String source) {
-        this(source, Ordered.LOWEST_PRECEDENCE);
+        this(source, LOWEST_PRECEDENCE);
     }
 
     public ServiceMessageSourceFactoryBean(String source, int order) {
         this.source = source;
-        this.order = order;
+        setOrder(order);
     }
 
     @Override
-    public ReloadableResourceServiceMessageSource getObject() throws Exception {
+    public ReloadableResourceServiceMessageSource getObject() {
         return this;
     }
 
@@ -97,7 +98,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         this.setServiceMessageSources(initServiceMessageSources());
     }
 
-    @NonNull
+    @Nonnull
     @Override
     public Locale getLocale() {
         Locale locale = getLocaleFromLocaleContext();
@@ -119,8 +120,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
 
     @Override
     public void setEnvironment(Environment environment) {
-        Assert.isInstanceOf(ConfigurableEnvironment.class, environment, "The 'environment' parameter must be of type ConfigurableEnvironment");
-        this.environment = (ConfigurableEnvironment) environment;
+        this.environment = asConfigurableEnvironment(environment);
     }
 
     @Override
@@ -166,8 +166,11 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     @Override
     public String toString() {
         return "ServiceMessageSourceFactoryBean{" +
-                "serviceMessageSources = " + getServiceMessageSources() +
+                "source='" + this.source + '\'' +
+                ", supportedLocales=" + getSupportedLocales() +
+                ", defaultLocale=" + getDefaultLocale() +
                 ", order=" + order +
+                ", serviceMessageSources=" + getServiceMessageSources() +
                 '}';
     }
 
@@ -205,18 +208,6 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
         Iterable<String> changedResources = event.getChangedResources();
         logger.trace("Receive event change resource: {}", changedResources);
-        for (ServiceMessageSource serviceMessageSource : getAllServiceMessageSources()) {
-            if (serviceMessageSource instanceof ReloadableResourceServiceMessageSource) {
-                ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource = (ReloadableResourceServiceMessageSource) serviceMessageSource;
-                if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
-                    reloadableResourceServiceMessageSource.reload(changedResources);
-                    logger.trace("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
-                }
-            }
-        }
-    }
-
-    public List<ServiceMessageSource> getAllServiceMessageSources() {
-        return findAllServiceMessageSources(this);
+        super.reload(changedResources);
     }
 }
