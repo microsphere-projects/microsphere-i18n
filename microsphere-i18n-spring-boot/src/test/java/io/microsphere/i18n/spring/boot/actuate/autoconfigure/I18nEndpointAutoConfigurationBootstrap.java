@@ -23,10 +23,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 
 /**
- * TODO Comment
+ * {@link I18nEndpointAutoConfiguration} Bootstrap
  *
+ * @author li.qi
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @since TODO
+ * @since I18nEndpointAutoConfiguration
  */
 @EnableAutoConfiguration
 public class I18nEndpointAutoConfigurationBootstrap {

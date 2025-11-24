@@ -1,5 +1,7 @@
 package io.microsphere.i18n;
 
+import io.microsphere.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
@@ -37,19 +39,21 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
                 messages.putAll((Map) properties);
             }
         } catch (IOException e) {
-            throw new RuntimeException(format("Source '{}' Messages Properties Resource[name : {}] loading is failed", source, resource), e);
+            throw new RuntimeException(format("Source '{}' Messages Properties Resource[name : {}] loading is failed", this.source, resource), e);
         }
         return messages == null ? emptyMap() : unmodifiableMap(messages);
     }
 
+    @Nullable
     public Properties loadAllProperties(Locale locale) throws IOException {
         String resource = getResource(locale);
         return loadAllProperties(resource);
     }
 
+    @Nullable
     public Properties loadAllProperties(String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(resource);
-        logger.trace("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);
+        logger.trace("Source '{}' loads {} Properties Resources['{}']", this.source, propertiesResources.size(), resource);
         if (isEmpty(propertiesResources)) {
             return null;
         }
@@ -59,7 +63,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
                 properties.load(reader);
             }
         }
-        logger.trace("Source '{}' loads all Properties Resources[name :{}] : {}", source, resource, properties);
+        logger.trace("Source '{}' loads all Properties Resources[name :{}] : {}", this.source, resource, properties);
         return properties;
     }
 

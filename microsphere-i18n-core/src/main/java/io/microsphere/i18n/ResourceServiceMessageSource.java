@@ -1,5 +1,7 @@
 package io.microsphere.i18n;
 
+import io.microsphere.annotation.Nonnull;
+
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.Set;
@@ -31,17 +33,19 @@ public interface ResourceServiceMessageSource extends ServiceMessageSource {
     }
 
     /**
-     * Gets a list of all initialized {@link Locale} resources
+     * Gets all initialized {@link Locale} resources
      *
-     * @return
+     * @return all initialized {@link Locale} resources
      */
-    Set<String> getInitializeResources();
+    @Nonnull
+    Set<String> getInitializedResources();
 
     /**
      * Gets the resource content character encoding
      *
      * @return The default is utf-8
      */
+    @Nonnull
     default Charset getEncoding() {
         return UTF_8;
     }

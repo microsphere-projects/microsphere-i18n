@@ -2,11 +2,11 @@ package io.microsphere.i18n.spring.beans.factory;
 
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.i18n.spring.beans.TestServiceMessageSourceConfiguration;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
@@ -14,26 +14,28 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.mock.env.MockPropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
 
 /**
  * {@link ServiceMessageSourceFactoryBean} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see ServiceMessageSourceFactoryBean
  * @since 1.0.0
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {
-        ServiceMessageSourceFactoryBeanTest.class,
-        TestServiceMessageSourceConfiguration.class
+        TestSourceEnableI18nConfiguration.class
 })
 @TestPropertySource(properties = {
         "microsphere.i18n.default-locale=en",
@@ -43,6 +45,9 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     @Autowired
     private ServiceMessageSource serviceMessageSource;
+
+    @Autowired
+    private ServiceMessageSourceFactoryBean serviceMessageSourceFactoryBean;
 
     @Autowired
     private ApplicationContext context;
@@ -55,8 +60,8 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     private MockPropertySource propertySource;
 
-    @Before
-    public void before() {
+    @BeforeEach
+    protected void before() throws Throwable {
         super.before();
         setLocale(ENGLISH);
         propertySource = new MockPropertySource("mock");
@@ -64,41 +69,55 @@ public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     }
 
     @Test
-    public void testGetMessage() {
-        assertEquals("test-a", serviceMessageSource.getMessage("a"));
-        assertEquals("Hello,World", serviceMessageSource.getMessage("hello", "World"));
+    void testGetMessage() {
+        assertEquals("test-a", this.serviceMessageSource.getMessage("a"));
+        assertEquals("Hello,World", this.serviceMessageSource.getMessage("hello", "World"));
 
         // Test FRANCE
-        assertNull(serviceMessageSource.getMessage("a", FRANCE));
+        assertNull(this.serviceMessageSource.getMessage("a", FRANCE));
 
         ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(context, ofList("test.i18n_messages_en.properties"));
         propertySource.setProperty("test.i18n_messages_en.properties", "test.a=1");
         eventPublisher.publishEvent(event);
-        assertEquals("1", serviceMessageSource.getMessage("a"));
+        assertEquals("1", this.serviceMessageSource.getMessage("a"));
     }
 
     @Test
-    public void testGetLocale() {
-        assertEquals(ENGLISH, serviceMessageSource.getLocale());
+    void testGetLocale() {
+        assertEquals(ENGLISH, this.serviceMessageSource.getLocale());
+        assertEquals(ENGLISH, serviceMessageSourceFactoryBean.getLocale());
 
         // Test US
         setLocale(US);
-        assertEquals(US, serviceMessageSource.getLocale());
+        assertEquals(US, this.serviceMessageSource.getLocale());
+        assertEquals(US, serviceMessageSourceFactoryBean.getLocale());
     }
 
     @Test
-    public void testGetDefaultLocale() {
-        assertEquals(ENGLISH, serviceMessageSource.getDefaultLocale());
+    void testGetDefaultLocale() {
+        assertEquals(ENGLISH, this.serviceMessageSource.getDefaultLocale());
+        assertEquals(ENGLISH, serviceMessageSourceFactoryBean.getDefaultLocale());
     }
 
     @Test
-    public void testGetSupportedLocales() {
-        assertEquals(ofList(ENGLISH), serviceMessageSource.getSupportedLocales());
+    void testGetSupportedLocales() {
+        assertEquals(ofSet(ENGLISH), this.serviceMessageSource.getSupportedLocales());
+        assertEquals(ofSet(ENGLISH), serviceMessageSourceFactoryBean.getSupportedLocales());
     }
 
     @Test
-    public void testGetSource() {
-        assertEquals("test", serviceMessageSource.getSource());
+    void testGetSource() {
+        assertEquals(TEST_SOURCE, serviceMessageSourceFactoryBean.getSource());
     }
 
+    @Test
+    void testSetOrder() {
+        serviceMessageSourceFactoryBean.setOrder(1);
+        assertEquals(1, serviceMessageSourceFactoryBean.getOrder());
+    }
+
+    @Test
+    void testToString() {
+        assertNotNull(this.serviceMessageSource.toString());
+    }
 }

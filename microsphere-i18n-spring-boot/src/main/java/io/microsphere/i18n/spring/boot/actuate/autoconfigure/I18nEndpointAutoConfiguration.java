@@ -30,11 +30,10 @@ import org.springframework.context.annotation.Bean;
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see I18nEndpoint
+ * @see I18nAutoConfiguration
  * @since 1.0.0
  */
-@ConditionalOnClass(name = {
-        "org.springframework.boot.actuate.endpoint.annotation.Endpoint", // spring-boot-actuator-autoconfigure
-})
+@ConditionalOnClass(name = "org.springframework.boot.actuate.endpoint.annotation.Endpoint")
 @ConditionalOnI18nEnabled
 @ConditionalOnAvailableEndpoint(endpoint = I18nEndpoint.class)
 @AutoConfigureAfter(I18nAutoConfiguration.class)

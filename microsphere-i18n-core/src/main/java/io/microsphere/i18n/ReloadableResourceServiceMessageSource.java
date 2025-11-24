@@ -1,7 +1,5 @@
 package io.microsphere.i18n;
 
-import java.util.Set;
-
 /**
  * Reloadable {@link ResourceServiceMessageSource}
  *
@@ -9,6 +7,30 @@ import java.util.Set;
  * @since 1.0.0
  */
 public interface ReloadableResourceServiceMessageSource extends ResourceServiceMessageSource {
+
+    /**
+     * Whether the specified resource can be overloaded
+     *
+     * @param changedResource Changes in the resource
+     * @return Supported by default, returning <code>true<code>
+     */
+    boolean canReload(String changedResource);
+
+    /**
+     * Whether the specified resource list can be overloaded
+     *
+     * @param changedResources Changes in the resource
+     * @return Supported by default, returning <code>true<code>
+     */
+    default boolean canReload(Iterable<String> changedResources) {
+        boolean reloadable = false;
+        for (String changedResource : changedResources) {
+            if (reloadable = canReload(changedResource)) {
+                break;
+            }
+        }
+        return reloadable;
+    }
 
     /**
      * Reload if {@link #canReload(String)} returns <code>true</code>,
@@ -28,33 +50,5 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
      */
     default void reload(Iterable<String> changedResources) {
         initializeResources(changedResources);
-    }
-
-    /**
-     * Whether the specified resource can be overloaded
-     *
-     * @param changedResource Changes in the resource
-     * @return Supported by default, returning <code>true<code>
-     */
-    default boolean canReload(String changedResource) {
-        Set<String> resources = getInitializeResources();
-        return resources.contains(changedResource);
-    }
-
-    /**
-     * Whether the specified resource list can be overloaded
-     *
-     * @param changedResources Changes in the resource
-     * @return Supported by default, returning <code>true<code>
-     */
-    default boolean canReload(Iterable<String> changedResources) {
-        Set<String> resources = getInitializeResources();
-        boolean reloadable = false;
-        for (String changedResource : changedResources) {
-            if (reloadable = resources.contains(changedResource)) {
-                break;
-            }
-        }
-        return reloadable;
     }
 }
