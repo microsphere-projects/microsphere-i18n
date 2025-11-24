@@ -104,12 +104,12 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         return this.source;
     }
 
-    public void setDefaultLocale(Locale defaultLocale) {
+    public final void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
         this.logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
     }
 
-    public void setSupportedLocales(Collection<Locale> supportedLocales) {
+    public final void setSupportedLocales(Collection<Locale> supportedLocales) {
         this.supportedLocales = resolveHierarchicalLocales(supportedLocales);
         this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
     }
