@@ -111,6 +111,11 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
         assertSame(emptyList(), findAllPropertySourcesServiceMessageSources(emptyList()));
     }
 
+    @Test
+    void testGetResource() {
+        assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getResource("i18n_messages_zh_CN.properties"));
+    }
+
     static class SingleBeanConfig {
 
         @Bean
