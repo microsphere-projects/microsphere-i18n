@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
+import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
@@ -133,9 +134,9 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
     @Import(SingleBeanConfig.class)
     static class DelegatingBeanConfig {
 
-        @Bean
         @Primary
-        public DelegatingServiceMessageSource delegatingServiceMessageSource() {
+        @Bean(name = SERVICE_MESSAGE_SOURCE_BEAN_NAME)
+        public DelegatingServiceMessageSource serviceMessageSource() {
             return new DelegatingServiceMessageSource();
         }
     }
