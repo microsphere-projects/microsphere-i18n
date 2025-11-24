@@ -2,11 +2,11 @@ package io.microsphere.i18n.spring;
 
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
+import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.io.StringBuilderWriter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.mock.env.MockEnvironment;
 
@@ -95,7 +95,7 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
             assertEquals(1, allPropertySourcesServiceMessageSources.size());
             PropertySourcesServiceMessageSource propertySourcesServiceMessageSource = allPropertySourcesServiceMessageSources.get(0);
             assertEquals(TEST_SOURCE, propertySourcesServiceMessageSource.getSource());
-        }, SingleBeanConfig.class);
+        }, TestSourceEnableI18nConfiguration.class);
     }
 
     @Test
@@ -105,7 +105,7 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
             assertEquals(1, allPropertySourcesServiceMessageSources.size());
             PropertySourcesServiceMessageSource propertySourcesServiceMessageSource = allPropertySourcesServiceMessageSources.get(0);
             assertEquals(TEST_SOURCE, propertySourcesServiceMessageSource.getSource());
-        }, DelegatingBeanConfig.class);
+        }, Config.class);
     }
 
     @Test
@@ -123,16 +123,12 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
         assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getPropertyName(SIMPLIFIED_CHINESE));
     }
 
-    static class SingleBeanConfig {
+    static class Config {
 
         @Bean
         public PropertySourcesServiceMessageSource propertySourcesServiceMessageSource() {
             return new PropertySourcesServiceMessageSource(TEST_SOURCE);
         }
-    }
-
-    @Import(SingleBeanConfig.class)
-    static class DelegatingBeanConfig {
 
         @Primary
         @Bean(name = SERVICE_MESSAGE_SOURCE_BEAN_NAME)
