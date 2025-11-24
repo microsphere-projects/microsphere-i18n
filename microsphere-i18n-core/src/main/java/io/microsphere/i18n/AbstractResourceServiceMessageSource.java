@@ -1,5 +1,6 @@
 package io.microsphere.i18n;
 
+import io.microsphere.annotation.Nonnull;
 import io.microsphere.annotation.Nullable;
 
 import java.util.HashMap;
@@ -8,12 +9,14 @@ import java.util.Map;
 import java.util.Set;
 
 import static io.microsphere.collection.MapUtils.isEmpty;
+import static io.microsphere.collection.SetUtils.newFixedLinkedHashSet;
 import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ArrayUtils.arrayToString;
 import static io.microsphere.util.Assert.assertNotNull;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.singleton;
 import static java.util.Collections.unmodifiableMap;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * Abstract Resource {@link ServiceMessageSource} Class
@@ -93,11 +96,9 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
      * Initialization
      */
     protected final void initialize() {
-        Set<Locale> supportedLocales = getSupportedLocales();
-        Set<Locale> hierarchicalLocales = resolveHierarchicalLocales(supportedLocales);
-        Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(hierarchicalLocales.size());
-        for (Locale hierarchicalLocale : hierarchicalLocales) {
-            String resource = getResource(hierarchicalLocale);
+        Set<String> resources = getResources();
+        Map<String, Map<String, String>> localizedResourceMessages = new HashMap<>(resources.size());
+        for (String resource : resources) {
             initializeResource(resource, localizedResourceMessages);
         }
         // Exchange the field
@@ -177,6 +178,23 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     @Override
     public Set<String> getInitializedResources() {
         return localizedResourceMessages.keySet();
+    }
+
+    /**
+     * Get the resources around {@link #getSupportedLocales() supported locales}.
+     *
+     * @return non-null
+     * @see #getSupportedLocales()
+     */
+    @Nonnull
+    public final Set<String> getResources() {
+        Set<Locale> supportedLocales = getSupportedLocales();
+        Set<String> supportedResources = newFixedLinkedHashSet(supportedLocales.size());
+        for (Locale supportedLocale : supportedLocales) {
+            String resource = getResource(supportedLocale);
+            supportedResources.add(resource);
+        }
+        return unmodifiableSet(supportedResources);
     }
 
 
