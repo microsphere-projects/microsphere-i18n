@@ -37,12 +37,12 @@ class AcceptLanguageHeaderRequestInterceptorTest {
     }
 
     @AfterEach
-    public void after() {
+    void after() {
         resetRequestAttributes();
     }
 
     @Test
-    public void testApply() {
+    void testApply() {
         this.request.addHeader(HEADER_NAME, "en");
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(requestTemplate);
@@ -50,14 +50,14 @@ class AcceptLanguageHeaderRequestInterceptorTest {
     }
 
     @Test
-    public void testApplyWithoutAcceptLanguageHeader() {
+    void testApplyWithoutAcceptLanguageHeader() {
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(requestTemplate);
         assertTrue(requestTemplate.headers().isEmpty());
     }
 
     @Test
-    public void testApplyNoWebMvc() {
+    void testApplyNoWebMvc() {
         resetRequestAttributes();
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(new RequestTemplate());
