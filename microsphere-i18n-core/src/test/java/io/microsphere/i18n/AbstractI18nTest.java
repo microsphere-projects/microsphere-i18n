@@ -37,7 +37,7 @@ public abstract class AbstractI18nTest {
     public static final String ERROR_SOURCE = "error";
 
     @BeforeAll
-    public static void beforeClass() {
+    static void beforeClass() {
         // Set the simplified Chinese as the default Locale
         setDefault(SIMPLIFIED_CHINESE);
     }

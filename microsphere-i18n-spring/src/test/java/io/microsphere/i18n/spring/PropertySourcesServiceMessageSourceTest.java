@@ -30,9 +30,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * {@link PropertySourcesServiceMessageSource} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see PropertySourcesServiceMessageSource
  * @since 1.0.0
  */
-public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
+class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
 
     private MockEnvironment environment;
 
