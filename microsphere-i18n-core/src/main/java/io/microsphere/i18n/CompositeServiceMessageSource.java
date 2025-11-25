@@ -1,19 +1,20 @@
 package io.microsphere.i18n;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.annotation.Nonnull;
+import io.microsphere.logging.Logger;
 
-import javax.annotation.Nonnull;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import static io.microsphere.collection.ListUtils.first;
 import static io.microsphere.collection.ListUtils.forEach;
+import static io.microsphere.collection.Sets.ofSet;
+import static io.microsphere.logging.LoggerFactory.getLogger;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;
 import static java.util.Collections.sort;
@@ -21,7 +22,7 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableSet;
 
 /**
- * The Composite {@link ServiceMessageSource} class
+ * The Composite {@link ServiceMessageSource} class, No thread safe.
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see AbstractServiceMessageSource
@@ -32,7 +33,7 @@ import static java.util.Collections.unmodifiableSet;
  */
 public class CompositeServiceMessageSource implements ReloadableResourceServiceMessageSource {
 
-    private static final Logger logger = LoggerFactory.getLogger(CompositeServiceMessageSource.class);
+    private static final Logger logger = getLogger(CompositeServiceMessageSource.class);
 
     private List<? extends ServiceMessageSource> serviceMessageSources;
 
@@ -52,7 +53,7 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     @Override
     public String getMessage(String code, Locale locale, Object... args) {
         String message = null;
-        for (ServiceMessageSource serviceMessageSource : serviceMessageSources) {
+        for (ServiceMessageSource serviceMessageSource : this.serviceMessageSources) {
             message = serviceMessageSource.getMessage(code, locale, args);
             if (message != null) {
                 break;
@@ -77,21 +78,19 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
     @Nonnull
     @Override
-    public List<Locale> getSupportedLocales() {
-        List<Locale> supportedLocales = new LinkedList<>();
+    public Set<Locale> getSupportedLocales() {
+        Set<Locale> supportedLocales = new LinkedHashSet<>();
         iterate(serviceMessageSource -> {
             for (Locale locale : serviceMessageSource.getSupportedLocales()) {
-                if (!supportedLocales.contains(locale)) {
-                    supportedLocales.add(locale);
-                }
+                supportedLocales.add(locale);
             }
         });
 
         return supportedLocales.isEmpty() ? getDefaultSupportedLocales() :
-                unmodifiableList(supportedLocales);
+                unmodifiableSet(supportedLocales);
     }
 
-    public List<Locale> getDefaultSupportedLocales() {
+    public Set<Locale> getDefaultSupportedLocales() {
         return ReloadableResourceServiceMessageSource.super.getSupportedLocales();
     }
 
@@ -101,14 +100,16 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     }
 
     public void setServiceMessageSources(List<? extends ServiceMessageSource> serviceMessageSources) {
-        List<? extends ServiceMessageSource> oldServiceMessageSources = this.serviceMessageSources;
         List<ServiceMessageSource> newServiceMessageSources = new ArrayList<>(serviceMessageSources);
         sort(newServiceMessageSources);
+
+        List<? extends ServiceMessageSource> oldServiceMessageSources = this.serviceMessageSources;
+        this.serviceMessageSources = newServiceMessageSources;
+        logger.trace("The ServiceMessageSource original: '{}' , sorted : '{}'", serviceMessageSources, newServiceMessageSources);
+
         if (oldServiceMessageSources != null) {
             oldServiceMessageSources.clear();
         }
-        this.serviceMessageSources = newServiceMessageSources;
-        logger.debug("Source '{}' sets ServiceMessageSource list, sorted : {}", serviceMessageSources, newServiceMessageSources);
     }
 
     @Override
@@ -116,8 +117,19 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
         iterate(ReloadableResourceServiceMessageSource.class, reloadableResourceServiceMessageSource -> {
             if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
                 reloadableResourceServiceMessageSource.reload(changedResources);
+                logger.trace("The '{}' reloaded the changed resources: {}", reloadableResourceServiceMessageSource, changedResources);
             }
         });
+    }
+
+    @Override
+    public void reload(String changedResource) {
+        reload(ofSet(changedResource));
+    }
+
+    @Override
+    public boolean canReload(String changedResource) {
+        return true;
     }
 
     @Override
@@ -138,10 +150,10 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     }
 
     @Override
-    public Set<String> getInitializeResources() {
+    public Set<String> getInitializedResources() {
         Set<String> resources = new LinkedHashSet<>();
         iterate(ResourceServiceMessageSource.class, resourceServiceMessageSource -> {
-            resources.addAll(resourceServiceMessageSource.getInitializeResources());
+            resources.addAll(resourceServiceMessageSource.getInitializedResources());
         });
         return unmodifiableSet(resources);
     }
@@ -170,13 +182,11 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
     @Override
     public String toString() {
-        return "CompositeServiceMessageSource{" +
-                "serviceMessageSources=" + serviceMessageSources +
-                '}';
+        return this.getClass().getSimpleName() + " - serviceMessageSources = " + serviceMessageSources + '}';
     }
 
     private ServiceMessageSource getFirstServiceMessageSource() {
-        return this.serviceMessageSources.isEmpty() ? null : this.serviceMessageSources.get(0);
+        return first(this.serviceMessageSources);
     }
 
     private <T> void iterate(Class<T> serviceMessageSourceType, Consumer<T> consumer) {

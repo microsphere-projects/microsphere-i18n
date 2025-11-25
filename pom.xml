@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.microsphere-projects</groupId>
         <artifactId>microsphere-build</artifactId>
-        <version>0.0.21</version>
+        <version>0.2.2</version>
     </parent>
 
     <groupId>io.github.microsphere-projects</groupId>
@@ -52,7 +52,7 @@
     </scm>
 
     <properties>
-        <revision>0.0.1-SNAPSHOT</revision>
+        <revision>0.1.0-SNAPSHOT</revision>
     </properties>
 
     <modules>
@@ -65,29 +65,5 @@
         <module>microsphere-i18n-spring-cloud</module>
         <module>microsphere-i18n-spring-cloud-server</module>
     </modules>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>snapshot</id>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-    </repositories>
 
 </project>

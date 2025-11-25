@@ -16,13 +16,16 @@
  */
 package io.microsphere.i18n;
 
-import io.microsphere.i18n.util.I18nUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.springframework.context.i18n.LocaleContextHolder;
 
-import java.util.Locale;
+import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
+import static java.util.Locale.setDefault;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.springframework.context.i18n.LocaleContextHolder.resetLocaleContext;
 
 /**
  * Abstract Spring Test
@@ -32,20 +35,34 @@ import java.util.Locale;
  */
 public abstract class AbstractSpringTest {
 
+    public static final String TEST_SOURCE = "test";
+
     @BeforeClass
     public static void beforeClass() {
         // Set the simplified Chinese as the default Locale
-        Locale.setDefault(Locale.SIMPLIFIED_CHINESE);
+        setDefault(SIMPLIFIED_CHINESE);
     }
 
     @Before
-    public void before() {
-        LocaleContextHolder.resetLocaleContext();
+    public void before() throws Throwable {
+        resetLocaleContext();
     }
 
     @AfterClass
-    public static void afterClass() {
-        I18nUtils.destroyServiceMessageSource();
-        LocaleContextHolder.resetLocaleContext();
+    public static void afterClass() throws Throwable {
+        destroyServiceMessageSource();
+        resetLocaleContext();
+    }
+
+    protected void assertGetMessage(ServiceMessageSource serviceMessageSource) {
+        // Testing Simplified Chinese
+        // If the Message Code is "a"
+        assertEquals("测试-a", serviceMessageSource.getMessage("a"));
+
+        // The same is true for overloaded methods with Message Pattern arguments
+        assertEquals("您好,World", serviceMessageSource.getMessage("hello", "World"));
+
+        // Returns null if code does not exist
+        assertNull(serviceMessageSource.getMessage("code-not-found"));
     }
 }

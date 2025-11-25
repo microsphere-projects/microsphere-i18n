@@ -4,21 +4,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Locale;
-
-import static java.util.Arrays.asList;
+import static io.microsphere.collection.Sets.ofSet;
+import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.getDefault;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * {@link EmptyServiceMessageSource} 测试
+ * {@link EmptyServiceMessageSource} Test
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EmptyServiceMessageSource
  * @since 1.0.0
  */
 public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
-    private EmptyServiceMessageSource serviceMessageSource = EmptyServiceMessageSource.INSTANCE;
+    private EmptyServiceMessageSource serviceMessageSource = INSTANCE;
 
     @Before
     public void before() {
@@ -34,9 +36,9 @@ public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     public void testGetMessage() {
-        assertNull(serviceMessageSource.getMessage("test"));
-        assertNull(serviceMessageSource.getMessage("test", "a"));
-        assertNull(serviceMessageSource.getMessage("test", Locale.ENGLISH, "a"));
+        assertNull(serviceMessageSource.getMessage(TEST_SOURCE));
+        assertNull(serviceMessageSource.getMessage(TEST_SOURCE, "a"));
+        assertNull(serviceMessageSource.getMessage(TEST_SOURCE, ENGLISH, "a"));
     }
 
     @Test
@@ -46,16 +48,16 @@ public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     @Test
     public void testGetDefaultLocale() {
-        assertEquals(Locale.SIMPLIFIED_CHINESE, serviceMessageSource.getDefaultLocale());
+        assertEquals(getDefault(), serviceMessageSource.getDefaultLocale());
     }
 
     @Test
     public void testGetLocale() {
-        assertEquals(Locale.SIMPLIFIED_CHINESE, serviceMessageSource.getLocale());
+        assertEquals(getDefault(), serviceMessageSource.getLocale());
     }
 
     @Test
     public void testGetSupportedLocales() {
-        assertEquals(asList(Locale.SIMPLIFIED_CHINESE, Locale.ENGLISH), serviceMessageSource.getSupportedLocales());
+        assertEquals(ofSet(getDefault(), ENGLISH), serviceMessageSource.getSupportedLocales());
     }
 }

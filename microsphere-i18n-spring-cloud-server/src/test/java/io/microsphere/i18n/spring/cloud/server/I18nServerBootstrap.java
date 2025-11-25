@@ -17,10 +17,11 @@
 package io.microsphere.i18n.spring.cloud.server;
 
 import io.microsphere.i18n.spring.cloud.server.annotation.EnableI18nServer;
-import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+import static org.springframework.boot.WebApplicationType.SERVLET;
 
 /**
  * I18n Server Bootstrap
@@ -35,7 +36,7 @@ public class I18nServerBootstrap {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(I18nServerBootstrap.class)
-                .web(WebApplicationType.SERVLET)
+                .web(SERVLET)
                 .run(args);
     }
 }

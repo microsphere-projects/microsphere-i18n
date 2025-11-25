@@ -16,12 +16,13 @@
  */
 package io.microsphere.i18n;
 
-import io.microsphere.i18n.util.I18nUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import java.util.Locale;
+import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
+import static java.util.Locale.setDefault;
 
 /**
  * Abstract Spring Test
@@ -31,19 +32,23 @@ import java.util.Locale;
  */
 public abstract class AbstractI18nTest {
 
+    public static final String TEST_SOURCE = "test";
+
+    public static final String ERROR_SOURCE = "error";
+
     @BeforeClass
     public static void beforeClass() {
         // Set the simplified Chinese as the default Locale
-        Locale.setDefault(Locale.SIMPLIFIED_CHINESE);
+        setDefault(SIMPLIFIED_CHINESE);
     }
 
     @Before
     public void before() {
-        I18nUtils.destroyServiceMessageSource();
+        destroyServiceMessageSource();
     }
 
     @After
     public void after() {
-        I18nUtils.destroyServiceMessageSource();
+        destroyServiceMessageSource();
     }
 }

@@ -1,47 +1,48 @@
 package io.microsphere.i18n.spring.context;
 
 import io.microsphere.i18n.ServiceMessageSource;
-import org.springframework.beans.factory.ObjectProvider;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import static io.microsphere.spring.beans.BeanUtils.getSortedBeans;
 
 /**
  * Spring {@link MessageSource} Adapter
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EnableI18n#exposeMessageSource()
  * @since 1.0.0
  */
-public class MessageSourceAdapter implements MessageSource, SmartInitializingSingleton {
+public class MessageSourceAdapter implements MessageSource, SmartInitializingSingleton, BeanFactoryAware {
 
     private final ServiceMessageSource serviceMessageSource;
 
-    private final ObjectProvider<MessageSource> messageSourceProvider;
+    private final List<MessageSource> defaultMessageSources;
 
-    private MessageSource defaultMessageSource;
+    private BeanFactory beanFactory;
 
-    public MessageSourceAdapter(ServiceMessageSource serviceMessageSource, ObjectProvider<MessageSource> messageSourceProvider) {
+    public MessageSourceAdapter(ServiceMessageSource serviceMessageSource) {
         this.serviceMessageSource = serviceMessageSource;
-        this.messageSourceProvider = messageSourceProvider;
+        this.defaultMessageSources = new ArrayList<>(2);
     }
 
     @Override
     public String getMessage(String code, Object[] args, String defaultMessage, Locale locale) {
-        String message = serviceMessageSource.getMessage(code, locale, args);
+        String message = this.serviceMessageSource.getMessage(code, locale, args);
         if (message == null) {
             message = getDefaultMessage(code, args, defaultMessage, locale);
         }
         return message;
-    }
-
-    private String getDefaultMessage(String code, Object[] args, String defaultMessage, Locale locale) {
-        if (defaultMessageSource != null) {
-            return defaultMessageSource.getMessage(code, args, defaultMessage, locale);
-        }
-        return defaultMessage;
     }
 
     @Override
@@ -63,14 +64,33 @@ public class MessageSourceAdapter implements MessageSource, SmartInitializingSin
 
     @Override
     public void afterSingletonsInstantiated() {
-        this.defaultMessageSource = messageSourceProvider.getIfAvailable();
+        for (MessageSource messageSource : getSortedBeans(this.beanFactory, MessageSource.class)) {
+            if (messageSource != this) {
+                this.defaultMessageSources.add(messageSource);
+            }
+        }
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
     }
 
     @Override
     public String toString() {
         return "MessageSourceAdapter{" +
                 "serviceMessageSource=" + serviceMessageSource +
-                ", defaultMessageSource=" + defaultMessageSource +
+                ", defaultMessageSources=" + defaultMessageSources +
                 '}';
+    }
+
+    protected String getDefaultMessage(String code, Object[] args, String defaultMessage, Locale locale) {
+        for (MessageSource defaultMessageSource : this.defaultMessageSources) {
+            String message = defaultMessageSource.getMessage(code, args, defaultMessage, locale);
+            if (message != null) {
+                return message;
+            }
+        }
+        return defaultMessage;
     }
 }

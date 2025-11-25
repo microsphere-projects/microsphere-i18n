@@ -2,7 +2,22 @@ package io.microsphere.i18n;
 
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.Locale;
+import java.util.Map;
+
+import static io.microsphere.collection.Sets.ofSet;
+import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
+import static java.util.Locale.ENGLISH;
+import static java.util.Locale.FRANCE;
+import static java.util.Locale.getDefault;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 /**
  * {@link DefaultServiceMessageSource} Test
@@ -10,23 +25,116 @@ import static org.junit.Assert.assertEquals;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class DefaultServiceMessageSourceTest extends AbstractI18nTest {
+public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMessageSourceTest {
+
+    @Override
+    protected DefaultServiceMessageSource createServiceMessageSource() {
+        return new DefaultServiceMessageSource(TEST_SOURCE);
+    }
 
     @Test
-    public void test() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
-        serviceMessageSource.init();
+    @Override
+    public void testGetMessage() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         assertEquals("测试-a", serviceMessageSource.getMessage("a"));
         assertEquals("您好,World", serviceMessageSource.getMessage("hello", "World"));
-
-        serviceMessageSource.destroy();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
+    public void testResources() {
+        ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        serviceMessageSource.initializeResource(ERROR_SOURCE);
+        assertFalse(serviceMessageSource.getInitializedResources().isEmpty());
+    }
+
+    @Test
+    @Override
+    public void testGetSource() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        assertEquals(TEST_SOURCE, serviceMessageSource.getSource());
+    }
+
+    @Test
     public void testValidateMessageCode() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("error");
-        serviceMessageSource.init();
+        assertThrows(IllegalStateException.class, () -> {
+            DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(ERROR_SOURCE);
+            serviceMessageSource.initialize();
+        });
     }
 
+    @Test
+    public void testGetInternalLocale() {
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE, getDefaultClassLoader()) {
+
+            @Override
+            protected Locale getInternalLocale() {
+                return getDefaultLocale();
+            }
+        };
+        assertSame(serviceMessageSource.getLocale(), serviceMessageSource.getDefaultLocale());
+    }
+
+    @Test
+    public void testSupports() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+
+        assertTrue(serviceMessageSource.supports(getDefault()));
+        assertTrue(serviceMessageSource.supports(ENGLISH));
+    }
+
+    @Test
+    public void testResolveMessageCode() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+
+        String code = "test.code";
+        assertEquals(code, serviceMessageSource.resolveMessageCode(code));
+        assertEquals(code, serviceMessageSource.resolveMessageCode("code"));
+    }
+
+    @Test
+    public void testGetLocalizedResourceMessages() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+
+        Map<String, Map<String, String>> localizedResourceMessages = serviceMessageSource.getLocalizedResourceMessages();
+        assertEquals(2, localizedResourceMessages.size());
+    }
+
+    @Test
+    public void testLoadAllProperties() throws IOException {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        for (Locale locale : serviceMessageSource.getSupportedLocales()) {
+            assertNotNull(serviceMessageSource.loadAllProperties(locale));
+        }
+
+        assertNull(serviceMessageSource.loadAllProperties(FRANCE));
+    }
+
+    @Test
+    @Override
+    public void testCanReload() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        assertFalse(serviceMessageSource.canReload(TEST_SOURCE));
+    }
+
+    @Test
+    @Override
+    public void testCanReloadWithIterable() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        assertFalse(serviceMessageSource.canReload(ofSet(TEST_SOURCE)));
+    }
+
+    @Test
+    @Override
+    public void testReload() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        serviceMessageSource.reload(TEST_SOURCE);
+    }
+
+    @Test
+    @Override
+    public void testReloadWithIterable() {
+        DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
+        serviceMessageSource.reload(ofSet(TEST_SOURCE));
+    }
 }

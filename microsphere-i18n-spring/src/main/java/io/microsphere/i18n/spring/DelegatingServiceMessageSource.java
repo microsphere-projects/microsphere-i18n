@@ -4,22 +4,18 @@ import io.microsphere.i18n.AbstractServiceMessageSource;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.lang.NonNull;
 
-import java.nio.charset.Charset;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 
-import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
-import static org.springframework.core.annotation.AnnotationAwareOrderComparator.sort;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.BeanUtils.getSortedBeans;
 
 /**
  * The delegating {@link ServiceMessageSource} class is composited by the Spring {@link ServiceMessageSource} beans
@@ -29,124 +25,33 @@ import static org.springframework.core.annotation.AnnotationAwareOrderComparator
  * @see ServiceMessageSource
  * @since 1.0.0
  */
-public class DelegatingServiceMessageSource implements ReloadableResourceServiceMessageSource, InitializingBean,
-        DisposableBean {
+public class DelegatingServiceMessageSource extends CompositeServiceMessageSource
+        implements ReloadableResourceServiceMessageSource, InitializingBean, DisposableBean, BeanFactoryAware {
 
-    private static final Logger logger = LoggerFactory.getLogger(DelegatingServiceMessageSource.class);
+    private static final Logger logger = getLogger(DelegatingServiceMessageSource.class);
 
-    private final ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider;
+    private BeanFactory beanFactory;
 
-    private CompositeServiceMessageSource delegate;
-
-    private ListableBeanFactory beanFactory;
-
-    public DelegatingServiceMessageSource(ObjectProvider<ServiceMessageSource> serviceMessageSourcesProvider) {
-        this.serviceMessageSourcesProvider = serviceMessageSourcesProvider;
+    @Override
+    public void afterPropertiesSet() {
+        super.init();
+        this.setServiceMessageSources(findServiceMessageSourceBeans());
     }
 
     @Override
-    public void init() {
-        CompositeServiceMessageSource delegate = this.delegate;
-        if (delegate == null) {
-            delegate = new CompositeServiceMessageSource();
-            delegate.setServiceMessageSources(getServiceMessageSourceBeans());
-            this.delegate = delegate;
-        }
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        init();
-    }
-
-    @Override
-    public String getMessage(String code, Locale locale, Object... args) {
-        return this.delegate.getMessage(code, locale, args);
-    }
-
-    @Override
-    public String getMessage(String code, Object... args) {
-        return this.delegate.getMessage(code, args);
-    }
-
-    @NonNull
-    @Override
-    public Locale getLocale() {
-        Locale locale = getLocaleFromLocaleContext();
-        return locale == null ? this.delegate.getLocale() : locale;
-    }
-
-    @NonNull
-    @Override
-    public Locale getDefaultLocale() {
-        return this.delegate.getDefaultLocale();
-    }
-
-    @NonNull
-    @Override
-    public List<Locale> getSupportedLocales() {
-        return this.delegate.getSupportedLocales();
-    }
-
-    @Override
-    public String getSource() {
-        return this.delegate.getSource();
-    }
-
-    @Override
-    public void reload(Iterable<String> changedResources) {
-        this.delegate.reload(changedResources);
-    }
-
-    @Override
-    public boolean canReload(Iterable<String> changedResources) {
-        return this.delegate.canReload(changedResources);
-    }
-
-    @Override
-    public void initializeResource(String resource) {
-        this.delegate.initializeResource(resource);
-    }
-
-    @Override
-    public void initializeResources(Iterable<String> resources) {
-        this.delegate.initializeResources(resources);
-    }
-
-    @Override
-    public Set<String> getInitializeResources() {
-        return this.delegate.getInitializeResources();
-    }
-
-    @Override
-    public Charset getEncoding() {
-        return this.delegate.getEncoding();
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
     }
 
     @Override
     public void destroy() {
-        this.delegate.destroy();
+        super.destroy();
     }
 
-    @Override
-    public String toString() {
-        return "ServiceMessageSources{" + "delegate=" + delegate + '}';
-    }
-
-    /**
-     * Get the {@link CompositeServiceMessageSource}
-     *
-     * @return the {@link CompositeServiceMessageSource}
-     */
-    public CompositeServiceMessageSource getDelegate() {
-        return delegate;
-    }
-
-    private List<ServiceMessageSource> getServiceMessageSourceBeans() {
-        List<ServiceMessageSource> serviceMessageSources = new LinkedList<>();
-        serviceMessageSourcesProvider.forEach(serviceMessageSources::add);
-        sort(serviceMessageSources);
-        logger.debug("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
+    private List<ServiceMessageSource> findServiceMessageSourceBeans() {
+        List<ServiceMessageSource> serviceMessageSources = new ArrayList<>(getSortedBeans(this.beanFactory, ServiceMessageSource.class));
+        serviceMessageSources.remove(this);
+        logger.trace("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
         return serviceMessageSources;
     }
 
