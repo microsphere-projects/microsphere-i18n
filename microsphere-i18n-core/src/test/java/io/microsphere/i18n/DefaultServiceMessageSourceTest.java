@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static io.microsphere.collection.Sets.ofSet;
+import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.getDefault;
@@ -15,6 +16,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -53,15 +55,17 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
         assertEquals(TEST_SOURCE, serviceMessageSource.getSource());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testValidateMessageCode() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("error");
-        serviceMessageSource.init();
+        assertThrows(IllegalStateException.class, () -> {
+            DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(ERROR_SOURCE);
+            serviceMessageSource.initialize();
+        });
     }
 
     @Test
     public void testGetInternalLocale() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE) {
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE, getDefaultClassLoader()) {
 
             @Override
             protected Locale getInternalLocale() {
