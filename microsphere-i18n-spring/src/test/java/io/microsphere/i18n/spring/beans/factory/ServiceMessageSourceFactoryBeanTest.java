@@ -41,7 +41,7 @@ import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
         "microsphere.i18n.default-locale=en",
         "microsphere.i18n.supported-locales=en",
 })
-public class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
+class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
 
     @Autowired
     private ServiceMessageSource serviceMessageSource;
