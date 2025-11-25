@@ -77,7 +77,6 @@
 
     </dependencyManagement>
 
-
     <profiles>
 
         <!-- Spring Cloud Profiles -->
