@@ -1,12 +1,13 @@
 package io.microsphere.i18n.spring.beans.factory;
 
+import io.microsphere.annotation.Nonnull;
 import io.microsphere.i18n.AbstractServiceMessageSource;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.microsphere.logging.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.DisposableBean;
@@ -19,24 +20,24 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.lang.NonNull;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import static io.microsphere.i18n.spring.constants.I18nConstants.DEFAULT_LOCALE_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.constants.I18nConstants.SUPPORTED_LOCALES_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.util.LocaleUtils.getLocaleFromLocaleContext;
-import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
-import static io.microsphere.spring.util.BeanUtils.invokeAwareInterfaces;
+import static io.microsphere.logging.LoggerFactory.getLogger;
+import static io.microsphere.spring.beans.BeanUtils.invokeAwareInterfaces;
+import static io.microsphere.spring.core.env.EnvironmentUtils.asConfigurableEnvironment;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.sort;
-import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableSet;
+import static java.util.stream.Collectors.toSet;
 import static org.springframework.beans.BeanUtils.instantiateClass;
 import static org.springframework.core.io.support.SpringFactoriesLoader.loadFactoryNames;
 import static org.springframework.util.ClassUtils.getConstructorIfAvailable;
@@ -48,6 +49,7 @@ import static org.springframework.util.StringUtils.parseLocale;
  * {@link ServiceMessageSource} {@link FactoryBean} Implementation
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
+ * @see EnableI18n
  * @since 1.0.0
  */
 public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessageSource implements
@@ -55,7 +57,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         ApplicationContextAware, FactoryBean<ReloadableResourceServiceMessageSource>,
         ApplicationListener<ResourceServiceMessageSourceChangedEvent>, Ordered {
 
-    private static final Logger logger = LoggerFactory.getLogger(ServiceMessageSourceFactoryBean.class);
+    private static final Logger logger = getLogger(ServiceMessageSourceFactoryBean.class);
 
     private final String source;
 
@@ -68,16 +70,16 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     private int order;
 
     public ServiceMessageSourceFactoryBean(String source) {
-        this(source, Ordered.LOWEST_PRECEDENCE);
+        this(source, LOWEST_PRECEDENCE);
     }
 
     public ServiceMessageSourceFactoryBean(String source, int order) {
         this.source = source;
-        this.order = order;
+        setOrder(order);
     }
 
     @Override
-    public ReloadableResourceServiceMessageSource getObject() throws Exception {
+    public ReloadableResourceServiceMessageSource getObject() {
         return this;
     }
 
@@ -96,7 +98,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         this.setServiceMessageSources(initServiceMessageSources());
     }
 
-    @NonNull
+    @Nonnull
     @Override
     public Locale getLocale() {
         Locale locale = getLocaleFromLocaleContext();
@@ -118,8 +120,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
 
     @Override
     public void setEnvironment(Environment environment) {
-        Assert.isInstanceOf(ConfigurableEnvironment.class, environment, "The 'environment' parameter must be of type ConfigurableEnvironment");
-        this.environment = (ConfigurableEnvironment) environment;
+        this.environment = asConfigurableEnvironment(environment);
     }
 
     @Override
@@ -140,7 +141,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         List<String> factoryNames = loadFactoryNames(AbstractServiceMessageSource.class, classLoader);
 
         Locale defaultLocale = resolveDefaultLocale(environment);
-        List<Locale> supportedLocales = resolveSupportedLocales(environment);
+        Set<Locale> supportedLocales = resolveSupportedLocales(environment);
 
         List<AbstractServiceMessageSource> serviceMessageSources = new ArrayList<>(factoryNames.size());
 
@@ -165,8 +166,11 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     @Override
     public String toString() {
         return "ServiceMessageSourceFactoryBean{" +
-                "serviceMessageSources = " + getServiceMessageSources() +
+                "source='" + this.source + '\'' +
+                ", supportedLocales=" + getSupportedLocales() +
+                ", defaultLocale=" + getDefaultLocale() +
                 ", order=" + order +
+                ", serviceMessageSources=" + getServiceMessageSources() +
                 '}';
     }
 
@@ -176,44 +180,34 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         final Locale locale;
         if (!hasText(localeValue)) {
             locale = getDefaultLocale();
-            logger.debug("Default Locale configuration property [name : '{}'] not found, use default value: '{}'", propertyName, locale);
+            logger.trace("Default Locale configuration property [name : '{}'] not found, use default value: '{}'", propertyName, locale);
         } else {
             locale = parseLocale(localeValue);
-            logger.debug("Default Locale : '{}' parsed by configuration properties [name : '{}']", propertyName, locale);
+            logger.trace("Default Locale : '{}' parsed by configuration properties [name : '{}']", propertyName, locale);
         }
         return locale;
     }
 
-    private List<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
-        final List<Locale> supportedLocales;
+    private Set<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
+        final Set<Locale> supportedLocales;
         String propertyName = SUPPORTED_LOCALES_PROPERTY_NAME;
         List<String> locales = environment.getProperty(propertyName, List.class, emptyList());
         if (locales.isEmpty()) {
             supportedLocales = getSupportedLocales();
-            logger.debug("Support Locale list configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
+            logger.trace("Support Locale set configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
         } else {
-            supportedLocales = locales.stream().map(StringUtils::parseLocale).collect(Collectors.toList());
-            logger.debug("List of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
+            supportedLocales = locales.stream()
+                    .map(StringUtils::parseLocale)
+                    .collect(toSet());
+            logger.trace("The set of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
         }
-        return unmodifiableList(supportedLocales);
+        return unmodifiableSet(supportedLocales);
     }
 
     @Override
     public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
         Iterable<String> changedResources = event.getChangedResources();
-        logger.debug("Receive event change resource: {}", changedResources);
-        for (ServiceMessageSource serviceMessageSource : getAllServiceMessageSources()) {
-            if (serviceMessageSource instanceof ReloadableResourceServiceMessageSource) {
-                ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource = (ReloadableResourceServiceMessageSource) serviceMessageSource;
-                if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
-                    reloadableResourceServiceMessageSource.reload(changedResources);
-                    logger.debug("change resource [{}] activate {} reloaded", changedResources, reloadableResourceServiceMessageSource);
-                }
-            }
-        }
-    }
-
-    public List<ServiceMessageSource> getAllServiceMessageSources() {
-        return findAllServiceMessageSources(this);
+        logger.trace("Receive event change resource: {}", changedResources);
+        super.reload(changedResources);
     }
 }

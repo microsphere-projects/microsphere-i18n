@@ -23,13 +23,12 @@ import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
 import org.springframework.context.ApplicationListener;
 
 import java.util.Set;
 
-import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE_SOURCE_BEAN_NAME;
+import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.reloadAll;
 
 /**
  * * An {@link ApplicationListener} of {@link EnvironmentChangeEvent} to reload
@@ -43,29 +42,15 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE
  * @see EnvironmentChangeEvent
  * @since 1.0.0
  */
-public class ReloadableResourceServiceMessageSourceListener implements SmartInitializingSingleton,
-        ApplicationListener<EnvironmentChangeEvent>, BeanFactoryAware {
+public class ReloadableResourceServiceMessageSourceListener implements ApplicationListener<EnvironmentChangeEvent>,
+        BeanFactoryAware {
 
     private BeanFactory beanFactory;
-
-    private ReloadableResourceServiceMessageSource reloadableResourceServiceMessageSource;
 
     @Override
     public void onApplicationEvent(EnvironmentChangeEvent event) {
         Set<String> changedPropertyNames = event.getKeys();
-        for (String changedPropertyName : changedPropertyNames) {
-            String resource = changedPropertyName;
-            if (reloadableResourceServiceMessageSource.canReload(resource)) {
-                reloadableResourceServiceMessageSource.reload(resource);
-            }
-        }
-    }
-
-    @Override
-    public void afterSingletonsInstantiated() {
-        // Lookup the primary bean of PropertySourcesServiceMessageSource
-        this.reloadableResourceServiceMessageSource = this.beanFactory.getBean(SERVICE_MESSAGE_SOURCE_BEAN_NAME,
-                ReloadableResourceServiceMessageSource.class);
+        reloadAll(this.beanFactory, changedPropertyNames);
     }
 
     @Override

@@ -16,14 +16,9 @@
  */
 package io.microsphere.i18n.spring.cloud.autoconfigure;
 
-import io.microsphere.i18n.spring.annotation.EnableI18n;
-import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
 import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nEnabled;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -36,9 +31,6 @@ import org.springframework.context.annotation.Import;
 @ConditionalOnClass(name = {
         "org.springframework.cloud.context.environment.EnvironmentChangeEvent", // spring-cloud-context
 })
-@Import({
-        ReloadableResourceServiceMessageSourceListener.class
-})
+@Import(ReloadableResourceServiceMessageSourceListener.class)
 public class I18nCloudAutoConfiguration {
-
 }

@@ -16,18 +16,19 @@
  */
 package io.microsphere.i18n;
 
-import io.microsphere.i18n.util.I18nUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Locale;
-
-import static java.lang.String.format;
-import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
+import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
+import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
+import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.ArrayUtils.arrayToString;
+import static java.util.Locale.SIMPLIFIED_CHINESE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link ServiceMessageException} Test
@@ -35,24 +36,24 @@ import static org.junit.Assert.assertTrue;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
-public class ServiceMessageExceptionTest {
+class ServiceMessageExceptionTest {
 
-    @Before
-    public void before() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
-        serviceMessageSource.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
-        serviceMessageSource.setSupportedLocales(asList(Locale.SIMPLIFIED_CHINESE));
+    @BeforeEach
+    void before() {
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
+        serviceMessageSource.setDefaultLocale(SIMPLIFIED_CHINESE);
+        serviceMessageSource.setSupportedLocales(ofList(SIMPLIFIED_CHINESE));
         serviceMessageSource.init();
-        I18nUtils.setServiceMessageSource(serviceMessageSource);
+        setServiceMessageSource(serviceMessageSource);
     }
 
-    @After
-    public void after() {
-        I18nUtils.destroyServiceMessageSource();
+    @AfterEach
+    void after() {
+        destroyServiceMessageSource();
     }
 
     @Test
-    public void test() {
+    void test() {
         assertServiceMessageException("测试-a", "{a}");
         assertServiceMessageException("您好,World", "{hello}", "World");
     }
@@ -62,6 +63,6 @@ public class ServiceMessageExceptionTest {
         assertTrue(exception instanceof RuntimeException);
         assertEquals(message, exception.getMessage());
         assertEquals(localizedMessage, exception.getLocalizedMessage());
-        assertEquals(format("ServiceMessageException[message='%s', args=%s, localized message='%s']", message, Arrays.toString(args), localizedMessage), exception.toString());
+        assertEquals(format("ServiceMessageException[message='{}', args={}, localized message='{}']", message, arrayToString(args), localizedMessage), exception.toString());
     }
 }

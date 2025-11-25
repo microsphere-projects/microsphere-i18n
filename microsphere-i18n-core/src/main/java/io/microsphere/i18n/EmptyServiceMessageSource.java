@@ -1,6 +1,7 @@
 package io.microsphere.i18n;
 
-import javax.annotation.Nonnull;
+import io.microsphere.annotation.Nonnull;
+
 import java.util.Locale;
 
 /**
@@ -13,7 +14,7 @@ public class EmptyServiceMessageSource implements ServiceMessageSource {
 
     public static final EmptyServiceMessageSource INSTANCE = new EmptyServiceMessageSource();
 
-    private EmptyServiceMessageSource() {
+    public EmptyServiceMessageSource() {
     }
 
     @Override

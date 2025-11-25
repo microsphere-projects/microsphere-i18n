@@ -1,6 +1,6 @@
 package io.microsphere.i18n;
 
-import io.microsphere.collection.MapUtils;
+import io.microsphere.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import static io.microsphere.collection.CollectionUtils.isEmpty;
+import static io.microsphere.collection.MapUtils.isNotEmpty;
 import static io.microsphere.text.FormatUtils.format;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
@@ -33,24 +34,26 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         Map<String, String> messages = null;
         try {
             Properties properties = loadAllProperties(resource);
-            if (!MapUtils.isEmpty(properties)) {
+            if (isNotEmpty(properties)) {
                 messages = new HashMap<>(properties.size());
                 messages.putAll((Map) properties);
             }
         } catch (IOException e) {
-            throw new RuntimeException(format("Source '{}' Messages Properties Resource[name : {}] loading is failed", source, resource), e);
+            throw new RuntimeException(format("Source '{}' Messages Properties Resource[name : {}] loading is failed", this.source, resource), e);
         }
         return messages == null ? emptyMap() : unmodifiableMap(messages);
     }
 
+    @Nullable
     public Properties loadAllProperties(Locale locale) throws IOException {
         String resource = getResource(locale);
         return loadAllProperties(resource);
     }
 
+    @Nullable
     public Properties loadAllProperties(String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(resource);
-        logger.debug("Source '{}' loads {} Properties Resources['{}']", source, propertiesResources.size(), resource);
+        logger.trace("Source '{}' loads {} Properties Resources['{}']", this.source, propertiesResources.size(), resource);
         if (isEmpty(propertiesResources)) {
             return null;
         }
@@ -60,7 +63,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
                 properties.load(reader);
             }
         }
-        logger.debug("Source '{}' loads all Properties Resources[name :{}] : {}", source, resource, properties);
+        logger.trace("Source '{}' loads all Properties Resources[name :{}] : {}", this.source, resource, properties);
         return properties;
     }
 

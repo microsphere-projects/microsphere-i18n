@@ -1,8 +1,11 @@
 package io.microsphere.i18n.spring.constants;
 
+import io.microsphere.annotation.ConfigurationProperty;
 import io.microsphere.i18n.ServiceMessageSource;
 
 import java.util.Locale;
+
+import static io.microsphere.annotation.ConfigurationProperty.APPLICATION_SOURCE;
 
 /**
  * Internationalization property constants
@@ -17,6 +20,11 @@ public interface I18nConstants {
     /**
      * Enabled Configuration Name
      */
+    @ConfigurationProperty(
+            type = boolean.class,
+            defaultValue = "true",
+            source = APPLICATION_SOURCE
+    )
     String ENABLED_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "enabled";
 
     /**
@@ -29,16 +37,28 @@ public interface I18nConstants {
      *
      * @see ServiceMessageSource#getSource()
      */
+    @ConfigurationProperty(
+            type = String[].class,
+            source = APPLICATION_SOURCE
+    )
     String SOURCES_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "sources";
 
     /**
      * Default {@link Locale} property name
      */
+    @ConfigurationProperty(
+            type = Locale.class,
+            source = APPLICATION_SOURCE
+    )
     String DEFAULT_LOCALE_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "default-locale";
 
     /**
      * Supported {@link Locale} list property names
      */
+    @ConfigurationProperty(
+            type = String[].class,
+            source = APPLICATION_SOURCE
+    )
     String SUPPORTED_LOCALES_PROPERTY_NAME = PROPERTY_NAME_PREFIX + "supported-locales";
 
     /**
