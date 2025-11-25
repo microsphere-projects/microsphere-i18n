@@ -54,7 +54,7 @@ public abstract class AbstractSpringTest {
         resetLocaleContext();
     }
 
-    public void assertGetMessage(ServiceMessageSource serviceMessageSource) {
+    protected void assertGetMessage(ServiceMessageSource serviceMessageSource) {
         // Testing Simplified Chinese
         // If the Message Code is "a"
         assertEquals("测试-a", serviceMessageSource.getMessage("a"));
