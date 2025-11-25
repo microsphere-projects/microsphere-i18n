@@ -42,7 +42,7 @@ class AbstractResourceServiceMessageSourceTest {
 
     static class TestAbstractResourceServiceMessageSource extends AbstractResourceServiceMessageSource {
 
-        public TestAbstractResourceServiceMessageSource(String source) {
+        TestAbstractResourceServiceMessageSource(String source) {
             super(source);
         }
 
