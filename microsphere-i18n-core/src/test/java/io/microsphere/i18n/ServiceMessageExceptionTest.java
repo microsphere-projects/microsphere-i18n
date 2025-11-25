@@ -21,6 +21,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
 import static io.microsphere.text.FormatUtils.format;
@@ -39,7 +40,7 @@ public class ServiceMessageExceptionTest {
 
     @Before
     public void before() {
-        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource("test");
+        DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
         serviceMessageSource.setDefaultLocale(SIMPLIFIED_CHINESE);
         serviceMessageSource.setSupportedLocales(ofList(SIMPLIFIED_CHINESE));
         serviceMessageSource.init();

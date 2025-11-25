@@ -63,7 +63,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     }
 
     @Test
-    public void test() throws IOException {
+    public void test() {
         assertGetMessage(this.propertySourcesServiceMessageSource);
     }
 

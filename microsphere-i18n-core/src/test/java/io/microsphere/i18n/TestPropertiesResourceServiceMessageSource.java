@@ -28,9 +28,9 @@ import java.util.List;
  * @see PropertiesResourceServiceMessageSource
  * @since 1.0.0
  */
-public class TestPropertiesResourceServiceMessageSource extends PropertiesResourceServiceMessageSource {
+class TestPropertiesResourceServiceMessageSource extends PropertiesResourceServiceMessageSource {
 
-    public TestPropertiesResourceServiceMessageSource(String source) {
+    TestPropertiesResourceServiceMessageSource(String source) {
         super(source);
     }
 

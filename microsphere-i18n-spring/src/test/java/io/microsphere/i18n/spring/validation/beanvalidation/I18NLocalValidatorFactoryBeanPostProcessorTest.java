@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package io.microsphere.i18n.spring.beans.factory.config;
+package io.microsphere.i18n.spring.validation.beanvalidation;
+
 
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
-import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
 import org.junit.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator;
