@@ -13,7 +13,18 @@ import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 
 /**
- * Service internationalization message source
+ * Service internationalization message source.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   ServiceMessageSource source = new DefaultServiceMessageSource("test");
+ *   source.init();
+ *   // Get message in default locale (e.g. Simplified Chinese)
+ *   String msg = source.getMessage("a"); // "测试-a"
+ *   // Get message in a specific locale
+ *   String engMsg = source.getMessage("hello", Locale.ENGLISH, "World"); // "Hello,World"
+ *   source.destroy();
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
@@ -46,6 +57,21 @@ public interface ServiceMessageSource extends Prioritized {
     @Nullable
     String getMessage(String code, Locale locale, Object... args);
 
+    /**
+     * Getting international Messages using the runtime {@link Locale}.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   ServiceMessageSource source = new DefaultServiceMessageSource("test");
+     *   source.init();
+     *   String msg = source.getMessage("a"); // "测试-a"
+     *   String hello = source.getMessage("hello", "World"); // "您好,World"
+     * }</pre>
+     *
+     * @param code message Code
+     * @param args the argument of message pattern
+     * @return {@code null} if message can't be found
+     */
     @Nullable
     default String getMessage(String code, Object... args) {
         return getMessage(code, getLocale(), args);

@@ -22,7 +22,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Import;
 
 /**
- * I18n Auto-Configuration for Spring Cloud
+ * I18n Auto-Configuration for Spring Cloud that enables dynamic reloading of
+ * i18n messages when Spring Cloud environment changes occur.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Auto-configured when spring-cloud-context is on classpath and i18n is enabled
+ *   // Listens for EnvironmentChangeEvent to trigger message source reloading
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0

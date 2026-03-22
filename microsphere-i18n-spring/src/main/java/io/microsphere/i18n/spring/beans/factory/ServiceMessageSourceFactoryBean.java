@@ -46,7 +46,17 @@ import static org.springframework.util.StringUtils.hasText;
 import static org.springframework.util.StringUtils.parseLocale;
 
 /**
- * {@link ServiceMessageSource} {@link FactoryBean} Implementation
+ * {@link ServiceMessageSource} {@link FactoryBean} Implementation that creates and manages
+ * {@link ServiceMessageSource} beans based on Spring Factories configuration.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Typically auto-registered via @EnableI18n
+ *   @Bean
+ *   public ServiceMessageSourceFactoryBean myServiceMessageSource() {
+ *       return new ServiceMessageSourceFactoryBean("myapp");
+ *   }
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see EnableI18n
@@ -69,10 +79,21 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
 
     private int order;
 
+    /**
+     * Constructs with the given source identifier and lowest precedence order.
+     *
+     * @param source the source identifier
+     */
     public ServiceMessageSourceFactoryBean(String source) {
         this(source, LOWEST_PRECEDENCE);
     }
 
+    /**
+     * Constructs with the given source identifier and order.
+     *
+     * @param source the source identifier
+     * @param order  the order for bean sorting
+     */
     public ServiceMessageSourceFactoryBean(String source, int order) {
         this.source = source;
         setOrder(order);
@@ -133,6 +154,11 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         return order;
     }
 
+    /**
+     * Sets the order for this factory bean.
+     *
+     * @param order the order value
+     */
     public void setOrder(int order) {
         this.order = order;
     }

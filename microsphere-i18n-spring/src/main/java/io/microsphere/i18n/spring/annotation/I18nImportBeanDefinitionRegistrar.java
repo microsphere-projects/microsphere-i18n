@@ -52,7 +52,16 @@ import static org.springframework.context.support.AbstractApplicationContext.MES
 import static org.springframework.core.annotation.AnnotationAttributes.fromMap;
 
 /**
- * I18n {@link ImportBeanDefinitionRegistrar}
+ * I18n {@link ImportBeanDefinitionRegistrar} that registers i18n-related Spring beans
+ * when {@link EnableI18n} is present.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically invoked via @EnableI18n annotation
+ *   @EnableI18n(sources = {"common"})
+ *   @Configuration
+ *   public class AppConfig { }
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see EnableI18n

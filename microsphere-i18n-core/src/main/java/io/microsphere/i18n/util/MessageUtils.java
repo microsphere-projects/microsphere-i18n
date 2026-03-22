@@ -14,7 +14,19 @@ import static io.microsphere.util.StringUtils.isNotBlank;
 import static io.microsphere.util.StringUtils.substringBetween;
 
 /**
- * Message Utilities class
+ * Message Utilities class for resolving internationalized messages from message patterns.
+ * Message patterns use the format {@code {messageCode}} where the code is resolved
+ * via the global {@link ServiceMessageSource}.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Plain text returned as-is
+ *   assertEquals("a", MessageUtils.getLocalizedMessage("a"));
+ *   // Message code pattern resolved
+ *   assertEquals("测试-a", MessageUtils.getLocalizedMessage("{a}"));
+ *   // With locale and arguments
+ *   assertEquals("Hello,World", MessageUtils.getLocalizedMessage("{hello}", Locale.ENGLISH, "World"));
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
@@ -110,6 +122,19 @@ public abstract class MessageUtils {
         return localizedMessage;
     }
 
+    /**
+     * Resolves the message code from a message pattern by extracting the content between
+     * {@code {}} braces.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   String code = MessageUtils.resolveMessageCode("{hello}"); // returns "hello"
+     *   String noCode = MessageUtils.resolveMessageCode("plain"); // returns null
+     * }</pre>
+     *
+     * @param messagePattern the message pattern
+     * @return the resolved message code, or {@code null} if the pattern doesn't match
+     */
     public static String resolveMessageCode(String messagePattern) {
         String messageCode = substringBetween(messagePattern, MESSAGE_PATTERN_PREFIX, MESSAGE_PATTERN_SUFFIX);
         return messageCode;

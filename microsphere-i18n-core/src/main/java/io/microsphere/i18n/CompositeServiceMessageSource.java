@@ -23,6 +23,17 @@ import static java.util.Collections.unmodifiableSet;
 
 /**
  * The Composite {@link ServiceMessageSource} class, No thread safe.
+ * Delegates to a list of child {@link ServiceMessageSource} instances.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+ *   CompositeServiceMessageSource composite = new CompositeServiceMessageSource(
+ *       Arrays.asList(EmptyServiceMessageSource.INSTANCE, source));
+ *   composite.init();
+ *   String msg = composite.getMessage("a"); // "测试-a" (from the DefaultServiceMessageSource)
+ *   composite.destroy();
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see AbstractServiceMessageSource
@@ -37,10 +48,29 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
     private List<? extends ServiceMessageSource> serviceMessageSources;
 
+    /**
+     * Constructs an empty {@link CompositeServiceMessageSource}.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   CompositeServiceMessageSource composite = new CompositeServiceMessageSource();
+     * }</pre>
+     */
     public CompositeServiceMessageSource() {
         this.serviceMessageSources = emptyList();
     }
 
+    /**
+     * Constructs a {@link CompositeServiceMessageSource} with the given list of message sources.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   CompositeServiceMessageSource composite = new CompositeServiceMessageSource(
+     *       Arrays.asList(EmptyServiceMessageSource.INSTANCE, new DefaultServiceMessageSource("test")));
+     * }</pre>
+     *
+     * @param serviceMessageSources the list of {@link ServiceMessageSource} instances
+     */
     public CompositeServiceMessageSource(List<? extends ServiceMessageSource> serviceMessageSources) {
         setServiceMessageSources(serviceMessageSources);
     }
@@ -90,6 +120,11 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
                 unmodifiableSet(supportedLocales);
     }
 
+    /**
+     * Gets the default supported locales from the parent interface.
+     *
+     * @return default supported locales set
+     */
     public Set<Locale> getDefaultSupportedLocales() {
         return ReloadableResourceServiceMessageSource.super.getSupportedLocales();
     }
@@ -99,6 +134,16 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
         return ReloadableResourceServiceMessageSource.super.getSource();
     }
 
+    /**
+     * Sets and sorts the list of composited {@link ServiceMessageSource} instances.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   composite.setServiceMessageSources(Arrays.asList(source1, source2));
+     * }</pre>
+     *
+     * @param serviceMessageSources the list of {@link ServiceMessageSource} instances
+     */
     public void setServiceMessageSources(List<? extends ServiceMessageSource> serviceMessageSources) {
         List<ServiceMessageSource> newServiceMessageSources = new ArrayList<>(serviceMessageSources);
         sort(newServiceMessageSources);

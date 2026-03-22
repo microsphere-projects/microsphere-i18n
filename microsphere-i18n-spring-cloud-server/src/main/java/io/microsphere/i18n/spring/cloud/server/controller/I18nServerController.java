@@ -25,7 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * The REST-Controler for I18n server
+ * The REST Controller for I18n server that exposes a {@code /messages} endpoint
+ * to retrieve all i18n messages.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // GET /messages
+ *   // Returns a map of resource name -> message code -> message value
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see PropertySourcesServiceMessageSource
@@ -38,6 +45,17 @@ public class I18nServerController {
     private I18nEndpoint i18nEndpoint;
 
     @GetMapping("/messages")
+    /**
+     * Returns all localized resource messages from the {@link I18nEndpoint}.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   // GET /messages
+     *   // Response: {"resource_name": {"code": "message"}, ...}
+     * }</pre>
+     *
+     * @return map of resource name to message code-value pairs
+     */
     public Map<String, Map<String, String>> getMessages() {
         return i18nEndpoint.invoke();
     }
