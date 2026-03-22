@@ -16,7 +16,17 @@ import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
 
 /**
- * Default {@link ServiceMessageSource} Class
+ * Default {@link ServiceMessageSource} Class that loads i18n messages from classpath resources
+ * under {@code META-INF/i18n/{source}/}.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+ *   source.init();
+ *   assertEquals("测试-a", source.getMessage("a"));
+ *   assertEquals("Hello,World", source.getMessage("hello", Locale.ENGLISH, "World"));
+ *   source.destroy();
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
@@ -32,10 +42,21 @@ public class DefaultServiceMessageSource extends PropertiesResourceServiceMessag
     @Nonnull
     private final ClassLoader classLoader;
 
+    /**
+     * Constructs with the given source using the default class loader.
+     *
+     * @param source the source identifier
+     */
     public DefaultServiceMessageSource(String source) {
         this(source, null);
     }
 
+    /**
+     * Constructs with the given source and optional class loader.
+     *
+     * @param source      the source identifier
+     * @param classLoader the class loader to use, or {@code null} for the default
+     */
     public DefaultServiceMessageSource(String source, @Nullable ClassLoader classLoader) {
         super(source);
         this.classLoader = classLoader == null ? getDefaultClassLoader() : classLoader;
