@@ -15,12 +15,11 @@
  * limitations under the License.
  */
 
-package io.microsphere.i18n.spring.beans.factory.config;
+package io.microsphere.i18n.spring.web.servlet;
 
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
-import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
 import org.junit.Test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
