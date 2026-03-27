@@ -26,7 +26,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 
 /**
- * I18n Spring Boot Actuator Endpoint Auto-Configuration
+ * I18n Spring Boot Actuator Endpoint Auto-Configuration that registers the
+ * {@link I18nEndpoint} for monitoring and managing i18n messages.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Auto-configured when Spring Boot Actuator and i18n are both enabled
+ *   // Access via: GET /actuator/i18n
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see I18nEndpoint
@@ -41,6 +48,11 @@ public class I18nEndpointAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    /**
+     * Creates the {@link I18nEndpoint} bean.
+     *
+     * @return a new {@link I18nEndpoint} instance
+     */
     public I18nEndpoint i18nEndpoint() {
         return new I18nEndpoint();
     }

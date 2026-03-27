@@ -38,7 +38,15 @@ import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 
 /**
- * The Configuration Class for I18n Server
+ * The Configuration Class for I18n Server that discovers services via {@link DiscoveryClient}
+ * and builds {@link PropertySourcesServiceMessageSource} instances for each service.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically imported via @EnableI18nServer
+ *   // Creates a CompositeServiceMessageSource containing one
+ *   // PropertySourcesServiceMessageSource per discovered service
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see PropertySourcesServiceMessageSource
@@ -55,6 +63,11 @@ public class I18nServerConfiguration {
 
     @Bean
     @Lazy
+    /**
+     * Creates a lazy {@link CompositeServiceMessageSource} bean populated on application start.
+     *
+     * @return an empty {@link CompositeServiceMessageSource}
+     */
     public CompositeServiceMessageSource lazyCompositeServiceMessageSource() {
         return new CompositeServiceMessageSource();
     }

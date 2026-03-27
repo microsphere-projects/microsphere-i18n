@@ -14,7 +14,19 @@ import static org.springframework.util.StringUtils.hasText;
 import static org.springframework.web.context.request.RequestContextHolder.getRequestAttributes;
 
 /**
- * HTTP Header "Accept-Language" {@link RequestInterceptor}
+ * HTTP Header "Accept-Language" {@link RequestInterceptor} that propagates the
+ * {@code Accept-Language} header from the current HTTP request to Feign client requests.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Register as a Feign RequestInterceptor bean
+ *   @Bean
+ *   public AcceptLanguageHeaderRequestInterceptor acceptLanguageInterceptor() {
+ *       return new AcceptLanguageHeaderRequestInterceptor();
+ *   }
+ *   // The interceptor automatically copies the Accept-Language header
+ *   // from the incoming request to outgoing Feign requests
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see AcceptHeaderLocaleResolver
