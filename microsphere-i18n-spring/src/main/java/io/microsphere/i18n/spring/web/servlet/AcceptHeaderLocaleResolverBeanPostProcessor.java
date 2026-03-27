@@ -71,7 +71,9 @@ public class AcceptHeaderLocaleResolverBeanPostProcessor extends GenericBeanPost
         Set<Locale> supportedLocales = serviceMessageSource.getSupportedLocales();
         acceptHeaderLocaleResolver.setDefaultLocale(defaultLocale);
         acceptHeaderLocaleResolver.setSupportedLocales(ofList(supportedLocales));
-        logger.trace("AcceptHeaderLocaleResolver Bean associated with default Locale : '{}' , list of supported Locales : {}", defaultLocale, supportedLocales);
+        if (logger.isTraceEnabled()) {
+            logger.trace("AcceptHeaderLocaleResolver Bean associated with default Locale : '{}' , list of supported Locales : {}", defaultLocale, supportedLocales);
+        }
     }
 
     @Override

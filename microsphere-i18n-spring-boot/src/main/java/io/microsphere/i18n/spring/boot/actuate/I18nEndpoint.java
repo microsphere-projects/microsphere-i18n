@@ -269,7 +269,9 @@ public class I18nEndpoint {
     public Map<String, Object> addMessage(String source, Locale locale, String code, String message) throws IOException {
         PropertySourcesServiceMessageSource serviceMessageSource = getPropertySourcesServiceMessageSource(source);
         if (serviceMessageSource == null) {
-            logger.trace("No PropertySourcesServiceMessageSource Bean was found by the source : '{}'", source);
+            if (logger.isTraceEnabled()) {
+                logger.trace("No PropertySourcesServiceMessageSource Bean was found by the source : '{}'", source);
+            }
             return emptyMap();
         }
         Properties properties = loadProperties(serviceMessageSource, locale);
