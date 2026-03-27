@@ -20,20 +20,19 @@
 
     <properties>
         <!-- BOM versions -->
-        <microsphere-spring-cloud.version>0.2.5</microsphere-spring-cloud.version>
-        <testcontainers.version>2.0.1</testcontainers.version>
-        <junit.version>6.0.1</junit.version>
+        <microsphere-spring-cloud.version>0.2.6</microsphere-spring-cloud.version>
+        <testcontainers.version>2.0.4</testcontainers.version>
+        <!-- Testing -->
+        <junit-jupiter.version>6.0.3</junit-jupiter.version>
     </properties>
 
     <dependencyManagement>
-
         <dependencies>
-
             <!-- JUnit BOM -->
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>${junit.version}</version>
+                <version>${junit-jupiter.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -84,7 +83,6 @@
             </dependency>
 
         </dependencies>
-
     </dependencyManagement>
 
     <profiles>
@@ -104,16 +102,16 @@
             <properties>
                 <spring-boot.version>3.3.13</spring-boot.version>
                 <spring-cloud.version>2023.0.6</spring-cloud.version>
-                <spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>
+                <spring-cloud-alibaba.version>2023.0.3.4</spring-cloud-alibaba.version>
             </properties>
         </profile>
 
         <profile>
             <id>spring-cloud-2024</id>
             <properties>
-                <spring-boot.version>3.4.7</spring-boot.version>
-                <spring-cloud.version>2024.0.2</spring-cloud.version>
-                <spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>
+                <spring-boot.version>3.4.12</spring-boot.version>
+                <spring-cloud.version>2024.0.3</spring-cloud.version>
+                <spring-cloud-alibaba.version>2023.0.3.4</spring-cloud-alibaba.version>
             </properties>
         </profile>
 
@@ -123,9 +121,18 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <spring-boot.version>3.5.0</spring-boot.version>
-                <spring-cloud.version>2025.0.0</spring-cloud.version>
-                <spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>
+                <spring-boot.version>3.5.8</spring-boot.version>
+                <spring-cloud.version>2025.0.1</spring-cloud.version>
+                <spring-cloud-alibaba.version>2025.0.0.0</spring-cloud-alibaba.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>spring-cloud-2025.1</id>
+            <properties>
+                <spring-boot.version>4.0.2</spring-boot.version>
+                <spring-cloud.version>2025.1.1</spring-cloud.version>
+                <spring-cloud-alibaba.version>2025.1.0.0</spring-cloud-alibaba.version>
             </properties>
         </profile>
 
@@ -148,5 +155,4 @@
         </profile>
 
     </profiles>
-
 </project>
