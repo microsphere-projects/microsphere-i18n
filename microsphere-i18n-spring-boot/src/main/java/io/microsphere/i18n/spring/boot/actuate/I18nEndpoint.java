@@ -55,7 +55,16 @@ import static java.util.Collections.emptyMap;
 import static java.util.Collections.singleton;
 
 /**
- * I18n Spring Boot Actuator Endpoint
+ * I18n Spring Boot Actuator Endpoint providing read and write operations
+ * for internationalized messages.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Access via Spring Boot Actuator:
+ *   // GET /actuator/i18n              - List all messages
+ *   // GET /actuator/i18n/{code}       - Get message by code
+ *   // POST /actuator/i18n             - Add a new message
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0

@@ -35,7 +35,17 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 import static org.springframework.util.StringUtils.hasText;
 
 /**
- * Spring {@link PropertySources} {@link ServiceMessageSource}
+ * Spring {@link PropertySources} {@link ServiceMessageSource} that loads i18n messages
+ * from Spring {@link Environment} properties and supports runtime reloading.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   PropertySourcesServiceMessageSource source = new PropertySourcesServiceMessageSource("test");
+ *   source.setEnvironment(environment);
+ *   source.setSupportedLocales(Arrays.asList(Locale.getDefault(), Locale.ENGLISH));
+ *   source.init();
+ *   String propertyName = source.getPropertyName(Locale.ENGLISH);
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
@@ -45,6 +55,11 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
 
     private Environment environment;
 
+    /**
+     * Constructs with the given source identifier.
+     *
+     * @param source the source identifier
+     */
     public PropertySourcesServiceMessageSource(String source) {
         super(source);
     }
@@ -82,18 +97,36 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
         return hasText(propertiesContent) ? ofList(new StringReader(propertiesContent)) : emptyList();
     }
 
+    /**
+     * Gets the properties content string from the Spring {@link Environment}.
+     *
+     * @param resource the resource identifier
+     * @return the properties content, or {@code null} if not found
+     */
     protected String getPropertiesContent(String resource) {
         String propertyName = getPropertyName(resource);
         String propertiesContent = environment.getProperty(propertyName);
         return propertiesContent;
     }
 
+    /**
+     * Gets the property name for the specified {@link Locale}.
+     *
+     * @param locale the target {@link Locale}
+     * @return the property name
+     */
     public String getPropertyName(Locale locale) {
         String resource = getResource(locale);
         String propertyName = getPropertyName(resource);
         return propertyName;
     }
 
+    /**
+     * Gets the property name for the specified resource.
+     *
+     * @param resource the resource identifier
+     * @return the property name
+     */
     public String getPropertyName(String resource) {
         String propertyName = resource;
         return propertyName;

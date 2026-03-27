@@ -24,7 +24,13 @@ import java.util.Locale;
 import static org.springframework.context.i18n.LocaleContextHolder.getLocaleContext;
 
 /**
- * The utilities class for {@link Locale} in the Spring
+ * The utilities class for {@link Locale} in the Spring framework.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   Locale locale = LocaleUtils.getLocaleFromLocaleContext();
+ *   // returns the Locale from the current thread's LocaleContext, or null
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see LocaleContext

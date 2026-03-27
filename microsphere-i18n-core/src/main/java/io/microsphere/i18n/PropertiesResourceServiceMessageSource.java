@@ -17,13 +17,28 @@ import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
 
 /**
- * {@link Properties} Resource {@link ServiceMessageSource} Class
+ * {@link Properties} Resource {@link ServiceMessageSource} Class that loads messages
+ * from Java {@link Properties} files.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Typically used via DefaultServiceMessageSource
+ *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+ *   source.init();
+ *   Properties props = source.loadAllProperties(Locale.ENGLISH);
+ *   // props contains {"test.a": "test-a", "test.hello": "Hello,{}"}
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
 public abstract class PropertiesResourceServiceMessageSource extends AbstractResourceServiceMessageSource {
 
+    /**
+     * Constructs with the given source identifier.
+     *
+     * @param source the source identifier
+     */
     public PropertiesResourceServiceMessageSource(String source) {
         super(source);
     }
@@ -45,12 +60,31 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
     }
 
     @Nullable
+    /**
+     * Loads all properties for the specified {@link Locale}.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   Properties props = source.loadAllProperties(Locale.ENGLISH);
+     * }</pre>
+     *
+     * @param locale the target {@link Locale}
+     * @return the loaded properties, or {@code null} if no resource found
+     * @throws IOException if an I/O error occurs
+     */
     public Properties loadAllProperties(Locale locale) throws IOException {
         String resource = getResource(locale);
         return loadAllProperties(resource);
     }
 
     @Nullable
+    /**
+     * Loads all properties from the specified resource.
+     *
+     * @param resource the resource path
+     * @return the loaded properties, or {@code null} if no resource found
+     * @throws IOException if an I/O error occurs
+     */
     public Properties loadAllProperties(String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(resource);
         logger.trace("Source '{}' loads {} Properties Resources['{}']", this.source, propertiesResources.size(), resource);

@@ -27,7 +27,14 @@ import static io.microsphere.constants.SymbolConstants.SPACE;
 import static io.microsphere.util.ArrayUtils.arrayToString;
 
 /**
- * Service Message Exception
+ * Service Message Exception that resolves localized messages using {@link MessageUtils}.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   ServiceMessageException e = new ServiceMessageException("{hello}", "World");
+ *   assertEquals("{hello}", e.getMessage());
+ *   assertEquals("您好,World", e.getLocalizedMessage()); // when Simplified Chinese is default
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
@@ -38,6 +45,17 @@ public class ServiceMessageException extends RuntimeException {
 
     private final Object[] args;
 
+    /**
+     * Constructs a {@link ServiceMessageException} with the given message pattern and arguments.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   throw new ServiceMessageException("{hello}", "World");
+     * }</pre>
+     *
+     * @param message the message or message pattern (e.g. "{hello}")
+     * @param args    the arguments for the message pattern
+     */
     public ServiceMessageException(String message, Object... args) {
         this.message = message;
         this.args = args;

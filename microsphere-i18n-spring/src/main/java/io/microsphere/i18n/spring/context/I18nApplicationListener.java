@@ -35,7 +35,17 @@ import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
 
 /**
- * Internationalization {@link ApplicationListener}
+ * Internationalization {@link ApplicationListener} that initializes the global
+ * {@link ServiceMessageSource} on context refresh and destroys it on context close.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically registered via @EnableI18n
+ *   // Listens for ContextRefreshedEvent, ContextClosedEvent, and PropertySourcesChangedEvent
+ *   @EnableI18n
+ *   @Configuration
+ *   public class AppConfig { }
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see SmartApplicationListener

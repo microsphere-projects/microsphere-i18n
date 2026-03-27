@@ -40,6 +40,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * The feature could be disabled by the Spring property if
  * {@link I18nConstants#ENABLED_PROPERTY_NAME "microsphere.i18n.enabled"} is <code>false</code>
  *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   @EnableI18n(sources = {"common", "myapp"}, exposeMessageSource = true)
+ *   @Configuration
+ *   public class I18nConfig { }
+ * }</pre>
+ *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see I18nImportBeanDefinitionRegistrar
  * @see ServiceMessageSourceFactoryBean
