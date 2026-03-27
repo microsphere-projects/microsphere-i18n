@@ -4,6 +4,7 @@ import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,6 +34,7 @@ import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
  * @see ServiceMessageSourceFactoryBean
  * @since 1.0.0
  */
+@SpringLoggingTest
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {
         TestSourceEnableI18nConfiguration.class

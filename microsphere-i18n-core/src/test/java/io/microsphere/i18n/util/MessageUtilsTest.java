@@ -2,6 +2,7 @@ package io.microsphere.i18n.util;
 
 import io.microsphere.i18n.AbstractI18nTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
+@SpringLoggingTest
 class MessageUtilsTest extends AbstractI18nTest {
 
     @BeforeEach

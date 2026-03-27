@@ -18,6 +18,7 @@
 package io.microsphere.i18n;
 
 
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see CompositeServiceMessageSource
  * @since 1.0.0
  */
+@SpringLoggingTest
 class CompositeServiceMessageSourceTest {
 
     private CompositeServiceMessageSource compositeServiceMessageSource;

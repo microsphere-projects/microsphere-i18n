@@ -4,6 +4,7 @@ import com.jayway.jsonpath.DocumentContext;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.boot.actuate.autoconfigure.I18nEndpointAutoConfiguration;
 import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @see I18nEndpoint
  * @since 1.0.0
  */
+@SpringLoggingTest
 @SpringBootTest(
         classes = I18nEndpointTest.EndpointConfiguration.class,
         properties = {

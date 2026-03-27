@@ -20,6 +20,7 @@ package io.microsphere.i18n.spring.web.servlet;
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
@@ -36,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see AcceptHeaderLocaleResolverBeanPostProcessor
  * @since 1.0.0
  */
+@SpringLoggingTest
 class AcceptHeaderLocaleResolverBeanPostProcessorTest {
 
     @Test
