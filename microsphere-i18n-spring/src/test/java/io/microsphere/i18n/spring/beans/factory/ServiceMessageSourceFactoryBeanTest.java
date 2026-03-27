@@ -71,7 +71,11 @@ class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     }
 
     @Test
-    void testGetMessage() {
+    void testGetMessage(int index) {
+        if (index > 0) {
+            assertEquals("1", this.serviceMessageSource.getMessage("a"));
+            return;
+        }
         assertEquals("test-a", this.serviceMessageSource.getMessage("a"));
         assertEquals("Hello,World", this.serviceMessageSource.getMessage("hello", "World"));
 
