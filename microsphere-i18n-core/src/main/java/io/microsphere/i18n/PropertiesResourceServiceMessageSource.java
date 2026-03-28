@@ -59,7 +59,6 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
         return messages == null ? emptyMap() : unmodifiableMap(messages);
     }
 
-    @Nullable
     /**
      * Loads all properties for the specified {@link Locale}.
      *
@@ -72,12 +71,12 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
      * @return the loaded properties, or {@code null} if no resource found
      * @throws IOException if an I/O error occurs
      */
+    @Nullable
     public Properties loadAllProperties(Locale locale) throws IOException {
         String resource = getResource(locale);
         return loadAllProperties(resource);
     }
 
-    @Nullable
     /**
      * Loads all properties from the specified resource.
      *
@@ -85,6 +84,7 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
      * @return the loaded properties, or {@code null} if no resource found
      * @throws IOException if an I/O error occurs
      */
+    @Nullable
     public Properties loadAllProperties(String resource) throws IOException {
         List<Reader> propertiesResources = loadAllPropertiesResources(resource);
         logger.trace("Source '{}' loads {} Properties Resources['{}']", this.source, propertiesResources.size(), resource);
