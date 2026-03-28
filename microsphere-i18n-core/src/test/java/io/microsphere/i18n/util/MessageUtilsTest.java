@@ -2,8 +2,9 @@ package io.microsphere.i18n.util;
 
 import io.microsphere.i18n.AbstractI18nTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
-import org.junit.Before;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
 import static io.microsphere.i18n.util.MessageUtils.MESSAGE_PATTERN_PREFIX;
@@ -11,7 +12,7 @@ import static io.microsphere.i18n.util.MessageUtils.MESSAGE_PATTERN_SUFFIX;
 import static io.microsphere.i18n.util.MessageUtils.SOURCE_SEPARATOR;
 import static io.microsphere.i18n.util.MessageUtils.getLocalizedMessage;
 import static java.util.Locale.ENGLISH;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * {@link MessageUtils} Test
@@ -19,10 +20,11 @@ import static org.junit.Assert.assertEquals;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class MessageUtilsTest extends AbstractI18nTest {
+@SpringLoggingTest
+class MessageUtilsTest extends AbstractI18nTest {
 
-    @Before
-    public void before() {
+    @BeforeEach
+    protected void before() {
         super.before();
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
         serviceMessageSource.init();
@@ -30,14 +32,14 @@ public class MessageUtilsTest extends AbstractI18nTest {
     }
 
     @Test
-    public void testConstants() {
+    void testConstants() {
         assertEquals("{", MESSAGE_PATTERN_PREFIX);
         assertEquals("}", MESSAGE_PATTERN_SUFFIX);
         assertEquals(".", SOURCE_SEPARATOR);
     }
 
     @Test
-    public void testGetLocalizedMessage() {
+    void testGetLocalizedMessage() {
         // Testing Simplified Chinese
         // null
         assertEquals(null, getLocalizedMessage(null));

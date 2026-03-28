@@ -24,7 +24,16 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 
 /**
- * I18n Auto-Configuration
+ * I18n Auto-Configuration for Spring Boot that automatically enables i18n support
+ * and registers an application-specific {@link ServiceMessageSourceFactoryBean}.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Auto-configured when microsphere.i18n.enabled=true (default)
+ *   // In application.properties:
+ *   // spring.application.name=myapp
+ *   // microsphere.i18n.enabled=true
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
@@ -33,6 +42,12 @@ import org.springframework.context.annotation.Bean;
 @EnableI18n
 public class I18nAutoConfiguration {
 
+    /**
+     * Creates a {@link ServiceMessageSourceFactoryBean} for the application-specific i18n source.
+     *
+     * @param applicationName the Spring application name
+     * @return the factory bean
+     */
     @Bean
     @ConditionalOnProperty(name = "spring.application.name")
     public ServiceMessageSourceFactoryBean applicationServiceMessageSource(

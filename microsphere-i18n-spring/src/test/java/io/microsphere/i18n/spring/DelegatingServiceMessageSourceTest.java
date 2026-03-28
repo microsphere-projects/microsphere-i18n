@@ -19,10 +19,11 @@ package io.microsphere.i18n.spring;
 
 
 import io.microsphere.i18n.EmptyServiceMessageSource;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.Test;
 
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * {@link DelegatingServiceMessageSource} Test
@@ -31,10 +32,11 @@ import static org.junit.Assert.assertNull;
  * @see DelegatingServiceMessageSource
  * @since 1.0.0
  */
-public class DelegatingServiceMessageSourceTest {
+@SpringLoggingTest
+class DelegatingServiceMessageSourceTest {
 
     @Test
-    public void test() {
+    void test() {
         testInSpringContainer(context -> {
             DelegatingServiceMessageSource delegatingServiceMessageSource = context.getBean(DelegatingServiceMessageSource.class);
             assertNull(delegatingServiceMessageSource.getMessage("test"));

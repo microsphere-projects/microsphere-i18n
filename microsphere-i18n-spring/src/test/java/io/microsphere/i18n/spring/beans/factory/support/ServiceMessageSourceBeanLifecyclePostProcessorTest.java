@@ -20,15 +20,15 @@ package io.microsphere.i18n.spring.beans.factory.support;
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 
 import java.util.function.Consumer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.beans.factory.support.AbstractBeanDefinition.INFER_METHOD;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.rootBeanDefinition;
 
@@ -39,17 +39,17 @@ import static org.springframework.beans.factory.support.BeanDefinitionBuilder.ro
  * @see ServiceMessageSourceBeanLifecyclePostProcessor
  * @since 1.0.0
  */
-public class ServiceMessageSourceBeanLifecyclePostProcessorTest {
+class ServiceMessageSourceBeanLifecyclePostProcessorTest {
 
     private ServiceMessageSourceBeanLifecyclePostProcessor postProcessor;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         this.postProcessor = new ServiceMessageSourceBeanLifecyclePostProcessor();
     }
 
     @Test
-    public void testPostProcessMergedBeanDefinition() {
+    void testPostProcessMergedBeanDefinition() {
         testPostProcessMergedBeanDefinition(ServiceMessageSource.class, beanDefinition -> {
             assertEquals("init", beanDefinition.getInitMethodName());
             assertEquals("destroy", beanDefinition.getDestroyMethodName());

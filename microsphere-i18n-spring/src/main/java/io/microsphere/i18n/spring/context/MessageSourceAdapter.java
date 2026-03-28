@@ -17,7 +17,16 @@ import java.util.Locale;
 import static io.microsphere.spring.beans.BeanUtils.getSortedBeans;
 
 /**
- * Spring {@link MessageSource} Adapter
+ * Spring {@link MessageSource} Adapter that delegates message resolution to the
+ * underlying {@link ServiceMessageSource}, falling back to other {@link MessageSource} beans.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically registered when @EnableI18n(exposeMessageSource = true)
+ *   @Autowired
+ *   private MessageSource messageSource; // This is the MessageSourceAdapter
+ *   String msg = messageSource.getMessage("hello", new Object[]{"World"}, Locale.ENGLISH);
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see EnableI18n#exposeMessageSource()
@@ -31,6 +40,11 @@ public class MessageSourceAdapter implements MessageSource, SmartInitializingSin
 
     private BeanFactory beanFactory;
 
+    /**
+     * Constructs the adapter with the given {@link ServiceMessageSource}.
+     *
+     * @param serviceMessageSource the underlying {@link ServiceMessageSource}
+     */
     public MessageSourceAdapter(ServiceMessageSource serviceMessageSource) {
         this.serviceMessageSource = serviceMessageSource;
         this.defaultMessageSources = new ArrayList<>(2);

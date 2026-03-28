@@ -18,11 +18,11 @@
 package io.microsphere.i18n;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.Sets.ofSet;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * {@link ResourceServiceMessageSource} Test
@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
  * @see ResourceServiceMessageSource
  * @since 1.0.0
  */
-public class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
+class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
 
     @Override
     protected ResourceServiceMessageSource createServiceMessageSource() {
@@ -39,7 +39,7 @@ public class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
     }
 
     @Test
-    public void testResources() {
+    void testResources() {
         ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         Iterable<String> resources = ofSet(TEST_SOURCE);
         serviceMessageSource.initializeResource(TEST_SOURCE);
@@ -47,7 +47,7 @@ public class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
     }
 
     @Test
-    public void testGetEncoding() {
+    void testGetEncoding() {
         ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertEquals(UTF_8, serviceMessageSource.getEncoding());
     }

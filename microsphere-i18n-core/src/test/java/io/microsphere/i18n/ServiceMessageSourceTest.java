@@ -18,18 +18,18 @@
 package io.microsphere.i18n;
 
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.ServiceMessageSource.COMMON_SOURCE;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * {@link ServiceMessageSource} Test
@@ -38,7 +38,7 @@ import static org.junit.Assert.assertSame;
  * @see ServiceMessageSource
  * @since 1.0.0
  */
-public class ServiceMessageSourceTest extends AbstractI18nTest {
+class ServiceMessageSourceTest extends AbstractI18nTest {
 
     private ServiceMessageSource serviceMessageSource;
 
@@ -50,50 +50,50 @@ public class ServiceMessageSourceTest extends AbstractI18nTest {
         return (T) serviceMessageSource;
     }
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         this.serviceMessageSource = createServiceMessageSource();
         this.serviceMessageSource.init();
     }
 
-    @After
-    public void tearDown() {
+    @AfterEach
+    void tearDown() {
         this.serviceMessageSource.destroy();
     }
 
     @Test
-    public void testConstants() {
+    void testConstants() {
         assertSame("common", COMMON_SOURCE);
     }
 
     @Test
-    public void testGetMessage() {
+    void testGetMessage() {
         assertNull(this.serviceMessageSource.getMessage("code"));
         assertNull(this.serviceMessageSource.getMessage("code", ENGLISH));
     }
 
     @Test
-    public void testGetLocale() {
+    void testGetLocale() {
         assertSame(getDefault(), this.serviceMessageSource.getLocale());
     }
 
     @Test
-    public void testGetDefaultLocale() {
+    void testGetDefaultLocale() {
         assertSame(getDefault(), this.serviceMessageSource.getDefaultLocale());
     }
 
     @Test
-    public void testGetSupportedLocales() {
+    void testGetSupportedLocales() {
         assertEquals(ofSet(getDefault(), ENGLISH), this.serviceMessageSource.getSupportedLocales());
     }
 
     @Test
-    public void testGetSource() {
+    void testGetSource() {
         assertEquals(COMMON_SOURCE, this.serviceMessageSource.getSource());
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         assertNotNull(this.serviceMessageSource.toString());
     }
 }

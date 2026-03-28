@@ -34,7 +34,16 @@ import static io.microsphere.util.ClassUtils.cast;
 import static org.springframework.context.support.AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME;
 
 /**
- * The utilities class for i18n Beans
+ * The utilities class for i18n Beans, providing methods to retrieve i18n-related
+ * beans from a {@link BeanFactory}.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   BeanFactory beanFactory = applicationContext;
+ *   ServiceMessageSource source = I18nBeanUtils.getServiceMessageSource(beanFactory);
+ *   MessageSource messageSource = I18nBeanUtils.getMessageSource(beanFactory);
+ *   MessageSourceAdapter adapter = I18nBeanUtils.getMessageSourceAdapter(beanFactory);
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see EnableI18n

@@ -31,8 +31,17 @@ import java.util.Set;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.reloadAll;
 
 /**
- * * An {@link ApplicationListener} of {@link EnvironmentChangeEvent} to reload
- * {@link ServiceMessageSource} dynamically at the runtime.
+ * An {@link ApplicationListener} of {@link EnvironmentChangeEvent} to reload
+ * {@link ServiceMessageSource} dynamically at runtime when Spring Cloud
+ * environment properties change.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically imported via I18nCloudAutoConfiguration
+ *   // When an EnvironmentChangeEvent is fired (e.g. via /actuator/refresh),
+ *   // this listener reloads all PropertySourcesServiceMessageSource beans
+ *   // whose property names match the changed keys.
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see PropertySourcesServiceMessageSource

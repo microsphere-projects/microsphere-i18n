@@ -1,15 +1,15 @@
 package io.microsphere.i18n;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * {@link EmptyServiceMessageSource} Test
@@ -18,46 +18,46 @@ import static org.junit.Assert.assertNull;
  * @see EmptyServiceMessageSource
  * @since 1.0.0
  */
-public class EmptyServiceMessageSourceTest extends AbstractI18nTest {
+class EmptyServiceMessageSourceTest extends AbstractI18nTest {
 
     private EmptyServiceMessageSource serviceMessageSource = INSTANCE;
 
-    @Before
-    public void before() {
+    @BeforeEach
+    protected void before() {
         super.before();
         serviceMessageSource.init();
     }
 
-    @After
-    public void after() {
+    @AfterEach
+    protected void after() {
         super.after();
         serviceMessageSource.destroy();
     }
 
     @Test
-    public void testGetMessage() {
+    void testGetMessage() {
         assertNull(serviceMessageSource.getMessage(TEST_SOURCE));
         assertNull(serviceMessageSource.getMessage(TEST_SOURCE, "a"));
         assertNull(serviceMessageSource.getMessage(TEST_SOURCE, ENGLISH, "a"));
     }
 
     @Test
-    public void testGetSource() {
+    void testGetSource() {
         assertEquals("Empty", serviceMessageSource.getSource());
     }
 
     @Test
-    public void testGetDefaultLocale() {
+    void testGetDefaultLocale() {
         assertEquals(getDefault(), serviceMessageSource.getDefaultLocale());
     }
 
     @Test
-    public void testGetLocale() {
+    void testGetLocale() {
         assertEquals(getDefault(), serviceMessageSource.getLocale());
     }
 
     @Test
-    public void testGetSupportedLocales() {
+    void testGetSupportedLocales() {
         assertEquals(ofSet(getDefault(), ENGLISH), serviceMessageSource.getSupportedLocales());
     }
 }

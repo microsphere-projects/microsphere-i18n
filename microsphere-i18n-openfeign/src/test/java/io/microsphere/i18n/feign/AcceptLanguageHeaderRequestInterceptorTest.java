@@ -1,16 +1,17 @@
 package io.microsphere.i18n.feign;
 
 import feign.RequestTemplate;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.i18n.feign.AcceptLanguageHeaderRequestInterceptor.HEADER_NAME;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.web.context.request.RequestContextHolder.resetRequestAttributes;
 import static org.springframework.web.context.request.RequestContextHolder.setRequestAttributes;
 
@@ -20,7 +21,8 @@ import static org.springframework.web.context.request.RequestContextHolder.setRe
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class AcceptLanguageHeaderRequestInterceptorTest {
+@SpringLoggingTest
+class AcceptLanguageHeaderRequestInterceptorTest {
 
     private AcceptLanguageHeaderRequestInterceptor requestInterceptor;
 
@@ -28,21 +30,21 @@ public class AcceptLanguageHeaderRequestInterceptorTest {
 
     private MockHttpServletRequest request;
 
-    @Before
-    public void before() {
+    @BeforeEach
+    void before() {
         this.request = new MockHttpServletRequest();
         this.requestInterceptor = new AcceptLanguageHeaderRequestInterceptor();
         this.requestTemplate = new RequestTemplate();
         setRequestAttributes(new ServletRequestAttributes(request));
     }
 
-    @After
-    public void after() {
+    @AfterEach
+    void after() {
         resetRequestAttributes();
     }
 
     @Test
-    public void testApply() {
+    void testApply() {
         this.request.addHeader(HEADER_NAME, "en");
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(requestTemplate);
@@ -50,14 +52,14 @@ public class AcceptLanguageHeaderRequestInterceptorTest {
     }
 
     @Test
-    public void testApplyWithoutAcceptLanguageHeader() {
+    void testApplyWithoutAcceptLanguageHeader() {
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(requestTemplate);
         assertTrue(requestTemplate.headers().isEmpty());
     }
 
     @Test
-    public void testApplyNoWebMvc() {
+    void testApplyNoWebMvc() {
         resetRequestAttributes();
         assertTrue(requestTemplate.headers().isEmpty());
         requestInterceptor.apply(new RequestTemplate());

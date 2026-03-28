@@ -18,7 +18,17 @@ import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.BeanUtils.getSortedBeans;
 
 /**
- * The delegating {@link ServiceMessageSource} class is composited by the Spring {@link ServiceMessageSource} beans
+ * The delegating {@link ServiceMessageSource} class composited by Spring {@link ServiceMessageSource} beans.
+ * Registered as the primary {@link ServiceMessageSource} bean and auto-discovers all other
+ * {@link ServiceMessageSource} beans in the {@link BeanFactory}.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically configured via @EnableI18n
+ *   @EnableI18n(sources = {"common", "test"})
+ *   public class AppConfig { }
+ *   // The DelegatingServiceMessageSource is registered as "serviceMessageSource" bean
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see AbstractServiceMessageSource
@@ -51,7 +61,9 @@ public class DelegatingServiceMessageSource extends CompositeServiceMessageSourc
     private List<ServiceMessageSource> findServiceMessageSourceBeans() {
         List<ServiceMessageSource> serviceMessageSources = new ArrayList<>(getSortedBeans(this.beanFactory, ServiceMessageSource.class));
         serviceMessageSources.remove(this);
-        logger.trace("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
+        if (logger.isTraceEnabled()) {
+            logger.trace("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
+        }
         return serviceMessageSources;
     }
 

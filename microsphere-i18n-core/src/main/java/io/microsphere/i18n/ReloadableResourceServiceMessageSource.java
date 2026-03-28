@@ -1,7 +1,17 @@
 package io.microsphere.i18n;
 
 /**
- * Reloadable {@link ResourceServiceMessageSource}
+ * Reloadable {@link ResourceServiceMessageSource} that supports dynamic reloading
+ * of internationalized message resources at runtime.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+ *   source.init();
+ *   if (source.canReload("META-INF/i18n/test/i18n_messages_en.properties")) {
+ *       source.reload("META-INF/i18n/test/i18n_messages_en.properties");
+ *   }
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
