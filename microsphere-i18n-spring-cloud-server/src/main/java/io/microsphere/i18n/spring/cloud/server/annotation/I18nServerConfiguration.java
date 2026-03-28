@@ -61,13 +61,13 @@ public class I18nServerConfiguration {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    @Bean
-    @Lazy
     /**
      * Creates a lazy {@link CompositeServiceMessageSource} bean populated on application start.
      *
      * @return an empty {@link CompositeServiceMessageSource}
      */
+    @Bean
+    @Lazy
     public CompositeServiceMessageSource lazyCompositeServiceMessageSource() {
         return new CompositeServiceMessageSource();
     }
