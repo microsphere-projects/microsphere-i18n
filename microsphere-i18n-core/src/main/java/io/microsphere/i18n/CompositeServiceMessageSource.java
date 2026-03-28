@@ -150,7 +150,9 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
 
         List<? extends ServiceMessageSource> oldServiceMessageSources = this.serviceMessageSources;
         this.serviceMessageSources = newServiceMessageSources;
-        logger.trace("The ServiceMessageSource original: '{}' , sorted : '{}'", serviceMessageSources, newServiceMessageSources);
+        if (logger.isTraceEnabled()) {
+            logger.trace("The ServiceMessageSource original: '{}' , sorted : '{}'", serviceMessageSources, newServiceMessageSources);
+        }
 
         if (oldServiceMessageSources != null) {
             oldServiceMessageSources.clear();
@@ -162,7 +164,9 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
         iterate(ReloadableResourceServiceMessageSource.class, reloadableResourceServiceMessageSource -> {
             if (reloadableResourceServiceMessageSource.canReload(changedResources)) {
                 reloadableResourceServiceMessageSource.reload(changedResources);
-                logger.trace("The '{}' reloaded the changed resources: {}", reloadableResourceServiceMessageSource, changedResources);
+                if (logger.isTraceEnabled()) {
+                    logger.trace("The '{}' reloaded the changed resources: {}", reloadableResourceServiceMessageSource, changedResources);
+                }
             }
         });
     }

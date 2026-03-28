@@ -136,7 +136,9 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
      */
     public final void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
-        this.logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
+        }
     }
 
     /**
@@ -151,7 +153,9 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
      */
     public final void setSupportedLocales(Collection<Locale> supportedLocales) {
         this.supportedLocales = resolveHierarchicalLocales(supportedLocales);
-        this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
+        }
     }
 
     /**
