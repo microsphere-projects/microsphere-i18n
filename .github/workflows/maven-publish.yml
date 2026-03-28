@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
     inputs:
       revision:
-        description: 'The version to publish for Spring Cloud Hoxton+ and JDK 17+'
+        description: 'The version to publish for Spring Cloud Hoxton+ and JDK 8+'
         required: true
         default: '${major}.${minor}.${patch}'
 
