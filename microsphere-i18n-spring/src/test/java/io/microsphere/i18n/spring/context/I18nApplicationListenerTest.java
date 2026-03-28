@@ -22,7 +22,7 @@ import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.spring.config.env.event.PropertySourcesChangedEvent;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.env.MockPropertySource;
 
 import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
@@ -30,8 +30,8 @@ import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSou
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
 import static io.microsphere.spring.config.env.event.PropertySourceChangedEvent.added;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * {@link I18nApplicationListener} Test
@@ -40,10 +40,10 @@ import static org.junit.Assert.assertSame;
  * @see I18nApplicationListener
  * @since 1.0.0
  */
-public class I18nApplicationListenerTest extends AbstractSpringTest {
+class I18nApplicationListenerTest extends AbstractSpringTest {
 
     @Test
-    public void test() {
+    void test() {
         testInSpringContainer((context, environment) -> {
             ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
             assertSame(serviceMessageSource(), serviceMessageSource);

@@ -19,7 +19,17 @@ import static io.microsphere.util.Assert.assertNotNull;
 import static io.microsphere.util.StringUtils.isBlank;
 
 /**
- * Abstract {@link ServiceMessageSource}
+ * Abstract {@link ServiceMessageSource} providing base implementation for message resolution,
+ * locale management, and message code resolution.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Typically used via concrete subclass such as DefaultServiceMessageSource
+ *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+ *   source.setSupportedLocales(Arrays.asList(Locale.SIMPLIFIED_CHINESE, Locale.ENGLISH));
+ *   source.init();
+ *   String msg = source.getMessage("hello", Locale.ENGLISH, "World"); // "Hello,World"
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
@@ -36,6 +46,16 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
 
     private Locale defaultLocale;
 
+    /**
+     * Constructs an {@link AbstractServiceMessageSource} with the given source name.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+     * }</pre>
+     *
+     * @param source the source identifier, must not be null
+     */
     public AbstractServiceMessageSource(String source) {
         assertNotNull(source, () -> "'source' argument must not be null");
         this.source = source;
@@ -104,16 +124,46 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         return this.source;
     }
 
+    /**
+     * Sets the default {@link Locale} for this message source.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   source.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+     * }</pre>
+     *
+     * @param defaultLocale the default {@link Locale}
+     */
     public final void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
-        this.logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace("Source '{}' sets the default Locale : '{}'", source, defaultLocale);
+        }
     }
 
+    /**
+     * Sets the supported {@link Locale locales} for this message source.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   source.setSupportedLocales(Arrays.asList(Locale.SIMPLIFIED_CHINESE, Locale.ENGLISH));
+     * }</pre>
+     *
+     * @param supportedLocales the collection of supported {@link Locale locales}
+     */
     public final void setSupportedLocales(Collection<Locale> supportedLocales) {
         this.supportedLocales = resolveHierarchicalLocales(supportedLocales);
-        this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace("Source '{}' sets the supported Locales : {}", source, supportedLocales);
+        }
     }
 
+    /**
+     * Asserts that the given collection of supported locales is valid (non-empty, no null elements).
+     *
+     * @param supportedLocales the locales to validate
+     * @throws IllegalArgumentException if the collection is empty or contains null elements
+     */
     protected void assertSupportedLocales(Collection<Locale> supportedLocales) {
         assertNotEmpty(supportedLocales, () -> "The 'supportedLocales' must not be empty!");
         assertNoNullElements(supportedLocales, () -> "Any element of 'supportedLocales' must not be null!");
@@ -126,6 +176,19 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
     protected abstract String getInternalMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale,
                                                  Object... args);
 
+    /**
+     * Checks whether the given {@link Locale} is supported by this message source.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+     *   source.init();
+     *   boolean supported = source.supports(Locale.ENGLISH); // true
+     * }</pre>
+     *
+     * @param locale the {@link Locale} to check
+     * @return {@code true} if the locale is supported
+     */
     protected boolean supports(Locale locale) {
         Set<Locale> hierarchicalLocales = resolveHierarchicalLocales(locale);
         return hierarchicalLocales.contains(locale);
@@ -144,6 +207,12 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
         return hierarchicalLocales;
     }
 
+    /**
+     * Adds a {@link Locale} to the collection if not already present.
+     *
+     * @param locales the target collection
+     * @param locale  the {@link Locale} to add
+     */
     protected void addLocale(Collection<Locale> locales, Locale locale) {
         if (!locales.contains(locale)) {
             locales.add(locale);

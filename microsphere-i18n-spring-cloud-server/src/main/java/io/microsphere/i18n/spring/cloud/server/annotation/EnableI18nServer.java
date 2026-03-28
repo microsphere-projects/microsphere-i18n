@@ -27,7 +27,19 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Enable I18n Server
+ * Enable I18n Server that exposes a REST endpoint for serving
+ * internationalized messages from all discovered services.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   @EnableI18nServer
+ *   @SpringBootApplication
+ *   public class I18nServerApplication {
+ *       public static void main(String[] args) {
+ *           SpringApplication.run(I18nServerApplication.class, args);
+ *       }
+ *   }
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0

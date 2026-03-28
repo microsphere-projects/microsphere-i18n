@@ -8,7 +8,16 @@ import java.util.Locale;
 import static io.microsphere.annotation.ConfigurationProperty.APPLICATION_SOURCE;
 
 /**
- * Internationalization property constants
+ * Internationalization property constants used for Spring configuration properties.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // In application.properties:
+ *   // microsphere.i18n.enabled=true
+ *   // microsphere.i18n.sources=common,myapp
+ *   // microsphere.i18n.default-locale=zh_CN
+ *   // microsphere.i18n.supported-locales=zh_CN,en
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0

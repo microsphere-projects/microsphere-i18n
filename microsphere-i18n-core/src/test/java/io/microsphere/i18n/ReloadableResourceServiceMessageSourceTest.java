@@ -17,13 +17,13 @@
 
 package io.microsphere.i18n;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.SetUtils.ofSet;
 import static io.microsphere.collection.Sets.ofSet;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link ReloadableResourceServiceMessageSource} Test
@@ -33,7 +33,7 @@ import static org.junit.Assert.assertTrue;
  * @see TestReloadableResourceServiceMessageSource
  * @since 1.0.0
  */
-public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
+class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageSourceTest {
 
     @Override
     protected ReloadableResourceServiceMessageSource createServiceMessageSource() {
@@ -41,14 +41,14 @@ public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceM
     }
 
     @Test
-    public void testReload() {
+    void testReload() {
         ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         serviceMessageSource.reload(TEST_SOURCE);
         assertEquals(ofSet(TEST_SOURCE), serviceMessageSource.getInitializedResources());
     }
 
     @Test
-    public void testReloadWithIterable() {
+    void testReloadWithIterable() {
         ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         Iterable<String> resources = ofSet(TEST_SOURCE);
         serviceMessageSource.reload(resources);
@@ -56,7 +56,7 @@ public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceM
     }
 
     @Test
-    public void testCanReload() {
+    void testCanReload() {
         ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertFalse(serviceMessageSource.canReload(TEST_SOURCE));
         serviceMessageSource.reload(TEST_SOURCE);
@@ -64,7 +64,7 @@ public class ReloadableResourceServiceMessageSourceTest extends ResourceServiceM
     }
 
     @Test
-    public void testCanReloadWithIterable() {
+    void testCanReloadWithIterable() {
         ReloadableResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         Iterable<String> resources = ofSet(TEST_SOURCE);
         assertFalse(serviceMessageSource.canReload(resources));

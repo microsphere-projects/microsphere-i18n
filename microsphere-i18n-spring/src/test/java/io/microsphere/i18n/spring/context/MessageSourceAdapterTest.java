@@ -21,7 +21,7 @@ package io.microsphere.i18n.spring.context;
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
 import io.microsphere.i18n.EmptyServiceMessageSource;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -32,9 +32,9 @@ import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContai
 import static io.microsphere.util.ArrayUtils.EMPTY_OBJECT_ARRAY;
 import static io.microsphere.util.ArrayUtils.ofArray;
 import static java.util.Locale.getDefault;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * {@link MessageSourceAdapter} Test
@@ -43,7 +43,7 @@ import static org.junit.Assert.assertNull;
  * @see MessageSourceAdapter
  * @since 1.0.0
  */
-public class MessageSourceAdapterTest extends AbstractSpringTest {
+class MessageSourceAdapterTest extends AbstractSpringTest {
 
     private static final String testCode = "test.value";
 
@@ -74,7 +74,7 @@ public class MessageSourceAdapterTest extends AbstractSpringTest {
     private MessageSourceResolvable emptyMessageSourceResolvable = () -> new String[0];
 
     @Test
-    public void testOnNoMessageSourceBean() {
+    void testOnNoMessageSourceBean() {
         testInSpringContainer(context -> {
             MessageSourceAdapter messageSourceAdapter = context.getBean(MessageSourceAdapter.class);
             assertNull(messageSourceAdapter.getMessage(testCode, args, locale));
@@ -85,7 +85,7 @@ public class MessageSourceAdapterTest extends AbstractSpringTest {
     }
 
     @Test
-    public void test() {
+    void test() {
         testInSpringContainer(context -> {
             MessageSourceAdapter messageSourceAdapter = context.getBean(MessageSourceAdapter.class);
             assertEquals("测试-a", messageSourceAdapter.getMessage("a", args, locale));

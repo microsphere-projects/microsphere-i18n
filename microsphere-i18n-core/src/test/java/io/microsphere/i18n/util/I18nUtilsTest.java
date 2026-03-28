@@ -5,7 +5,8 @@ import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.DefaultServiceMessageSource;
 import io.microsphere.i18n.EmptyServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -14,8 +15,8 @@ import static io.microsphere.i18n.EmptyServiceMessageSource.INSTANCE;
 import static io.microsphere.i18n.util.I18nUtils.findAllServiceMessageSources;
 import static io.microsphere.i18n.util.I18nUtils.serviceMessageSource;
 import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * {@link I18nUtils} Test
@@ -23,10 +24,11 @@ import static org.junit.Assert.assertSame;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class I18nUtilsTest extends AbstractI18nTest {
+@SpringLoggingTest
+class I18nUtilsTest extends AbstractI18nTest {
 
     @Test
-    public void test() {
+    void test() {
         assertSame(INSTANCE, serviceMessageSource());
 
         DefaultServiceMessageSource defaultServiceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
@@ -36,7 +38,7 @@ public class I18nUtilsTest extends AbstractI18nTest {
     }
 
     @Test
-    public void testFindAllServiceMessageSources() {
+    void testFindAllServiceMessageSources() {
         List<ServiceMessageSource> serviceMessageSources = ofList(INSTANCE);
         CompositeServiceMessageSource compositeServiceMessageSource = new CompositeServiceMessageSource(ofList(INSTANCE));
         assertEquals(serviceMessageSources, findAllServiceMessageSources(compositeServiceMessageSource));

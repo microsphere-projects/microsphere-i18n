@@ -37,8 +37,17 @@ import static io.microsphere.logging.LoggerFactory.getLogger;
 import static org.springframework.util.ClassUtils.isPresent;
 
 /**
- * The {@link BeanPostProcessor} to set the default {@link Locale locale} and supported {@link Locale locales}
- * into {@link AcceptHeaderLocaleResolver}.
+ * The {@link BeanPostProcessor} to set the default {@link Locale} and supported {@link Locale locales}
+ * into {@link AcceptHeaderLocaleResolver} from the {@link ServiceMessageSource} configuration.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically registered via @EnableI18n when Spring Web MVC is on classpath
+ *   // Configures AcceptHeaderLocaleResolver with i18n-supported locales
+ *   @EnableI18n
+ *   @Configuration
+ *   public class WebConfig { }
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see AcceptHeaderLocaleResolver
@@ -62,7 +71,9 @@ public class AcceptHeaderLocaleResolverBeanPostProcessor extends GenericBeanPost
         Set<Locale> supportedLocales = serviceMessageSource.getSupportedLocales();
         acceptHeaderLocaleResolver.setDefaultLocale(defaultLocale);
         acceptHeaderLocaleResolver.setSupportedLocales(ofList(supportedLocales));
-        logger.trace("AcceptHeaderLocaleResolver Bean associated with default Locale : '{}' , list of supported Locales : {}", defaultLocale, supportedLocales);
+        if (logger.isTraceEnabled()) {
+            logger.trace("AcceptHeaderLocaleResolver Bean associated with default Locale : '{}' , list of supported Locales : {}", defaultLocale, supportedLocales);
+        }
     }
 
     @Override
@@ -70,6 +81,12 @@ public class AcceptHeaderLocaleResolverBeanPostProcessor extends GenericBeanPost
         this.context = context;
     }
 
+    /**
+     * Checks whether {@link AcceptHeaderLocaleResolver} is present on the classpath.
+     *
+     * @param classLoader the class loader to check
+     * @return {@code true} if the class is available
+     */
     public static boolean isAcceptHeaderLocaleResolverPresent(ClassLoader classLoader) {
         return isPresent(CLASS_NAME, classLoader);
     }

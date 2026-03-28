@@ -28,7 +28,17 @@ import static io.microsphere.util.StringUtils.isBlank;
 import static org.springframework.beans.factory.support.AbstractBeanDefinition.INFER_METHOD;
 
 /**
- * The PostProcessor processes the lifecycle of {@link ServiceMessageSource} Beans automatically.
+ * The PostProcessor that automatically processes the lifecycle of {@link ServiceMessageSource} beans
+ * by setting {@code init} and {@code destroy} method names on their bean definitions.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   // Automatically registered via @EnableI18n
+ *   // Ensures ServiceMessageSource beans have proper init/destroy lifecycle methods
+ *   @EnableI18n
+ *   @Configuration
+ *   public class AppConfig { }
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @see ServiceMessageSource

@@ -20,14 +20,15 @@ package io.microsphere.i18n.spring.validation.beanvalidation;
 
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator;
 
 import static io.microsphere.spring.beans.BeanUtils.isBeanPresent;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link I18nLocalValidatorFactoryBeanPostProcessor} Test
@@ -36,24 +37,25 @@ import static org.junit.Assert.assertTrue;
  * @see I18nLocalValidatorFactoryBeanPostProcessor
  * @since 1.0.0
  */
-public class I18NLocalValidatorFactoryBeanPostProcessorTest {
+@SpringLoggingTest
+class I18NLocalValidatorFactoryBeanPostProcessorTest {
 
     @Test
-    public void testOnNoLocalValidatorFactoryBean() {
+    void testOnNoLocalValidatorFactoryBean() {
         testInSpringContainer(context -> {
             assertFalse(isBeanPresent(context, LocalValidatorFactoryBean.class));
         }, TestSourceEnableI18nConfiguration.class);
     }
 
     @Test
-    public void testOnNoMessageSourceAdapterBean() {
+    void testOnNoMessageSourceAdapterBean() {
         testInSpringContainer(context -> {
             assertTrue(isBeanPresent(context, LocalValidatorFactoryBean.class));
         }, TestSourceEnableI18nConfiguration.class, LocalValidatorFactoryBean.class);
     }
 
     @Test
-    public void test() {
+    void test() {
         testInSpringContainer(context -> {
             assertTrue(isBeanPresent(context, MessageSourceAdapter.class));
             LocalValidatorFactoryBean localValidatorFactoryBean = context.getBean(LocalValidatorFactoryBean.class);

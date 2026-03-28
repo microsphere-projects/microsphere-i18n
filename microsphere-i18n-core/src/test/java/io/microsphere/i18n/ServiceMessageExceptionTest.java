@@ -16,9 +16,9 @@
  */
 package io.microsphere.i18n;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
@@ -27,8 +27,8 @@ import static io.microsphere.i18n.util.I18nUtils.setServiceMessageSource;
 import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ArrayUtils.arrayToString;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link ServiceMessageException} Test
@@ -36,10 +36,10 @@ import static org.junit.Assert.assertTrue;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
-public class ServiceMessageExceptionTest {
+class ServiceMessageExceptionTest {
 
-    @Before
-    public void before() {
+    @BeforeEach
+    void before() {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
         serviceMessageSource.setDefaultLocale(SIMPLIFIED_CHINESE);
         serviceMessageSource.setSupportedLocales(ofList(SIMPLIFIED_CHINESE));
@@ -47,13 +47,13 @@ public class ServiceMessageExceptionTest {
         setServiceMessageSource(serviceMessageSource);
     }
 
-    @After
-    public void after() {
+    @AfterEach
+    void after() {
         destroyServiceMessageSource();
     }
 
     @Test
-    public void test() {
+    void test() {
         assertServiceMessageException("测试-a", "{a}");
         assertServiceMessageException("您好,World", "{hello}", "World");
     }
