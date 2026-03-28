@@ -54,7 +54,9 @@ public class I18nLocalValidatorFactoryBeanPostProcessor extends GenericBeanPostP
     protected void processBeforeInitialization(LocalValidatorFactoryBean localValidatorFactoryBean, String beanName) throws BeansException {
         messageSourceAdapterProvider.ifAvailable(messageSourceAdapter -> {
             localValidatorFactoryBean.setValidationMessageSource(messageSourceAdapter);
-            logger.trace("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
+            if (logger.isTraceEnabled()) {
+                logger.trace("LocalValidatorFactoryBean[name : '{}'] is associated with MessageSource : {}", beanName, messageSourceAdapter);
+            }
         });
     }
 

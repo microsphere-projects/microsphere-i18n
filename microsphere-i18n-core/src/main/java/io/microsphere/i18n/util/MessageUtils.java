@@ -101,14 +101,18 @@ public abstract class MessageUtils {
         String messageCode = resolveMessageCode(messagePattern);
 
         if (messageCode == null) {
-            logger.trace("Message code not found in messagePattern'{}", messagePattern);
+            if (logger.isTraceEnabled()) {
+                logger.trace("Message code not found in messagePattern'{}", messagePattern);
+            }
             return messagePattern;
         }
 
         ServiceMessageSource serviceMessageSource = serviceMessageSource();
         String localizedMessage = serviceMessageSource.getMessage(messageCode, locale, args);
         if (isNotBlank(localizedMessage)) {
-            logger.trace("Message Pattern ['{}'] corresponds to Locale ['{}'] with MessageSage:'{}'", messagePattern, locale, localizedMessage);
+            if (logger.isTraceEnabled()) {
+                logger.trace("Message Pattern ['{}'] corresponds to Locale ['{}'] with MessageSage:'{}'", messagePattern, locale, localizedMessage);
+            }
         } else {
             int afterDotIndex = messageCode.indexOf(SOURCE_SEPARATOR) + 1;
             if (afterDotIndex > 0 && afterDotIndex < messageCode.length()) {
@@ -116,7 +120,9 @@ public abstract class MessageUtils {
             } else {
                 localizedMessage = messagePattern;
             }
-            logger.trace("No Message['{}'] found for Message Pattern ['{}'], returned: {}", messagePattern, locale, localizedMessage);
+            if (logger.isTraceEnabled()) {
+                logger.trace("No Message['{}'] found for Message Pattern ['{}'], returned: {}", messagePattern, locale, localizedMessage);
+            }
         }
 
         return localizedMessage;

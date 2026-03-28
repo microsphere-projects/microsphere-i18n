@@ -20,6 +20,7 @@ package io.microsphere.i18n.spring.validation.beanvalidation;
 
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator;
@@ -36,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see I18nLocalValidatorFactoryBeanPostProcessor
  * @since 1.0.0
  */
+@SpringLoggingTest
 class I18NLocalValidatorFactoryBeanPostProcessorTest {
 
     @Test
