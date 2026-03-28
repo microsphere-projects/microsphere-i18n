@@ -42,14 +42,14 @@ import org.springframework.context.annotation.Bean;
 @EnableI18n
 public class I18nAutoConfiguration {
 
-    @Bean
-    @ConditionalOnProperty(name = "spring.application.name")
     /**
      * Creates a {@link ServiceMessageSourceFactoryBean} for the application-specific i18n source.
      *
      * @param applicationName the Spring application name
      * @return the factory bean
      */
+    @Bean
+    @ConditionalOnProperty(name = "spring.application.name")
     public ServiceMessageSourceFactoryBean applicationServiceMessageSource(
             @Value("${spring.application.name}") String applicationName) {
         return new ServiceMessageSourceFactoryBean(applicationName);
