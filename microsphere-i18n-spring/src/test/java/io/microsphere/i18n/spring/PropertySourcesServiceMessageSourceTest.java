@@ -4,8 +4,8 @@ import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.io.StringBuilderWriter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.mock.env.MockEnvironment;
@@ -21,10 +21,10 @@ import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContai
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link PropertySourcesServiceMessageSource} Test
@@ -33,7 +33,7 @@ import static org.junit.Assert.assertTrue;
  * @see PropertySourcesServiceMessageSource
  * @since 1.0.0
  */
-public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
+class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
 
     private MockEnvironment environment;
 
@@ -43,8 +43,8 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
 
     private String testPropertyName = "test.i18n_messages_zh_CN.properties";
 
-    @Before
-    public void before() throws Throwable {
+    @BeforeEach
+    protected void before() throws Throwable {
         super.before();
         this.environment = new MockEnvironment();
         this.initEnvironment();
@@ -63,12 +63,12 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     }
 
     @Test
-    public void test() {
+    void test() {
         assertGetMessage(this.propertySourcesServiceMessageSource);
     }
 
     @Test
-    public void testCanReload() {
+    void testCanReload() {
         assertTrue(this.propertySourcesServiceMessageSource.canReload(this.testPropertyName));
         assertTrue(this.propertySourcesServiceMessageSource.canReload(ofSet(this.testPropertyName)));
 
@@ -80,14 +80,14 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     }
 
     @Test
-    public void testFindAllPropertySourcesServiceMessageSourcesOnNoBeanDefinition() {
+    void testFindAllPropertySourcesServiceMessageSourcesOnNoBeanDefinition() {
         testInSpringContainer(context -> {
             assertTrue(findAllPropertySourcesServiceMessageSources(context).isEmpty());
         });
     }
 
     @Test
-    public void testFindAllPropertySourcesServiceMessageSourcesOnSingleBeanDefinition() {
+    void testFindAllPropertySourcesServiceMessageSourcesOnSingleBeanDefinition() {
         testInSpringContainer(context -> {
             List<PropertySourcesServiceMessageSource> allPropertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(context);
             assertEquals(1, allPropertySourcesServiceMessageSources.size());
@@ -97,7 +97,7 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     }
 
     @Test
-    public void testFindAllPropertySourcesServiceMessageSourcesOnDelegatingBeanDefinition() {
+    void testFindAllPropertySourcesServiceMessageSourcesOnDelegatingBeanDefinition() {
         testInSpringContainer(context -> {
             List<PropertySourcesServiceMessageSource> allPropertySourcesServiceMessageSources = findAllPropertySourcesServiceMessageSources(context);
             assertEquals(1, allPropertySourcesServiceMessageSources.size());
@@ -107,17 +107,17 @@ public class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest 
     }
 
     @Test
-    public void testFindAllPropertySourcesServiceMessageSourcesOnEmptyCollection() {
+    void testFindAllPropertySourcesServiceMessageSourcesOnEmptyCollection() {
         assertSame(emptyList(), findAllPropertySourcesServiceMessageSources(emptyList()));
     }
 
     @Test
-    public void testGetResource() {
+    void testGetResource() {
         assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getResource("i18n_messages_zh_CN.properties"));
     }
 
     @Test
-    public void testGetPropertyName() {
+    void testGetPropertyName() {
         assertEquals(this.testPropertyName, this.propertySourcesServiceMessageSource.getPropertyName(SIMPLIFIED_CHINESE));
     }
 

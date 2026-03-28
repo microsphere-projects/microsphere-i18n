@@ -27,15 +27,16 @@ import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
 import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.MessageSource;
 
 import static io.microsphere.spring.beans.BeanUtils.isBeanPresent;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
 import static java.lang.ClassLoader.getSystemClassLoader;
 import static java.lang.Thread.currentThread;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link I18nImportBeanDefinitionRegistrar} Test
@@ -44,10 +45,11 @@ import static org.junit.Assert.assertTrue;
  * @see I18nImportBeanDefinitionRegistrar
  * @since 1.0.0
  */
-public class I18nImportBeanDefinitionRegistrarTest {
+@SpringLoggingTest
+class I18nImportBeanDefinitionRegistrarTest {
 
     @Test
-    public void testOnSpecifiedSources() {
+    void testOnSpecifiedSources() {
         testInSpringContainer((context, environment) -> {
             assertTrue(isBeanPresent(context, ServiceMessageSourceFactoryBean.class));
             assertTrue(isBeanPresent(context, MessageSourceAdapter.class));
@@ -63,7 +65,7 @@ public class I18nImportBeanDefinitionRegistrarTest {
     }
 
     @Test
-    public void testOnDisabled() {
+    void testOnDisabled() {
         testInSpringContainer((context, environment) -> {
             assertFalse(isBeanPresent(context, ServiceMessageSourceFactoryBean.class));
             assertFalse(isBeanPresent(context, MessageSourceAdapter.class));
@@ -76,7 +78,7 @@ public class I18nImportBeanDefinitionRegistrarTest {
     }
 
     @Test
-    public void testOnUnexposedMessageSource() {
+    void testOnUnexposedMessageSource() {
         testInSpringContainer((context, environment) -> {
             assertTrue(isBeanPresent(context, ServiceMessageSourceFactoryBean.class));
             assertFalse(isBeanPresent(context, MessageSourceAdapter.class));
@@ -89,7 +91,7 @@ public class I18nImportBeanDefinitionRegistrarTest {
     }
 
     @Test
-    public void testOnBeanClassAbsent() {
+    void testOnBeanClassAbsent() {
         ClassLoader classLoader = currentThread().getContextClassLoader();
         try {
             currentThread().setContextClassLoader(getSystemClassLoader().getParent());

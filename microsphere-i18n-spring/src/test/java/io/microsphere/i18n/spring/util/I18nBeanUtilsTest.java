@@ -23,7 +23,7 @@ import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.config.DisabledEnableI18nConfiguration;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.DelegatingMessageSource;
@@ -32,10 +32,10 @@ import static io.microsphere.i18n.spring.util.I18nBeanUtils.getMessageSource;
 import static io.microsphere.i18n.spring.util.I18nBeanUtils.getMessageSourceAdapter;
 import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.context.support.AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME;
 
 /**
@@ -45,25 +45,25 @@ import static org.springframework.context.support.AbstractApplicationContext.MES
  * @see I18nBeanUtils
  * @since 1.0.0
  */
-public class I18nBeanUtilsTest {
+class I18nBeanUtilsTest {
 
     @Test
-    public void testGetMessageSourceWithoutMessageSourceBean() {
+    void testGetMessageSourceWithoutMessageSourceBean() {
         testInSpringContainer(this::assertDefaultMessageSource);
     }
 
     @Test
-    public void testGetMessageSourceWithoutMessageSourceBeanExposure() {
+    void testGetMessageSourceWithoutMessageSourceBeanExposure() {
         testInSpringContainer(this::assertDefaultMessageSource, DisabledEnableI18nConfiguration.class);
     }
 
     @Test
-    public void testGetMessageSource() {
+    void testGetMessageSource() {
         testInSpringContainer(this::assertMessageSourceAdapter, TestSourceEnableI18nConfiguration.class);
     }
 
     @Test
-    public void testGetServiceMessageSourceWithoutDefinition() {
+    void testGetServiceMessageSourceWithoutDefinition() {
         testInSpringContainer(context -> {
             ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
             assertNull(serviceMessageSource);
@@ -71,7 +71,7 @@ public class I18nBeanUtilsTest {
     }
 
     @Test
-    public void testGetServiceMessageSource() {
+    void testGetServiceMessageSource() {
         testInSpringContainer(context -> {
             ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
             assertNotNull(serviceMessageSource);

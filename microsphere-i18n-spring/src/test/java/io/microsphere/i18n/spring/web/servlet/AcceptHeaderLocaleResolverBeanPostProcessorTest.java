@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package io.microsphere.i18n.spring.beans.factory.config;
+package io.microsphere.i18n.spring.web.servlet;
 
 
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
-import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import static io.microsphere.collection.ListUtils.ofList;
 import static io.microsphere.i18n.spring.util.I18nBeanUtils.getServiceMessageSource;
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * {@link AcceptHeaderLocaleResolverBeanPostProcessor} Test
@@ -37,10 +37,11 @@ import static org.junit.Assert.assertEquals;
  * @see AcceptHeaderLocaleResolverBeanPostProcessor
  * @since 1.0.0
  */
-public class AcceptHeaderLocaleResolverBeanPostProcessorTest {
+@SpringLoggingTest
+class AcceptHeaderLocaleResolverBeanPostProcessorTest {
 
     @Test
-    public void test() {
+    void test() {
         testInSpringContainer(context -> {
             ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
             AcceptHeaderLocaleResolver localeResolver = context.getBean(AcceptHeaderLocaleResolver.class);

@@ -18,9 +18,10 @@
 package io.microsphere.i18n;
 
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.List;
@@ -38,11 +39,11 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.emptyList;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link CompositeServiceMessageSource} Test
@@ -51,7 +52,8 @@ import static org.junit.Assert.assertTrue;
  * @see CompositeServiceMessageSource
  * @since 1.0.0
  */
-public class CompositeServiceMessageSourceTest {
+@SpringLoggingTest
+class CompositeServiceMessageSourceTest {
 
     private CompositeServiceMessageSource compositeServiceMessageSource;
 
@@ -67,8 +69,8 @@ public class CompositeServiceMessageSourceTest {
 
     private Set<Locale> locales = ofSet(getDefault(), ENGLISH);
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         this.defaultServiceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE);
         this.testReloadableResourceServiceMessageSource = new TestReloadableResourceServiceMessageSource();
         this.serviceMessageSources = ofList(INSTANCE, this.defaultServiceMessageSource, this.testReloadableResourceServiceMessageSource);
@@ -81,13 +83,13 @@ public class CompositeServiceMessageSourceTest {
         this.resources = ofList(this.defaultServiceMessageSource.getInitializedResources());
     }
 
-    @After
-    public void tearDown() {
+    @AfterEach
+    void tearDown() {
         this.compositeServiceMessageSource.destroy();
     }
 
     @Test
-    public void testGetMessage() {
+    void testGetMessage() {
         assertGetMessage(TEST_SOURCE);
         assertGetMessage("a");
         assertGetMessage("hello", "world");
@@ -95,43 +97,43 @@ public class CompositeServiceMessageSourceTest {
     }
 
     @Test
-    public void testGetLocale() {
+    void testGetLocale() {
         assertEquals(getDefault(), this.compositeServiceMessageSource.getLocale());
         assertEquals(getDefault(), this.emptyCompositeServiceMessageSource.getLocale());
     }
 
     @Test
-    public void testGetDefaultLocale() {
+    void testGetDefaultLocale() {
         assertEquals(getDefault(), this.compositeServiceMessageSource.getDefaultLocale());
         assertEquals(getDefault(), this.emptyCompositeServiceMessageSource.getDefaultLocale());
     }
 
     @Test
-    public void testGetSupportedLocales() {
+    void testGetSupportedLocales() {
         assertSupportedLocales(this.compositeServiceMessageSource::getSupportedLocales);
         assertSupportedLocales(this.emptyCompositeServiceMessageSource::getSupportedLocales);
     }
 
     @Test
-    public void testGetDefaultSupportedLocales() {
+    void testGetDefaultSupportedLocales() {
         assertSupportedLocales(this.compositeServiceMessageSource::getDefaultSupportedLocales);
         assertSupportedLocales(this.emptyCompositeServiceMessageSource::getDefaultSupportedLocales);
     }
 
     @Test
-    public void testGetSource() {
+    void testGetSource() {
         assertSame(COMMON_SOURCE, this.compositeServiceMessageSource.getSource());
         assertSame(COMMON_SOURCE, this.emptyCompositeServiceMessageSource.getSource());
     }
 
     @Test
-    public void testSetServiceMessageSources() {
+    void testSetServiceMessageSources() {
         this.compositeServiceMessageSource.setServiceMessageSources(emptyList());
         this.emptyCompositeServiceMessageSource.setServiceMessageSources(emptyList());
     }
 
     @Test
-    public void testReload() {
+    void testReload() {
         this.compositeServiceMessageSource.reload(this.resources);
         this.compositeServiceMessageSource.reload(this.resources.get(0));
         this.emptyCompositeServiceMessageSource.reload(this.resources);
@@ -142,7 +144,7 @@ public class CompositeServiceMessageSourceTest {
     }
 
     @Test
-    public void testCanReload() {
+    void testCanReload() {
         assertTrue(this.compositeServiceMessageSource.canReload(this.resources));
         assertTrue(this.compositeServiceMessageSource.canReload(this.resources.get(0)));
         assertTrue(this.emptyCompositeServiceMessageSource.canReload(this.resources));
@@ -150,19 +152,19 @@ public class CompositeServiceMessageSourceTest {
     }
 
     @Test
-    public void testInitializeResource() {
+    void testInitializeResource() {
         this.compositeServiceMessageSource.initializeResource(this.resources.get(0));
         this.emptyCompositeServiceMessageSource.initializeResource(this.resources.get(0));
     }
 
     @Test
-    public void testInitializeResources() {
+    void testInitializeResources() {
         this.compositeServiceMessageSource.initializeResources(this.resources);
         this.emptyCompositeServiceMessageSource.initializeResources(this.resources);
     }
 
     @Test
-    public void testGetInitializedResources() {
+    void testGetInitializedResources() {
         this.compositeServiceMessageSource.initializeResources(this.resources);
         this.emptyCompositeServiceMessageSource.initializeResources(this.resources);
         assertTrue(this.compositeServiceMessageSource.getInitializedResources().containsAll(this.defaultServiceMessageSource.getInitializedResources()));
@@ -170,19 +172,19 @@ public class CompositeServiceMessageSourceTest {
     }
 
     @Test
-    public void testGetEncoding() {
+    void testGetEncoding() {
         assertEquals(UTF_8, this.compositeServiceMessageSource.getEncoding());
         assertEquals(UTF_8, this.emptyCompositeServiceMessageSource.getEncoding());
     }
 
     @Test
-    public void testGetServiceMessageSources() {
+    void testGetServiceMessageSources() {
         assertEquals(ofList(INSTANCE, this.defaultServiceMessageSource, this.testReloadableResourceServiceMessageSource), this.compositeServiceMessageSource.getServiceMessageSources());
         assertEquals(emptyList(), this.emptyCompositeServiceMessageSource.getServiceMessageSources());
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         assertNotNull(this.compositeServiceMessageSource.toString());
         assertNotNull(this.emptyCompositeServiceMessageSource.toString());
     }

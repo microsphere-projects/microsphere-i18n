@@ -18,11 +18,17 @@
 package io.microsphere.i18n;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import io.microsphere.logging.test.jupiter.LoggingLevelsTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
-import static org.junit.Assert.assertThrows;
+import static java.util.Locale.CHINESE;
+import static java.util.Locale.FRANCE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * {@link PropertiesResourceServiceMessageSource} Test
@@ -31,17 +37,31 @@ import static org.junit.Assert.assertThrows;
  * @see PropertiesResourceServiceMessageSource
  * @since 1.0.0
  */
-public class PropertiesResourceServiceMessageSourceTest {
+class PropertiesResourceServiceMessageSourceTest {
 
     private PropertiesResourceServiceMessageSource propertiesResourceServiceMessageSource;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         this.propertiesResourceServiceMessageSource = new TestPropertiesResourceServiceMessageSource(TEST_SOURCE);
     }
 
     @Test
-    public void testLoadMessages() {
+    void testLoadMessages() {
         assertThrows(RuntimeException.class, () -> this.propertiesResourceServiceMessageSource.loadMessages("test"));
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testSetDefaultLocale() {
+        this.propertiesResourceServiceMessageSource.setDefaultLocale(FRANCE);
+        assertEquals(FRANCE, this.propertiesResourceServiceMessageSource.getDefaultLocale());
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testSetSupportedLocales() {
+        this.propertiesResourceServiceMessageSource.setSupportedLocales(ofList(CHINESE));
+        assertEquals(ofSet(CHINESE), this.propertiesResourceServiceMessageSource.getSupportedLocales());
     }
 }

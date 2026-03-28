@@ -18,12 +18,12 @@
 package io.microsphere.i18n;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * {@link AbstractResourceServiceMessageSource} Test
@@ -32,10 +32,10 @@ import static org.junit.Assert.assertThrows;
  * @see AbstractResourceServiceMessageSource
  * @since 1.0.0
  */
-public class AbstractResourceServiceMessageSourceTest {
+class AbstractResourceServiceMessageSourceTest {
 
     @Test
-    public void testInitialize() {
+    void testInitialize() {
         TestAbstractResourceServiceMessageSource serviceMessageSource = new TestAbstractResourceServiceMessageSource(TEST_SOURCE);
         assertThrows(IllegalArgumentException.class, serviceMessageSource::initialize);
     }

@@ -9,7 +9,17 @@ import java.util.Set;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
- * Resource {@link ServiceMessageSource}
+ * Resource {@link ServiceMessageSource} that manages message resources initialization
+ * and tracks initialized resources.
+ *
+ * <h3>Example Usage</h3>
+ * <pre>{@code
+ *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+ *   source.init();
+ *   Set<String> resources = source.getInitializedResources();
+ *   // e.g. ["META-INF/i18n/test/i18n_messages_zh_CN.properties",
+ *   //        "META-INF/i18n/test/i18n_messages_en.properties"]
+ * }</pre>
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0

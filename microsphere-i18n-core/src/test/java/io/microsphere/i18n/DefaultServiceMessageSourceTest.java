@@ -1,6 +1,6 @@
 package io.microsphere.i18n;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -11,13 +11,13 @@ import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.getDefault;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * {@link DefaultServiceMessageSource} Test
@@ -25,7 +25,7 @@ import static org.junit.Assert.assertTrue;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMessageSourceTest {
+class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMessageSourceTest {
 
     @Override
     protected DefaultServiceMessageSource createServiceMessageSource() {
@@ -34,7 +34,7 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
 
     @Test
     @Override
-    public void testGetMessage() {
+    void testGetMessage() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         assertEquals("测试-a", serviceMessageSource.getMessage("a"));
@@ -42,7 +42,7 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
     }
 
     @Test
-    public void testResources() {
+    void testResources() {
         ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         serviceMessageSource.initializeResource(ERROR_SOURCE);
         assertFalse(serviceMessageSource.getInitializedResources().isEmpty());
@@ -50,13 +50,13 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
 
     @Test
     @Override
-    public void testGetSource() {
+    void testGetSource() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertEquals(TEST_SOURCE, serviceMessageSource.getSource());
     }
 
     @Test
-    public void testValidateMessageCode() {
+    void testValidateMessageCode() {
         assertThrows(IllegalStateException.class, () -> {
             DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(ERROR_SOURCE);
             serviceMessageSource.initialize();
@@ -64,7 +64,7 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
     }
 
     @Test
-    public void testGetInternalLocale() {
+    void testGetInternalLocale() {
         DefaultServiceMessageSource serviceMessageSource = new DefaultServiceMessageSource(TEST_SOURCE, getDefaultClassLoader()) {
 
             @Override
@@ -76,7 +76,7 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
     }
 
     @Test
-    public void testSupports() {
+    void testSupports() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         assertTrue(serviceMessageSource.supports(getDefault()));
@@ -84,7 +84,7 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
     }
 
     @Test
-    public void testResolveMessageCode() {
+    void testResolveMessageCode() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         String code = "test.code";
@@ -93,7 +93,7 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
     }
 
     @Test
-    public void testGetLocalizedResourceMessages() {
+    void testGetLocalizedResourceMessages() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
 
         Map<String, Map<String, String>> localizedResourceMessages = serviceMessageSource.getLocalizedResourceMessages();
@@ -101,7 +101,7 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
     }
 
     @Test
-    public void testLoadAllProperties() throws IOException {
+    void testLoadAllProperties() throws IOException {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
         for (Locale locale : serviceMessageSource.getSupportedLocales()) {
             assertNotNull(serviceMessageSource.loadAllProperties(locale));
@@ -112,28 +112,28 @@ public class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMe
 
     @Test
     @Override
-    public void testCanReload() {
+    void testCanReload() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertFalse(serviceMessageSource.canReload(TEST_SOURCE));
     }
 
     @Test
     @Override
-    public void testCanReloadWithIterable() {
+    void testCanReloadWithIterable() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertFalse(serviceMessageSource.canReload(ofSet(TEST_SOURCE)));
     }
 
     @Test
     @Override
-    public void testReload() {
+    void testReload() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
         serviceMessageSource.reload(TEST_SOURCE);
     }
 
     @Test
     @Override
-    public void testReloadWithIterable() {
+    void testReloadWithIterable() {
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
         serviceMessageSource.reload(ofSet(TEST_SOURCE));
     }

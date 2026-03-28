@@ -16,15 +16,15 @@
  */
 package io.microsphere.i18n;
 
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import static io.microsphere.i18n.util.I18nUtils.destroyServiceMessageSource;
 import static java.util.Locale.SIMPLIFIED_CHINESE;
 import static java.util.Locale.setDefault;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.context.i18n.LocaleContextHolder.resetLocaleContext;
 
 /**
@@ -37,19 +37,19 @@ public abstract class AbstractSpringTest {
 
     public static final String TEST_SOURCE = "test";
 
-    @BeforeClass
-    public static void beforeClass() {
+    @BeforeAll
+    static void beforeClass() {
         // Set the simplified Chinese as the default Locale
         setDefault(SIMPLIFIED_CHINESE);
     }
 
-    @Before
-    public void before() throws Throwable {
+    @BeforeEach
+    protected void before() throws Throwable {
         resetLocaleContext();
     }
 
-    @AfterClass
-    public static void afterClass() throws Throwable {
+    @AfterAll
+    static void afterClass() throws Throwable {
         destroyServiceMessageSource();
         resetLocaleContext();
     }
