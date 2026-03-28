@@ -18,10 +18,16 @@
 package io.microsphere.i18n;
 
 
+import io.microsphere.logging.test.jupiter.LoggingLevelsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.collection.Sets.ofSet;
 import static io.microsphere.i18n.AbstractI18nTest.TEST_SOURCE;
+import static java.util.Locale.CHINESE;
+import static java.util.Locale.FRANCE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -43,5 +49,19 @@ class PropertiesResourceServiceMessageSourceTest {
     @Test
     void testLoadMessages() {
         assertThrows(RuntimeException.class, () -> this.propertiesResourceServiceMessageSource.loadMessages("test"));
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testSetDefaultLocale() {
+        this.propertiesResourceServiceMessageSource.setDefaultLocale(FRANCE);
+        assertEquals(FRANCE, this.propertiesResourceServiceMessageSource.getDefaultLocale());
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testSetSupportedLocales() {
+        this.propertiesResourceServiceMessageSource.setSupportedLocales(ofList(CHINESE));
+        assertEquals(ofSet(CHINESE), this.propertiesResourceServiceMessageSource.getSupportedLocales());
     }
 }

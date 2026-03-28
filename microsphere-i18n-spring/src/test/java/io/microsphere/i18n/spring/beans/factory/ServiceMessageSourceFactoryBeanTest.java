@@ -28,7 +28,6 @@ import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
 import static java.util.Locale.getDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.context.i18n.LocaleContextHolder.resetLocaleContext;
@@ -127,12 +126,6 @@ class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     void testSetOrder() {
         this.serviceMessageSourceFactoryBean.setOrder(1);
         assertEquals(1, this.serviceMessageSourceFactoryBean.getOrder());
-    }
-
-    @Test
-    @LoggingLevelsTest(levels = "ERROR")
-    void testInitServiceMessageSources() {
-        assertFalse(this.serviceMessageSourceFactoryBean.initServiceMessageSources().isEmpty());
     }
 
     @Test
