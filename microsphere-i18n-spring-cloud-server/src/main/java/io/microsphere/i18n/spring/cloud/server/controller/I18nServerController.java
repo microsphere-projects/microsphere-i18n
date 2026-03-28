@@ -44,7 +44,6 @@ public class I18nServerController {
     @Autowired
     private I18nEndpoint i18nEndpoint;
 
-    @GetMapping("/messages")
     /**
      * Returns all localized resource messages from the {@link I18nEndpoint}.
      *
@@ -56,6 +55,7 @@ public class I18nServerController {
      *
      * @return map of resource name to message code-value pairs
      */
+    @GetMapping("/messages")
     public Map<String, Map<String, String>> getMessages() {
         return i18nEndpoint.invoke();
     }
