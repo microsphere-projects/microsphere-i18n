@@ -55,7 +55,9 @@ public abstract class I18nUtils {
     @Nonnull
     public static ServiceMessageSource serviceMessageSource() {
         if (serviceMessageSource == null) {
-            logger.warn("serviceMessageSource is not initialized, EmptyServiceMessageSource will be used");
+            if (logger.isWarnEnabled()) {
+                logger.warn("serviceMessageSource is not initialized, EmptyServiceMessageSource will be used");
+            }
             return INSTANCE;
         }
         return serviceMessageSource;
@@ -73,7 +75,9 @@ public abstract class I18nUtils {
      */
     public static void setServiceMessageSource(ServiceMessageSource serviceMessageSource) {
         I18nUtils.serviceMessageSource = serviceMessageSource;
-        logger.trace("I18nUtils.serviceMessageSource is initialized : {}", serviceMessageSource);
+        if (logger.isTraceEnabled()) {
+            logger.trace("I18nUtils.serviceMessageSource is initialized : {}", serviceMessageSource);
+        }
     }
 
     /**
@@ -86,7 +90,9 @@ public abstract class I18nUtils {
      */
     public static void destroyServiceMessageSource() {
         serviceMessageSource = null;
-        logger.trace("serviceMessageSource is destroyed");
+        if (logger.isTraceEnabled()) {
+            logger.trace("serviceMessageSource is destroyed");
+        }
     }
 
     /**

@@ -19,6 +19,7 @@ package io.microsphere.i18n.spring;
 
 
 import io.microsphere.i18n.EmptyServiceMessageSource;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.Test;
 
 import static io.microsphere.spring.test.util.SpringTestUtils.testInSpringContainer;
@@ -31,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * @see DelegatingServiceMessageSource
  * @since 1.0.0
  */
+@SpringLoggingTest
 class DelegatingServiceMessageSourceTest {
 
     @Test

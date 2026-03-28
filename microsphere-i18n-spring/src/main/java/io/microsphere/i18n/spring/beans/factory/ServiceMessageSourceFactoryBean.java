@@ -163,7 +163,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         this.order = order;
     }
 
-    private List<AbstractServiceMessageSource> initServiceMessageSources() {
+    protected List<AbstractServiceMessageSource> initServiceMessageSources() {
         List<String> factoryNames = loadFactoryNames(AbstractServiceMessageSource.class, classLoader);
 
         Locale defaultLocale = resolveDefaultLocale(environment);
@@ -200,32 +200,40 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
                 '}';
     }
 
-    private Locale resolveDefaultLocale(ConfigurableEnvironment environment) {
+    protected Locale resolveDefaultLocale(ConfigurableEnvironment environment) {
         String propertyName = DEFAULT_LOCALE_PROPERTY_NAME;
         String localeValue = environment.getProperty(propertyName);
         final Locale locale;
         if (!hasText(localeValue)) {
             locale = getDefaultLocale();
-            logger.trace("Default Locale configuration property [name : '{}'] not found, use default value: '{}'", propertyName, locale);
+            if (logger.isTraceEnabled()) {
+                logger.trace("Default Locale configuration property [name : '{}'] not found, use default value: '{}'", propertyName, locale);
+            }
         } else {
             locale = parseLocale(localeValue);
-            logger.trace("Default Locale : '{}' parsed by configuration properties [name : '{}']", propertyName, locale);
+            if (logger.isTraceEnabled()) {
+                logger.trace("Default Locale : '{}' parsed by configuration properties [name : '{}']", propertyName, locale);
+            }
         }
         return locale;
     }
 
-    private Set<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
+    protected Set<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
         final Set<Locale> supportedLocales;
         String propertyName = SUPPORTED_LOCALES_PROPERTY_NAME;
         List<String> locales = environment.getProperty(propertyName, List.class, emptyList());
         if (locales.isEmpty()) {
             supportedLocales = getSupportedLocales();
-            logger.trace("Support Locale set configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
+            if (logger.isTraceEnabled()) {
+                logger.trace("Support Locale set configuration property [name : '{}'] not found, use default value: {}", propertyName, supportedLocales);
+            }
         } else {
             supportedLocales = locales.stream()
                     .map(StringUtils::parseLocale)
                     .collect(toSet());
-            logger.trace("The set of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
+            if (logger.isTraceEnabled()) {
+                logger.trace("The set of supported Locales parsed by configuration property [name : '{}']: {}", propertyName, supportedLocales);
+            }
         }
         return unmodifiableSet(supportedLocales);
     }
@@ -233,7 +241,9 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
     @Override
     public void onApplicationEvent(ResourceServiceMessageSourceChangedEvent event) {
         Iterable<String> changedResources = event.getChangedResources();
-        logger.trace("Receive event change resource: {}", changedResources);
+        if (logger.isTraceEnabled()) {
+            logger.trace("Receive event change resource: {}", changedResources);
+        }
         super.reload(changedResources);
     }
 }

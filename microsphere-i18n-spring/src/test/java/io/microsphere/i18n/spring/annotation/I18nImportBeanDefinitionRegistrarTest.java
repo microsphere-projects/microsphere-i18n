@@ -27,6 +27,7 @@ import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
 import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.MessageSource;
 
@@ -44,6 +45,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see I18nImportBeanDefinitionRegistrar
  * @since 1.0.0
  */
+@SpringLoggingTest
 class I18nImportBeanDefinitionRegistrarTest {
 
     @Test
