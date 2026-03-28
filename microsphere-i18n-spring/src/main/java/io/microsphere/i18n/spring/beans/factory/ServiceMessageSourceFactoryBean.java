@@ -163,7 +163,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         this.order = order;
     }
 
-    private List<AbstractServiceMessageSource> initServiceMessageSources() {
+    protected List<AbstractServiceMessageSource> initServiceMessageSources() {
         List<String> factoryNames = loadFactoryNames(AbstractServiceMessageSource.class, classLoader);
 
         Locale defaultLocale = resolveDefaultLocale(environment);
@@ -200,7 +200,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
                 '}';
     }
 
-    private Locale resolveDefaultLocale(ConfigurableEnvironment environment) {
+    protected Locale resolveDefaultLocale(ConfigurableEnvironment environment) {
         String propertyName = DEFAULT_LOCALE_PROPERTY_NAME;
         String localeValue = environment.getProperty(propertyName);
         final Locale locale;
@@ -218,7 +218,7 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         return locale;
     }
 
-    private Set<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
+    protected Set<Locale> resolveSupportedLocales(ConfigurableEnvironment environment) {
         final Set<Locale> supportedLocales;
         String propertyName = SUPPORTED_LOCALES_PROPERTY_NAME;
         List<String> locales = environment.getProperty(propertyName, List.class, emptyList());

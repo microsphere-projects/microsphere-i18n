@@ -4,7 +4,7 @@ import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.ResourceServiceMessageSourceChangedEvent;
-import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import io.microsphere.logging.test.jupiter.LoggingLevelsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,19 +12,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.mock.env.MockEnvironment;
 import org.springframework.mock.env.MockPropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Locale;
+import java.util.Set;
 
 import static io.microsphere.collection.Lists.ofList;
 import static io.microsphere.collection.Sets.ofSet;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
+import static java.util.Locale.getDefault;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.springframework.context.i18n.LocaleContextHolder.resetLocaleContext;
 import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
 
 /**
@@ -34,7 +41,6 @@ import static org.springframework.context.i18n.LocaleContextHolder.setLocale;
  * @see ServiceMessageSourceFactoryBean
  * @since 1.0.0
  */
-@SpringLoggingTest
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {
         TestSourceEnableI18nConfiguration.class
@@ -71,11 +77,7 @@ class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     }
 
     @Test
-    void testGetMessage(int index) {
-        if (index > 0) {
-            assertEquals("1", this.serviceMessageSource.getMessage("a"));
-            return;
-        }
+    void testGetMessage() {
         assertEquals("test-a", this.serviceMessageSource.getMessage("a"));
         assertEquals("Hello,World", this.serviceMessageSource.getMessage("hello", "World"));
 
@@ -91,35 +93,75 @@ class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     @Test
     void testGetLocale() {
         assertEquals(ENGLISH, this.serviceMessageSource.getLocale());
-        assertEquals(ENGLISH, serviceMessageSourceFactoryBean.getLocale());
+        assertEquals(ENGLISH, this.serviceMessageSourceFactoryBean.getLocale());
 
         // Test US
         setLocale(US);
         assertEquals(US, this.serviceMessageSource.getLocale());
-        assertEquals(US, serviceMessageSourceFactoryBean.getLocale());
+        assertEquals(US, this.serviceMessageSourceFactoryBean.getLocale());
+
+        // Reset
+        resetLocaleContext();
+        assertEquals(getDefault(), this.serviceMessageSource.getLocale());
+        assertEquals(getDefault(), this.serviceMessageSourceFactoryBean.getLocale());
     }
 
     @Test
     void testGetDefaultLocale() {
         assertEquals(ENGLISH, this.serviceMessageSource.getDefaultLocale());
-        assertEquals(ENGLISH, serviceMessageSourceFactoryBean.getDefaultLocale());
+        assertEquals(ENGLISH, this.serviceMessageSourceFactoryBean.getDefaultLocale());
     }
 
     @Test
     void testGetSupportedLocales() {
         assertEquals(ofSet(ENGLISH), this.serviceMessageSource.getSupportedLocales());
-        assertEquals(ofSet(ENGLISH), serviceMessageSourceFactoryBean.getSupportedLocales());
+        assertEquals(ofSet(ENGLISH), this.serviceMessageSourceFactoryBean.getSupportedLocales());
     }
 
     @Test
     void testGetSource() {
-        assertEquals(TEST_SOURCE, serviceMessageSourceFactoryBean.getSource());
+        assertEquals(TEST_SOURCE, this.serviceMessageSourceFactoryBean.getSource());
     }
 
     @Test
     void testSetOrder() {
-        serviceMessageSourceFactoryBean.setOrder(1);
-        assertEquals(1, serviceMessageSourceFactoryBean.getOrder());
+        this.serviceMessageSourceFactoryBean.setOrder(1);
+        assertEquals(1, this.serviceMessageSourceFactoryBean.getOrder());
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testInitServiceMessageSources() {
+        assertFalse(this.serviceMessageSourceFactoryBean.initServiceMessageSources().isEmpty());
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testResolveSupportedLocale() {
+        Locale locale = this.serviceMessageSourceFactoryBean.resolveDefaultLocale(this.environment);
+        assertEquals(ENGLISH, locale);
+
+        MockEnvironment environment = new MockEnvironment();
+        locale = this.serviceMessageSourceFactoryBean.resolveDefaultLocale(environment);
+        assertEquals(this.serviceMessageSourceFactoryBean.getDefaultLocale(), locale);
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testResolveSupportedLocales() {
+        Set<Locale> locales = this.serviceMessageSourceFactoryBean.resolveSupportedLocales(this.environment);
+        assertEquals(ofSet(ENGLISH), locales);
+
+        MockEnvironment environment = new MockEnvironment();
+        locales = this.serviceMessageSourceFactoryBean.resolveSupportedLocales(environment);
+        assertEquals(this.serviceMessageSourceFactoryBean.getDefaultSupportedLocales(), locales);
+    }
+
+    @Test
+    @LoggingLevelsTest(levels = "ERROR")
+    void testOnApplicationEvent() {
+        ResourceServiceMessageSourceChangedEvent event = new ResourceServiceMessageSourceChangedEvent(this.context, ofList("test.i18n_messages_en.properties"));
+        this.serviceMessageSourceFactoryBean.onApplicationEvent(event);
     }
 
     @Test
