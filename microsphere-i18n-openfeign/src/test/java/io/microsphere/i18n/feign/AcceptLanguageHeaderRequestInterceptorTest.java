@@ -1,6 +1,7 @@
 package io.microsphere.i18n.feign;
 
 import feign.RequestTemplate;
+import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import static org.springframework.web.context.request.RequestContextHolder.setRe
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
+@SpringLoggingTest
 class AcceptLanguageHeaderRequestInterceptorTest {
 
     private AcceptLanguageHeaderRequestInterceptor requestInterceptor;

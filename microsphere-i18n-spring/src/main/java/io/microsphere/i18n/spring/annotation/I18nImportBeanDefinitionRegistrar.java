@@ -151,10 +151,12 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
     private boolean isEnabled() {
         String propertyName = ENABLED_PROPERTY_NAME;
         boolean enabled = environment.getProperty(propertyName, boolean.class, DEFAULT_ENABLED);
-        logger.trace("Microsphere i18n is {} , cased by the Spring property[name : '{}', default value : '{}']",
-                enabled ? "enabled" : "disabled",
-                propertyName,
-                DEFAULT_ENABLED);
+        if (logger.isTraceEnabled()) {
+            logger.trace("Microsphere i18n is {} , cased by the Spring property[name : '{}', default value : '{}']",
+                    enabled ? "enabled" : "disabled",
+                    propertyName,
+                    DEFAULT_ENABLED);
+        }
         return enabled;
     }
 }

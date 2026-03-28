@@ -61,7 +61,9 @@ public class DelegatingServiceMessageSource extends CompositeServiceMessageSourc
     private List<ServiceMessageSource> findServiceMessageSourceBeans() {
         List<ServiceMessageSource> serviceMessageSources = new ArrayList<>(getSortedBeans(this.beanFactory, ServiceMessageSource.class));
         serviceMessageSources.remove(this);
-        logger.trace("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
+        if (logger.isTraceEnabled()) {
+            logger.trace("Initializes the ServiceMessageSource Bean list : {}", serviceMessageSources);
+        }
         return serviceMessageSources;
     }
 
