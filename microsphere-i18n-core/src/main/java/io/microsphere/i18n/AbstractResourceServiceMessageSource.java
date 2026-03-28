@@ -179,7 +179,6 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     @Nonnull
     protected abstract Map<String, String> loadMessages(String resource);
 
-    @Nullable
     /**
      * Gets the message map for the specified {@link Locale}.
      *
@@ -192,6 +191,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
      * @param locale the target {@link Locale}
      * @return the message map, or {@code null} if no messages for the locale
      */
+    @Nullable
     public final Map<String, String> getMessages(Locale locale) {
         String resource = getResource(locale);
         return localizedResourceMessages.get(resource);
