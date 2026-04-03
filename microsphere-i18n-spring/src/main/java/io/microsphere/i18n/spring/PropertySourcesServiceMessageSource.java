@@ -12,7 +12,7 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySources;
-import org.springframework.lang.Nullable;
+import io.microsphere.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -85,8 +85,8 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
         return getSource() + SOURCE_SEPARATOR + resourceName;
     }
 
-    @Nullable
     @Override
+    @Nullable
     protected Locale getInternalLocale() {
         return LocaleContextHolder.getLocale();
     }
