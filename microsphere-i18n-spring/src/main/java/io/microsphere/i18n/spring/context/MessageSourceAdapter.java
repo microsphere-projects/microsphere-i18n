@@ -98,6 +98,15 @@ public class MessageSourceAdapter implements MessageSource, SmartInitializingSin
                 '}';
     }
 
+    /**
+     * Resolves a default message by delegating to fallback {@link MessageSource} beans.
+     *
+     * @param code           the message code
+     * @param args           the message arguments
+     * @param defaultMessage the default message
+     * @param locale         the target locale
+     * @return the resolved message, or the default message if not found
+     */
     protected String getDefaultMessage(String code, Object[] args, String defaultMessage, Locale locale) {
         for (MessageSource defaultMessageSource : this.defaultMessageSources) {
             String message = defaultMessageSource.getMessage(code, args, defaultMessage, locale);
