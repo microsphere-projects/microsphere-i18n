@@ -17,7 +17,7 @@
 package io.microsphere.i18n.spring.util;
 
 import org.springframework.context.i18n.LocaleContext;
-import org.springframework.lang.Nullable;
+import io.microsphere.annotation.Nullable;
 
 import java.util.Locale;
 
