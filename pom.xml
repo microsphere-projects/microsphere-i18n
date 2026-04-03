@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.microsphere-projects</groupId>
-        <artifactId>microsphere-build</artifactId>
-        <version>0.2.5</version>
+        <artifactId>microsphere-spring-cloud-parent</artifactId>
+        <version>0.1.7</version>
     </parent>
 
     <groupId>io.github.microsphere-projects</groupId>
@@ -52,7 +52,7 @@
     </scm>
 
     <properties>
-        <revision>0.1.1-SNAPSHOT</revision>
+        <revision>0.1.2-SNAPSHOT</revision>
     </properties>
 
     <modules>
