@@ -19,3 +19,22 @@
 
 For a full list of changes, refer to the commit history.
 
+## v0.2.5
+
+# Release Notes for v0.2.5
+
+## Dependency Updates
+- Bumped `microsphere-spring-cloud` to version `0.2.11`.
+
+## Build and Workflow Enhancements
+- Implemented matrix job for merging `main` into branches for streamlined workflows.
+- Fixed indentation issues in `dependabot.yml`.
+- Updated branch-specific latest versions in `README`.
+
+## Other Changes
+- Improved release notes and release creation process.
+- Removed final newline in `generate-wiki-docs.py`.
+
+---
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.4...0.2.5
