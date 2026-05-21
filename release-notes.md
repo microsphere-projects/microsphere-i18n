@@ -21,4 +21,23 @@
 
 ---  
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.4...0.1.5
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.4...0.1.5## v0.1.6
+
+# Release Notes - Version 0.1.6
+
+## Build and Workflow Enhancements
+- Added Maven credentials to CI workflow for improved build automation. ([5c72717](#))
+- Adjusted Java setup and integrated Maven Wrapper in CI pipeline. ([8616a76](#))
+- Updated `maven-build.yml` for better CI configuration. ([7e261c3](#))
+
+## Dependency Updates
+- Upgraded Microsphere parent to version `0.1.12`. ([dbf5f23](#))
+
+## Documentation
+- Updated README to reflect branch structure and versioning changes. ([155afde](#))
+
+## Other Changes
+- Merged release-1.x into dev-1.x branch for alignment. ([85f38fb](#))
+- Bumped version to prepare for the next patch after `0.1.5`. ([2a359ad](#))
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.5...0.1.6
