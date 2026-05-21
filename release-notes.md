@@ -40,4 +40,25 @@
 - Merged release-1.x into dev-1.x branch for alignment. ([85f38fb](#))
 - Bumped version to prepare for the next patch after `0.1.5`. ([2a359ad](#))
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.5...0.1.6
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.5...0.1.6## v0.1.7
+
+# Release Notes: Version 0.1.7
+
+## New Features
+- Added `logging-test` and `I18n cloud features` bean. ([3c07ed1](https://example.com/commit/3c07ed1))
+
+## Test Improvements
+- Removed test logback configuration. ([4e44a75](https://example.com/commit/4e44a75))
+
+## Documentation
+- Updated version numbers in `README.md`. ([ec9dfd3](https://example.com/commit/ec9dfd3))
+
+## Build and Workflow Enhancements
+- Merged `release-1.x` branch into `dev-1.x`. ([947b033](https://example.com/commit/947b033))
+- Bumped version to the next patch after publishing v0.1.6. ([e70beb7](https://example.com/commit/e70beb7))
+
+---
+
+**Note:** This release includes incremental improvements and updates to prepare for future enhancements.
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.6...0.1.7

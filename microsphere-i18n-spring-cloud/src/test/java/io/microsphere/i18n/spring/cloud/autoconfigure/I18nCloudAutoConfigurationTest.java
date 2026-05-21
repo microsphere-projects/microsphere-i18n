@@ -6,8 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.FilteredClassLoader;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+import org.springframework.cloud.client.actuator.HasFeatures;
 
+import static io.microsphere.i18n.spring.cloud.autoconfigure.I18nCloudAutoConfiguration.FeaturesConfiguration.I18N_FEATURES_BEAN_NAME;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.autoconfigure.AutoConfigurations.of;
 
 /**
@@ -38,5 +42,14 @@ class I18nCloudAutoConfigurationTest {
     void shouldNotContainReloadableResourceServiceMessageSourceListenerBeanWhenMissingEnvironmentChangeEvent() {
         applicationContextRunner.withClassLoader(new FilteredClassLoader("org.springframework.cloud.context.environment.EnvironmentChangeEvent"))
                 .run(context -> assertThat(context).doesNotHaveBean(ReloadableResourceServiceMessageSourceListener.class));
+    }
+
+    @Test
+    void testHashFeatures() {
+        applicationContextRunner.run(context -> {
+            HasFeatures hasFeatures = context.getBean(I18N_FEATURES_BEAN_NAME, HasFeatures.class);
+            assertTrue(hasFeatures.getAbstractFeatures().isEmpty());
+            assertFalse(hasFeatures.getNamedFeatures().isEmpty());
+        });
     }
 }
