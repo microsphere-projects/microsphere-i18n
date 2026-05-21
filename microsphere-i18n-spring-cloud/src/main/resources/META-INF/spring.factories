@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.microsphere.i18n.spring.cloud.autoconfigure.I18nCloudAutoConfiguration
