@@ -5,7 +5,7 @@ import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.DefaultServiceMessageSource;
 import io.microsphere.i18n.EmptyServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
-import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
+import io.microsphere.logging.test.jupiter.LoggingLevelsClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
  * @since 1.0.0
  */
-@SpringLoggingTest
+@LoggingLevelsClass(levels = {"TRACE", "INFO", "ERROR"})
 class I18nUtilsTest extends AbstractI18nTest {
 
     @Test
