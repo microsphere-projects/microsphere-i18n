@@ -292,10 +292,10 @@ mvnw.cmd verify
 ## Getting Help
 
 - **Documentation**: 
-  - [User Guide](./user-guide.md)
   - [DeepWiki](https://deepwiki.com/microsphere-projects/microsphere-i18n)
   - [ZRead](https://zread.ai/microsphere-projects/microsphere-i18n)
   - [GitHub Wiki](https://github.com/microsphere-projects/microsphere-i18n/wiki)
+  - [Developer Guide](./developer-guide.md)
 - **JavaDoc**:
     - [microsphere-i18n-core](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-core)
     - [microsphere-i18n-openfeign](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-openfeign)
