@@ -18,12 +18,12 @@ scenarios ranging from standalone Spring applications to distributed, cloud-nati
 - [Modules](#modules)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
-  - [Add the BOM](#add-the-bom)
-  - [Spring Applications](#spring-applications)
-  - [Spring Boot Applications](#spring-boot-applications)
-  - [Spring Cloud Applications](#spring-cloud-applications)
-  - [OpenFeign Integration](#openfeign-integration)
-  - [Centralized I18n Server](#centralized-i18n-server)
+    - [Add the BOM](#add-the-bom)
+    - [Spring Applications](#spring-applications)
+    - [Spring Boot Applications](#spring-boot-applications)
+    - [Spring Cloud Applications](#spring-cloud-applications)
+    - [OpenFeign Integration](#openfeign-integration)
+    - [Centralized I18n Server](#centralized-i18n-server)
 - [Message Files](#message-files)
 - [Configuration Properties](#configuration-properties)
 - [Actuator Endpoint](#actuator-endpoint)
@@ -34,14 +34,20 @@ scenarios ranging from standalone Spring applications to distributed, cloud-nati
 
 ## Features
 
-- **Layered message sources** — load localized messages from classpath properties files, Spring `Environment`, or external configuration systems, all through a unified `ServiceMessageSource` abstraction.
-- **Composite sources with priority ordering** — combine multiple message sources via `CompositeServiceMessageSource`; higher-priority sources shadow lower-priority ones.
+- **Layered message sources** — load localized messages from classpath properties files, Spring `Environment`, or
+  external configuration systems, all through a unified `ServiceMessageSource` abstraction.
+- **Composite sources with priority ordering** — combine multiple message sources via `CompositeServiceMessageSource`;
+  higher-priority sources shadow lower-priority ones.
 - **Dynamic configuration** — Spring Cloud integration enables runtime message updates without application restarts.
-- **Spring MessageSource bridge** — the primary `ServiceMessageSource` bean is automatically exposed as Spring's `MessageSource`, so it works transparently with `@Value`, Thymeleaf, and other Spring facilities.
-- **Bean Validation integration** — i18n-aware `LocalValidatorFactoryBean` translates constraint violation messages through the same source.
-- **OpenFeign propagation** — an `Accept-Language` request interceptor automatically forwards the current locale to downstream Feign clients.
+- **Spring MessageSource bridge** — the primary `ServiceMessageSource` bean is automatically exposed as Spring's
+  `MessageSource`, so it works transparently with `@Value`, Thymeleaf, and other Spring facilities.
+- **Bean Validation integration** — i18n-aware `LocalValidatorFactoryBean` translates constraint violation messages
+  through the same source.
+- **OpenFeign propagation** — an `Accept-Language` request interceptor automatically forwards the current locale to
+  downstream Feign clients.
 - **Actuator endpoint** — read and write i18n messages at runtime through `/actuator/i18n`.
-- **Centralized i18n server** — serve consolidated message bundles across microservices via a dedicated Spring Cloud server module.
+- **Centralized i18n server** — serve consolidated message bundles across microservices via a dedicated Spring Cloud
+  server module.
 
 ## Modules
 
@@ -85,10 +91,10 @@ Import the Bill of Materials into your `pom.xml` to manage all module versions c
 
 Choose the version that matches your Spring Cloud generation:
 
-| **Branch** | **Compatible Spring Cloud**              | **Latest Version** |
-|------------|------------------------------------------|--------------------|
-| **main**   | 2022.0.x – 2025.0.x                      | 0.2.7              |
-| **1.x**    | Hoxton – 2021.0.x                        | 0.1.7              |
+| **Branch** | **Compatible Spring Cloud** | **Latest Version** |
+|------------|-----------------------------|--------------------|
+| **main**   | 2022.0.x – 2025.0.x         | 0.2.7              |
+| **1.x**    | Hoxton – 2021.0.x           | 0.1.7              |
 
 ### Spring Applications
 
@@ -104,7 +110,8 @@ Add the Spring integration module and enable i18n support with `@EnableI18n`:
 ```java
 @EnableI18n(sources = {"common", "myapp"})
 @Configuration
-public class I18nConfig { }
+public class I18nConfig {
+}
 ```
 
 Inject and use `ServiceMessageSource` anywhere in your Spring beans:
@@ -217,14 +224,14 @@ Message values use `{}` as the positional placeholder:
 
 ```properties
 # i18n_messages_en.properties
-hello = Hello, {}
-error.notFound = Resource '{}' was not found
+hello=Hello, {}
+error.notFound=Resource '{}' was not found
 ```
 
 ```properties
 # i18n_messages_zh_CN.properties
-hello = 您好，{}
-error.notFound = 资源"{}"未找到
+hello=您好，{}
+error.notFound=资源"{}"未找到
 ```
 
 Retrieve a message with arguments at runtime:
@@ -238,23 +245,23 @@ String msg = messageSource.getMessage("hello", "World");
 
 All properties are prefixed with `microsphere.i18n.`:
 
-| **Property**                              | **Type**   | **Default** | **Description**                                                           |
-|-------------------------------------------|------------|-------------|---------------------------------------------------------------------------|
-| `microsphere.i18n.enabled`                | `boolean`  | `true`      | Enables or disables the i18n framework                                    |
-| `microsphere.i18n.sources`                | `String[]` | —           | Additional message source names to register (e.g., `common,myapp`)       |
-| `microsphere.i18n.default-locale`         | `Locale`   | JVM default | Default locale used when no request locale is available                   |
-| `microsphere.i18n.supported-locales`      | `String[]` | —           | Comma-separated list of supported locales (e.g., `zh_CN,en`)             |
+| **Property**                         | **Type**   | **Default** | **Description**                                                    |
+|--------------------------------------|------------|-------------|--------------------------------------------------------------------|
+| `microsphere.i18n.enabled`           | `boolean`  | `true`      | Enables or disables the i18n framework                             |
+| `microsphere.i18n.sources`           | `String[]` | —           | Additional message source names to register (e.g., `common,myapp`) |
+| `microsphere.i18n.default-locale`    | `Locale`   | JVM default | Default locale used when no request locale is available            |
+| `microsphere.i18n.supported-locales` | `String[]` | —           | Comma-separated list of supported locales (e.g., `zh_CN,en`)       |
 
 ## Actuator Endpoint
 
 When Spring Boot Actuator is on the classpath, the `/actuator/i18n` endpoint is registered
 automatically (requires `management.endpoints.web.exposure.include=i18n` or `*`).
 
-| **Method** | **Path**                   | **Description**                                        |
-|------------|----------------------------|--------------------------------------------------------|
-| `GET`      | `/actuator/i18n`           | List all localized messages grouped by resource file   |
-| `GET`      | `/actuator/i18n/{code}`    | Get all locale variants of a single message code       |
-| `POST`     | `/actuator/i18n`           | Add or overwrite a message at runtime                  |
+| **Method** | **Path**                | **Description**                                      |
+|------------|-------------------------|------------------------------------------------------|
+| `GET`      | `/actuator/i18n`        | List all localized messages grouped by resource file |
+| `GET`      | `/actuator/i18n/{code}` | Get all locale variants of a single message code     |
+| `POST`     | `/actuator/i18n`        | Add or overwrite a message at runtime                |
 
 ## Building from Source
 
@@ -286,20 +293,22 @@ mvnw.cmd verify
 
 - **Documentation**: [DeepWiki](https://deepwiki.com/microsphere-projects/microsphere-i18n) · [ZRead](https://zread.ai/microsphere-projects/microsphere-i18n) · [GitHub Wiki](https://github.com/microsphere-projects/microsphere-i18n/wiki)
 - **JavaDoc**:
-  - [microsphere-i18n-core](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-core)
-  - [microsphere-i18n-openfeign](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-openfeign)
-  - [microsphere-i18n-spring](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring)
-  - [microsphere-i18n-spring-boot](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring-boot)
-  - [microsphere-i18n-spring-cloud](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring-cloud)
-  - [microsphere-i18n-spring-cloud-server](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring-cloud-server)
-- **Bug reports / feature requests**: [GitHub Issues](https://github.com/microsphere-projects/microsphere-i18n/issues) — please search existing issues before opening a new one and include as much detail as possible.
+    - [microsphere-i18n-core](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-core)
+    - [microsphere-i18n-openfeign](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-openfeign)
+    - [microsphere-i18n-spring](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring)
+    - [microsphere-i18n-spring-boot](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring-boot)
+    - [microsphere-i18n-spring-cloud](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring-cloud)
+    - [microsphere-i18n-spring-cloud-server](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-spring-cloud-server)
+- **Bug reports / feature requests**: [GitHub Issues](https://github.com/microsphere-projects/microsphere-i18n/issues) —
+  please search existing issues before opening a new one and include as much detail as possible.
 
 ## Contributing
 
 We welcome contributions of all kinds. Please read the [Code of Conduct](./CODE_OF_CONDUCT.md) before
 submitting a pull request.
 
-**Maintainer**: [Mercy Ma](mailto:mercyblitz@gmail.com) ([@mercyblitz](https://github.com/mercyblitz)) — lead architect and primary developer.
+**Maintainer**: [Mercy Ma](mailto:mercyblitz@gmail.com) ([@mercyblitz](https://github.com/mercyblitz)) — lead architect
+and primary developer.
 
 ## License
 
