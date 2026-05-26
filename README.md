@@ -158,6 +158,8 @@ We welcome your contributions! Please read [Code of Conduct](./CODE_OF_CONDUCT.m
 
 ### User Guide
 
+[User Guide](./user-guide.md)
+
 [DeepWiki Host](https://deepwiki.com/microsphere-projects/microsphere-i18n)
 
 [ZRead Host](https://zread.ai/microsphere-projects/microsphere-i18n)
