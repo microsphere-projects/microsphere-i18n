@@ -1,4 +1,4 @@
-# Microsphere I18n - User Guide
+# Microsphere I18n - Developer Guide
 
 ## Brief Overview
 
