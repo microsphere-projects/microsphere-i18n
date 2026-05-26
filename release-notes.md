@@ -59,4 +59,21 @@ For a full list of changes, refer to the commit history.
 
 **[Full Changelog](https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.5...0.2.6)**  
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.5...0.2.6
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.5...0.2.6## v0.2.7
+
+# Release Notes - Version 0.2.7  
+
+## New Features  
+- **I18n Enhancements**: Registered `I18n` sources as `HasFeatures` for improved functionality.  
+
+## Test Improvements  
+- Updated tests to use `LoggingLevelsClass`.  
+- Removed test-specific logback configuration file to streamline test setup.  
+
+## Documentation  
+- Updated version numbers in `README.md` for consistency with the latest release.  
+
+## Other Changes  
+- Maintenance merges from `main` into `release` and vice-versa.  
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.6...0.2.7
