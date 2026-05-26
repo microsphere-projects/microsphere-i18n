@@ -76,7 +76,6 @@ scenarios ranging from standalone Spring applications to distributed, cloud-nati
 Import the Bill of Materials into your `pom.xml` to manage all module versions centrally:
 
 ```xml
-
 <dependencyManagement>
     <dependencies>
         <dependency>
@@ -102,7 +101,6 @@ Choose the version that matches your Spring Cloud generation:
 Add the Spring integration module and enable i18n support with `@EnableI18n`:
 
 ```xml
-
 <dependency>
     <groupId>io.github.microsphere-projects</groupId>
     <artifactId>microsphere-i18n-spring</artifactId>
@@ -110,7 +108,6 @@ Add the Spring integration module and enable i18n support with `@EnableI18n`:
 ```
 
 ```java
-
 @EnableI18n(sources = {"common", "myapp"})
 @Configuration
 public class I18nConfig {
@@ -120,7 +117,6 @@ public class I18nConfig {
 Inject and use `ServiceMessageSource` anywhere in your Spring beans:
 
 ```java
-
 @Service
 public class GreetingService {
 
@@ -139,7 +135,6 @@ public class GreetingService {
 Add the auto-configuration module — no `@EnableI18n` annotation required:
 
 ```xml
-
 <dependency>
     <groupId>io.github.microsphere-projects</groupId>
     <artifactId>microsphere-i18n-spring-boot</artifactId>
@@ -160,7 +155,6 @@ microsphere.i18n.enabled=true
 Add the Spring Cloud module for dynamic message refresh without application restarts:
 
 ```xml
-
 <dependency>
     <groupId>io.github.microsphere-projects</groupId>
     <artifactId>microsphere-i18n-spring-cloud</artifactId>
@@ -175,7 +169,6 @@ received, so updating messages in a config server takes effect immediately acros
 Add the OpenFeign module to propagate the current request locale to downstream services:
 
 ```xml
-
 <dependency>
     <groupId>io.github.microsphere-projects</groupId>
     <artifactId>microsphere-i18n-openfeign</artifactId>
@@ -190,7 +183,6 @@ header to every Feign request so that downstream services resolve messages in th
 Stand up a dedicated server that aggregates and serves message bundles for all microservices:
 
 ```xml
-
 <dependency>
     <groupId>io.github.microsphere-projects</groupId>
     <artifactId>microsphere-i18n-spring-cloud-server</artifactId>
@@ -200,7 +192,6 @@ Stand up a dedicated server that aggregates and serves message bundles for all m
 Annotate your Spring Boot application class:
 
 ```java
-
 @EnableI18nServer
 @SpringBootApplication
 public class I18nServerApplication {
@@ -300,7 +291,11 @@ mvnw.cmd verify
 
 ## Getting Help
 
-- **Documentation**: [DeepWiki](https://deepwiki.com/microsphere-projects/microsphere-i18n) · [ZRead](https://zread.ai/microsphere-projects/microsphere-i18n) · [GitHub Wiki](https://github.com/microsphere-projects/microsphere-i18n/wiki)
+- **Documentation**: 
+  - [DeepWiki](https://deepwiki.com/microsphere-projects/microsphere-i18n)
+  - [ZRead](https://zread.ai/microsphere-projects/microsphere-i18n)
+  - [GitHub Wiki](https://github.com/microsphere-projects/microsphere-i18n/wiki)
+  - [Developer Guide](./developer-guide.md)
 - **JavaDoc**:
     - [microsphere-i18n-core](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-core)
     - [microsphere-i18n-openfeign](https://javadoc.io/doc/io.github.microsphere-projects/microsphere-i18n-openfeign)
