@@ -76,4 +76,25 @@ For a full list of changes, refer to the commit history.
 ## Other Changes  
 - Maintenance merges from `main` into `release` and vice-versa.  
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.6...0.2.7
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.6...0.2.7## v0.2.8
+
+# Release Notes - Version 0.2.8
+
+## New Features
+- Introduced `.github` AI prompt templates for enhanced project guidance. [da82e88]
+
+## Documentation
+- Renamed `user-guide.md` to `developer-guide.md` and updated references accordingly. [7b8e067, 622e25b]
+- Added a comprehensive `developer-guide.md` on code explanations. [f423335]
+- Updated README:
+  - Linked `developer-guide.md` in the documentation section. [9e21571]
+  - Normalized markdown spacing and wrapping. [b683c7f]
+  - Expanded README with comprehensive details. [73f3dd9]
+
+## Dependency Updates
+- Bumped `microsphere-spring-cloud` version to `0.2.13`. [4e2bec0]
+
+## Other Changes
+- Updated default configuration for the explain-code prompt. [6895881]  
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.7...0.2.8
