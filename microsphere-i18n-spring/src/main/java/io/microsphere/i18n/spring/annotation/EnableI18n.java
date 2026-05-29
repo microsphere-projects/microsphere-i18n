@@ -87,3 +87,5 @@ public @interface EnableI18n {
      * @see MessageSource
      */
     boolean exposeMessageSource() default true;
+
+}

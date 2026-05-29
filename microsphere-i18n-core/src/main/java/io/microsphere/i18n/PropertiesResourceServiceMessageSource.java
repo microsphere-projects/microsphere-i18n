@@ -104,3 +104,5 @@ public abstract class PropertiesResourceServiceMessageSource extends AbstractRes
     protected abstract String getResource(String resourceName);
 
     protected abstract List<Reader> loadAllPropertiesResources(String resource) throws IOException;
+
+}

@@ -50,3 +50,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Inherited
 @Import(I18nServerConfiguration.class)
 public @interface EnableI18nServer {
+
+}

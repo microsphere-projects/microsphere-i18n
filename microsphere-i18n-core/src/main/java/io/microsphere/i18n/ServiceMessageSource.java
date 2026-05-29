@@ -122,3 +122,5 @@ public interface ServiceMessageSource extends Prioritized {
     @Override
     @Nonnull
     String toString();
+
+}

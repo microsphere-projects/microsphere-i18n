@@ -74,3 +74,5 @@ public interface I18nConstants {
      * The Primary {@link ServiceMessageSource} Bean Bean
      */
     String SERVICE_MESSAGE_SOURCE_BEAN_NAME = "serviceMessageSource";
+
+}
