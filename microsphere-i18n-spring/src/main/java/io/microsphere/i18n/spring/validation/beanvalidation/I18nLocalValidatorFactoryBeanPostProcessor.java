@@ -13,7 +13,6 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import static io.microsphere.logging.LoggerFactory.getLogger;
 import static org.springframework.util.ClassUtils.isPresent;
 
-
 /**
  * Internationalization {@link BeanPostProcessor} for {@link LocalValidatorFactoryBean}
  * that sets the i18n {@link MessageSourceAdapter} as the validation message source.

@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring;
 
-
 import io.microsphere.i18n.EmptyServiceMessageSource;
 import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
 import org.junit.jupiter.api.Test;

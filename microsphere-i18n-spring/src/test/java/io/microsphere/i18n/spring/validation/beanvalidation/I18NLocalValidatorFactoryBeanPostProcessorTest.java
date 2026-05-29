@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring.validation.beanvalidation;
 
-
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
