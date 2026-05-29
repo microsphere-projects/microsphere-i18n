@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n;
 
-
 import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.Sets.ofSet;

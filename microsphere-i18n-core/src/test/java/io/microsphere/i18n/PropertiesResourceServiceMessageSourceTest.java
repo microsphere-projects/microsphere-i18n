@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n;
 
-
 import io.microsphere.logging.test.jupiter.LoggingLevelsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
