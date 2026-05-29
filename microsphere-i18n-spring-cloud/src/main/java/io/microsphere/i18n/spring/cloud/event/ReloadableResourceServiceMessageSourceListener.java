@@ -66,4 +66,3 @@ public class ReloadableResourceServiceMessageSourceListener implements Applicati
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
     }
-}

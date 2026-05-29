@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n;
 
-
 import io.microsphere.logging.test.jupiter.LoggingLevelsClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -206,4 +205,3 @@ class CompositeServiceMessageSourceTest {
         Set<String> initializedResources = compositeServiceMessageSource.getInitializedResources();
         compositeServiceMessageSource.reload(initializedResources);
     }
-}

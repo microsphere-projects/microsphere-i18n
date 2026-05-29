@@ -268,9 +268,7 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
         return unmodifiableSet(resources);
     }
 
-
     @Override
     public String toString() {
         return super.toString() + ", localizedResourceMessages = " + this.localizedResourceMessages;
     }
-}

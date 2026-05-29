@@ -52,4 +52,3 @@ class I18nCloudAutoConfigurationTest {
             assertFalse(hasFeatures.getNamedFeatures().isEmpty());
         });
     }
-}

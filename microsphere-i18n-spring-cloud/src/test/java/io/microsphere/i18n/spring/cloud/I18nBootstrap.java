@@ -38,4 +38,3 @@ public class I18nBootstrap {
                 .properties("common.i18n_messages_en.properties=common.a = common-a-2024")
                 .run(args);
     }
-}

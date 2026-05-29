@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring.util;
 
-
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.config.DisabledEnableI18nConfiguration;
@@ -96,4 +95,3 @@ class I18nBeanUtilsTest {
         assertEquals(exposed, messageSource instanceof MessageSourceAdapter);
         assertEquals(exposed, context.containsBeanDefinition(MESSAGE_SOURCE_BEAN_NAME));
     }
-}

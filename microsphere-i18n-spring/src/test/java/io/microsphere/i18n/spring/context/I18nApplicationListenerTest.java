@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring.context;
 
-
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
@@ -63,4 +62,3 @@ class I18nApplicationListenerTest extends AbstractSpringTest {
         }, TestSourceEnableI18nConfiguration.class);
         assertSame(INSTANCE, serviceMessageSource());
     }
-}

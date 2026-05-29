@@ -159,4 +159,3 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
         }
         return enabled;
     }
-}

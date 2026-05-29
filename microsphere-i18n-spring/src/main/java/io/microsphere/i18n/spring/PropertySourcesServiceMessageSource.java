@@ -197,4 +197,3 @@ public class PropertySourcesServiceMessageSource extends PropertiesResourceServi
             }
         }
     }
-}

@@ -116,4 +116,3 @@ public class MessageSourceAdapter implements MessageSource, SmartInitializingSin
         }
         return defaultMessage;
     }
-}

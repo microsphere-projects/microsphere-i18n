@@ -149,4 +149,3 @@ class I18nEndpointTest {
             return new I18nEndpoint();
         }
     }
-}

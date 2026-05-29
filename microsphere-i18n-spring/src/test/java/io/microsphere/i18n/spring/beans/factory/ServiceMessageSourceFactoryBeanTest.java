@@ -161,4 +161,3 @@ class ServiceMessageSourceFactoryBeanTest extends AbstractSpringTest {
     void testToString() {
         assertNotNull(this.serviceMessageSource.toString());
     }
-}

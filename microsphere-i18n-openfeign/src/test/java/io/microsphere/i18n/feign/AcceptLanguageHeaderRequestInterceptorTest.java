@@ -65,4 +65,3 @@ class AcceptLanguageHeaderRequestInterceptorTest {
         requestInterceptor.apply(new RequestTemplate());
         assertTrue(requestTemplate.headers().isEmpty());
     }
-}

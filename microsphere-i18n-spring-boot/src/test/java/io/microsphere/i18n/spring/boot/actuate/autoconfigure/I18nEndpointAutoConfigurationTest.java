@@ -45,4 +45,3 @@ class I18nEndpointAutoConfigurationTest {
                 .withPropertyValues("management.endpoints.web.exposure.include=*")
                 .run(context -> assertThat(context).doesNotHaveBean(I18nEndpoint.class));
     }
-}

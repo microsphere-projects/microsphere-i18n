@@ -137,4 +137,3 @@ class DefaultServiceMessageSourceTest extends ReloadableResourceServiceMessageSo
         DefaultServiceMessageSource serviceMessageSource = getServiceMessageSource();
         serviceMessageSource.reload(ofSet(TEST_SOURCE));
     }
-}

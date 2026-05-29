@@ -61,4 +61,3 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
     default void reload(Iterable<String> changedResources) {
         initializeResources(changedResources);
     }
-}

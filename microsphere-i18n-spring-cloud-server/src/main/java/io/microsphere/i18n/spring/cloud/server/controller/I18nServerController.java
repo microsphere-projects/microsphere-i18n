@@ -59,5 +59,3 @@ public class I18nServerController {
     public Map<String, Map<String, String>> getMessages() {
         return i18nEndpoint.invoke();
     }
-
-}

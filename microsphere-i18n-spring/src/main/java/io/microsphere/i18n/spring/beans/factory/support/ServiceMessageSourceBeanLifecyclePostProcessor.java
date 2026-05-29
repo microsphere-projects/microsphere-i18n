@@ -88,4 +88,3 @@ public class ServiceMessageSourceBeanLifecyclePostProcessor implements MergedBea
             beanDefinition.setDestroyMethodName("destroy");
         }
     }
-}

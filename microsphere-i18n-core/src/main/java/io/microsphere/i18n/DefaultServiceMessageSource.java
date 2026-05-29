@@ -86,4 +86,3 @@ public class DefaultServiceMessageSource extends PropertiesResourceServiceMessag
     protected Enumeration<URL> getResources(String resource) throws IOException {
         return this.classLoader.getResources(resource);
     }
-}

@@ -71,4 +71,3 @@ class ReloadableResourceServiceMessageSourceTest extends ResourceServiceMessageS
         serviceMessageSource.reload(resources);
         assertTrue(serviceMessageSource.canReload(resources));
     }
-}

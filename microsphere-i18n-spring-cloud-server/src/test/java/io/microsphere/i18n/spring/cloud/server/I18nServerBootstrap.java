@@ -39,4 +39,3 @@ public class I18nServerBootstrap {
                 .web(SERVLET)
                 .run(args);
     }
-}

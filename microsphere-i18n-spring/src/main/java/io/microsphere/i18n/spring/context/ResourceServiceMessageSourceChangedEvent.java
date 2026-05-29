@@ -43,4 +43,3 @@ public class ResourceServiceMessageSourceChangedEvent extends ApplicationContext
     public Iterable<String> getChangedResources() {
         return changedResources;
     }
-}

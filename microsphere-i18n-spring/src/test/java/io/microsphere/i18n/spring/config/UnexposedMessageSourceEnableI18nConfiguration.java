@@ -31,4 +31,3 @@ import org.springframework.context.annotation.Configuration;
  */
 @EnableI18n(exposeMessageSource = false)
 public class UnexposedMessageSourceEnableI18nConfiguration {
-}

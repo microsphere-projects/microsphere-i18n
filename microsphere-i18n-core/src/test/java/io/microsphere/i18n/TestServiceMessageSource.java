@@ -68,4 +68,3 @@ class TestServiceMessageSource implements ServiceMessageSource {
     public String getSource() {
         return ServiceMessageSource.super.getSource();
     }
-}

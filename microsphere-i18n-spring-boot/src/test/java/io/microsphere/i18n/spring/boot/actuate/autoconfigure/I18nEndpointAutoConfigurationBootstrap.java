@@ -43,4 +43,3 @@ public class I18nEndpointAutoConfigurationBootstrap {
     public static ServiceMessageSourceFactoryBean testServiceMessageSource() {
         return new ServiceMessageSourceFactoryBean("test");
     }
-}

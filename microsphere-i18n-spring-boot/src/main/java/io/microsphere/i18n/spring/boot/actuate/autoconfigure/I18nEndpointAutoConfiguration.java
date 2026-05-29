@@ -56,4 +56,3 @@ public class I18nEndpointAutoConfiguration {
     public I18nEndpoint i18nEndpoint() {
         return new I18nEndpoint();
     }
-}

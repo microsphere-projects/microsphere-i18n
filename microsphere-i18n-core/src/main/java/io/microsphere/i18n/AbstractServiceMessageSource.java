@@ -253,4 +253,3 @@ public abstract class AbstractServiceMessageSource implements ServiceMessageSour
                 ", supportedLocales = " + getSupportedLocales() +
                 ", defaultLocale = " + getDefaultLocale();
     }
-}

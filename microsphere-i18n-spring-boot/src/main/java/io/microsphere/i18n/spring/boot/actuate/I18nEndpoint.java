@@ -330,4 +330,3 @@ public class I18nEndpoint {
             return singleton(locale);
         }
     }
-}

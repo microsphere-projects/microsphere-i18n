@@ -80,4 +80,3 @@ public class ServiceMessageException extends RuntimeException {
                 .add("localized message='" + getLocalizedMessage() + "'")
                 .toString();
     }
-}

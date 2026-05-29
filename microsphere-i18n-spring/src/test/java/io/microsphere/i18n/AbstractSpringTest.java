@@ -65,4 +65,3 @@ public abstract class AbstractSpringTest {
         // Returns null if code does not exist
         assertNull(serviceMessageSource.getMessage("code-not-found"));
     }
-}

@@ -79,4 +79,3 @@ public class I18nCloudAutoConfiguration {
             return new HasFeatures(emptyList(), namedFeatures);
         }
     }
-}

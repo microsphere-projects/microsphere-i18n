@@ -248,4 +248,3 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     private <T> void iterate(Consumer<ServiceMessageSource> consumer) {
         this.serviceMessageSources.forEach(consumer);
     }
-}

@@ -65,4 +65,3 @@ class ServiceMessageExceptionTest {
         assertEquals(localizedMessage, exception.getLocalizedMessage());
         assertEquals(format("ServiceMessageException[message='{}', args={}, localized message='{}']", message, arrayToString(args), localizedMessage), exception.toString());
     }
-}

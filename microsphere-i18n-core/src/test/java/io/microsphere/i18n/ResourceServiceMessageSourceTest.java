@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n;
 
-
 import org.junit.jupiter.api.Test;
 
 import static io.microsphere.collection.Sets.ofSet;
@@ -51,4 +50,3 @@ class ResourceServiceMessageSourceTest extends ServiceMessageSourceTest {
         ResourceServiceMessageSource serviceMessageSource = getServiceMessageSource();
         assertEquals(UTF_8, serviceMessageSource.getEncoding());
     }
-}

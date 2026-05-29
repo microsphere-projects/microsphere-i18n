@@ -108,5 +108,3 @@ class I18nImportBeanDefinitionRegistrarTest {
             currentThread().setContextClassLoader(classLoader);
         }
     }
-
-}

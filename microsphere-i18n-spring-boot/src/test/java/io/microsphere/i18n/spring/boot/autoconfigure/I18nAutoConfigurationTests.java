@@ -51,4 +51,3 @@ class I18nAutoConfigurationTests {
                             .hasSingleBean(ServiceMessageSourceBeanLifecyclePostProcessor.class);
                 });
     }
-}

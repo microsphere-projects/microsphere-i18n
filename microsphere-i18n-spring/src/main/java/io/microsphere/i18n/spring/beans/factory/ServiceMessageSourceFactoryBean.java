@@ -246,4 +246,3 @@ public final class ServiceMessageSourceFactoryBean extends CompositeServiceMessa
         }
         super.reload(changedResources);
     }
-}

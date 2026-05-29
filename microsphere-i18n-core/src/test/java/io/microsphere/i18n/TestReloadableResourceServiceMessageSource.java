@@ -49,4 +49,3 @@ class TestReloadableResourceServiceMessageSource extends TestResourceServiceMess
     public boolean canReload(Iterable<String> changedResources) {
         return ReloadableResourceServiceMessageSource.super.canReload(changedResources);
     }
-}

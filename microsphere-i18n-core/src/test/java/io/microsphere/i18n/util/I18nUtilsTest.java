@@ -45,4 +45,3 @@ class I18nUtilsTest extends AbstractI18nTest {
         assertEquals(serviceMessageSources, findAllServiceMessageSources(compositeServiceMessageSource, ServiceMessageSource.class));
         assertEquals(serviceMessageSources, findAllServiceMessageSources(compositeServiceMessageSource, EmptyServiceMessageSource.class));
     }
-}

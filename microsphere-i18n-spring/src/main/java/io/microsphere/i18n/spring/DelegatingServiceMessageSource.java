@@ -66,5 +66,3 @@ public class DelegatingServiceMessageSource extends CompositeServiceMessageSourc
         }
         return serviceMessageSources;
     }
-
-}

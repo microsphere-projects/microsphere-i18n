@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring.beans.factory.support;
 
-
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -94,4 +93,3 @@ class ServiceMessageSourceBeanLifecyclePostProcessorTest {
         postProcessor.postProcessMergedBeanDefinition(rootBeanDefinition, beanType, "");
         beanDefinitionConsumer.accept(rootBeanDefinition);
     }
-}

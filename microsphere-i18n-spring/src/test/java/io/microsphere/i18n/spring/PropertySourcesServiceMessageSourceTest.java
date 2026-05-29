@@ -134,4 +134,3 @@ class PropertySourcesServiceMessageSourceTest extends AbstractSpringTest {
             return new DelegatingServiceMessageSource();
         }
     }
-}

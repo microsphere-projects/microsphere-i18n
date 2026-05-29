@@ -33,4 +33,3 @@ import static io.microsphere.i18n.AbstractSpringTest.TEST_SOURCE;
  */
 @EnableI18n(sources = TEST_SOURCE)
 public class TestSourceEnableI18nConfiguration {
-}

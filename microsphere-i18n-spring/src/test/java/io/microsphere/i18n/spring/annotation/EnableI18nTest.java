@@ -46,4 +46,3 @@ class EnableI18nTest extends AbstractSpringTest {
     void testCommonServiceMessageSource() {
         assertSame(serviceMessageSource(), serviceMessageSource);
     }
-}

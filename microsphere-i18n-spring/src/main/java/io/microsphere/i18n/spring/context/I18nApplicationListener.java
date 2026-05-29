@@ -77,4 +77,3 @@ public class I18nApplicationListener {
         ServiceMessageSource serviceMessageSource = getServiceMessageSource(context);
         setServiceMessageSource(serviceMessageSource);
     }
-}

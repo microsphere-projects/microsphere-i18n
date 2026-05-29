@@ -93,4 +93,3 @@ public class I18nServerConfiguration {
         serviceMessageSource.init();
         return serviceMessageSource;
     }
-}

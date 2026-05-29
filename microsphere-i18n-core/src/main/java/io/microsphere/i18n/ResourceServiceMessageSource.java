@@ -59,4 +59,3 @@ public interface ResourceServiceMessageSource extends ServiceMessageSource {
     default Charset getEncoding() {
         return UTF_8;
     }
-}
