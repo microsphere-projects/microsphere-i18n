@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring.util;
 
-
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.DelegatingServiceMessageSource;
 import io.microsphere.i18n.spring.config.DisabledEnableI18nConfiguration;

@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring.web.servlet;
 
-
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.config.TestSourceEnableI18nConfiguration;
 import io.microsphere.spring.test.junit.jupiter.SpringLoggingTest;
