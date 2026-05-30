@@ -17,7 +17,6 @@
 
 package io.microsphere.i18n.spring.context;
 
-
 import io.microsphere.i18n.AbstractSpringTest;
 import io.microsphere.i18n.DefaultServiceMessageSource;
 import io.microsphere.i18n.EmptyServiceMessageSource;

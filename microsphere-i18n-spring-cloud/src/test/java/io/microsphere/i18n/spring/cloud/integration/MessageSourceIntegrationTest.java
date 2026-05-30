@@ -50,7 +50,6 @@ class MessageSourceIntegrationTest {
 
         applicationContext.publishEvent(new EnvironmentChangeEvent(ofSet(key)));
 
-
         assertThat(serviceMessageSource.getMessage("common.a", ENGLISH))
                 .isEqualTo("a.2024");
 

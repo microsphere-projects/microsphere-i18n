@@ -61,7 +61,6 @@ class MessageUtilsTest extends AbstractI18nTest {
         assertEquals("hello", getLocalizedMessage("hello", ENGLISH, "World"));
         assertEquals("Hello,World", getLocalizedMessage("{hello}", ENGLISH, "World"));
 
-
         assertEquals("{a.}", getLocalizedMessage("{a.}", ENGLISH, "World"));
     }
 }
