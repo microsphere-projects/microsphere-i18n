@@ -85,4 +85,24 @@
 
 ---
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.7...0.1.8
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.7...0.1.8## v0.1.9
+
+# Release Notes - Version 0.1.9
+
+## Dependency Updates
+- **microsphere-spring-cloud:** Upgraded to version `0.1.14`. ([75b046f](#))
+
+## Documentation
+- Improved version references and formatting in `README.md`. ([66d00f0](#))
+
+## Code Cleanup
+- Removed duplicated line separators in code. ([0baad45](#))
+- Cleaned up unnecessary whitespace in Java source files. ([faa4ab2](#))
+
+## Build and Workflow Enhancements
+- Merged `release-1.x` into `dev-1.x` for branch consistency. ([dcf8cb3](#))
+- Updated version to next patch after publishing `0.1.8`. ([c79c599](#))
+
+--- 
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.8...0.1.9
