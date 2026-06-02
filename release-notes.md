@@ -105,4 +105,21 @@
 
 --- 
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.8...0.1.9
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.8...0.1.9## v0.1.10
+
+# Release Notes - Version 0.1.10
+
+## Dependency Updates
+- **Microsphere Spring Cloud**: Upgraded to version `0.1.15`. ([#52a0067](https://example.com))
+- **Parent POM**: Bumped version to `0.1.15`. ([#b4a4bbe](https://example.com))
+
+## Documentation
+- Updated README versions to include details for `0.2.10` and `0.1.10`. ([#17d1569](https://example.com))
+
+## Build and Workflow Enhancements
+- Merged `release-1.x` into `dev-1.x`. ([#e1aeb9e](https://example.com))
+- Prepared codebase for next patch cycle post `0.1.9`. ([#4b36084](https://example.com))
+
+---
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.9...0.1.10
