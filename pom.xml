@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.microsphere-projects</groupId>
         <artifactId>microsphere-spring-cloud-parent</artifactId>
-        <version>0.2.14</version>
+        <version>0.2.15</version>
     </parent>
 
     <groupId>io.github.microsphere-projects</groupId>
@@ -52,7 +52,7 @@
     </scm>
 
     <properties>
-        <revision>0.2.9-SNAPSHOT</revision>
+        <revision>0.2.10-SNAPSHOT</revision>
         <java.version>17</java.version>
     </properties>
 
