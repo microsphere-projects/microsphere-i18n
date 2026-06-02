@@ -97,4 +97,23 @@ For a full list of changes, refer to the commit history.
 ## Other Changes
 - Updated default configuration for the explain-code prompt. [6895881]  
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.7...0.2.8
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.7...0.2.8## v0.2.9
+
+# Release Notes - Version 0.2.9
+
+## New Features
+- **Spring Cloud Dependency Update:** Bumped Microsphere Spring Cloud version to `0.2.14` for enhanced compatibility. ([ca34a40](#))
+
+## Documentation
+- **README Improvements:** Updated README versions and fixed formatting issues for better clarity. ([e619c68](#))
+
+## Bug Fixes
+- **Code Cleanup:** Removed duplicated line separators and trailing whitespace for improved code cleanliness. ([035c5bd](#))
+
+## Other Changes
+- Routine merges from `main` to `release` and vice versa.  
+- Version bumped post `0.2.8` release for patch development readiness. ([b491da2](#))
+
+---
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.8...0.2.9
