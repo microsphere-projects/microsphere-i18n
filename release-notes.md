@@ -116,4 +116,21 @@ For a full list of changes, refer to the commit history.
 
 ---
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.8...0.2.9
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.8...0.2.9## v0.2.10
+
+# Release Notes for v0.2.10
+
+## Dependency Updates
+- Bumped Microsphere Parent and BOM to `0.2.15`. ([a53db73](https://github.com/microsphere-projects/microsphere-i18n/commit/a53db73))
+
+## Build and Workflow Enhancements
+- Merged `main` branch into `release`. ([1e75ee8](https://github.com/microsphere-projects/microsphere-i18n/commit/1e75ee8))
+- Merged `release` branch into `main`. ([1796009](https://github.com/microsphere-projects/microsphere-i18n/commit/1796009))
+- Updated version for the next patch development after publishing `v0.2.9`. ([6afe653](https://github.com/microsphere-projects/microsphere-i18n/commit/6afe653))
+
+## Other Changes
+- Synced `main` branch. ([8bfda2d](https://github.com/microsphere-projects/microsphere-i18n/commit/8bfda2d)) 
+
+---
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.9...0.2.10
