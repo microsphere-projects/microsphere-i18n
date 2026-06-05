@@ -122,4 +122,26 @@
 
 ---
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.9...0.1.10
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.9...0.1.10## v0.1.11
+
+# Release Notes: Version 0.1.11
+
+## Dependency Updates
+- Bumped Microsphere Spring Cloud dependency to `0.1.16`. ([5e6c6dc](https://github.com/mercyblitz/microsphere-i18n/commit/5e6c6dc))
+
+## Documentation
+- Updated README to reflect the latest versions `0.2.11` and `0.1.11`. ([d991358](https://github.com/mercyblitz/microsphere-i18n/commit/d991358))
+
+## Build and Workflow Enhancements
+- Bumped version to next patch after publishing `0.1.10`. ([ce32e13](https://github.com/mercyblitz/microsphere-i18n/commit/ce32e13))
+- Merged `release-1.x` into `dev-1.x`. ([a5eec3b](https://github.com/mercyblitz/microsphere-i18n/commit/a5eec3b))
+- Synced `dev-1.x` with merged changes from the main repository. ([160d147](https://github.com/mercyblitz/microsphere-i18n/commit/160d147))
+
+## Other Changes
+- Various codebase synchronizations and internal improvements. ([b3200be](https://github.com/mercyblitz/microsphere-i18n/commit/b3200be)) 
+
+---
+
+For more details, view the [Full Changelog](https://github.com/mercyblitz/microsphere-i18n/compare/0.1.10...0.1.11).
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.10...0.1.11
