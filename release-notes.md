@@ -133,4 +133,20 @@ For a full list of changes, refer to the commit history.
 
 ---
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.9...0.2.10
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.9...0.2.10## v0.2.11
+
+# Release Notes - Version 0.2.11
+
+## Dependency Updates
+- Bumped Microsphere Spring Cloud to `0.2.16`.
+
+## Documentation
+- Updated README versions to `0.2.11` and `0.1.11`.
+
+## Build and Workflow Enhancements
+- Prepared for new release by merging `main` into `release` and vice versa.  
+- Incremented version to prepare for patch release after `0.2.10`.  
+
+---  
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.10...0.2.11
