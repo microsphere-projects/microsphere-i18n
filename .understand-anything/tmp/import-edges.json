@@ -1,0 +1,702 @@
+[
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+    "target": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+    "target": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+    "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+    "target": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageException.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationBootstrap.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+    "target": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+    "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+    "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "type": "imports"
+  },
+  {
+    "source": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+    "target": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+    "type": "imports"
+  }
+]

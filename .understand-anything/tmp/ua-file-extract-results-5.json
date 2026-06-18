@@ -1,0 +1,177 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".github/workflows/maven-build.yml",
+      "language": "yaml",
+      "fileCategory": "infra",
+      "totalLines": 52,
+      "nonEmptyLines": 44,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "permissions",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "on",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "jobs",
+          "level": 1,
+          "line": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": ".github/workflows/maven-publish.yml",
+      "language": "yaml",
+      "fileCategory": "infra",
+      "totalLines": 212,
+      "nonEmptyLines": 184,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "on",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "jobs",
+          "level": 1,
+          "line": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": ".github/workflows/merge-main-to-branches.yml",
+      "language": "yaml",
+      "fileCategory": "infra",
+      "totalLines": 39,
+      "nonEmptyLines": 35,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "on",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "jobs",
+          "level": 1,
+          "line": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": ".github/workflows/sync-branches-from-upstream.yml",
+      "language": "yaml",
+      "fileCategory": "infra",
+      "totalLines": 129,
+      "nonEmptyLines": 112,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "on",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "concurrency",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "jobs",
+          "level": 1,
+          "line": 25
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": ".github/workflows/wiki-publish.yml",
+      "language": "yaml",
+      "fileCategory": "infra",
+      "totalLines": 79,
+      "nonEmptyLines": 69,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "on",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "permissions",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "jobs",
+          "level": 1,
+          "line": 15
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    }
+  ]
+}

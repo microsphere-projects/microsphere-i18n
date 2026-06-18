@@ -1,0 +1,20 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "No 'Could not fix' items in merge script report — all corrections were handled automatically.",
+    "1 tested_by edge was dropped (orphan/test-test pair) as reported — expected and benign.",
+    "0 unknown types, 0 unknown complexity values, 0 nodes without IDs, 0 dangling edges.",
+    "All 140 imports edges in the assembled graph are backed by the scan-result.json import map.",
+    "All 29 tested_by edges reference valid production and test file nodes.",
+    "All 82 file nodes and 288 total nodes pass structural integrity checks (required fields present, no dangling references).",
+    "All 46 non-empty import map entries (133 total scanned) have corresponding imports edges — no cross-batch gaps exist.",
+    "Report states 467 edges at output line but graph contains 468; the difference is the 1 recovered imports edge added after that line in the script output.",
+    "16 production nodes correctly tagged 'tested' per the tested_by linker report.",
+    "Overall graph quality is clean — no manual recovery or remapping needed."
+  ]
+}

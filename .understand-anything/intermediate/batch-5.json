@@ -1,0 +1,150 @@
+{
+  "nodes": [
+    {
+      "id": "pipeline:.github/workflows/maven-build.yml",
+      "type": "pipeline",
+      "name": "maven-build.yml",
+      "filePath": ".github/workflows/maven-build.yml",
+      "summary": "GitHub Actions workflow that builds and tests the Maven project on push or pull request targeting main, dev, or release branches, running against a matrix of Java 17, 21, and 25 with multiple Spring Cloud profiles.",
+      "tags": ["ci-cd", "build", "testing", "github-actions", "maven"],
+      "complexity": "simple"
+    },
+    {
+      "id": "step:.github/workflows/maven-build.yml:build",
+      "type": "step",
+      "name": "build",
+      "filePath": ".github/workflows/maven-build.yml",
+      "summary": "Main job that checks out source, sets up Java with Maven cache, runs the Maven build with test and coverage profiles across Java version and Spring Cloud profile matrix, and uploads coverage reports to Codecov.",
+      "tags": ["job", "build", "test", "matrix"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:.github/workflows/maven-publish.yml",
+      "type": "pipeline",
+      "name": "maven-publish.yml",
+      "filePath": ".github/workflows/maven-publish.yml",
+      "summary": "GitHub Actions workflow that publishes the Maven artifact to Maven Central via OSS Sonatype, creates a GitHub release with auto-generated release notes using GitHub Models API, increments the patch version, and merges the release branch back into main.",
+      "tags": ["ci-cd", "deployment", "publishing", "github-actions", "maven"],
+      "complexity": "moderate",
+      "languageNotes": "Complex multi-job workflow with Python inline script calling GitHub Models (gpt-4o) for AI-generated release notes."
+    },
+    {
+      "id": "step:.github/workflows/maven-publish.yml:build",
+      "type": "step",
+      "name": "build",
+      "filePath": ".github/workflows/maven-publish.yml",
+      "summary": "Validates the version format, checks out source, sets up Maven Central credentials, and publishes the package to OSS Sonatype using Maven deploy with GPG signing secrets.",
+      "tags": ["job", "publish", "deploy", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "step:.github/workflows/maven-publish.yml:release",
+      "type": "step",
+      "name": "release",
+      "filePath": ".github/workflows/maven-publish.yml",
+      "summary": "Creates a git tag, generates AI-powered release notes via GitHub Models API, creates a GitHub release, bumps the POM revision to the next snapshot version, commits the change, and merges release into main.",
+      "tags": ["job", "release", "automation", "merge"],
+      "complexity": "moderate",
+      "languageNotes": "Uses Python inline script to call gpt-4o via GitHub Models API for release note generation."
+    },
+    {
+      "id": "pipeline:.github/workflows/merge-main-to-branches.yml",
+      "type": "pipeline",
+      "name": "merge-main-to-branches.yml",
+      "filePath": ".github/workflows/merge-main-to-branches.yml",
+      "summary": "GitHub Actions workflow that automatically merges the main branch into dev and release branches whenever changes are pushed to main, using a matrix strategy to handle each target branch.",
+      "tags": ["ci-cd", "automation", "branch-management", "github-actions", "merge"],
+      "complexity": "simple"
+    },
+    {
+      "id": "step:.github/workflows/merge-main-to-branches.yml:merge-to-branch",
+      "type": "step",
+      "name": "merge-to-branch",
+      "filePath": ".github/workflows/merge-main-to-branches.yml",
+      "summary": "Checks out the repository with full history and performs a no-fast-forward merge of main into each target branch (dev, release) with automated error handling for conflicts.",
+      "tags": ["job", "merge", "branch", "matrix"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:.github/workflows/sync-branches-from-upstream.yml",
+      "type": "pipeline",
+      "name": "sync-branches-from-upstream.yml",
+      "filePath": ".github/workflows/sync-branches-from-upstream.yml",
+      "summary": "GitHub Actions workflow that syncs all branches in a fork from the upstream repository, running on push to main/dev branches or every 5 minutes via schedule, with safeguards to avoid overwriting fork-ahead branches.",
+      "tags": ["ci-cd", "fork-sync", "automation", "github-actions", "schedule"],
+      "complexity": "moderate",
+      "languageNotes": "Uses GitHub API via gh CLI to detect fork status and upstream repository, with concurrency control to prevent overlapping sync runs."
+    },
+    {
+      "id": "step:.github/workflows/sync-branches-from-upstream.yml:sync",
+      "type": "step",
+      "name": "sync",
+      "filePath": ".github/workflows/sync-branches-from-upstream.yml",
+      "summary": "Checks whether the repository is a fork via the GitHub API, then iterates all branches and syncs each one from upstream using force-with-lease, skipping branches that do not exist upstream or are ahead of upstream.",
+      "tags": ["job", "sync", "fork", "automation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "pipeline:.github/workflows/wiki-publish.yml",
+      "type": "pipeline",
+      "name": "wiki-publish.yml",
+      "filePath": ".github/workflows/wiki-publish.yml",
+      "summary": "GitHub Actions workflow that generates project documentation pages from Java source code using a Python script, then publishes the rendered Markdown to the GitHub Wiki repository on pushes to main or manual trigger.",
+      "tags": ["ci-cd", "documentation", "wiki", "github-actions", "automation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/wiki-publish.yml:generate-wiki",
+      "type": "step",
+      "name": "generate-wiki",
+      "filePath": ".github/workflows/wiki-publish.yml",
+      "summary": "Checks out the source repository, runs the Python wiki generation script to produce Markdown pages, checks out or initializes the wiki repository, copies generated pages, and pushes any changes to the wiki.",
+      "tags": ["job", "documentation", "generation", "publish"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "pipeline:.github/workflows/maven-build.yml",
+      "target": "step:.github/workflows/maven-build.yml:build",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline:.github/workflows/maven-publish.yml",
+      "target": "step:.github/workflows/maven-publish.yml:build",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline:.github/workflows/maven-publish.yml",
+      "target": "step:.github/workflows/maven-publish.yml:release",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline:.github/workflows/merge-main-to-branches.yml",
+      "target": "step:.github/workflows/merge-main-to-branches.yml:merge-to-branch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline:.github/workflows/sync-branches-from-upstream.yml",
+      "target": "step:.github/workflows/sync-branches-from-upstream.yml:sync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline:.github/workflows/wiki-publish.yml",
+      "target": "step:.github/workflows/wiki-publish.yml:generate-wiki",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

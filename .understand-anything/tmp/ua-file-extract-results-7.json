@@ -1,0 +1,622 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 48,
+      "nonEmptyLines": 37,
+      "sections": [
+        {
+          "heading": "Contributor Code of Conduct",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 328,
+      "nonEmptyLines": 245,
+      "sections": [
+        {
+          "heading": "Microsphere Internationalisation",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Table of Contents",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Features",
+          "level": 2,
+          "line": 35
+        },
+        {
+          "heading": "Modules",
+          "level": 2,
+          "line": 52
+        },
+        {
+          "heading": "Requirements",
+          "level": 2,
+          "line": 65
+        },
+        {
+          "heading": "Getting Started",
+          "level": 2,
+          "line": 72
+        },
+        {
+          "heading": "Add the BOM",
+          "level": 3,
+          "line": 74
+        },
+        {
+          "heading": "Spring Applications",
+          "level": 3,
+          "line": 100
+        },
+        {
+          "heading": "Spring Boot Applications",
+          "level": 3,
+          "line": 137
+        },
+        {
+          "heading": "Spring Cloud Applications",
+          "level": 3,
+          "line": 158
+        },
+        {
+          "heading": "OpenFeign Integration",
+          "level": 3,
+          "line": 173
+        },
+        {
+          "heading": "Centralized I18n Server",
+          "level": 3,
+          "line": 188
+        },
+        {
+          "heading": "Message Files",
+          "level": 2,
+          "line": 215
+        },
+        {
+          "heading": "Configuration Properties",
+          "level": 2,
+          "line": 253
+        },
+        {
+          "heading": "Actuator Endpoint",
+          "level": 2,
+          "line": 264
+        },
+        {
+          "heading": "Building from Source",
+          "level": 2,
+          "line": 275
+        },
+        {
+          "heading": "Getting Help",
+          "level": 2,
+          "line": 301
+        },
+        {
+          "heading": "Contributing",
+          "level": 2,
+          "line": 318
+        },
+        {
+          "heading": "License",
+          "level": 2,
+          "line": 326
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 19
+      }
+    },
+    {
+      "path": "developer-guide.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 444,
+      "nonEmptyLines": 272,
+      "sections": [
+        {
+          "heading": "Microsphere I18n - Developer Guide",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Brief Overview",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Module 1: `microsphere-i18n-core` (12 files)",
+          "level": 2,
+          "line": 20
+        },
+        {
+          "heading": "Key Concepts",
+          "level": 3,
+          "line": 24
+        },
+        {
+          "heading": "Class-by-Class Breakdown",
+          "level": 3,
+          "line": 31
+        },
+        {
+          "heading": "1. `ServiceMessageSource` (Interface)",
+          "level": 4,
+          "line": 33
+        },
+        {
+          "heading": "2. `AbstractServiceMessageSource` (Abstract Class)",
+          "level": 4,
+          "line": 59
+        },
+        {
+          "heading": "3. `ResourceServiceMessageSource` (Interface)",
+          "level": 4,
+          "line": 75
+        },
+        {
+          "heading": "4. `ReloadableResourceServiceMessageSource` (Interface)",
+          "level": 4,
+          "line": 89
+        },
+        {
+          "heading": "5. `AbstractResourceServiceMessageSource` (Abstract Class)",
+          "level": 4,
+          "line": 102
+        },
+        {
+          "heading": "6. `PropertiesResourceServiceMessageSource` (Abstract Class)",
+          "level": 4,
+          "line": 131
+        },
+        {
+          "heading": "7. `DefaultServiceMessageSource` (Concrete Class)",
+          "level": 4,
+          "line": 142
+        },
+        {
+          "heading": "8. `CompositeServiceMessageSource`",
+          "level": 4,
+          "line": 167
+        },
+        {
+          "heading": "9. `EmptyServiceMessageSource`",
+          "level": 4,
+          "line": 182
+        },
+        {
+          "heading": "10. `ServiceMessageException`",
+          "level": 4,
+          "line": 193
+        },
+        {
+          "heading": "11. `I18nUtils` (Utility Class)",
+          "level": 4,
+          "line": 205
+        },
+        {
+          "heading": "12. `MessageUtils` (Utility Class)",
+          "level": 4,
+          "line": 217
+        },
+        {
+          "heading": "Module 2: `microsphere-i18n-spring` (14 files)",
+          "level": 2,
+          "line": 229
+        },
+        {
+          "heading": "Key Files",
+          "level": 3,
+          "line": 233
+        },
+        {
+          "heading": "`@EnableI18n` (Annotation)",
+          "level": 4,
+          "line": 235
+        },
+        {
+          "heading": "`I18nImportBeanDefinitionRegistrar`",
+          "level": 4,
+          "line": 250
+        },
+        {
+          "heading": "`DelegatingServiceMessageSource`",
+          "level": 4,
+          "line": 256
+        },
+        {
+          "heading": "`PropertySourcesServiceMessageSource`",
+          "level": 4,
+          "line": 262
+        },
+        {
+          "heading": "`MessageSourceAdapter`",
+          "level": 4,
+          "line": 277
+        },
+        {
+          "heading": "`I18nApplicationListener`",
+          "level": 4,
+          "line": 286
+        },
+        {
+          "heading": "`ServiceMessageSourceFactoryBean`",
+          "level": 4,
+          "line": 292
+        },
+        {
+          "heading": "`ServiceMessageSourceBeanLifecyclePostProcessor`",
+          "level": 4,
+          "line": 298
+        },
+        {
+          "heading": "`I18nConstants`",
+          "level": 4,
+          "line": 304
+        },
+        {
+          "heading": "`LocaleUtils`",
+          "level": 4,
+          "line": 315
+        },
+        {
+          "heading": "`ResourceServiceMessageSourceChangedEvent`",
+          "level": 4,
+          "line": 321
+        },
+        {
+          "heading": "`I18nLocalValidatorFactoryBeanPostProcessor`",
+          "level": 4,
+          "line": 327
+        },
+        {
+          "heading": "`AcceptHeaderLocaleResolverBeanPostProcessor`",
+          "level": 4,
+          "line": 333
+        },
+        {
+          "heading": "`I18nBeanUtils`",
+          "level": 4,
+          "line": 339
+        },
+        {
+          "heading": "Module 3: `microsphere-i18n-spring-boot` (4 files)",
+          "level": 2,
+          "line": 345
+        },
+        {
+          "heading": "`I18nAutoConfiguration`",
+          "level": 3,
+          "line": 347
+        },
+        {
+          "heading": "`ConditionalOnI18nEnabled`",
+          "level": 3,
+          "line": 351
+        },
+        {
+          "heading": "`I18nEndpoint` (Actuator)",
+          "level": 3,
+          "line": 355
+        },
+        {
+          "heading": "`I18nEndpointAutoConfiguration`",
+          "level": 3,
+          "line": 363
+        },
+        {
+          "heading": "Module 4: `microsphere-i18n-spring-cloud` (2 files)",
+          "level": 2,
+          "line": 369
+        },
+        {
+          "heading": "`I18nCloudAutoConfiguration`",
+          "level": 3,
+          "line": 371
+        },
+        {
+          "heading": "`ReloadableResourceServiceMessageSourceListener`",
+          "level": 3,
+          "line": 375
+        },
+        {
+          "heading": "Module 5: `microsphere-i18n-spring-cloud-server` (3 files)",
+          "level": 2,
+          "line": 383
+        },
+        {
+          "heading": "`@EnableI18nServer` (Annotation)",
+          "level": 3,
+          "line": 385
+        },
+        {
+          "heading": "`I18nServerConfiguration`",
+          "level": 3,
+          "line": 389
+        },
+        {
+          "heading": "`I18nServerController`",
+          "level": 3,
+          "line": 393
+        },
+        {
+          "heading": "Module 6: `microsphere-i18n-openfeign` (1 file)",
+          "level": 2,
+          "line": 399
+        },
+        {
+          "heading": "`AcceptLanguageHeaderRequestInterceptor`",
+          "level": 3,
+          "line": 401
+        },
+        {
+          "heading": "Common Use Cases",
+          "level": 2,
+          "line": 416
+        },
+        {
+          "heading": "Architecture Diagram (Class Hierarchy)",
+          "level": 2,
+          "line": 430
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 49
+      }
+    },
+    {
+      "path": "mvnw.cmd",
+      "language": "batch",
+      "fileCategory": "script",
+      "totalLines": 189,
+      "nonEmptyLines": 165,
+      "metrics": {}
+    },
+    {
+      "path": "pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 70,
+      "nonEmptyLines": 61,
+      "metrics": {}
+    },
+    {
+      "path": "release-notes.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 152,
+      "nonEmptyLines": 101,
+      "sections": [
+        {
+          "heading": "Release Notes",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "v0.2.4",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Release Notes - Version 0.2.4",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "New Features",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "Other Changes",
+          "level": 2,
+          "line": 12
+        },
+        {
+          "heading": "v0.2.5",
+          "level": 2,
+          "line": 22
+        },
+        {
+          "heading": "Release Notes for v0.2.5",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "Dependency Updates",
+          "level": 2,
+          "line": 26
+        },
+        {
+          "heading": "Build and Workflow Enhancements",
+          "level": 2,
+          "line": 29
+        },
+        {
+          "heading": "Other Changes",
+          "level": 2,
+          "line": 34
+        },
+        {
+          "heading": "Release Notes: Version 0.2.6",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "Build and Workflow Enhancements",
+          "level": 2,
+          "line": 44
+        },
+        {
+          "heading": "Documentation",
+          "level": 2,
+          "line": 49
+        },
+        {
+          "heading": "Dependency Updates",
+          "level": 2,
+          "line": 52
+        },
+        {
+          "heading": "Other Changes",
+          "level": 2,
+          "line": 55
+        },
+        {
+          "heading": "Release Notes - Version 0.2.7",
+          "level": 1,
+          "line": 64
+        },
+        {
+          "heading": "New Features",
+          "level": 2,
+          "line": 66
+        },
+        {
+          "heading": "Test Improvements",
+          "level": 2,
+          "line": 69
+        },
+        {
+          "heading": "Documentation",
+          "level": 2,
+          "line": 73
+        },
+        {
+          "heading": "Other Changes",
+          "level": 2,
+          "line": 76
+        },
+        {
+          "heading": "Release Notes - Version 0.2.8",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "New Features",
+          "level": 2,
+          "line": 83
+        },
+        {
+          "heading": "Documentation",
+          "level": 2,
+          "line": 86
+        },
+        {
+          "heading": "Dependency Updates",
+          "level": 2,
+          "line": 94
+        },
+        {
+          "heading": "Other Changes",
+          "level": 2,
+          "line": 97
+        },
+        {
+          "heading": "Release Notes - Version 0.2.9",
+          "level": 1,
+          "line": 102
+        },
+        {
+          "heading": "New Features",
+          "level": 2,
+          "line": 104
+        },
+        {
+          "heading": "Documentation",
+          "level": 2,
+          "line": 107
+        },
+        {
+          "heading": "Bug Fixes",
+          "level": 2,
+          "line": 110
+        },
+        {
+          "heading": "Other Changes",
+          "level": 2,
+          "line": 113
+        },
+        {
+          "heading": "Release Notes for v0.2.10",
+          "level": 1,
+          "line": 121
+        },
+        {
+          "heading": "Dependency Updates",
+          "level": 2,
+          "line": 123
+        },
+        {
+          "heading": "Build and Workflow Enhancements",
+          "level": 2,
+          "line": 126
+        },
+        {
+          "heading": "Other Changes",
+          "level": 2,
+          "line": 131
+        },
+        {
+          "heading": "Release Notes - Version 0.2.11",
+          "level": 1,
+          "line": 138
+        },
+        {
+          "heading": "Dependency Updates",
+          "level": 2,
+          "line": 140
+        },
+        {
+          "heading": "Documentation",
+          "level": 2,
+          "line": 143
+        },
+        {
+          "heading": "Build and Workflow Enhancements",
+          "level": 2,
+          "line": 146
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 38
+      }
+    }
+  ]
+}

@@ -1,0 +1,685 @@
+{
+  "scriptCompleted": true,
+  "directoryGroups": {
+    "microsphere-i18n-core": [
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageException.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "config:microsphere-i18n-core/pom.xml",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+      "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties"
+    ],
+    "microsphere-i18n-spring-boot": [
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationBootstrap.java",
+      "config:microsphere-i18n-spring-boot/pom.xml",
+      "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+      "config:microsphere-i18n-spring-boot/src/test/resources/application.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties"
+    ],
+    "microsphere-i18n-spring-cloud-server": [
+      "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+      "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports"
+    ],
+    "microsphere-i18n-spring-cloud": [
+      "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "config:microsphere-i18n-spring-cloud/pom.xml",
+      "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/I18nBootstrap.java",
+      "config:microsphere-i18n-spring-cloud/src/test/resources/i18n-bootstrap.properties",
+      "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports"
+    ],
+    "microsphere-i18n-spring": [
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "config:microsphere-i18n-spring/pom.xml",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "config:microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+      "config:microsphere-i18n-spring/src/test/resources/messages_en.properties",
+      "config:microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties"
+    ],
+    ".github": [
+      "pipeline:.github/workflows/maven-build.yml",
+      "step:.github/workflows/maven-build.yml:build",
+      "pipeline:.github/workflows/maven-publish.yml",
+      "step:.github/workflows/maven-publish.yml:build",
+      "step:.github/workflows/maven-publish.yml:release",
+      "pipeline:.github/workflows/merge-main-to-branches.yml",
+      "step:.github/workflows/merge-main-to-branches.yml:merge-to-branch",
+      "pipeline:.github/workflows/sync-branches-from-upstream.yml",
+      "step:.github/workflows/sync-branches-from-upstream.yml:sync",
+      "pipeline:.github/workflows/wiki-publish.yml",
+      "step:.github/workflows/wiki-publish.yml:generate-wiki",
+      "document:.github/prompts/create-readme.prompt.md",
+      "document:.github/prompts/document-api.prompt.md",
+      "document:.github/prompts/explain-code.prompt.md",
+      "document:.github/prompts/generate-unit-tests.prompt.md",
+      "document:.github/prompts/onboarding-plan.prompt.md",
+      "document:.github/prompts/review-code.prompt.md",
+      "config:.github/dependabot.yml",
+      "file:.github/scripts/generate-wiki-docs.py"
+    ],
+    "root": [
+      "document:CODE_OF_CONDUCT.md",
+      "document:README.md",
+      "document:developer-guide.md",
+      "file:mvnw.cmd",
+      "config:pom.xml",
+      "document:release-notes.md",
+      "file:mvnw"
+    ],
+    ".mvn": [
+      "config:.mvn/wrapper/maven-wrapper.properties"
+    ],
+    ".understand-anything": [
+      "file:.understand-anything/.understandignore"
+    ],
+    "microsphere-i18n-dependencies": [
+      "config:microsphere-i18n-dependencies/pom.xml"
+    ],
+    "microsphere-i18n-openfeign": [
+      "config:microsphere-i18n-openfeign/pom.xml",
+      "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "file:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java"
+    ],
+    "microsphere-i18n-parent": [
+      "config:microsphere-i18n-parent/pom.xml"
+    ]
+  },
+  "nodeTypeGroups": {
+    "file": [
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageException.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java",
+      "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationBootstrap.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "file:mvnw.cmd",
+      "file:.github/scripts/generate-wiki-docs.py",
+      "file:.understand-anything/.understandignore",
+      "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "file:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "file:mvnw",
+      "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+      "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+      "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/I18nBootstrap.java",
+      "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java"
+    ],
+    "pipeline": [
+      "pipeline:.github/workflows/maven-build.yml",
+      "pipeline:.github/workflows/maven-publish.yml",
+      "pipeline:.github/workflows/merge-main-to-branches.yml",
+      "pipeline:.github/workflows/sync-branches-from-upstream.yml",
+      "pipeline:.github/workflows/wiki-publish.yml"
+    ],
+    "step": [
+      "step:.github/workflows/maven-build.yml:build",
+      "step:.github/workflows/maven-publish.yml:build",
+      "step:.github/workflows/maven-publish.yml:release",
+      "step:.github/workflows/merge-main-to-branches.yml:merge-to-branch",
+      "step:.github/workflows/sync-branches-from-upstream.yml:sync",
+      "step:.github/workflows/wiki-publish.yml:generate-wiki"
+    ],
+    "document": [
+      "document:.github/prompts/create-readme.prompt.md",
+      "document:.github/prompts/document-api.prompt.md",
+      "document:.github/prompts/explain-code.prompt.md",
+      "document:.github/prompts/generate-unit-tests.prompt.md",
+      "document:.github/prompts/onboarding-plan.prompt.md",
+      "document:.github/prompts/review-code.prompt.md",
+      "document:CODE_OF_CONDUCT.md",
+      "document:README.md",
+      "document:developer-guide.md",
+      "document:release-notes.md"
+    ],
+    "config": [
+      "config:pom.xml",
+      "config:.github/dependabot.yml",
+      "config:.mvn/wrapper/maven-wrapper.properties",
+      "config:microsphere-i18n-core/pom.xml",
+      "config:microsphere-i18n-dependencies/pom.xml",
+      "config:microsphere-i18n-openfeign/pom.xml",
+      "config:microsphere-i18n-parent/pom.xml",
+      "config:microsphere-i18n-spring-boot/pom.xml",
+      "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "config:microsphere-i18n-spring-cloud/pom.xml",
+      "config:microsphere-i18n-spring/pom.xml",
+      "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/application.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring-cloud/src/test/resources/i18n-bootstrap.properties",
+      "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+      "config:microsphere-i18n-spring/src/test/resources/messages_en.properties",
+      "config:microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+      "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "config:microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports"
+    ]
+  },
+  "crossCategoryEdges": [
+    {
+      "fromType": "pipeline",
+      "toType": "step",
+      "edgeType": "contains",
+      "count": 6
+    },
+    {
+      "fromType": "file",
+      "toType": "config",
+      "edgeType": "depends_on",
+      "count": 1
+    },
+    {
+      "fromType": "config",
+      "toType": "file",
+      "edgeType": "configures",
+      "count": 6
+    }
+  ],
+  "interGroupImports": [
+    {
+      "from": "microsphere-i18n-spring-boot",
+      "to": "microsphere-i18n-core",
+      "count": 3
+    },
+    {
+      "from": "microsphere-i18n-spring-boot",
+      "to": "microsphere-i18n-spring",
+      "count": 10
+    },
+    {
+      "from": "microsphere-i18n-spring-cloud-server",
+      "to": "microsphere-i18n-core",
+      "count": 2
+    },
+    {
+      "from": "microsphere-i18n-spring-cloud-server",
+      "to": "microsphere-i18n-spring",
+      "count": 2
+    },
+    {
+      "from": "microsphere-i18n-spring-cloud-server",
+      "to": "microsphere-i18n-spring-boot",
+      "count": 1
+    },
+    {
+      "from": "microsphere-i18n-spring-cloud",
+      "to": "microsphere-i18n-spring-boot",
+      "count": 5
+    },
+    {
+      "from": "microsphere-i18n-spring-cloud",
+      "to": "microsphere-i18n-spring",
+      "count": 3
+    },
+    {
+      "from": "microsphere-i18n-spring-cloud",
+      "to": "microsphere-i18n-core",
+      "count": 3
+    },
+    {
+      "from": "microsphere-i18n-spring",
+      "to": "microsphere-i18n-core",
+      "count": 31
+    }
+  ],
+  "intraGroupDensity": {
+    "microsphere-i18n-core": {
+      "internalEdges": 11,
+      "totalEdges": 50,
+      "density": 0.22
+    },
+    "microsphere-i18n-spring-boot": {
+      "internalEdges": 8,
+      "totalEdges": 27,
+      "density": 0.2962962962962963
+    },
+    "microsphere-i18n-spring-cloud-server": {
+      "internalEdges": 2,
+      "totalEdges": 7,
+      "density": 0.2857142857142857
+    },
+    "microsphere-i18n-spring-cloud": {
+      "internalEdges": 3,
+      "totalEdges": 14,
+      "density": 0.21428571428571427
+    },
+    "microsphere-i18n-spring": {
+      "internalEdges": 56,
+      "totalEdges": 102,
+      "density": 0.5490196078431373
+    },
+    ".github": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    },
+    "root": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    },
+    ".mvn": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    },
+    ".understand-anything": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    },
+    "microsphere-i18n-dependencies": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    },
+    "microsphere-i18n-openfeign": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    },
+    "microsphere-i18n-parent": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    }
+  },
+  "patternMatches": {
+    "microsphere-i18n-core": "test",
+    "microsphere-i18n-spring-boot": "test",
+    "microsphere-i18n-spring-cloud-server": "config",
+    "microsphere-i18n-spring-cloud": "test",
+    "microsphere-i18n-spring": "test",
+    ".github": "ci-cd",
+    "root": "documentation",
+    ".mvn": "config",
+    "microsphere-i18n-dependencies": "config",
+    "microsphere-i18n-openfeign": "config",
+    "microsphere-i18n-parent": "config"
+  },
+  "deploymentTopology": {
+    "hasDockerfile": false,
+    "hasCompose": false,
+    "hasK8s": false,
+    "hasTerraform": false,
+    "hasCI": true,
+    "infraFiles": [
+      ".github/workflows/maven-build.yml",
+      ".github/workflows/maven-build.yml",
+      ".github/workflows/maven-publish.yml",
+      ".github/workflows/maven-publish.yml",
+      ".github/workflows/maven-publish.yml",
+      ".github/workflows/merge-main-to-branches.yml",
+      ".github/workflows/merge-main-to-branches.yml",
+      ".github/workflows/sync-branches-from-upstream.yml",
+      ".github/workflows/sync-branches-from-upstream.yml",
+      ".github/workflows/wiki-publish.yml",
+      ".github/workflows/wiki-publish.yml"
+    ]
+  },
+  "dataPipeline": {
+    "schemaFiles": [],
+    "migrationFiles": [],
+    "dataModelFiles": [],
+    "apiHandlerFiles": [
+      "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java"
+    ]
+  },
+  "docCoverage": {
+    "groupsWithDocs": 2,
+    "totalGroups": 12,
+    "coverageRatio": 0.16666666666666666,
+    "undocumentedGroups": [
+      "microsphere-i18n-core",
+      "microsphere-i18n-spring-boot",
+      "microsphere-i18n-spring-cloud-server",
+      "microsphere-i18n-spring-cloud",
+      "microsphere-i18n-spring",
+      ".mvn",
+      ".understand-anything",
+      "microsphere-i18n-dependencies",
+      "microsphere-i18n-openfeign",
+      "microsphere-i18n-parent"
+    ]
+  },
+  "dependencyDirection": [
+    {
+      "dependent": "microsphere-i18n-spring-boot",
+      "dependsOn": "microsphere-i18n-core"
+    },
+    {
+      "dependent": "microsphere-i18n-spring-boot",
+      "dependsOn": "microsphere-i18n-spring"
+    },
+    {
+      "dependent": "microsphere-i18n-spring-cloud-server",
+      "dependsOn": "microsphere-i18n-core"
+    },
+    {
+      "dependent": "microsphere-i18n-spring-cloud-server",
+      "dependsOn": "microsphere-i18n-spring"
+    },
+    {
+      "dependent": "microsphere-i18n-spring-cloud-server",
+      "dependsOn": "microsphere-i18n-spring-boot"
+    },
+    {
+      "dependent": "microsphere-i18n-spring-cloud",
+      "dependsOn": "microsphere-i18n-spring-boot"
+    },
+    {
+      "dependent": "microsphere-i18n-spring-cloud",
+      "dependsOn": "microsphere-i18n-spring"
+    },
+    {
+      "dependent": "microsphere-i18n-spring-cloud",
+      "dependsOn": "microsphere-i18n-core"
+    },
+    {
+      "dependent": "microsphere-i18n-spring",
+      "dependsOn": "microsphere-i18n-core"
+    }
+  ],
+  "fileStats": {
+    "totalFileNodes": 135,
+    "filesPerGroup": {
+      "microsphere-i18n-core": 32,
+      "microsphere-i18n-spring-boot": 16,
+      "microsphere-i18n-spring-cloud-server": 7,
+      "microsphere-i18n-spring-cloud": 10,
+      "microsphere-i18n-spring": 37,
+      ".github": 19,
+      "root": 7,
+      ".mvn": 1,
+      ".understand-anything": 1,
+      "microsphere-i18n-dependencies": 1,
+      "microsphere-i18n-openfeign": 3,
+      "microsphere-i18n-parent": 1
+    },
+    "nodeTypeCounts": {
+      "file": 82,
+      "pipeline": 5,
+      "step": 6,
+      "document": 10,
+      "config": 32
+    }
+  },
+  "fileFanIn": {
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java": 1,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java": 1,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java": 4,
+    "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java": 4,
+    "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java": 2,
+    "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java": 5,
+    "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java": 3,
+    "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java": 1,
+    "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java": 3,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java": 5,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java": 11,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java": 3,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java": 3,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java": 3,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java": 9,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java": 3,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java": 1,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java": 2,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java": 5,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java": 25,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java": 1,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java": 1,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java": 6,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java": 7,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java": 1,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java": 6,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java": 8,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java": 4,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java": 3,
+    "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java": 2,
+    "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java": 1
+  },
+  "fileFanOut": {
+    "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java": 3,
+    "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java": 3,
+    "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java": 3,
+    "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java": 3,
+    "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java": 2,
+    "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java": 4,
+    "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java": 2,
+    "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java": 3,
+    "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java": 4,
+    "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java": 2,
+    "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java": 5,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java": 5,
+    "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java": 6,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java": 4,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java": 7,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java": 2,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java": 1,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java": 2,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java": 2,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java": 2,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java": 10,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java": 2,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageException.java": 1,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java": 2,
+    "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java": 1,
+    "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationBootstrap.java": 1,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java": 4,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java": 6,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java": 5,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java": 5,
+    "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java": 1,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java": 3,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java": 3,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java": 4,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java": 3,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java": 2,
+    "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java": 5,
+    "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java": 2,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java": 1,
+    "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java": 3,
+    "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java": 1
+  },
+  "_analysis": {
+    "prefix": "",
+    "groupImportsFrom": {
+      "microsphere-i18n-spring-boot": [
+        "microsphere-i18n-core",
+        "microsphere-i18n-spring"
+      ],
+      "microsphere-i18n-spring-cloud-server": [
+        "microsphere-i18n-core",
+        "microsphere-i18n-spring",
+        "microsphere-i18n-spring-boot"
+      ],
+      "microsphere-i18n-spring-cloud": [
+        "microsphere-i18n-spring-boot",
+        "microsphere-i18n-spring",
+        "microsphere-i18n-core"
+      ],
+      "microsphere-i18n-spring": [
+        "microsphere-i18n-core"
+      ]
+    },
+    "groupImportedBy": {
+      "microsphere-i18n-core": [
+        "microsphere-i18n-spring-boot",
+        "microsphere-i18n-spring-cloud-server",
+        "microsphere-i18n-spring-cloud",
+        "microsphere-i18n-spring"
+      ],
+      "microsphere-i18n-spring": [
+        "microsphere-i18n-spring-boot",
+        "microsphere-i18n-spring-cloud-server",
+        "microsphere-i18n-spring-cloud"
+      ],
+      "microsphere-i18n-spring-boot": [
+        "microsphere-i18n-spring-cloud-server",
+        "microsphere-i18n-spring-cloud"
+      ]
+    }
+  }
+}
