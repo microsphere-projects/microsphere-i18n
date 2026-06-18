@@ -1,0 +1,81 @@
+{
+  "nodes": [
+    {
+      "id": "document:CODE_OF_CONDUCT.md",
+      "type": "document",
+      "name": "CODE_OF_CONDUCT.md",
+      "filePath": "CODE_OF_CONDUCT.md",
+      "summary": "Contributor code of conduct adapted from the Contributor Covenant v1.3.0, outlining expected behaviors, reporting guidelines, and maintainer responsibilities for the project community.",
+      "tags": ["documentation", "community", "governance"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Project overview and getting-started guide covering features, modules, setup instructions for Spring/Boot/Cloud applications, message file conventions, configuration properties, Actuator endpoint, and contribution guidelines.",
+      "tags": ["documentation", "entry-point", "overview", "getting-started"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:developer-guide.md",
+      "type": "document",
+      "name": "developer-guide.md",
+      "filePath": "developer-guide.md",
+      "summary": "Comprehensive developer guide detailing the architecture, class hierarchy, and module-by-module breakdown of all six microsphere-i18n modules with code examples and key concept explanations.",
+      "tags": ["documentation", "developer-guide", "architecture"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mvnw.cmd",
+      "type": "file",
+      "name": "mvnw.cmd",
+      "filePath": "mvnw.cmd",
+      "summary": "Apache Maven Wrapper startup script for Windows that downloads the configured Maven distribution, validates its SHA-256 checksum, extracts it, and invokes Maven commands.",
+      "tags": ["build-system", "maven", "script", "wrapper"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "pom.xml",
+      "summary": "Parent POM for the microsphere-i18n multi-module project defining seven sub-modules, project metadata, SCM configuration, licensing information, and build properties targeting Java 17.",
+      "tags": ["configuration", "maven", "build-system", "parent-pom"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:release-notes.md",
+      "type": "document",
+      "name": "release-notes.md",
+      "filePath": "release-notes.md",
+      "summary": "Cumulative release notes documenting changes across versions 0.2.4 through 0.2.11, including new features, dependency updates, bug fixes, and build workflow enhancements.",
+      "tags": ["documentation", "changelog", "release-notes"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:README.md",
+      "target": "document:CODE_OF_CONDUCT.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "document:developer-guide.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mvnw.cmd",
+      "target": "config:pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

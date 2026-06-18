@@ -1,0 +1,985 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 7,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 77,
+      "functions": [
+        {
+          "name": "DefaultServiceMessageSource",
+          "startLine": 50,
+          "endLine": 52,
+          "params": [
+            "source"
+          ]
+        },
+        {
+          "name": "DefaultServiceMessageSource",
+          "startLine": 60,
+          "endLine": 63,
+          "params": [
+            "source",
+            "classLoader"
+          ]
+        },
+        {
+          "name": "canReload",
+          "startLine": 65,
+          "endLine": 68,
+          "params": [
+            "changedResource"
+          ]
+        },
+        {
+          "name": "getResource",
+          "startLine": 70,
+          "endLine": 72,
+          "params": [
+            "resourceName"
+          ]
+        },
+        {
+          "name": "loadAllPropertiesResources",
+          "startLine": 74,
+          "endLine": 84,
+          "params": [
+            "resource"
+          ]
+        },
+        {
+          "name": "getResources",
+          "startLine": 86,
+          "endLine": 88,
+          "params": [
+            "resource"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "DefaultServiceMessageSource",
+          "startLine": 34,
+          "endLine": 89,
+          "methods": [
+            "DefaultServiceMessageSource",
+            "DefaultServiceMessageSource",
+            "canReload",
+            "getResource",
+            "loadAllPropertiesResources",
+            "getResources"
+          ],
+          "properties": [
+            "RESOURCE_LOCATION_PATTERN",
+            "classLoader"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "RESOURCE_LOCATION_PATTERN",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "DefaultServiceMessageSource",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "DefaultServiceMessageSource",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "canReload",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "DefaultServiceMessageSource",
+          "line": 34,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "DefaultServiceMessageSource",
+          "callee": "getDefaultClassLoader",
+          "lineNumber": 62
+        },
+        {
+          "caller": "canReload",
+          "callee": "this.classLoader.getResource",
+          "lineNumber": 67
+        },
+        {
+          "caller": "getResource",
+          "callee": "format",
+          "lineNumber": 71
+        },
+        {
+          "caller": "getResource",
+          "callee": "getSource",
+          "lineNumber": 71
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "getResources",
+          "lineNumber": 76
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "getEncoding",
+          "lineNumber": 77
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "new LinkedList<>",
+          "lineNumber": 78
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "resources.hasMoreElements",
+          "lineNumber": 79
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "resources.nextElement",
+          "lineNumber": 80
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "propertiesResources.add",
+          "lineNumber": 81
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "new InputStreamReader",
+          "lineNumber": 81
+        },
+        {
+          "caller": "loadAllPropertiesResources",
+          "callee": "url.openStream",
+          "lineNumber": 81
+        },
+        {
+          "caller": "getResources",
+          "callee": "this.classLoader.getResources",
+          "lineNumber": 87
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 6,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 56,
+      "nonEmptyLines": 46,
+      "functions": [
+        {
+          "name": "EmptyServiceMessageSource",
+          "startLine": 30,
+          "endLine": 31,
+          "params": []
+        },
+        {
+          "name": "init",
+          "startLine": 33,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "destroy",
+          "startLine": 37,
+          "endLine": 39,
+          "params": []
+        },
+        {
+          "name": "getMessage",
+          "startLine": 41,
+          "endLine": 44,
+          "params": [
+            "code",
+            "locale"
+          ]
+        },
+        {
+          "name": "getLocale",
+          "startLine": 46,
+          "endLine": 50,
+          "params": []
+        },
+        {
+          "name": "getSource",
+          "startLine": 52,
+          "endLine": 55,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "EmptyServiceMessageSource",
+          "startLine": 23,
+          "endLine": 56,
+          "methods": [
+            "EmptyServiceMessageSource",
+            "init",
+            "destroy",
+            "getMessage",
+            "getLocale",
+            "getSource"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "INSTANCE",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "EmptyServiceMessageSource",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "init",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "destroy",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "getMessage",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "getLocale",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "getSource",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "EmptyServiceMessageSource",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getLocale",
+          "callee": "getDefaultLocale",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 8,
+        "functionCount": 6,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 46,
+      "functions": [
+        {
+          "name": "beforeClass",
+          "startLine": 39,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "before",
+          "startLine": 45,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "after",
+          "startLine": 50,
+          "endLine": 53,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "AbstractI18nTest",
+          "startLine": 33,
+          "endLine": 54,
+          "methods": [
+            "beforeClass",
+            "before",
+            "after"
+          ],
+          "properties": [
+            "TEST_SOURCE",
+            "ERROR_SOURCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "TEST_SOURCE",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "ERROR_SOURCE",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "AbstractI18nTest",
+          "line": 33,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "beforeClass",
+          "callee": "setDefault",
+          "lineNumber": 42
+        },
+        {
+          "caller": "before",
+          "callee": "destroyServiceMessageSource",
+          "lineNumber": 47
+        },
+        {
+          "caller": "after",
+          "callee": "destroyServiceMessageSource",
+          "lineNumber": 52
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 48,
+      "nonEmptyLines": 40,
+      "functions": [
+        {
+          "name": "test",
+          "startLine": 30,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "testFindAllServiceMessageSources",
+          "startLine": 40,
+          "endLine": 47,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18nUtilsTest",
+          "startLine": 27,
+          "endLine": 48,
+          "methods": [
+            "test",
+            "testFindAllServiceMessageSources"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "test",
+          "callee": "assertSame",
+          "lineNumber": 32
+        },
+        {
+          "caller": "test",
+          "callee": "serviceMessageSource",
+          "lineNumber": 32
+        },
+        {
+          "caller": "test",
+          "callee": "new DefaultServiceMessageSource",
+          "lineNumber": 34
+        },
+        {
+          "caller": "test",
+          "callee": "setServiceMessageSource",
+          "lineNumber": 35
+        },
+        {
+          "caller": "test",
+          "callee": "assertSame",
+          "lineNumber": 37
+        },
+        {
+          "caller": "test",
+          "callee": "serviceMessageSource",
+          "lineNumber": 37
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "ofList",
+          "lineNumber": 42
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "new CompositeServiceMessageSource",
+          "lineNumber": 43
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "ofList",
+          "lineNumber": 43
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "assertEquals",
+          "lineNumber": 44
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "findAllServiceMessageSources",
+          "lineNumber": 44
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "assertEquals",
+          "lineNumber": 45
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "findAllServiceMessageSources",
+          "lineNumber": 45
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "assertEquals",
+          "lineNumber": 46
+        },
+        {
+          "caller": "testFindAllServiceMessageSources",
+          "callee": "findAllServiceMessageSources",
+          "lineNumber": 46
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 66,
+      "nonEmptyLines": 56,
+      "functions": [
+        {
+          "name": "before",
+          "startLine": 26,
+          "endLine": 32,
+          "params": []
+        },
+        {
+          "name": "testConstants",
+          "startLine": 34,
+          "endLine": 39,
+          "params": []
+        },
+        {
+          "name": "testGetLocalizedMessage",
+          "startLine": 41,
+          "endLine": 65,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MessageUtilsTest",
+          "startLine": 23,
+          "endLine": 66,
+          "methods": [
+            "before",
+            "testConstants",
+            "testGetLocalizedMessage"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "before",
+          "callee": "super.before",
+          "lineNumber": 28
+        },
+        {
+          "caller": "before",
+          "callee": "new DefaultServiceMessageSource",
+          "lineNumber": 29
+        },
+        {
+          "caller": "before",
+          "callee": "serviceMessageSource.init",
+          "lineNumber": 30
+        },
+        {
+          "caller": "before",
+          "callee": "setServiceMessageSource",
+          "lineNumber": 31
+        },
+        {
+          "caller": "testConstants",
+          "callee": "assertEquals",
+          "lineNumber": 36
+        },
+        {
+          "caller": "testConstants",
+          "callee": "assertEquals",
+          "lineNumber": 37
+        },
+        {
+          "caller": "testConstants",
+          "callee": "assertEquals",
+          "lineNumber": 38
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 45
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 45
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 47
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 47
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 49
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 49
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 52
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 52
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 53
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 53
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 57
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 57
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 61
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 61
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 62
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 62
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "assertEquals",
+          "lineNumber": 64
+        },
+        {
+          "caller": "testGetLocalizedMessage",
+          "callee": "getLocalizedMessage",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 39,
+      "functions": [
+        {
+          "name": "test",
+          "startLine": 37,
+          "endLine": 43,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "DelegatingServiceMessageSourceTest",
+          "startLine": 34,
+          "endLine": 44,
+          "methods": [
+            "test"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "test",
+          "callee": "testInSpringContainer",
+          "lineNumber": 39
+        },
+        {
+          "caller": "test",
+          "callee": "context.getBean",
+          "lineNumber": 40
+        },
+        {
+          "caller": "test",
+          "callee": "assertNull",
+          "lineNumber": 41
+        },
+        {
+          "caller": "test",
+          "callee": "delegatingServiceMessageSource.getMessage",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 112,
+      "nonEmptyLines": 94,
+      "functions": [
+        {
+          "name": "testOnNoMessageSourceBean",
+          "startLine": 75,
+          "endLine": 84,
+          "params": []
+        },
+        {
+          "name": "test",
+          "startLine": 86,
+          "endLine": 98,
+          "params": []
+        },
+        {
+          "name": "defaultServiceMessageSource",
+          "startLine": 100,
+          "endLine": 103,
+          "params": []
+        },
+        {
+          "name": "resourceBundleMessageSource",
+          "startLine": 105,
+          "endLine": 111,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MessageSourceAdapterTest",
+          "startLine": 45,
+          "endLine": 112,
+          "methods": [
+            "testOnNoMessageSourceBean",
+            "test",
+            "defaultServiceMessageSource",
+            "resourceBundleMessageSource"
+          ],
+          "properties": [
+            "testCode",
+            "defaultMessage",
+            "locale",
+            "args",
+            "testMessageSourceResolvable",
+            "emptyMessageSourceResolvable"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "defaultServiceMessageSource",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "resourceBundleMessageSource",
+          "line": 105,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getCodes",
+          "callee": "ofArray",
+          "lineNumber": 59
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "testInSpringContainer",
+          "lineNumber": 77
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "context.getBean",
+          "lineNumber": 78
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "assertNull",
+          "lineNumber": 79
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 79
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "assertEquals",
+          "lineNumber": 80
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 80
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "assertEquals",
+          "lineNumber": 81
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 81
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "assertNotNull",
+          "lineNumber": 82
+        },
+        {
+          "caller": "testOnNoMessageSourceBean",
+          "callee": "messageSourceAdapter.toString",
+          "lineNumber": 82
+        },
+        {
+          "caller": "test",
+          "callee": "testInSpringContainer",
+          "lineNumber": 88
+        },
+        {
+          "caller": "test",
+          "callee": "context.getBean",
+          "lineNumber": 89
+        },
+        {
+          "caller": "test",
+          "callee": "assertEquals",
+          "lineNumber": 90
+        },
+        {
+          "caller": "test",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 90
+        },
+        {
+          "caller": "test",
+          "callee": "assertEquals",
+          "lineNumber": 91
+        },
+        {
+          "caller": "test",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 91
+        },
+        {
+          "caller": "test",
+          "callee": "assertEquals",
+          "lineNumber": 92
+        },
+        {
+          "caller": "test",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 92
+        },
+        {
+          "caller": "test",
+          "callee": "assertEquals",
+          "lineNumber": 93
+        },
+        {
+          "caller": "test",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 93
+        },
+        {
+          "caller": "test",
+          "callee": "assertNull",
+          "lineNumber": 94
+        },
+        {
+          "caller": "test",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 94
+        },
+        {
+          "caller": "test",
+          "callee": "assertNull",
+          "lineNumber": 95
+        },
+        {
+          "caller": "test",
+          "callee": "messageSourceAdapter.getMessage",
+          "lineNumber": 95
+        },
+        {
+          "caller": "test",
+          "callee": "ofArray",
+          "lineNumber": 95
+        },
+        {
+          "caller": "test",
+          "callee": "assertNotNull",
+          "lineNumber": 96
+        },
+        {
+          "caller": "test",
+          "callee": "messageSourceAdapter.toString",
+          "lineNumber": 96
+        },
+        {
+          "caller": "defaultServiceMessageSource",
+          "callee": "new DefaultServiceMessageSource",
+          "lineNumber": 102
+        },
+        {
+          "caller": "resourceBundleMessageSource",
+          "callee": "new ResourceBundleMessageSource",
+          "lineNumber": 107
+        },
+        {
+          "caller": "resourceBundleMessageSource",
+          "callee": "resourceBundleMessageSource.setBasename",
+          "lineNumber": 108
+        },
+        {
+          "caller": "resourceBundleMessageSource",
+          "callee": "resourceBundleMessageSource.setDefaultEncoding",
+          "lineNumber": 109
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    }
+  ]
+}

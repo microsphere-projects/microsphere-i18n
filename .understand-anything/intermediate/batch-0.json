@@ -1,0 +1,959 @@
+{
+  "nodes": [
+    {
+      "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "type": "file",
+      "name": "AbstractResourceServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "summary": "Abstract base class for resource-backed ServiceMessageSource implementations managing message lifecycle from resource files. Provides initialization, validation with code prefix checks, resource loading per locale, and localized message retrieval with logging.",
+      "tags": ["abstract-class", "service-message-source", "resource-management", "i18n-core"],
+      "complexity": "complex",
+      "languageNotes": "Uses synchronized blocks for thread-safe resource initialization and volatile field for cache visibility."
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java:AbstractResourceServiceMessageSource",
+      "type": "class",
+      "name": "AbstractResourceServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "lineRange": [36, 275],
+      "summary": "Abstract base class extending AbstractServiceMessageSource that manages resource-localized message maps. Handles resource initialization, message code resolution with prefix validation, and provides template method hooks for subclass resource loading.",
+      "tags": ["abstract", "message-source", "resource-loader", "i18n"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java:getInternalMessage",
+      "type": "function",
+      "name": "getInternalMessage",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "lineRange": [95, 107],
+      "summary": "Resolves a message by looking up the resolved code in the locale-specific messages map, applying pattern arguments via resolveMessage, and logging the result.",
+      "tags": ["message-resolution", "i18n", "lookup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java:getResources",
+      "type": "function",
+      "name": "getResources",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "lineRange": [260, 269],
+      "summary": "Builds an unmodifiable set of resource names by resolving each supported locale's resource path. Used during initialization to enumerate all resources that need loading.",
+      "tags": ["resource-enumeration", "i18n", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "type": "file",
+      "name": "PropertiesResourceServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "summary": "Abstract extension of AbstractResourceServiceMessageSource that loads i18n messages from Java .properties files. Provides Properties-based message loading with I/O error handling and unmodifiable result wrapping.",
+      "tags": ["properties-loader", "message-source", "i18n-core", "abstract-class"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:PropertiesResourceServiceMessageSource",
+      "type": "class",
+      "name": "PropertiesResourceServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "lineRange": [35, 107],
+      "summary": "Abstract class bridging AbstractResourceServiceMessageSource to Java Properties loading. Provides loadMessages implementation that delegates to loadAllProperties, and exposes public loadAllProperties methods for testing and runtime access.",
+      "tags": ["abstract", "properties", "message-source", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:loadMessages",
+      "type": "function",
+      "name": "loadMessages",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "lineRange": [48, 60],
+      "summary": "Loads messages from a resource by reading properties, converting them to an unmodifiable map. Returns empty map on null or handles IOException by wrapping in RuntimeException.",
+      "tags": ["properties-loading", "message-source", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:loadAllProperties",
+      "type": "function",
+      "name": "loadAllProperties",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "lineRange": [87, 102],
+      "summary": "Loads Properties from a resource by reading all properties resources via Reader, merging them into a single Properties object. Returns null if no resources found.",
+      "tags": ["properties-loading", "resource-reading", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "type": "file",
+      "name": "ReloadableResourceServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "summary": "Interface extending ResourceServiceMessageSource that defines contract for runtime reloading of i18n message resources. Provides default methods for canReload and reload delegation.",
+      "tags": ["interface", "reloadable", "message-source", "i18n-core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java:ReloadableResourceServiceMessageSource",
+      "type": "class",
+      "name": "ReloadableResourceServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "lineRange": [19, 64],
+      "summary": "Interface defining the reload contract for resource-based service message sources. Supports both single resource and bulk reload with conditional canReload checks before reloading.",
+      "tags": ["interface", "reloadable", "i18n", "contract"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "type": "file",
+      "name": "I18nEndpoint.java",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "summary": "Spring Boot Actuator endpoint ('/actuator/i18n') providing read and write operations for i18n message management. Supports listing all localized messages, querying messages by code and locale, and adding new messages at runtime via property source manipulation.",
+      "tags": ["actuator-endpoint", "api-handler", "i18n", "spring-boot"],
+      "complexity": "complex",
+      "languageNotes": "Uses Spring Boot @Endpoint with @ReadOperation and @WriteOperation annotations. Manages in-memory MapPropertySource for dynamic message addition."
+    },
+    {
+      "id": "class:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:I18nEndpoint",
+      "type": "class",
+      "name": "I18nEndpoint",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "lineRange": [72, 333],
+      "summary": "Spring Boot Actuator @Endpoint exposing i18n messages via REST. Provides invoke() to list all messages, getMessage() to query by code and locale, and addMessage() to dynamically add messages through Spring Environment property sources.",
+      "tags": ["actuator", "endpoint", "i18n", "message-management"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:invoke",
+      "type": "function",
+      "name": "invoke",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "lineRange": [118, 130],
+      "summary": "ReadOperation that collects and returns all localized resource messages from all resource ServiceMessageSources as a unified map keyed by resource name.",
+      "tags": ["read-operation", "message-listing", "actuator"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:getMessage",
+      "type": "function",
+      "name": "getMessage",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "lineRange": [229, 255],
+      "summary": "ReadOperation that queries a message across all resource sources and supported locales, returning a list of structured maps with code, locale, source, resource, and message fields.",
+      "tags": ["read-operation", "message-query", "actuator"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:addMessage",
+      "type": "function",
+      "name": "addMessage",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "lineRange": [267, 290],
+      "summary": "WriteOperation that dynamically adds a message to a PropertySourcesServiceMessageSource by loading existing properties, adding the new code-message pair, and updating the environment's MapPropertySource.",
+      "tags": ["write-operation", "message-addition", "actuator"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "type": "file",
+      "name": "I18nEndpointAutoConfiguration.java",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "summary": "Spring Boot auto-configuration that registers the I18nEndpoint Actuator bean when Spring Boot Actuator is available and i18n is enabled. Guards bean creation with ConditionalOnAvailableEndpoint and ConditionalOnMissingBean.",
+      "tags": ["auto-configuration", "actuator", "i18n", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java:I18nEndpointAutoConfiguration",
+      "type": "class",
+      "name": "I18nEndpointAutoConfiguration",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "lineRange": [43, 59],
+      "summary": "Auto-configuration class that conditionally creates an I18nEndpoint bean when the Actuator endpoint is available and i18n support is enabled.",
+      "tags": ["auto-configuration", "actuator", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "type": "file",
+      "name": "I18nAutoConfiguration.java",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "summary": "Core Spring Boot auto-configuration that enables i18n support and registers an application-specific ServiceMessageSourceFactoryBean keyed by spring.application.name. Activated when the i18n enabled property is true (default).",
+      "tags": ["auto-configuration", "i18n", "spring-boot", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java:I18nAutoConfiguration",
+      "type": "class",
+      "name": "I18nAutoConfiguration",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "lineRange": [41, 57],
+      "summary": "Auto-configuration annotated with @ConditionalOnI18nEnabled and @EnableI18n that creates an application-specific ServiceMessageSourceFactoryBean using the Spring application name as the i18n source identifier.",
+      "tags": ["auto-configuration", "i18n", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "type": "file",
+      "name": "ConditionalOnI18nEnabled.java",
+      "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "summary": "Custom Spring Boot @Conditional annotation that activates i18n configuration only when both the i18n core and spring modules are on the classpath and the 'microsphere.i18n.enabled' property is true (defaulting to true if absent).",
+      "tags": ["conditional", "annotation", "i18n", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "type": "file",
+      "name": "I18nEndpointTest.java",
+      "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "summary": "Integration test for I18nEndpoint covering the invoke, getMessage, and addMessage operations. Validates JSON path structure, locale handling, multi-source message aggregation, and edge cases like missing sources.",
+      "tags": ["test", "integration-test", "actuator", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java:I18nEndpointTest",
+      "type": "class",
+      "name": "I18nEndpointTest",
+      "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "lineRange": [50, 152],
+      "summary": "SpringBootTest-based test class that validates I18nEndpoint's invoke, getMessage with code/locale parameters, and addMessage write operations using JsonPath assertions.",
+      "tags": ["test", "integration-test", "actuator"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "type": "file",
+      "name": "I18nEndpointAutoConfigurationTest.java",
+      "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "summary": "Auto-configuration test for I18nEndpointAutoConfiguration using ApplicationContextRunner. Verifies that the I18nEndpoint bean is created only when the Actuator endpoint is exposed and not disabled via properties.",
+      "tags": ["test", "auto-configuration-test", "actuator", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java:I18nEndpointAutoConfigurationTest",
+      "type": "class",
+      "name": "I18nEndpointAutoConfigurationTest",
+      "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "lineRange": [20, 48],
+      "summary": "Test using ApplicationContextRunner to verify conditional bean creation for I18nEndpoint based on management endpoint exposure and enabled property settings.",
+      "tags": ["test", "auto-configuration-test", "actuator"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "type": "file",
+      "name": "I18nServerConfiguration.java",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "summary": "Spring Cloud Server configuration that discovers services via DiscoveryClient and builds PropertySourcesServiceMessageSource instances for each service. Creates a lazy CompositeServiceMessageSource populated on ApplicationStartedEvent.",
+      "tags": ["cloud-server", "service-discovery", "i18n", "spring-cloud", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java:I18nServerConfiguration",
+      "type": "class",
+      "name": "I18nServerConfiguration",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "lineRange": [55, 96],
+      "summary": "Configuration class importing I18nServerController that uses DiscoveryClient to build PropertySourcesServiceMessageSource per discovered service and populates a lazy CompositeServiceMessageSource on application start.",
+      "tags": ["configuration", "cloud", "service-discovery", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java:onApplicationStartedEvent",
+      "type": "function",
+      "name": "onApplicationStartedEvent",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "lineRange": [75, 85],
+      "summary": "Event listener that initializes the lazy CompositeServiceMessageSource by discovering services via DiscoveryClient and building a PropertySourcesServiceMessageSource for each service.",
+      "tags": ["event-listener", "service-discovery", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "type": "file",
+      "name": "I18nServerController.java",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "summary": "Spring Cloud REST controller exposing a GET /messages endpoint that returns all localized i18n messages by delegating to the I18nEndpoint Actuator.",
+      "tags": ["rest-controller", "api-handler", "i18n", "spring-cloud"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java:I18nServerController",
+      "type": "class",
+      "name": "I18nServerController",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "lineRange": [41, 63],
+      "summary": "@RestController that provides a /messages endpoint to retrieve all i18n localized resource messages through the I18nEndpoint Actuator.",
+      "tags": ["controller", "rest", "i18n", "messages"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "type": "file",
+      "name": "I18nCloudAutoConfiguration.java",
+      "filePath": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "summary": "Spring Cloud auto-configuration that enables dynamic reloading of i18n messages on environment changes. Imports ReloadableResourceServiceMessageSourceListener and registers HasFeatures for monitoring via Spring Cloud Actuator.",
+      "tags": ["auto-configuration", "cloud", "i18n", "reloadable", "spring-cloud"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java:I18nCloudAutoConfiguration",
+      "type": "class",
+      "name": "I18nCloudAutoConfiguration",
+      "filePath": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "lineRange": [49, 82],
+      "summary": "Auto-configuration activated when spring-cloud-context is on the classpath and i18n is enabled. Imports FeaturesConfiguration and ReloadableResourceServiceMessageSourceListener for environment change-driven message reloading.",
+      "tags": ["auto-configuration", "cloud", "i18n", "reload"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java:FeaturesConfiguration",
+      "type": "class",
+      "name": "FeaturesConfiguration",
+      "filePath": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "lineRange": [60, 81],
+      "summary": "Nested configuration class that creates a HasFeatures bean listing all PropertySourcesServiceMessageSource instances as NamedFeatures for Spring Cloud Actuator monitoring.",
+      "tags": ["features", "actuator", "monitoring", "cloud"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "type": "file",
+      "name": "ReloadableResourceServiceMessageSourceListener.java",
+      "filePath": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "summary": "ApplicationListener for Spring Cloud EnvironmentChangeEvent that triggers dynamic reloading of all PropertySourcesServiceMessageSource beans when environment properties change (e.g., via /actuator/refresh).",
+      "tags": ["event-listener", "reloadable", "cloud", "i18n", "spring-cloud"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java:ReloadableResourceServiceMessageSourceListener",
+      "type": "class",
+      "name": "ReloadableResourceServiceMessageSourceListener",
+      "filePath": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "lineRange": [54, 69],
+      "summary": "ApplicationListener implementing BeanFactoryAware that receives EnvironmentChangeEvent and delegates to PropertySourcesServiceMessageSource.reloadAll for dynamic message source reloading.",
+      "tags": ["listener", "reload", "cloud", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "type": "file",
+      "name": "I18nCloudAutoConfigurationTest.java",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "summary": "Auto-configuration test for I18nCloudAutoConfiguration using ApplicationContextRunner. Verifies that ReloadableResourceServiceMessageSourceListener bean is present when environment change events are available and absent when filtered out.",
+      "tags": ["test", "auto-configuration-test", "cloud", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java:I18nCloudAutoConfigurationTest",
+      "type": "class",
+      "name": "I18nCloudAutoConfigurationTest",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "lineRange": [30, 78],
+      "summary": "Test class using ApplicationContextRunner to validate conditional bean creation for ReloadableResourceServiceMessageSourceListener, including negative tests with classloader filtering.",
+      "tags": ["test", "auto-configuration-test", "cloud"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "type": "file",
+      "name": "MessageSourceIntegrationTest.java",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "summary": "Integration test verifying that i18n messages are dynamically reloaded when EnvironmentChangeEvent fires with changed property keys. Validates end-to-end flow from property change to message source reload.",
+      "tags": ["test", "integration-test", "reload", "i18n", "cloud"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java:MessageSourceIntegrationTest",
+      "type": "class",
+      "name": "MessageSourceIntegrationTest",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "lineRange": [32, 68],
+      "summary": "Integration test that verifies dynamic message source reloading by adding a MapPropertySource to the environment, publishing an EnvironmentChangeEvent, and asserting the updated message is returned.",
+      "tags": ["test", "integration", "reload", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "type": "file",
+      "name": "PropertySourcesServiceMessageSource.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "summary": "Spring-integrated ServiceMessageSource that loads i18n messages from Environment property sources instead of files. Supports runtime reloading triggered by property changes and provides static utility methods for finding and reloading all PropertySourcesServiceMessageSource beans.",
+      "tags": ["spring-integration", "property-source", "message-source", "reloadable", "i18n"],
+      "complexity": "complex",
+      "languageNotes": "Implements EnvironmentAware for Spring Environment injection. Uses static utility methods with varargs Predicate for flexible bean filtering."
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:PropertySourcesServiceMessageSource",
+      "type": "class",
+      "name": "PropertySourcesServiceMessageSource",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "lineRange": [53, 200],
+      "summary": "Extends PropertiesResourceServiceMessageSource with Spring Environment integration, implementing ReloadableResourceServiceMessageSource. Loads message properties from Spring Environment property sources and provides static methods for bulk finding and reloading across all beans.",
+      "tags": ["class", "spring", "property-source", "reloadable", "message-source"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:findAllPropertySourcesServiceMessageSources",
+      "type": "function",
+      "name": "findAllPropertySourcesServiceMessageSources",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "lineRange": [163, 175],
+      "summary": "Static method that filters a collection of ServiceMessageSource instances to only PropertySourcesServiceMessageSource type and applies optional Predicate filters. Returns empty list if input is empty.",
+      "tags": ["utility", "filtering", "service-lookup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:reloadAll",
+      "type": "function",
+      "name": "reloadAll",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "lineRange": [184, 199],
+      "summary": "Static method that finds all PropertySourcesServiceMessageSource beans, determines which resources changed based on property names, and triggers reload for those that can be reloaded.",
+      "tags": ["utility", "reload", "batch-operation"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java:AbstractResourceServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "target": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java:getInternalMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "target": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java:getResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:PropertiesResourceServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "target": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:loadMessages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "target": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:loadAllProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java:ReloadableResourceServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "class:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:I18nEndpoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "function:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:invoke",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "function:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:getMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "function:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java:addMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "target": "class:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java:I18nEndpointAutoConfiguration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "target": "class:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java:I18nAutoConfiguration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "target": "class:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java:I18nEndpointTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "target": "class:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java:I18nEndpointAutoConfigurationTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "target": "class:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java:I18nServerConfiguration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "target": "function:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java:onApplicationStartedEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "target": "class:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java:I18nServerController",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "target": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java:I18nCloudAutoConfiguration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "target": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java:FeaturesConfiguration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "target": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java:ReloadableResourceServiceMessageSourceListener",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "target": "class:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java:I18nCloudAutoConfigurationTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "target": "class:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java:MessageSourceIntegrationTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:PropertySourcesServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:findAllPropertySourcesServiceMessageSources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:reloadAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "target": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "target": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:PropertiesResourceServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java:AbstractResourceServiceMessageSource",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:PropertySourcesServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:PropertiesResourceServiceMessageSource",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java:PropertySourcesServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java:ReloadableResourceServiceMessageSource",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "target": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java:I18nCloudAutoConfiguration",
+      "target": "class:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java:FeaturesConfiguration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

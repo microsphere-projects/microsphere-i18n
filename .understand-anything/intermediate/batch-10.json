@@ -1,0 +1,153 @@
+{
+  "nodes": [
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "type": "file",
+      "name": "LocaleUtils.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "summary": "Abstract utility class providing a single static method to retrieve the Locale from Spring's thread-local LocaleContext, used across the Spring-based i18n layer.",
+      "tags": ["utility", "locale", "spring", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java:getLocaleFromLocaleContext",
+      "type": "function",
+      "name": "getLocaleFromLocaleContext",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "lineRange": [47, 51],
+      "summary": "Retrieves the active Locale from the current thread's LocaleContext via LocaleContextHolder, returning null if no context is set.",
+      "tags": ["utility", "locale", "thread-local"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java:LocaleUtils",
+      "type": "class",
+      "name": "LocaleUtils",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "lineRange": [40, 55],
+      "summary": "Abstract utility class that prevents instantiation via a private constructor and exposes a single static helper for Locale extraction from Spring's LocaleContext.",
+      "tags": ["utility", "locale", "spring"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+      "type": "config",
+      "name": "spring.factories",
+      "filePath": "microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+      "summary": "Spring Boot auto-configuration factories file registering PropertySourcesServiceMessageSource and DefaultServiceMessageSource as implementations of AbstractServiceMessageSource.",
+      "tags": ["spring", "auto-configuration", "factories", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/src/test/resources/messages_en.properties",
+      "type": "config",
+      "name": "messages_en.properties",
+      "filePath": "microsphere-i18n-spring/src/test/resources/messages_en.properties",
+      "summary": "English test message properties file with a sample test.value key used for verifying i18n message resolution in test suites.",
+      "tags": ["test", "message-properties", "i18n", "locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+      "type": "config",
+      "name": "messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+      "summary": "Chinese (Simplified) test message properties file providing localized test.value for verifying locale-specific message resolution.",
+      "tags": ["test", "message-properties", "i18n", "locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+      "type": "config",
+      "name": "disabled-enable-i18n.properties",
+      "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+      "summary": "Test configuration property file that disables the i18n module by setting microsphere.i18n.enabled to false, used to test conditional behavior.",
+      "tags": ["test", "configuration", "i18n", "disable"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "type": "config",
+      "name": "i18n_messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "summary": "Chinese (Simplified) error message resource bundle for i18n tests providing localized error and test message keys.",
+      "tags": ["test", "message-bundle", "i18n", "error-messages"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "type": "config",
+      "name": "i18n_messages_en.properties",
+      "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "summary": "English test message resource bundle with sample i18n keys including a parameterized hello message using {} placeholder syntax.",
+      "tags": ["test", "message-bundle", "i18n", "locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "type": "config",
+      "name": "i18n_messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "summary": "Chinese (Simplified) test message resource bundle providing localized values matching the English bundle keys including parameterized greetings.",
+      "tags": ["test", "message-bundle", "i18n", "locale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+      "type": "config",
+      "name": "spring.factories",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+      "summary": "Empty Spring Boot factories file in the spring-cloud-server module, reserved for future auto-configuration declarations.",
+      "tags": ["spring", "auto-configuration", "factories"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "type": "config",
+      "name": "AutoConfiguration.imports",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "summary": "Empty Spring Boot auto-configuration imports file in the spring-cloud-server module, reserved for future auto-configuration registrations.",
+      "tags": ["spring", "auto-configuration", "imports"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "type": "config",
+      "name": "AutoConfiguration.imports",
+      "filePath": "microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "summary": "Spring Boot auto-configuration imports file registering I18nCloudAutoConfiguration for automatic configuration in Spring Cloud integration.",
+      "tags": ["spring", "auto-configuration", "imports", "i18n", "cloud"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java:getLocaleFromLocaleContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java:LocaleUtils",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java:getLocaleFromLocaleContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java:LocaleUtils",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

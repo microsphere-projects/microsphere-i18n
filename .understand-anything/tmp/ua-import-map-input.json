@@ -1,0 +1,670 @@
+{
+  "projectRoot": "/Users/mercyblitz/workspaces/github/microsphere-projects/microsphere-i18n",
+  "files": [
+    {
+      "path": ".github/dependabot.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/prompts/create-readme.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/prompts/document-api.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/prompts/explain-code.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/prompts/generate-unit-tests.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/prompts/onboarding-plan.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/prompts/review-code.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/scripts/generate-wiki-docs.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".github/workflows/maven-build.yml",
+      "language": "yaml",
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/maven-publish.yml",
+      "language": "yaml",
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/merge-main-to-branches.yml",
+      "language": "yaml",
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/sync-branches-from-upstream.yml",
+      "language": "yaml",
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/wiki-publish.yml",
+      "language": "yaml",
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".mvn/wrapper/maven-wrapper.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "developer-guide.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "microsphere-i18n-core/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageException.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-dependencies/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-openfeign/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-parent/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+      "language": "factories",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "language": "imports",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationBootstrap.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabledTests.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/resources/application.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+      "language": "factories",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "language": "imports",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/test/resources/application.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "language": "imports",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/I18nBootstrap.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/test/resources/i18n-bootstrap.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring/pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+      "language": "factories",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+      "language": "java",
+      "fileCategory": "code"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config"
+    },
+    {
+      "path": "mvnw",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "mvnw.cmd",
+      "language": "batch",
+      "fileCategory": "script"
+    },
+    {
+      "path": "pom.xml",
+      "language": "xml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "release-notes.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    }
+  ]
+}

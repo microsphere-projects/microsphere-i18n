@@ -1,0 +1,1203 @@
+{
+  "nodes": [
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "type": "file",
+      "name": "I18nAutoConfigurationTests.java",
+      "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "summary": "Integration test for I18nAutoConfiguration verifying that the Spring Boot auto-configuration registers all expected i18n beans including ServiceMessageSourceFactoryBean, MessageSourceAdapter, and related post-processors.",
+      "tags": ["test", "spring-boot", "auto-configuration", "integration-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java:I18nAutoConfigurationTests",
+      "type": "class",
+      "name": "I18nAutoConfigurationTests",
+      "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "lineRange": [25, 54],
+      "summary": "Test class that uses ApplicationContextRunner to validate the I18nAutoConfiguration registers all required i18n Spring beans.",
+      "tags": ["test", "spring-boot", "auto-configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java:shouldContainServiceMessageSourceFactoryBean",
+      "type": "function",
+      "name": "shouldContainServiceMessageSourceFactoryBean",
+      "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "lineRange": [34, 53],
+      "summary": "Verifies that the auto-configured context contains all expected i18n beans including applicationServiceMessageSource, DelegatingServiceMessageSource, MessageSourceAdapter, I18nApplicationListener, and bean post-processors.",
+      "tags": ["test", "assertions", "spring-beans"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "file",
+      "name": "EnableI18n.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "summary": "Annotation that enables Spring i18n support by importing I18nImportBeanDefinitionRegistrar, allowing configuration of message sources and optional MessageSource exposure through annotation attributes.",
+      "tags": ["annotation", "entry-point", "configuration", "i18n"],
+      "complexity": "simple",
+      "languageNotes": "Creates a Spring @Import-driven annotation that bootstraps i18n bean registration."
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "type": "file",
+      "name": "I18nImportBeanDefinitionRegistrar.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "summary": "ImportBeanDefinitionRegistrar that conditionally registers all i18n Spring beans (ServiceMessageSourceFactoryBean, DelegatingServiceMessageSource, MessageSourceAdapter, lifecycle listeners, and conditional bean post-processors) when @EnableI18n is present and the i18n feature is enabled.",
+      "tags": ["spring", "registration", "i18n", "bean-definition"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:I18nImportBeanDefinitionRegistrar",
+      "type": "class",
+      "name": "I18nImportBeanDefinitionRegistrar",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "lineRange": [77, 162],
+      "summary": "Central bean registrar that processes @EnableI18n attributes and conditionally registers ServiceMessageSource beans, DelegatingServiceMessageSource, MessageSourceAdapter, I18nApplicationListener, and post-processors for validation and web locale resolution.",
+      "tags": ["spring", "bean-registration", "i18n", "conditional"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:registerBeanDefinitions",
+      "type": "function",
+      "name": "registerBeanDefinitions",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "lineRange": [85, 94],
+      "summary": "Main registration entry point that checks if i18n is enabled, then delegates to sub-methods to register ServiceMessageSource, MessageSourceAdapter, I18nApplicationListener, and bean post-processor definitions.",
+      "tags": ["spring", "entry-point", "registration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:registerServiceMessageSourceBeanDefinitions",
+      "type": "function",
+      "name": "registerServiceMessageSourceBeanDefinitions",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "lineRange": [96, 109],
+      "summary": "Resolves source names from annotation attributes and Spring properties, registers a ServiceMessageSourceFactoryBean for each source, and creates a primary DelegatingServiceMessageSource bean that composites all source beans.",
+      "tags": ["spring", "bean-registration", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:registerBeanPostProcessorBeanDefinitions",
+      "type": "function",
+      "name": "registerBeanPostProcessorBeanDefinitions",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "lineRange": [135, 144],
+      "summary": "Conditionally registers ServiceMessageSourceBeanLifecyclePostProcessor, and optionally registers I18nLocalValidatorFactoryBeanPostProcessor and AcceptHeaderLocaleResolverBeanPostProcessor based on classpath availability.",
+      "tags": ["spring", "conditional", "post-processor"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:setEnvironment",
+      "type": "function",
+      "name": "setEnvironment",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "lineRange": [146, 149],
+      "summary": "Injects the Spring Environment to enable property-based resolution of i18n source names and the enabled/disabled flag.",
+      "tags": ["spring", "lifecycle", "environment-aware"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:isEnabled",
+      "type": "function",
+      "name": "isEnabled",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "lineRange": [151, 161],
+      "summary": "Checks the 'microsphere.i18n.enabled' Spring property to determine whether i18n feature registration should proceed, defaulting to enabled.",
+      "tags": ["spring", "conditional", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "type": "file",
+      "name": "ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "summary": "MergedBeanDefinitionPostProcessor that automatically configures init and destroy method names on ServiceMessageSource bean definitions, delegating to Spring's lifecycle interfaces when applicable.",
+      "tags": ["spring", "post-processor", "lifecycle", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:ServiceMessageSourceBeanLifecyclePostProcessor",
+      "type": "class",
+      "name": "ServiceMessageSourceBeanLifecyclePostProcessor",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "lineRange": [49, 91],
+      "summary": "Post-processor that examines each merged bean definition for ServiceMessageSource types and assigns init/destroy method names if not already configured and the bean does not implement InitializingBean/DisposableBean.",
+      "tags": ["spring", "post-processor", "lifecycle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:postProcessMergedBeanDefinition",
+      "type": "function",
+      "name": "postProcessMergedBeanDefinition",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "lineRange": [51, 57],
+      "summary": "Entry point for the MergedBeanDefinitionPostProcessor that checks if a bean definition is assignable to ServiceMessageSource and triggers init/destroy method name configuration.",
+      "tags": ["spring", "post-processor", "lifecycle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:setInitMethodName",
+      "type": "function",
+      "name": "setInitMethodName",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "lineRange": [59, 71],
+      "summary": "Sets the 'init' method name on the bean definition if the bean does not implement InitializingBean and no init method is already configured.",
+      "tags": ["spring", "lifecycle", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:setDestroyMethodName",
+      "type": "function",
+      "name": "setDestroyMethodName",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "lineRange": [73, 90],
+      "summary": "Sets the 'destroy' method name on the bean definition if the bean does not implement DisposableBean and no destroy method is already configured, respecting Spring's INFER_METHOD convention.",
+      "tags": ["spring", "lifecycle", "destruction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "type": "file",
+      "name": "I18nConstants.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "summary": "Constants interface defining Spring configuration property names for the i18n framework including enabled flag, sources, default locale, supported locales, and the primary bean name.",
+      "tags": ["constants", "configuration", "i18n", "spring-properties"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants:I18nConstants",
+      "type": "class",
+      "name": "I18nConstants",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "lineRange": [25, 77],
+      "summary": "Interface containing all Spring configuration property constants for i18n including enabled property, sources, default locale, and supported locales, documented with @ConfigurationProperty annotations.",
+      "tags": ["constants", "configuration", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "type": "file",
+      "name": "I18nApplicationListener.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "summary": "Application event listener that initializes the global ServiceMessageSource on context refresh, destroys it on context close, and reloads sources on property changes.",
+      "tags": ["spring", "event-listener", "lifecycle", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener:I18nApplicationListener",
+      "type": "class",
+      "name": "I18nApplicationListener",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "lineRange": [56, 80],
+      "summary": "Listens for ContextRefreshedEvent, ContextClosedEvent, and PropertySourcesChangedEvent to manage ServiceMessageSource lifecycle and reload i18n sources dynamically.",
+      "tags": ["spring", "event-listener", "lifecycle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onContextRefreshedEvent",
+      "type": "function",
+      "name": "onContextRefreshedEvent",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "lineRange": [58, 62],
+      "summary": "Handles ContextRefreshedEvent by extracting the ApplicationContext and initializing the global ServiceMessageSource from it.",
+      "tags": ["spring", "event-listener", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onContextClosedEvent",
+      "type": "function",
+      "name": "onContextClosedEvent",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "lineRange": [64, 67],
+      "summary": "Handles ContextClosedEvent by destroying the global ServiceMessageSource to clean up resources.",
+      "tags": ["spring", "event-listener", "cleanup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onPropertySourcesChangedEvent",
+      "type": "function",
+      "name": "onPropertySourcesChangedEvent",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "lineRange": [69, 74],
+      "summary": "Handles PropertySourcesChangedEvent by reloading affected ServiceMessageSource instances whose configuration properties have changed.",
+      "tags": ["spring", "event-listener", "dynamic-configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "file",
+      "name": "MessageSourceAdapter.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "summary": "Spring MessageSource adapter that delegates message resolution to a ServiceMessageSource and falls back to other MessageSource beans in the application context for default messages.",
+      "tags": ["spring", "message-source", "adapter", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter:MessageSourceAdapter",
+      "type": "class",
+      "name": "MessageSourceAdapter",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "lineRange": [35, 119],
+      "summary": "Implements Spring's MessageSource interface by wrapping a ServiceMessageSource and aggregating fallback MessageSource beans, with SmartInitializingSingleton for late binding of fallback sources.",
+      "tags": ["spring", "message-source", "adapter"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:MessageSourceAdapter",
+      "type": "function",
+      "name": "MessageSourceAdapter",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "lineRange": [48, 51],
+      "summary": "Constructor accepting the ServiceMessageSource to wrap and initializing the fallback MessageSource list.",
+      "tags": ["constructor", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:getMessage(code,args,defaultMessage,locale)",
+      "type": "function",
+      "name": "getMessage(code,args,defaultMessage,locale)",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "lineRange": [53, 60],
+      "summary": "Resolves a message by code from the ServiceMessageSource and falls back to default message sources if no message is found.",
+      "tags": ["message-resolution", "delegation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:getMessage(resolvable,locale)",
+      "type": "function",
+      "name": "getMessage(resolvable,locale)",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "lineRange": [67, 77],
+      "summary": "Resolves a message from a MessageSourceResolvable by iterating through its message codes until a non-null message is found.",
+      "tags": ["message-resolution", "iteration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:afterSingletonsInstantiated",
+      "type": "function",
+      "name": "afterSingletonsInstantiated",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "lineRange": [79, 86],
+      "summary": "Collects all non-self MessageSource beans from the BeanFactory after all singletons are instantiated, building the fallback chain for default message resolution.",
+      "tags": ["spring", "lifecycle", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "type": "file",
+      "name": "I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "summary": "BeanPostProcessor that associates the i18n MessageSourceAdapter with Spring's LocalValidatorFactoryBean to enable internationalized validation error messages.",
+      "tags": ["spring", "validation", "bean-post-processor", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor:I18nLocalValidatorFactoryBeanPostProcessor",
+      "type": "class",
+      "name": "I18nLocalValidatorFactoryBeanPostProcessor",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "lineRange": [35, 71],
+      "summary": "Extends GenericBeanPostProcessorAdapter to intercept LocalValidatorFactoryBean initialization and set the i18n MessageSourceAdapter as its validation message source.",
+      "tags": ["spring", "validation", "post-processor"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java:isValidatorFactoryPresent",
+      "type": "function",
+      "name": "isValidatorFactoryPresent",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "lineRange": [68, 70],
+      "summary": "Checks whether jakarta.validation.ValidatorFactory is on the classpath to conditionally enable validation i18n support.",
+      "tags": ["utility", "classpath-check", "conditional"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "type": "file",
+      "name": "AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "summary": "BeanPostProcessor that configures Spring MVC's AcceptHeaderLocaleResolver with the default locale and supported locales from the ServiceMessageSource configuration.",
+      "tags": ["spring", "web-mvc", "locale-resolver", "post-processor", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor:AcceptHeaderLocaleResolverBeanPostProcessor",
+      "type": "class",
+      "name": "AcceptHeaderLocaleResolverBeanPostProcessor",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "lineRange": [59, 93],
+      "summary": "Extends GenericBeanPostProcessorAdapter and ApplicationContextAware to inject i18n-configured default and supported locales into each AcceptHeaderLocaleResolver bean.",
+      "tags": ["spring", "web-mvc", "locale-resolver", "post-processor"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java:processAfterInitialization",
+      "type": "function",
+      "name": "processAfterInitialization",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "lineRange": [67, 77],
+      "summary": "Post-processes an AcceptHeaderLocaleResolver by setting its default locale and supported locales from the ServiceMessageSource configuration.",
+      "tags": ["spring", "post-processor", "locale-configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java:isAcceptHeaderLocaleResolverPresent",
+      "type": "function",
+      "name": "isAcceptHeaderLocaleResolverPresent",
+      "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "lineRange": [90, 92],
+      "summary": "Checks whether AcceptHeaderLocaleResolver is on the classpath to conditionally enable web locale i18n support.",
+      "tags": ["utility", "classpath-check", "conditional"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "type": "file",
+      "name": "I18nImportBeanDefinitionRegistrarTest.java",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "summary": "Comprehensive test for I18nImportBeanDefinitionRegistrar covering source-specified, disabled, unexposed message source, and absent bean class scenarios in a Spring application context.",
+      "tags": ["test", "spring", "integration-test", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest:I18nImportBeanDefinitionRegistrarTest",
+      "type": "class",
+      "name": "I18nImportBeanDefinitionRegistrarTest",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "lineRange": [48, 112],
+      "summary": "Test class with four test methods validating bean registration behavior under different @EnableI18n configurations including enabled, disabled, unexposed MessageSource, and absent validation/web classes.",
+      "tags": ["test", "spring", "integration-test"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnSpecifiedSources",
+      "type": "function",
+      "name": "testOnSpecifiedSources",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "lineRange": [51, 65],
+      "summary": "Verifies that when sources are specified, all expected i18n beans (ServiceMessageSourceFactoryBean, MessageSourceAdapter, ServiceMessageSource, I18nApplicationListener, post-processors) are present in the context.",
+      "tags": ["test", "spring", "bean-verification"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnDisabled",
+      "type": "function",
+      "name": "testOnDisabled",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "lineRange": [67, 78],
+      "summary": "Verifies that when i18n is disabled via configuration, none of the i18n beans are registered in the application context.",
+      "tags": ["test", "spring", "conditional-behavior"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnUnexposedMessageSource",
+      "type": "function",
+      "name": "testOnUnexposedMessageSource",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "lineRange": [80, 91],
+      "summary": "Verifies that when exposeMessageSource is false, ServiceMessageSource beans are still registered but MessageSourceAdapter is not exposed as the Spring MessageSource.",
+      "tags": ["test", "spring", "conditional-behavior"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnBeanClassAbsent",
+      "type": "function",
+      "name": "testOnBeanClassAbsent",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "lineRange": [93, 110],
+      "summary": "Verifies that when validation and web classes are not on the classpath, the conditional post-processors (I18nLocalValidatorFactoryBeanPostProcessor, AcceptHeaderLocaleResolverBeanPostProcessor) are not registered.",
+      "tags": ["test", "spring", "conditional", "classpath"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "type": "file",
+      "name": "DisabledEnableI18nConfiguration.java",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "summary": "Test configuration class annotated with @EnableI18n and a ResourcePropertySource that sets microsphere.i18n.enabled=false, used to verify the disabled behavior of i18n bean registration.",
+      "tags": ["test", "configuration", "spring", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "type": "file",
+      "name": "UnexposedMessageSourceEnableI18nConfiguration.java",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "summary": "Test configuration class annotated with @EnableI18n(exposeMessageSource = false) used to verify i18n bean registration without exposing the MessageSourceAdapter as the Spring MessageSource.",
+      "tags": ["test", "configuration", "spring", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "type": "file",
+      "name": "I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "summary": "Test for I18nLocalValidatorFactoryBeanPostProcessor covering scenarios without LocalValidatorFactoryBean, without MessageSourceAdapter, and verifying that the message interpolator is set correctly.",
+      "tags": ["test", "validation", "spring", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest:I18NLocalValidatorFactoryBeanPostProcessorTest",
+      "type": "class",
+      "name": "I18NLocalValidatorFactoryBeanPostProcessorTest",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "lineRange": [39, 64],
+      "summary": "Test class validating the I18nLocalValidatorFactoryBeanPostProcessor behavior when LocalValidatorFactoryBean is absent, MessageSourceAdapter is not available, and when both are present and correctly wired.",
+      "tags": ["test", "validation", "spring"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "target": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "class:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java:I18nAutoConfigurationTests",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "target": "function:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java:shouldContainServiceMessageSourceFactoryBean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:I18nImportBeanDefinitionRegistrar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:registerBeanDefinitions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:registerServiceMessageSourceBeanDefinitions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:registerBeanPostProcessorBeanDefinitions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:setEnvironment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:isEnabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:ServiceMessageSourceBeanLifecyclePostProcessor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:postProcessMergedBeanDefinition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:setInitMethodName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:setDestroyMethodName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants:I18nConstants",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener:I18nApplicationListener",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onContextRefreshedEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onContextClosedEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onPropertySourcesChangedEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter:MessageSourceAdapter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:MessageSourceAdapter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:getMessage(code,args,defaultMessage,locale)",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:getMessage(resolvable,locale)",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:afterSingletonsInstantiated",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor:I18nLocalValidatorFactoryBeanPostProcessor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java:isValidatorFactoryPresent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor:AcceptHeaderLocaleResolverBeanPostProcessor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java:processAfterInitialization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java:isAcceptHeaderLocaleResolverPresent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest:I18nImportBeanDefinitionRegistrarTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnSpecifiedSources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnDisabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnUnexposedMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "target": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java:testOnBeanClassAbsent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "target": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest:I18NLocalValidatorFactoryBeanPostProcessorTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:registerBeanDefinitions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java:setEnvironment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:ServiceMessageSourceBeanLifecyclePostProcessor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java:postProcessMergedBeanDefinition",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants:I18nConstants",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener:I18nApplicationListener",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onContextRefreshedEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onContextClosedEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java:onPropertySourcesChangedEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter:MessageSourceAdapter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:MessageSourceAdapter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:getMessage(code,args,defaultMessage,locale)",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:getMessage(resolvable,locale)",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java:afterSingletonsInstantiated",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor:I18nLocalValidatorFactoryBeanPostProcessor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java:isValidatorFactoryPresent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "class:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor:AcceptHeaderLocaleResolverBeanPostProcessor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "function:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java:isAcceptHeaderLocaleResolverPresent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

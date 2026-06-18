@@ -1,0 +1,2627 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 19,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".github/dependabot.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 12,
+      "nonEmptyLines": 11,
+      "sections": [
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "updates",
+          "level": 1,
+          "line": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": ".github/scripts/generate-wiki-docs.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 831,
+      "nonEmptyLines": 693,
+      "functions": [
+        {
+          "name": "_discover_modules",
+          "startLine": 34,
+          "endLine": 41,
+          "params": [
+            "project_root"
+          ]
+        },
+        {
+          "name": "_read_java_versions",
+          "startLine": 44,
+          "endLine": 53,
+          "params": [
+            "project_root"
+          ]
+        },
+        {
+          "name": "_read_pom_revision",
+          "startLine": 56,
+          "endLine": 65,
+          "params": [
+            "project_root"
+          ]
+        },
+        {
+          "name": "_read_pom_artifact_id",
+          "startLine": 68,
+          "endLine": 78,
+          "params": [
+            "project_root"
+          ]
+        },
+        {
+          "name": "_read_readme_title",
+          "startLine": 81,
+          "endLine": 90,
+          "params": [
+            "project_root"
+          ]
+        },
+        {
+          "name": "clean_javadoc_line",
+          "startLine": 149,
+          "endLine": 156,
+          "params": [
+            "line"
+          ]
+        },
+        {
+          "name": "parse_javadoc",
+          "startLine": 159,
+          "endLine": 220,
+          "params": [
+            "javadoc_text"
+          ]
+        },
+        {
+          "name": "convert_javadoc_to_markdown",
+          "startLine": 223,
+          "endLine": 253,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "parse_java_file",
+          "startLine": 303,
+          "endLine": 415,
+          "params": [
+            "filepath",
+            "module_name"
+          ]
+        },
+        {
+          "name": "extract_public_methods",
+          "startLine": 418,
+          "endLine": 445,
+          "params": [
+            "content",
+            "class_start_pos"
+          ]
+        },
+        {
+          "name": "generate_wiki_page",
+          "startLine": 452,
+          "endLine": 644,
+          "params": [
+            "component"
+          ]
+        },
+        {
+          "name": "generate_home_page",
+          "startLine": 647,
+          "endLine": 711,
+          "params": [
+            "components_by_module"
+          ]
+        },
+        {
+          "name": "generate_sidebar",
+          "startLine": 714,
+          "endLine": 730,
+          "params": [
+            "components_by_module"
+          ]
+        },
+        {
+          "name": "discover_java_files",
+          "startLine": 737,
+          "endLine": 748,
+          "params": [
+            "project_root",
+            "modules"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 751,
+          "endLine": 827,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "JavaComponent",
+          "startLine": 260,
+          "endLine": 288,
+          "methods": [
+            "__init__",
+            "fully_qualified_name",
+            "wiki_page_name"
+          ],
+          "properties": []
+        },
+        {
+          "name": "JavaMethod",
+          "startLine": 291,
+          "endLine": 300,
+          "methods": [
+            "__init__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_discover_modules",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "_read_java_versions",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "_read_pom_revision",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "_read_pom_artifact_id",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "_read_readme_title",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "clean_javadoc_line",
+          "line": 149,
+          "isDefault": false
+        },
+        {
+          "name": "parse_javadoc",
+          "line": 159,
+          "isDefault": false
+        },
+        {
+          "name": "convert_javadoc_to_markdown",
+          "line": 223,
+          "isDefault": false
+        },
+        {
+          "name": "JavaComponent",
+          "line": 260,
+          "isDefault": false
+        },
+        {
+          "name": "JavaMethod",
+          "line": 291,
+          "isDefault": false
+        },
+        {
+          "name": "parse_java_file",
+          "line": 303,
+          "isDefault": false
+        },
+        {
+          "name": "extract_public_methods",
+          "line": 418,
+          "isDefault": false
+        },
+        {
+          "name": "generate_wiki_page",
+          "line": 452,
+          "isDefault": false
+        },
+        {
+          "name": "generate_home_page",
+          "line": 647,
+          "isDefault": false
+        },
+        {
+          "name": "generate_sidebar",
+          "line": 714,
+          "isDefault": false
+        },
+        {
+          "name": "discover_java_files",
+          "line": 737,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 751,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_discover_modules",
+          "callee": "sorted",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_discover_modules",
+          "callee": "os.listdir",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_discover_modules",
+          "callee": "os.path.join",
+          "lineNumber": 38
+        },
+        {
+          "caller": "_discover_modules",
+          "callee": "os.path.isdir",
+          "lineNumber": 39
+        },
+        {
+          "caller": "_discover_modules",
+          "callee": "os.path.isdir",
+          "lineNumber": 39
+        },
+        {
+          "caller": "_discover_modules",
+          "callee": "os.path.join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "_discover_modules",
+          "callee": "modules.append",
+          "lineNumber": 40
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "os.path.join",
+          "lineNumber": 46
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "open",
+          "lineNumber": 47
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "f.read",
+          "lineNumber": 48
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "re.search",
+          "lineNumber": 49
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "v.strip().strip",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "v.strip",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "match.group(1).split",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "match.group",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_read_java_versions",
+          "callee": "print",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_read_pom_revision",
+          "callee": "os.path.join",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_read_pom_revision",
+          "callee": "open",
+          "lineNumber": 59
+        },
+        {
+          "caller": "_read_pom_revision",
+          "callee": "f.read",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_read_pom_revision",
+          "callee": "re.search",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_read_pom_revision",
+          "callee": "match.group(1).strip",
+          "lineNumber": 63
+        },
+        {
+          "caller": "_read_pom_revision",
+          "callee": "match.group",
+          "lineNumber": 63
+        },
+        {
+          "caller": "_read_pom_revision",
+          "callee": "print",
+          "lineNumber": 64
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "os.path.join",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "open",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "f.read",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "re.sub",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "re.search",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "match.group(1).strip",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "match.group",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_read_pom_artifact_id",
+          "callee": "print",
+          "lineNumber": 77
+        },
+        {
+          "caller": "_read_readme_title",
+          "callee": "os.path.join",
+          "lineNumber": 83
+        },
+        {
+          "caller": "_read_readme_title",
+          "callee": "open",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_read_readme_title",
+          "callee": "line.strip",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_read_readme_title",
+          "callee": "line.startswith",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_read_readme_title",
+          "callee": "line[2:].strip",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_read_readme_title",
+          "callee": "print",
+          "lineNumber": 89
+        },
+        {
+          "caller": "clean_javadoc_line",
+          "callee": "line.strip",
+          "lineNumber": 151
+        },
+        {
+          "caller": "clean_javadoc_line",
+          "callee": "line.startswith",
+          "lineNumber": 152
+        },
+        {
+          "caller": "clean_javadoc_line",
+          "callee": "line.startswith",
+          "lineNumber": 154
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "javadoc_text.split",
+          "lineNumber": 171
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "clean_javadoc_line",
+          "lineNumber": 172
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "'\\n'.join",
+          "lineNumber": 173
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "SINCE_TAG_RE.search",
+          "lineNumber": 176
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "since_match.group(1).strip",
+          "lineNumber": 177
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "since_match.group",
+          "lineNumber": 177
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "AUTHOR_TAG_RE.search",
+          "lineNumber": 179
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "author_match.group(1).strip",
+          "lineNumber": 180
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "author_match.group",
+          "lineNumber": 180
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "re.sub(r'<[^>]+>', '', author).strip",
+          "lineNumber": 182
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "re.sub",
+          "lineNumber": 182
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "SEE_TAG_RE.findall",
+          "lineNumber": 184
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "s.strip",
+          "lineNumber": 185
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "line.strip",
+          "lineNumber": 190
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "stripped.startswith",
+          "lineNumber": 191
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "desc_lines.append",
+          "lineNumber": 193
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "'\\n'.join(desc_lines).strip",
+          "lineNumber": 194
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "'\\n'.join",
+          "lineNumber": 194
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "CODE_EXAMPLE_RE.finditer",
+          "lineNumber": 198
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "match.group(1).strip",
+          "lineNumber": 199
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "match.group",
+          "lineNumber": 199
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "code.split",
+          "lineNumber": 201
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "'\\n'.join",
+          "lineNumber": 202
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "clean_javadoc_line",
+          "lineNumber": 202
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "examples.append",
+          "lineNumber": 203
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "cleaned_code.strip",
+          "lineNumber": 203
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "CODE_EXAMPLE_ALT_RE.finditer",
+          "lineNumber": 206
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "match.group(1).strip",
+          "lineNumber": 207
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "match.group",
+          "lineNumber": 207
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "len",
+          "lineNumber": 208
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "code.split",
+          "lineNumber": 209
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "'\\n'.join",
+          "lineNumber": 210
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "clean_javadoc_line",
+          "lineNumber": 210
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "examples.append",
+          "lineNumber": 211
+        },
+        {
+          "caller": "parse_javadoc",
+          "callee": "cleaned_code.strip",
+          "lineNumber": 211
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "LINK_TAG_RE.sub",
+          "lineNumber": 229
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "LINKPLAIN_TAG_RE.sub",
+          "lineNumber": 230
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "CODE_TAG_RE.sub",
+          "lineNumber": 231
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "VALUE_TAG_RE.sub",
+          "lineNumber": 232
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 235
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 236
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 237
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 238
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 239
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 240
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 241
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 242
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 243
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 244
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 245
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 246
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 247
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 248
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "re.sub",
+          "lineNumber": 251
+        },
+        {
+          "caller": "convert_javadoc_to_markdown",
+          "callee": "text.strip",
+          "lineNumber": 253
+        },
+        {
+          "caller": "wiki_page_name",
+          "callee": "self.fully_qualified_name.replace",
+          "lineNumber": 288
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "open",
+          "lineNumber": 306
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "f.read",
+          "lineNumber": 307
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "PACKAGE_RE.search",
+          "lineNumber": 312
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "pkg_match.group",
+          "lineNumber": 313
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "os.path.basename",
+          "lineNumber": 316
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "list",
+          "lineNumber": 325
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "JAVADOC_BLOCK_RE.finditer",
+          "lineNumber": 325
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "content.split",
+          "lineNumber": 328
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "line.strip",
+          "lineNumber": 329
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.match",
+          "lineNumber": 330
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.search",
+          "lineNumber": 339
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.search",
+          "lineNumber": 341
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.search",
+          "lineNumber": 343
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.search",
+          "lineNumber": 347
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "name_match.group",
+          "lineNumber": 353
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "os.path.splitext",
+          "lineNumber": 358
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "os.path.basename",
+          "lineNumber": 358
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "content.find",
+          "lineNumber": 366
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "reversed",
+          "lineNumber": 367
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "jd_block.end",
+          "lineNumber": 368
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "content[jd_block.end():class_decl_pos].strip",
+          "lineNumber": 370
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "jd_block.end",
+          "lineNumber": 370
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.sub(r'@\\w+(?:\\([^)]*\\))?', '', between).strip",
+          "lineNumber": 372
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.sub",
+          "lineNumber": 372
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "between_cleaned.startswith",
+          "lineNumber": 373
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "jd_block.group",
+          "lineNumber": 374
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "parse_javadoc",
+          "lineNumber": 378
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "max",
+          "lineNumber": 381
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "SINCE_ANNOTATION_RE.search",
+          "lineNumber": 382
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "len",
+          "lineNumber": 382
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "since_annotation.group",
+          "lineNumber": 383
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.search",
+          "lineNumber": 386
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "extends_match.group(1).strip",
+          "lineNumber": 387
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "extends_match.group",
+          "lineNumber": 387
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "re.search",
+          "lineNumber": 389
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "implements_match.group(1).strip().rstrip('{').strip",
+          "lineNumber": 392
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "implements_match.group(1).strip().rstrip",
+          "lineNumber": 392
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "implements_match.group(1).strip",
+          "lineNumber": 392
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "implements_match.group",
+          "lineNumber": 392
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "i.strip",
+          "lineNumber": 393
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "impl_str.split",
+          "lineNumber": 393
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "i.strip",
+          "lineNumber": 393
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "extract_public_methods",
+          "lineNumber": 396
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "JavaComponent",
+          "lineNumber": 399
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "class_decl_match.rstrip('{').strip",
+          "lineNumber": 411
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "class_decl_match.rstrip",
+          "lineNumber": 411
+        },
+        {
+          "caller": "parse_java_file",
+          "callee": "os.path.relpath",
+          "lineNumber": 413
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "PUBLIC_METHOD_RE.finditer",
+          "lineNumber": 424
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "match.group",
+          "lineNumber": 425
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "match.group",
+          "lineNumber": 426
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "match.group",
+          "lineNumber": 427
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "JavaMethod",
+          "lineNumber": 433
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "full_signature.strip",
+          "lineNumber": 435
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "parse_javadoc",
+          "lineNumber": 438
+        },
+        {
+          "caller": "extract_public_methods",
+          "callee": "methods.append",
+          "lineNumber": 443
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "component.component_type.capitalize",
+          "lineNumber": 457
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 458
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 459
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "badges.append",
+          "lineNumber": 463
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "badges.append",
+          "lineNumber": 464
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "badges.append",
+          "lineNumber": 465
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "badges.append",
+          "lineNumber": 467
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 468
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "\" | \".join",
+          "lineNumber": 468
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 469
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 472
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 474
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 477
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 478
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "convert_javadoc_to_markdown",
+          "lineNumber": 480
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 481
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 483
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "type_label.lower",
+          "lineNumber": 483
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 485
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 488
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 489
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 490
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 491
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 492
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 493
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 497
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 498
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 501
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 502
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 504
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 506
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 507
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 508
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 511
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 512
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 513
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 514
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 515
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 516
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 518
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 519
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "bool",
+          "lineNumber": 522
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 531
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 532
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "enumerate",
+          "lineNumber": 535
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "len",
+          "lineNumber": 536
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 537
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 538
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 539
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 540
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 541
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 542
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 549
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 550
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 552
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 553
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 555
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 556
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 557
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 558
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 561
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 562
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 563
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 564
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 565
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 566
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 567
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 568
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 569
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 570
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 571
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 572
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 573
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 574
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 575
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 577
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 580
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 581
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 582
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 583
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 584
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 585
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 589
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 590
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 591
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 592
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 593
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 594
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "method.description.split",
+          "lineNumber": 596
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "convert_javadoc_to_markdown",
+          "lineNumber": 597
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "len",
+          "lineNumber": 599
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "method.signature.replace",
+          "lineNumber": 601
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 602
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 603
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "any",
+          "lineNumber": 606
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "len",
+          "lineNumber": 607
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 610
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 611
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "len",
+          "lineNumber": 613
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 614
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 615
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 616
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 617
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 618
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 619
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "convert_javadoc_to_markdown",
+          "lineNumber": 620
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 621
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 622
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 624
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 625
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 629
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 630
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "ref.strip",
+          "lineNumber": 632
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 634
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 635
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 638
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 639
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 640
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "lines.append",
+          "lineNumber": 642
+        },
+        {
+          "caller": "generate_wiki_page",
+          "callee": "'\\n'.join",
+          "lineNumber": 644
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 650
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 651
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 652
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 654
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 655
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 656
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 657
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 658
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "', '.join",
+          "lineNumber": 658
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 659
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 660
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 662
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 665
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 666
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "components_by_module.items",
+          "lineNumber": 668
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 669
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 670
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "OrderedDict",
+          "lineNumber": 673
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "by_package[pkg].append",
+          "lineNumber": 678
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "by_package.items",
+          "lineNumber": 680
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 681
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 682
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "sorted",
+          "lineNumber": 683
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "{\n                    \"class\": \"📦\",\n                    \"interface\": \"🔌\",\n                    \"enum\": \"🔢\",\n                    \"annotation\": \"🏷️\",\n                }.get",
+          "lineNumber": 684
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 691
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "comp.component_type.capitalize",
+          "lineNumber": 692
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 694
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 697
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 698
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 699
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 700
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 701
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 702
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 703
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 704
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 705
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 706
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "lines.append",
+          "lineNumber": 709
+        },
+        {
+          "caller": "generate_home_page",
+          "callee": "'\\n'.join",
+          "lineNumber": 711
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "lines.append",
+          "lineNumber": 717
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "lines.append",
+          "lineNumber": 718
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "components_by_module.items",
+          "lineNumber": 720
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "module_name.replace",
+          "lineNumber": 722
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "lines.append",
+          "lineNumber": 723
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "lines.append",
+          "lineNumber": 724
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "sorted",
+          "lineNumber": 725
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "lines.append",
+          "lineNumber": 727
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "lines.append",
+          "lineNumber": 728
+        },
+        {
+          "caller": "generate_sidebar",
+          "callee": "'\\n'.join",
+          "lineNumber": 730
+        },
+        {
+          "caller": "discover_java_files",
+          "callee": "os.path.join",
+          "lineNumber": 741
+        },
+        {
+          "caller": "discover_java_files",
+          "callee": "os.path.isdir",
+          "lineNumber": 742
+        },
+        {
+          "caller": "discover_java_files",
+          "callee": "os.walk",
+          "lineNumber": 744
+        },
+        {
+          "caller": "discover_java_files",
+          "callee": "fname.endswith",
+          "lineNumber": 746
+        },
+        {
+          "caller": "discover_java_files",
+          "callee": "java_files.append",
+          "lineNumber": 747
+        },
+        {
+          "caller": "discover_java_files",
+          "callee": "os.path.join",
+          "lineNumber": 747
+        },
+        {
+          "caller": "main",
+          "callee": "argparse.ArgumentParser",
+          "lineNumber": 752
+        },
+        {
+          "caller": "main",
+          "callee": "parser.add_argument",
+          "lineNumber": 753
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.join",
+          "lineNumber": 755
+        },
+        {
+          "caller": "main",
+          "callee": "parser.add_argument",
+          "lineNumber": 758
+        },
+        {
+          "caller": "main",
+          "callee": "parser.parse_args",
+          "lineNumber": 763
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 768
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 769
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 770
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 771
+        },
+        {
+          "caller": "main",
+          "callee": "discover_java_files",
+          "lineNumber": 774
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 775
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 775
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 775
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 776
+        },
+        {
+          "caller": "main",
+          "callee": "parse_java_file",
+          "lineNumber": 781
+        },
+        {
+          "caller": "main",
+          "callee": "components.append",
+          "lineNumber": 783
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 785
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 785
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 786
+        },
+        {
+          "caller": "main",
+          "callee": "OrderedDict",
+          "lineNumber": 789
+        },
+        {
+          "caller": "main",
+          "callee": "sorted",
+          "lineNumber": 793
+        },
+        {
+          "caller": "main",
+          "callee": "os.makedirs",
+          "lineNumber": 796
+        },
+        {
+          "caller": "main",
+          "callee": "components_by_module.items",
+          "lineNumber": 800
+        },
+        {
+          "caller": "main",
+          "callee": "generate_wiki_page",
+          "lineNumber": 802
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.join",
+          "lineNumber": 804
+        },
+        {
+          "caller": "main",
+          "callee": "open",
+          "lineNumber": 805
+        },
+        {
+          "caller": "main",
+          "callee": "f.write",
+          "lineNumber": 806
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 809
+        },
+        {
+          "caller": "main",
+          "callee": "generate_home_page",
+          "lineNumber": 812
+        },
+        {
+          "caller": "main",
+          "callee": "open",
+          "lineNumber": 813
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.join",
+          "lineNumber": 813
+        },
+        {
+          "caller": "main",
+          "callee": "f.write",
+          "lineNumber": 814
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 815
+        },
+        {
+          "caller": "main",
+          "callee": "generate_sidebar",
+          "lineNumber": 818
+        },
+        {
+          "caller": "main",
+          "callee": "open",
+          "lineNumber": 819
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.join",
+          "lineNumber": 819
+        },
+        {
+          "caller": "main",
+          "callee": "f.write",
+          "lineNumber": 820
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 821
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 823
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 824
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 825
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 17,
+        "functionCount": 15,
+        "classCount": 2
+      }
+    },
+    {
+      "path": ".mvn/wrapper/maven-wrapper.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "metrics": {}
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 50,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-core/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 75,
+      "nonEmptyLines": 63,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-dependencies/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 64,
+      "nonEmptyLines": 52,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-openfeign/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 90,
+      "nonEmptyLines": 76,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 68,
+      "nonEmptyLines": 58,
+      "functions": [
+        {
+          "name": "apply",
+          "startLine": 41,
+          "endLine": 67,
+          "params": [
+            "template"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "AcceptLanguageHeaderRequestInterceptor",
+          "startLine": 35,
+          "endLine": 68,
+          "methods": [
+            "apply"
+          ],
+          "properties": [
+            "logger",
+            "HEADER_NAME"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "HEADER_NAME",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "apply",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "AcceptLanguageHeaderRequestInterceptor",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "apply",
+          "callee": "getRequestAttributes",
+          "lineNumber": 43
+        },
+        {
+          "caller": "apply",
+          "callee": "logger.isTraceEnabled",
+          "lineNumber": 45
+        },
+        {
+          "caller": "apply",
+          "callee": "logger.trace",
+          "lineNumber": 46
+        },
+        {
+          "caller": "apply",
+          "callee": "servletRequestAttributes.getRequest",
+          "lineNumber": 53
+        },
+        {
+          "caller": "apply",
+          "callee": "request.getHeader",
+          "lineNumber": 55
+        },
+        {
+          "caller": "apply",
+          "callee": "hasText",
+          "lineNumber": 57
+        },
+        {
+          "caller": "apply",
+          "callee": "template.header",
+          "lineNumber": 58
+        },
+        {
+          "caller": "apply",
+          "callee": "logger.isTraceEnabled",
+          "lineNumber": 59
+        },
+        {
+          "caller": "apply",
+          "callee": "logger.trace",
+          "lineNumber": 60
+        },
+        {
+          "caller": "apply",
+          "callee": "logger.isTraceEnabled",
+          "lineNumber": 63
+        },
+        {
+          "caller": "apply",
+          "callee": "logger.trace",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 68,
+      "nonEmptyLines": 57,
+      "functions": [
+        {
+          "name": "before",
+          "startLine": 33,
+          "endLine": 39,
+          "params": []
+        },
+        {
+          "name": "after",
+          "startLine": 41,
+          "endLine": 44,
+          "params": []
+        },
+        {
+          "name": "testApply",
+          "startLine": 46,
+          "endLine": 52,
+          "params": []
+        },
+        {
+          "name": "testApplyWithoutAcceptLanguageHeader",
+          "startLine": 54,
+          "endLine": 59,
+          "params": []
+        },
+        {
+          "name": "testApplyNoWebMvc",
+          "startLine": 61,
+          "endLine": 67,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "AcceptLanguageHeaderRequestInterceptorTest",
+          "startLine": 24,
+          "endLine": 68,
+          "methods": [
+            "before",
+            "after",
+            "testApply",
+            "testApplyWithoutAcceptLanguageHeader",
+            "testApplyNoWebMvc"
+          ],
+          "properties": [
+            "requestInterceptor",
+            "requestTemplate",
+            "request"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "before",
+          "callee": "new MockHttpServletRequest",
+          "lineNumber": 35
+        },
+        {
+          "caller": "before",
+          "callee": "new AcceptLanguageHeaderRequestInterceptor",
+          "lineNumber": 36
+        },
+        {
+          "caller": "before",
+          "callee": "new RequestTemplate",
+          "lineNumber": 37
+        },
+        {
+          "caller": "before",
+          "callee": "setRequestAttributes",
+          "lineNumber": 38
+        },
+        {
+          "caller": "before",
+          "callee": "new ServletRequestAttributes",
+          "lineNumber": 38
+        },
+        {
+          "caller": "after",
+          "callee": "resetRequestAttributes",
+          "lineNumber": 43
+        },
+        {
+          "caller": "testApply",
+          "callee": "this.request.addHeader",
+          "lineNumber": 48
+        },
+        {
+          "caller": "testApply",
+          "callee": "assertTrue",
+          "lineNumber": 49
+        },
+        {
+          "caller": "testApply",
+          "callee": "requestTemplate.headers().isEmpty",
+          "lineNumber": 49
+        },
+        {
+          "caller": "testApply",
+          "callee": "requestTemplate.headers",
+          "lineNumber": 49
+        },
+        {
+          "caller": "testApply",
+          "callee": "requestInterceptor.apply",
+          "lineNumber": 50
+        },
+        {
+          "caller": "testApply",
+          "callee": "assertEquals",
+          "lineNumber": 51
+        },
+        {
+          "caller": "testApply",
+          "callee": "ofList",
+          "lineNumber": 51
+        },
+        {
+          "caller": "testApply",
+          "callee": "requestTemplate.headers().get",
+          "lineNumber": 51
+        },
+        {
+          "caller": "testApply",
+          "callee": "requestTemplate.headers",
+          "lineNumber": 51
+        },
+        {
+          "caller": "testApplyWithoutAcceptLanguageHeader",
+          "callee": "assertTrue",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testApplyWithoutAcceptLanguageHeader",
+          "callee": "requestTemplate.headers().isEmpty",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testApplyWithoutAcceptLanguageHeader",
+          "callee": "requestTemplate.headers",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testApplyWithoutAcceptLanguageHeader",
+          "callee": "requestInterceptor.apply",
+          "lineNumber": 57
+        },
+        {
+          "caller": "testApplyWithoutAcceptLanguageHeader",
+          "callee": "assertTrue",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testApplyWithoutAcceptLanguageHeader",
+          "callee": "requestTemplate.headers().isEmpty",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testApplyWithoutAcceptLanguageHeader",
+          "callee": "requestTemplate.headers",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "resetRequestAttributes",
+          "lineNumber": 63
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "assertTrue",
+          "lineNumber": 64
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "requestTemplate.headers().isEmpty",
+          "lineNumber": 64
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "requestTemplate.headers",
+          "lineNumber": 64
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "requestInterceptor.apply",
+          "lineNumber": 65
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "new RequestTemplate",
+          "lineNumber": 65
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "assertTrue",
+          "lineNumber": 66
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "requestTemplate.headers().isEmpty",
+          "lineNumber": 66
+        },
+        {
+          "caller": "testApplyNoWebMvc",
+          "callee": "requestTemplate.headers",
+          "lineNumber": 66
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-parent/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 41,
+      "nonEmptyLines": 34,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 121,
+      "nonEmptyLines": 102,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 115,
+      "nonEmptyLines": 97,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 49,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 42,
+      "nonEmptyLines": 38,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 37,
+          "endLine": 41,
+          "params": [
+            "args"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18nServerBootstrap",
+          "startLine": 32,
+          "endLine": 42,
+          "methods": [
+            "main"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "main",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "I18nServerBootstrap",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "main",
+          "callee": "new SpringApplicationBuilder(I18nServerBootstrap.class)\n                .web(SERVLET).run",
+          "lineNumber": 38
+        },
+        {
+          "caller": "main",
+          "callee": "new SpringApplicationBuilder(I18nServerBootstrap.class).web",
+          "lineNumber": 38
+        },
+        {
+          "caller": "main",
+          "callee": "new SpringApplicationBuilder",
+          "lineNumber": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 133,
+      "nonEmptyLines": 112,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring/pom.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 115,
+      "nonEmptyLines": 97,
+      "metrics": {}
+    },
+    {
+      "path": "mvnw",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 295,
+      "nonEmptyLines": 263,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "language": "imports",
+      "fileCategory": "code",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+      "language": "factories",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "metrics": {}
+    }
+  ]
+}
