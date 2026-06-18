@@ -144,4 +144,25 @@
 
 For more details, view the [Full Changelog](https://github.com/mercyblitz/microsphere-i18n/compare/0.1.10...0.1.11).
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.10...0.1.11
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.10...0.1.11## v0.1.12
+
+# Release Notes - Version 0.1.12
+
+## New Features
+- Introduced `@ConditionalOnFeaturesAvailable` for feature-based conditions. (#610475c)
+
+## Bug Fixes
+- Fixed issue by ensuring properties are loaded before `@EnableI18n` in test configuration. (#99e13fc)
+
+## Dependency Updates
+- Updated BOM and refactored `HasFeatures` test. (#5e022b8)
+- Bumped versions of `microsphere-spring-cloud` and documentation dependencies. (#f2d8656)
+
+## Test Improvements
+- Enhanced test structure and refactored related configurations. (#5e022b8)
+
+## Build and Workflow Enhancements
+- Merged `release-1.x` into `dev-1.x` to sync branches. (#1228cc8)
+- Incremented patch version post `0.1.11` release. (#45e267b)
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.11...0.1.12
