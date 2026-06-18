@@ -31,6 +31,7 @@ import java.util.List;
 
 import static io.microsphere.collection.ListUtils.newArrayList;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
+import static io.microsphere.text.FormatUtils.format;
 import static java.util.Collections.emptyList;
 
 /**
@@ -73,7 +74,7 @@ public class I18nCloudAutoConfiguration {
             List<NamedFeature> namedFeatures = newArrayList(size);
             for (int i = 0; i < size; i++) {
                 PropertySourcesServiceMessageSource source = propertySourcesServiceMessageSources.get(i);
-                String name = "Source : " + source.getSource();
+                String name = format("ServiceMessageSource[{}] : {}", i, source.getSource());
                 namedFeatures.add(new NamedFeature(name, source.getClass()));
             }
             return new HasFeatures(emptyList(), namedFeatures);
