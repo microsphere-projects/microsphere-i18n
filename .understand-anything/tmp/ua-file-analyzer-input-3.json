@@ -1,0 +1,25 @@
+{
+  "projectRoot": "/Users/mercyblitz/workspaces/github/microsphere-projects/microsphere-i18n",
+  "batchFiles": [
+    {"path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java", "language": "java", "sizeLines": 62, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java", "language": "java", "sizeLines": 46, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java", "language": "java", "sizeLines": 68, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java", "language": "java", "sizeLines": 137, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java", "language": "java", "sizeLines": 49, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java", "language": "java", "sizeLines": 164, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java", "language": "java", "sizeLines": 36, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java", "language": "java", "sizeLines": 65, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java", "language": "java", "sizeLines": 56, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java": [],
+    "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java": ["microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java"],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java": [],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java": ["microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java"],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java": ["microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java"],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java": ["microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java","microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java"],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java": ["microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java"],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java": ["microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java"],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java": ["microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java","microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java"]
+  }
+}

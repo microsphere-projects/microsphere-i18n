@@ -1,0 +1,36 @@
+{
+  "projectRoot": "/Users/mercyblitz/workspaces/github/microsphere-projects/microsphere-i18n",
+  "batchFiles": [
+    {"path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java", "language": "java", "sizeLines": 89, "fileCategory": "code"},
+    {"path": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java", "language": "java", "sizeLines": 56, "fileCategory": "code"},
+    {"path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java", "language": "java", "sizeLines": 54, "fileCategory": "code"},
+    {"path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java", "language": "java", "sizeLines": 48, "fileCategory": "code"},
+    {"path": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java", "language": "java", "sizeLines": 66, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java", "language": "java", "sizeLines": 44, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java", "language": "java", "sizeLines": 112, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java": [],
+    "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java": [],
+    "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java": [],
+    "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java": [
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java"
+    ],
+    "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java": [
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java"
+    ],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java": [
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java"
+    ],
+    "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java": [
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java"
+    ]
+  }
+}

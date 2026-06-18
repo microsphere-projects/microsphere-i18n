@@ -1,0 +1,19 @@
+{
+  "projectRoot": "/Users/mercyblitz/workspaces/github/microsphere-projects/microsphere-i18n",
+  "batchFiles": [
+    {"path": ".github/prompts/create-readme.prompt.md", "language": "markdown", "sizeLines": 45, "fileCategory": "docs"},
+    {"path": ".github/prompts/document-api.prompt.md", "language": "markdown", "sizeLines": 52, "fileCategory": "docs"},
+    {"path": ".github/prompts/explain-code.prompt.md", "language": "markdown", "sizeLines": 18, "fileCategory": "docs"},
+    {"path": ".github/prompts/generate-unit-tests.prompt.md", "language": "markdown", "sizeLines": 52, "fileCategory": "docs"},
+    {"path": ".github/prompts/onboarding-plan.prompt.md", "language": "markdown", "sizeLines": 26, "fileCategory": "docs"},
+    {"path": ".github/prompts/review-code.prompt.md", "language": "markdown", "sizeLines": 59, "fileCategory": "docs"}
+  ],
+  "batchImportData": {
+    ".github/prompts/create-readme.prompt.md": [],
+    ".github/prompts/document-api.prompt.md": [],
+    ".github/prompts/explain-code.prompt.md": [],
+    ".github/prompts/generate-unit-tests.prompt.md": [],
+    ".github/prompts/onboarding-plan.prompt.md": [],
+    ".github/prompts/review-code.prompt.md": []
+  }
+}

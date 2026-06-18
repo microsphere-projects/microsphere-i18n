@@ -1,0 +1,538 @@
+{
+  "nodes": [
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "AbstractResourceServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+      "summary": "Tests that AbstractResourceServiceMessageSource throws IllegalArgumentException when initialize() is called without a valid source configuration, using a test subclass that stubs getResource() and loadMessages().",
+      "tags": ["test", "junit5", "i18n", "unit-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "CompositeServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "summary": "Comprehensive test suite for CompositeServiceMessageSource covering delegation to child sources, locale resolution, reload behavior, resource initialization, encoding, and source management across both populated and empty composite instances.",
+      "tags": ["test", "junit5", "i18n", "composite", "unit-test"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "DefaultServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "summary": "Tests DefaultServiceMessageSource functionality including message resolution with locale, resource initialization, message code validation, locale introspection, source identification, and reload capabilities against the test i18n resource bundle.",
+      "tags": ["test", "junit5", "i18n", "unit-test", "message-source"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "EmptyServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+      "summary": "Verifies that EmptyServiceMessageSource returns null for all message lookups, defaults to the JVM default locale, and identifies its source as \"Empty\" as a no-op message source implementation.",
+      "tags": ["test", "junit5", "i18n", "null-object", "unit-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "PropertiesResourceServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+      "summary": "Tests PropertiesResourceServiceMessageSource including loadMessages error handling, default locale assignment, and supported locales configuration with logging level assertions.",
+      "tags": ["test", "junit5", "i18n", "properties", "unit-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "ReloadableResourceServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+      "summary": "Tests ReloadableResourceServiceMessageSource interface methods including single and batch resource reloading, and canReload state transitions before and after resource initialization.",
+      "tags": ["test", "junit5", "i18n", "reloadable", "unit-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "ResourceServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+      "summary": "Tests ResourceServiceMessageSource interface methods for resource initialization tracking and default encoding (UTF-8) retrieval.",
+      "tags": ["test", "junit5", "i18n", "resource", "unit-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+      "type": "file",
+      "name": "ServiceMessageExceptionTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+      "summary": "Tests ServiceMessageException creation with localized message resolution, verifying the exception correctly reports both the raw message and the i18n-localized variant using the test resource bundle.",
+      "tags": ["test", "junit5", "i18n", "exception", "unit-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "ServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+      "summary": "Base test class for ServiceMessageSource hierarchy, verifying core contract methods including message lookup defaults (null for unknown codes), locale resolution, source identification, and constants.",
+      "tags": ["test", "junit5", "i18n", "base-test", "unit-test"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+      "type": "file",
+      "name": "TestPropertiesResourceServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+      "summary": "Test stub for PropertiesResourceServiceMessageSource that overrides getResource() to return an empty string and loadAllPropertiesResources() to throw IOException, enabling controlled testing of properties loading failure paths.",
+      "tags": ["test-double", "i18n", "properties", "stub"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+      "type": "file",
+      "name": "TestReloadableResourceServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+      "summary": "Test stub implementing ReloadableResourceServiceMessageSource that delegates reload/canReload to the interface default methods and overrides canReload to check resource set membership for deterministic test assertions.",
+      "tags": ["test-double", "i18n", "reloadable", "stub"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+      "type": "file",
+      "name": "TestResourceServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+      "summary": "Test stub implementing ResourceServiceMessageSource that tracks initialized resources in a LinkedHashSet, delegates resource initialization to the interface default, and returns a read-only view of tracked resources.",
+      "tags": ["test-double", "i18n", "resource", "stub"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+      "type": "file",
+      "name": "TestServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+      "summary": "Test stub implementing ServiceMessageSource with no-op lifecycle methods, null-returning message lookups, and delegation to interface defaults for locale and source resolution.",
+      "tags": ["test-double", "i18n", "stub", "service-message-source"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "type": "config",
+      "name": "i18n_messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-core/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "summary": "Chinese (Simplified) i18n resource bundle for the \"error\" source, providing test messages that validate error-sourced message resolution in the i18n framework.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "type": "config",
+      "name": "i18n_messages_en.properties",
+      "filePath": "microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "summary": "English i18n resource bundle for the \"test\" source with placeholder-based messages (test.a, test.hello) used by the core test suite for message resolution verification.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "type": "config",
+      "name": "i18n_messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "summary": "Chinese (Simplified) i18n resource bundle for the \"test\" source with Chinese translations of test messages used to verify locale-aware message resolution.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-boot/src/test/resources/application.properties",
+      "type": "config",
+      "name": "application.properties",
+      "filePath": "microsphere-i18n-spring-boot/src/test/resources/application.properties",
+      "summary": "Spring Boot test application configuration enabling the i18n management endpoint and exposing all Actuator web endpoints for the spring-boot module integration tests.",
+      "tags": ["spring-boot", "configuration", "actuator", "management"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "type": "config",
+      "name": "i18n_messages_en.properties",
+      "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "summary": "Empty English i18n resource bundle placeholder for the \"common\" source in the spring-boot module, available for test message resolution.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "type": "config",
+      "name": "i18n_messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "summary": "Empty Chinese (Simplified) i18n resource bundle placeholder for the \"common\" source in the spring-boot module, available for test message resolution.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "type": "config",
+      "name": "i18n_messages_en.properties",
+      "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "summary": "English i18n resource bundle for the \"test\" source in the spring-boot module, providing test messages for spring-boot integration test verification.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "type": "config",
+      "name": "i18n_messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "summary": "Chinese (Simplified) i18n resource bundle for the \"test\" source in the spring-boot module, providing Chinese translations for spring-boot integration test verification.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/I18nBootstrap.java",
+      "type": "file",
+      "name": "I18nBootstrap.java",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/I18nBootstrap.java",
+      "summary": "Spring Cloud test bootstrap class annotated with @EnableAutoConfiguration that initializes the Spring application context with an overriding i18n property for the common source.",
+      "tags": ["test", "spring-cloud", "bootstrap", "entry-point", "integration-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud/src/test/resources/i18n-bootstrap.properties",
+      "type": "config",
+      "name": "i18n-bootstrap.properties",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/resources/i18n-bootstrap.properties",
+      "summary": "Spring Cloud bootstrap configuration setting the application name and enabling the i18n management endpoint with full Actuator web exposure for integration tests.",
+      "tags": ["spring-cloud", "configuration", "bootstrap", "actuator"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "type": "config",
+      "name": "i18n_messages_en.properties",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+      "summary": "Empty English i18n resource bundle placeholder for the \"common\" source in the spring-cloud module, available for test message resolution.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "type": "config",
+      "name": "i18n_messages_zh_CN.properties",
+      "filePath": "microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+      "summary": "Empty Chinese (Simplified) i18n resource bundle placeholder for the \"common\" source in the spring-cloud module, available for test message resolution.",
+      "tags": ["i18n", "resource-bundle", "locale", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java:AbstractResourceServiceMessageSourceTest",
+      "type": "class",
+      "name": "AbstractResourceServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+      "lineRange": [34, 58],
+      "summary": "Verifies that AbstractResourceServiceMessageSource.initialize() throws IllegalArgumentException when the source configuration is invalid, using an inner test subclass.",
+      "tags": ["test", "junit5", "unit-test", "abstract-class"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java:CompositeServiceMessageSourceTest",
+      "type": "class",
+      "name": "CompositeServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "lineRange": [54, 208],
+      "summary": "Comprehensive test class covering all CompositeServiceMessageSource operations including message delegation, locale resolution, reload behavior, resource management, and source encoding with both populated and empty composites.",
+      "tags": ["test", "junit5", "unit-test", "composite"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java:DefaultServiceMessageSourceTest",
+      "type": "class",
+      "name": "DefaultServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "lineRange": [28, 140],
+      "summary": "Tests DefaultServiceMessageSource as the primary message source implementation, validating message lookup, locale handling, code resolution, resource loading, and reload interactions with the test resource bundle.",
+      "tags": ["test", "junit5", "unit-test", "message-source", "default"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java:EmptyServiceMessageSourceTest",
+      "type": "class",
+      "name": "EmptyServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+      "lineRange": [21, 63],
+      "summary": "Verifies the EmptyServiceMessageSource null-object pattern: all message lookups return null, locale defaults to system default, and source identifier is \"Empty\".",
+      "tags": ["test", "junit5", "unit-test", "null-object"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java:PropertiesResourceServiceMessageSourceTest",
+      "type": "class",
+      "name": "PropertiesResourceServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+      "lineRange": [39, 66],
+      "summary": "Tests PropertiesResourceServiceMessageSource configuration methods including loadMessages error propagation, default locale assignment, and supported locales setup.",
+      "tags": ["test", "junit5", "unit-test", "properties"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java:ReloadableResourceServiceMessageSourceTest",
+      "type": "class",
+      "name": "ReloadableResourceServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+      "lineRange": [36, 74],
+      "summary": "Tests the ReloadableResourceServiceMessageSource contract: resource reload by single resource and iterable, and canReload state transitions from false to true after initial reload.",
+      "tags": ["test", "junit5", "unit-test", "reloadable"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java:ResourceServiceMessageSourceTest",
+      "type": "class",
+      "name": "ResourceServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+      "lineRange": [33, 53],
+      "summary": "Tests the ResourceServiceMessageSource contract: single resource initialization tracking and default encoding (UTF-8) retrieval.",
+      "tags": ["test", "junit5", "unit-test", "resource"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java:ServiceMessageExceptionTest",
+      "type": "class",
+      "name": "ServiceMessageExceptionTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+      "lineRange": [39, 68],
+      "summary": "Tests ServiceMessageException which extends RuntimeException, verifying message formatting, localized message resolution from the i18n framework, and toString output format.",
+      "tags": ["test", "junit5", "unit-test", "exception"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java:ServiceMessageSourceTest",
+      "type": "class",
+      "name": "ServiceMessageSourceTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+      "lineRange": [40, 98],
+      "summary": "Base test class for the ServiceMessageSource hierarchy validating the core API contract: null returns for unknown message codes, locale and source defaults, and constants verification.",
+      "tags": ["test", "junit5", "unit-test", "base-test", "contract"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java:TestPropertiesResourceServiceMessageSource",
+      "type": "class",
+      "name": "TestPropertiesResourceServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+      "lineRange": [31, 46],
+      "summary": "Test stub extending PropertiesResourceServiceMessageSource that stubs resource retrieval and forces IOException on properties loading for testing error handling paths.",
+      "tags": ["test-double", "stub", "properties", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java:TestReloadableResourceServiceMessageSource",
+      "type": "class",
+      "name": "TestReloadableResourceServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+      "lineRange": [29, 52],
+      "summary": "Test stub implementing ReloadableResourceServiceMessageSource with deterministic canReload logic based on resource set membership, used by CompositeServiceMessageSource and ReloadableResourceServiceMessageSource tests.",
+      "tags": ["test-double", "stub", "reloadable", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java:TestResourceServiceMessageSource",
+      "type": "class",
+      "name": "TestResourceServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+      "lineRange": [33, 56],
+      "summary": "Test stub implementing ResourceServiceMessageSource that tracks initialized resources in a LinkedHashSet and delegates to interface default methods for resource initialization and encoding.",
+      "tags": ["test-double", "stub", "resource", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java:TestServiceMessageSource",
+      "type": "class",
+      "name": "TestServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+      "lineRange": [32, 71],
+      "summary": "Test stub implementing ServiceMessageSource with no-op lifecycle methods, null message lookup, and delegation to interface defaults for locale and source resolution. Root of the test-double hierarchy.",
+      "tags": ["test-double", "stub", "i18n", "interface"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java:setUp",
+      "type": "function",
+      "name": "setUp",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "lineRange": [71, 83],
+      "summary": "JUnit BeforeEach method that initializes DefaultServiceMessageSource, TestReloadableResourceServiceMessageSource, and both populated and empty CompositeServiceMessageSource instances for each test.",
+      "tags": ["test", "setup", "junit5", "before-each"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java:testReload",
+      "type": "function",
+      "name": "testReload",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "lineRange": [134, 143],
+      "summary": "Verifies that both populated and empty CompositeServiceMessageSource instances can reload by single resource and by collection, then asserts reloaded state.",
+      "tags": ["test", "junit5", "reload", "composite"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java:testGetInternalLocale",
+      "type": "function",
+      "name": "testGetInternalLocale",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "lineRange": [66, 76],
+      "summary": "Tests that the internal locale resolution matches the default locale when using an anonymous subclass that overrides getInternalLocale to return getDefaultLocale().",
+      "tags": ["test", "junit5", "locale", "internal"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java:AbstractResourceServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java:CompositeServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "target": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java:setUp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+      "target": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java:testReload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java:DefaultServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+      "target": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java:testGetInternalLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java:EmptyServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java:PropertiesResourceServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java:ReloadableResourceServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java:ResourceServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java:ServiceMessageExceptionTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java:ServiceMessageSourceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java:TestPropertiesResourceServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java:TestReloadableResourceServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java:TestResourceServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java:TestServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java:TestResourceServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java:TestServiceMessageSource",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java:TestReloadableResourceServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java:TestResourceServiceMessageSource",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java:ResourceServiceMessageSourceTest",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java:ServiceMessageSourceTest",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java:ReloadableResourceServiceMessageSourceTest",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java:ResourceServiceMessageSourceTest",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java:DefaultServiceMessageSourceTest",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java:ReloadableResourceServiceMessageSourceTest",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    }
+  ]
+}
