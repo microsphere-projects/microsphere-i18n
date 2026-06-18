@@ -3,8 +3,13 @@ package io.microsphere.i18n.spring.cloud.autoconfigure;
 import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.FilteredClassLoader;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.cloud.client.actuator.HasFeatures;
 
@@ -28,8 +33,9 @@ class I18nCloudAutoConfigurationTest {
 
     @BeforeEach
     void setup() {
-        applicationContextRunner = new ApplicationContextRunner()
-                .withConfiguration(of(I18nAutoConfiguration.class, I18nCloudAutoConfiguration.class));
+        applicationContextRunner = new ApplicationContextRunner().withConfiguration(
+                of(I18nAutoConfiguration.class, I18nCloudAutoConfiguration.class)
+        );
     }
 
     @Test
@@ -44,12 +50,30 @@ class I18nCloudAutoConfigurationTest {
                 .run(context -> assertThat(context).doesNotHaveBean(ReloadableResourceServiceMessageSourceListener.class));
     }
 
-    @Test
-    void testHashFeatures() {
-        applicationContextRunner.run(context -> {
-            HasFeatures hasFeatures = context.getBean(I18N_FEATURES_BEAN_NAME, HasFeatures.class);
+    @Nested
+    @SpringBootTest(
+            classes = {
+                    FeaturesConfigurationTest.class
+            },
+            properties = {
+                    "spring.cloud.service-registry.auto-registration.enabled=false",
+                    "management.endpoints.web.exposure.include=features",
+                    "management.endpoint.features.enabled=true"
+            }
+    )
+    @EnableAutoConfiguration
+    class FeaturesConfigurationTest {
+
+        @Autowired
+        @Qualifier(I18N_FEATURES_BEAN_NAME)
+        private HasFeatures hasFeatures;
+
+        @Test
+        void testHasFeatures() {
             assertTrue(hasFeatures.getAbstractFeatures().isEmpty());
             assertFalse(hasFeatures.getNamedFeatures().isEmpty());
-        });
+        }
     }
+
+
 }
