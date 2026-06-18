@@ -19,7 +19,7 @@ package io.microsphere.i18n.spring.cloud.autoconfigure;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
 import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nEnabled;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
-import io.microsphere.spring.cloud.client.condition.ConditionalOnFeaturesEnabled;
+import io.microsphere.spring.cloud.client.condition.ConditionalOnFeaturesAvailable;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.cloud.client.actuator.HasFeatures;
@@ -56,8 +56,8 @@ import static java.util.Collections.emptyList;
 })
 public class I18nCloudAutoConfiguration {
 
-    @ConditionalOnFeaturesEnabled
-    public static class FeaturesConfiguration {
+    @ConditionalOnFeaturesAvailable
+    static class FeaturesConfiguration {
 
         /**
          * The bean name of {@link HasFeatures}
