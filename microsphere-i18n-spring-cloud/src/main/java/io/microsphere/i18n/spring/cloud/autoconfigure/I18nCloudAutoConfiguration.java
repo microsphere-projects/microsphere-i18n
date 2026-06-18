@@ -19,7 +19,7 @@ package io.microsphere.i18n.spring.cloud.autoconfigure;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
 import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nEnabled;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
-import io.microsphere.spring.cloud.client.condition.ConditionalOnFeaturesEnabled;
+import io.microsphere.spring.cloud.client.condition.ConditionalOnFeaturesAvailable;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.cloud.client.actuator.HasFeatures;
@@ -31,6 +31,7 @@ import java.util.List;
 
 import static io.microsphere.collection.ListUtils.newArrayList;
 import static io.microsphere.i18n.spring.PropertySourcesServiceMessageSource.findAllPropertySourcesServiceMessageSources;
+import static io.microsphere.text.FormatUtils.format;
 import static java.util.Collections.emptyList;
 
 /**
@@ -56,7 +57,7 @@ import static java.util.Collections.emptyList;
 })
 public class I18nCloudAutoConfiguration {
 
-    @ConditionalOnFeaturesEnabled
+    @ConditionalOnFeaturesAvailable
     public static class FeaturesConfiguration {
 
         /**
@@ -73,7 +74,7 @@ public class I18nCloudAutoConfiguration {
             List<NamedFeature> namedFeatures = newArrayList(size);
             for (int i = 0; i < size; i++) {
                 PropertySourcesServiceMessageSource source = propertySourcesServiceMessageSources.get(i);
-                String name = "Source : " + source.getSource();
+                String name = format("ServiceMessageSource[{}] : {}", i, source.getSource());
                 namedFeatures.add(new NamedFeature(name, source.getClass()));
             }
             return new HasFeatures(emptyList(), namedFeatures);
