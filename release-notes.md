@@ -149,4 +149,28 @@ For a full list of changes, refer to the commit history.
 
 ---  
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.10...0.2.11
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.10...0.2.11## v0.2.12
+
+# Release Notes: Version 0.2.12
+
+## New Features
+- Add **Understand-Anything** analysis artifacts. (b1a4c73)
+- Introduce `ConditionalOnFeaturesAvailable` for feature-based configuration. (c5f6583)
+
+## Dependency Updates
+- Bump Microsphere Spring Cloud parent to `0.2.18`. (39bd6d2)
+- Update parent/BOM to `0.2.17` in alignment with README updates. (972868d)
+
+## Test Improvements
+- Reorder annotations in test configuration for better organization. (e5a304f)
+
+## Other Changes
+- Version increment post-release. (8f40da3)
+- Routine merges from `main` to `release`. [skip ci] (9a2673c, 7e96588, 4376b20, 4fba44c)
+- Merge `release` back into `main`. [skip ci] (6569b75)
+
+---
+
+**Note:** For a full list of changes, refer to the complete changelog in the repository. 
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.11...0.2.12
