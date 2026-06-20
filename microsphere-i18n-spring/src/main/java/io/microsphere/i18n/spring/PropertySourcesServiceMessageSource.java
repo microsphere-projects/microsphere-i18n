@@ -1,6 +1,7 @@
 package io.microsphere.i18n.spring;
 
 import io.microsphere.annotation.Nonnull;
+import io.microsphere.annotation.Nullable;
 import io.microsphere.i18n.PropertiesResourceServiceMessageSource;
 import io.microsphere.i18n.ReloadableResourceServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
@@ -12,7 +13,6 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySources;
-import io.microsphere.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.Reader;

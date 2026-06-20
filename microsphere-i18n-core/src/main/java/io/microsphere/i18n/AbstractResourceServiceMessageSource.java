@@ -215,13 +215,13 @@ public abstract class AbstractResourceServiceMessageSource extends AbstractServi
     /**
      * Logs a resolved message for debugging purposes.
      *
-     * @param code            the original message code
-     * @param resolvedCode    the resolved message code
-     * @param locale          the requested locale
-     * @param resolvedLocale  the resolved locale
-     * @param args            the message arguments
-     * @param messagePattern  the raw message pattern
-     * @param message         the resolved message
+     * @param code           the original message code
+     * @param resolvedCode   the resolved message code
+     * @param locale         the requested locale
+     * @param resolvedLocale the resolved locale
+     * @param args           the message arguments
+     * @param messagePattern the raw message pattern
+     * @param message        the resolved message
      */
     protected void logMessage(String code, String resolvedCode, Locale locale, Locale resolvedLocale, Object[] args,
                               String messagePattern, String message) {
