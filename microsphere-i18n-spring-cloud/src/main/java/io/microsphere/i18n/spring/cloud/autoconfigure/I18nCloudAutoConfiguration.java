@@ -58,7 +58,7 @@ import static java.util.Collections.emptyList;
 public class I18nCloudAutoConfiguration {
 
     @ConditionalOnFeaturesAvailable
-    public static class FeaturesConfiguration {
+    static class FeaturesConfiguration {
 
         /**
          * The bean name of {@link HasFeatures}
