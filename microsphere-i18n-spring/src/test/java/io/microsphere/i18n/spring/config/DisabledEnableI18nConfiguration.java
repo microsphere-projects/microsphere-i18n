@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
  * @see I18nConstants#ENABLED_PROPERTY_NAME
  * @since 1.0.0
  */
-@ResourcePropertySource("classpath:META-INF/config/disabled-enable-i18n.properties")
 @EnableI18n
+@ResourcePropertySource("classpath:META-INF/config/disabled-enable-i18n.properties")
 public class DisabledEnableI18nConfiguration {
 }
