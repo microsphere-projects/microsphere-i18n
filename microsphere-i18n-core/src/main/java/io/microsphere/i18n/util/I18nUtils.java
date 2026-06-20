@@ -2,6 +2,7 @@ package io.microsphere.i18n.util;
 
 import io.microsphere.annotation.Nonnull;
 import io.microsphere.i18n.CompositeServiceMessageSource;
+import io.microsphere.i18n.EmptyServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.logging.Logger;
 

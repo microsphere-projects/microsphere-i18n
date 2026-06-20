@@ -23,16 +23,15 @@ import io.microsphere.i18n.spring.context.I18nApplicationListener;
 import io.microsphere.i18n.spring.context.MessageSourceAdapter;
 import io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor;
 import io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor;
-import io.microsphere.logging.Logger;
+import io.microsphere.spring.context.annotation.AnnotatedBeanCapableImportBeanDefinitionRegistrar;
+import io.microsphere.spring.core.annotation.ResolvablePlaceholderAnnotationAttributes;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.context.EnvironmentAware;
+import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.annotation.AnnotationAttributes;
-import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
 
-import java.lang.annotation.Annotation;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -43,13 +42,11 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.SERVICE_MESSAGE
 import static io.microsphere.i18n.spring.constants.I18nConstants.SOURCES_PROPERTY_NAME;
 import static io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor.isValidatorFactoryPresent;
 import static io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor.isAcceptHeaderLocaleResolverPresent;
-import static io.microsphere.logging.LoggerFactory.getLogger;
 import static io.microsphere.spring.beans.factory.support.BeanRegistrar.registerBeanDefinition;
 import static io.microsphere.util.ArrayUtils.EMPTY_STRING_ARRAY;
 import static io.microsphere.util.ClassLoaderUtils.getDefaultClassLoader;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.rootBeanDefinition;
 import static org.springframework.context.support.AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME;
-import static org.springframework.core.annotation.AnnotationAttributes.fromMap;
 
 /**
  * I18n {@link ImportBeanDefinitionRegistrar} that registers i18n-related Spring beans
@@ -74,27 +71,25 @@ import static org.springframework.core.annotation.AnnotationAttributes.fromMap;
  * @see AcceptHeaderLocaleResolverBeanPostProcessor
  * @since 1.0.0
  */
-class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
-
-    private static final Class<? extends Annotation> ANNOTATION_TYPE = EnableI18n.class;
-
-    private static final Logger logger = getLogger(ANNOTATION_TYPE);
-
-    private Environment environment;
+class I18nImportBeanDefinitionRegistrar extends AnnotatedBeanCapableImportBeanDefinitionRegistrar<EnableI18n> {
 
     @Override
-    public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {
-        if (isEnabled()) {
-            AnnotationAttributes attributes = fromMap(metadata.getAnnotationAttributes(ANNOTATION_TYPE.getName()));
-            registerServiceMessageSourceBeanDefinitions(attributes, registry);
-            registerMessageSourceAdapterBeanDefinition(attributes, registry);
-            registerI18nApplicationListenerBeanDefinition(registry);
-            registerBeanPostProcessorBeanDefinitions(registry);
-        }
+    protected boolean isEnabled(AnnotationMetadata metadata) {
+        return isEnabled();
     }
 
-    private void registerServiceMessageSourceBeanDefinitions(AnnotationAttributes attributes, BeanDefinitionRegistry registry) {
-        Set<String> sources = resolveSources(attributes);
+    @Override
+    protected void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry,
+                                           BeanNameGenerator importBeanNameGenerator,
+                                           ResolvablePlaceholderAnnotationAttributes<EnableI18n> annotationAttributes) {
+        registerServiceMessageSourceBeanDefinitions(annotationAttributes, registry);
+        registerMessageSourceAdapterBeanDefinition(annotationAttributes, registry);
+        registerI18nApplicationListenerBeanDefinition(registry);
+        registerBeanPostProcessorBeanDefinitions(registry);
+    }
+
+    private void registerServiceMessageSourceBeanDefinitions(AnnotationAttributes annotationAttributes, BeanDefinitionRegistry registry) {
+        Set<String> sources = resolveSources(annotationAttributes);
 
         for (String source : sources) {
             String beanName = source + "ServiceMessageSource";
@@ -105,13 +100,13 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
         BeanDefinition primaryBeanDefinition = rootBeanDefinition(DelegatingServiceMessageSource.class)
                 .setPrimary(true)
                 .getBeanDefinition();
-        registry.registerBeanDefinition(SERVICE_MESSAGE_SOURCE_BEAN_NAME, primaryBeanDefinition);
+        registerBeanDefinition(registry, SERVICE_MESSAGE_SOURCE_BEAN_NAME, primaryBeanDefinition);
     }
 
-    private Set<String> resolveSources(AnnotationAttributes attributes) {
+    private Set<String> resolveSources(AnnotationAttributes annotationAttributes) {
         Set<String> sources = new LinkedHashSet<>();
         initSources(sources, () -> environment.getProperty(SOURCES_PROPERTY_NAME, String[].class, EMPTY_STRING_ARRAY));
-        initSources(sources, () -> attributes.getStringArray("sources"));
+        initSources(sources, () -> annotationAttributes.getStringArray("sources"));
         return sources;
     }
 
@@ -121,8 +116,8 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
         }
     }
 
-    private void registerMessageSourceAdapterBeanDefinition(AnnotationAttributes attributes, BeanDefinitionRegistry registry) {
-        boolean exposeMessageSource = attributes.getBoolean("exposeMessageSource");
+    private void registerMessageSourceAdapterBeanDefinition(AnnotationAttributes annotationAttributes, BeanDefinitionRegistry registry) {
+        boolean exposeMessageSource = annotationAttributes.getBoolean("exposeMessageSource");
         if (exposeMessageSource) {
             registerBeanDefinition(registry, MESSAGE_SOURCE_BEAN_NAME, MessageSourceAdapter.class);
         }
@@ -141,11 +136,6 @@ class I18nImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
         if (isAcceptHeaderLocaleResolverPresent(classLoader)) {
             registerBeanDefinition(registry, AcceptHeaderLocaleResolverBeanPostProcessor.class);
         }
-    }
-
-    @Override
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
     }
 
     private boolean isEnabled() {
