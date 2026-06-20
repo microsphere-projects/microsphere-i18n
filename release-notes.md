@@ -173,4 +173,27 @@ For a full list of changes, refer to the commit history.
 
 **Note:** For a full list of changes, refer to the complete changelog in the repository. 
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.11...0.2.12
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.11...0.2.12## v0.2.13
+
+# Release Notes for Version 0.2.13
+
+## Dependency Updates
+- Upgraded `microsphere-spring-cloud` dependency to `0.2.19`. (#65febc5)
+
+## Documentation
+- Updated `README` to reflect versions `0.2.13` and `0.1.13`. (#f89995a)
+- Improved documentation and added missing `EmptyServiceMessageSource` import. (#1c46e8d)
+
+## Code Improvements
+- Made `FeaturesConfiguration` package-private for better encapsulation. (#46a587d)
+- Switched to using `AnnotatedBeanCapableImportBeanDefinitionRegistrar` for improved annotation handling. (#7d08d0b)
+
+## Other Changes
+- Routine merges between `main` and `release` branches. [skip ci] (#bff3a1b, #b6ef048, #659e6ce, #67f79bc, #a0062a6)
+- Bumped project version to prepare for the next patch after publishing `0.2.12`. (#24756e1)
+
+---
+
+Full Changelog: [0.2.12...0.2.13](URL_TO_CHANGELOG_IF_AVAILABLE)
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.12...0.2.13
