@@ -165,4 +165,32 @@ For more details, view the [Full Changelog](https://github.com/mercyblitz/micros
 - Merged `release-1.x` into `dev-1.x` to sync branches. (#1228cc8)
 - Incremented patch version post `0.1.11` release. (#45e267b)
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.11...0.1.12
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.11...0.1.12## v0.1.13
+
+# Release Notes - Version 0.1.13
+
+## New Features
+- Adopt `AnnotatedBeanCapableImportBeanDefinitionRegistrar` for enhanced bean registration. ([d87390b](https://link-to-commit))
+- Import `EmptyServiceMessageSource` in `I18nUtils` to support improved internationalization. ([e379b80](https://link-to-commit))
+
+## Bug Fixes
+- Remove duplicate imports and add proper nullability annotations. ([6fe1edd](https://link-to-commit))
+
+## Documentation
+- Update README to include reference to latest versions. ([ca890dc](https://link-to-commit))
+- Align Javadoc `@param` spacing for consistency. ([193ea1a](https://link-to-commit))
+
+## Dependency Updates
+- Upgrade `microsphere-spring-cloud` to version `0.1.19`. ([10eecca](https://link-to-commit))
+
+## Test Improvements
+- Reorder annotations in test config files for better readability. ([2787903](https://link-to-commit))
+
+## Code Quality
+- Reorder imports in `LocaleUtils` for better maintainability. ([cdc528d](https://link-to-commit))
+
+---
+
+Full Changelog: [v0.1.12...v0.1.13](https://link-to-changelog)
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.12...0.1.13
