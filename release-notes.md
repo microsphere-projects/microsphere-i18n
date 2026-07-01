@@ -193,4 +193,21 @@ For more details, view the [Full Changelog](https://github.com/mercyblitz/micros
 
 Full Changelog: [v0.1.12...v0.1.13](https://link-to-changelog)
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.12...0.1.13
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.12...0.1.13## v0.1.14
+
+# Release Notes - Version 0.1.14
+
+## New Features
+- Refactored i18n conditions and feature exposure for better flexibility and maintainability. (#7327633)
+
+## Bug Fixes
+- Fixed formatting issues in the README table. (#ab1eeb5)
+
+## Dependency Updates
+- Upgraded `microsphere-spring-cloud` to version 0.1.20. (#5ab6089)
+
+## Other Changes
+- Merged `release-1.x` into `dev-1.x`. (#2c33c66)
+- Bumped version to next patch after publishing 0.1.13. (#4d52a3e) 
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.13...0.1.14
