@@ -196,4 +196,18 @@ For a full list of changes, refer to the commit history.
 
 Full Changelog: [0.2.12...0.2.13](URL_TO_CHANGELOG_IF_AVAILABLE)
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.12...0.2.13
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.12...0.2.13## v0.2.14
+
+# Release Notes - Version 0.2.14
+
+## Build and Workflow Enhancements
+- Aligned i18n auto-configuration with upcoming version 0.2.20 for consistency. (#903222d)
+- Merged branch updates between `main` and `release` to streamline workflows. ([#8dc4407](skip ci), [#f2dc146](skip ci), [#c62cad5](skip ci))
+
+## Documentation
+- Updated README to reflect accurate version numbers in branch references. (#39f29b3)
+
+## Other Changes
+- Bumped version to prepare for the next patch release. (#82d9849)
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.13...0.2.14
