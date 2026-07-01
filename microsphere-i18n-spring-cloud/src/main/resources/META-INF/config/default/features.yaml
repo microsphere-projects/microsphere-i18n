@@ -1,0 +1,15 @@
+microsphere:
+  spring:
+    cloud:
+      features:
+        abstract:
+          microsphere-i18n-spring:
+            - io.microsphere.i18n.ServiceMessageSource
+            - io.microsphere.i18n.spring.context.MessageSourceAdapter
+            - io.microsphere.i18n.spring.validation.beanvalidation.I18nLocalValidatorFactoryBeanPostProcessor
+            - io.microsphere.i18n.spring.web.servlet.AcceptHeaderLocaleResolverBeanPostProcessor
+
+          microsphere-i18n-spring-boot:
+            - io.microsphere.i18n.spring.boot.actuate.I18nEndpoint
+          microsphere-i18n-spring-cloud:
+            - io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener
