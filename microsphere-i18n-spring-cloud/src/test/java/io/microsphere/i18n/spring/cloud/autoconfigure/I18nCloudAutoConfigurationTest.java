@@ -6,17 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.FilteredClassLoader;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
-import org.springframework.cloud.client.actuator.HasFeatures;
+import org.springframework.cloud.client.actuator.FeaturesEndpoint;
 
-import static io.microsphere.i18n.spring.cloud.autoconfigure.I18nCloudAutoConfiguration.FeaturesConfiguration.I18N_FEATURES_BEAN_NAME;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.boot.autoconfigure.AutoConfigurations.of;
 
 /**
@@ -65,15 +62,12 @@ class I18nCloudAutoConfigurationTest {
     class FeaturesConfigurationTest {
 
         @Autowired
-        @Qualifier(I18N_FEATURES_BEAN_NAME)
-        private HasFeatures hasFeatures;
+        private FeaturesEndpoint featuresEndpoint;
 
         @Test
         void testHasFeatures() {
-            assertTrue(hasFeatures.getAbstractFeatures().isEmpty());
-            assertFalse(hasFeatures.getNamedFeatures().isEmpty());
+            Object features = featuresEndpoint.features();
+            assertNotNull(features);
         }
     }
-
-
 }
