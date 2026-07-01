@@ -210,4 +210,22 @@ Full Changelog: [v0.1.12...v0.1.13](https://link-to-changelog)
 - Merged `release-1.x` into `dev-1.x`. (#2c33c66)
 - Bumped version to next patch after publishing 0.1.13. (#4d52a3e) 
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.13...0.1.14
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.13...0.1.14## v0.1.15
+
+# Release Notes - Version 0.1.15
+
+## Dependency Updates
+- Bumped `microsphere-spring-cloud` to version `0.1.21`. ([260b66f](https://example.com/commit/260b66f))
+
+## Documentation
+- Updated `README` with the latest version matrix. ([4a67892](https://example.com/commit/4a67892))
+
+## Build and Workflow Enhancements
+- Merged `release-1.x` into `dev-1.x`. ([010e642](https://example.com/commit/010e642))
+- Bumped patch version to prepare for the next release. ([f05486e](https://example.com/commit/f05486e)) 
+
+---
+
+**Released on:** [Date of Release]
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.14...0.1.15
