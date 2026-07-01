@@ -18,7 +18,7 @@ package io.microsphere.i18n.spring.boot.autoconfigure;
 
 import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.beans.factory.ServiceMessageSourceFactoryBean;
-import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nEnabled;
+import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailiable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Bean;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
-@ConditionalOnI18nEnabled
+@ConditionalOnI18nAvailiable
 @EnableI18n
 public class I18nAutoConfiguration {
 
