@@ -229,4 +229,19 @@ Full Changelog: [0.2.12...0.2.13](URL_TO_CHANGELOG_IF_AVAILABLE)
 
 **Note**: No new features or bug fixes in this release.
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.14...0.2.15
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.14...0.2.15## v0.2.16
+
+# Release Notes for Version 0.2.16
+
+## Bug Fixes
+- Corrected typo in `ConditionalOnI18nAvailable`. (#60b79b8)
+
+## Documentation
+- Updated README with the latest release versions. (#86563b7)
+
+## Other Changes
+- Prepared repository for versioning and publishing: 
+  - Merged `main` into `release`. (#eafbd2c, #9548079)
+  - Bumped version post 0.2.15 release. (#e8f2942) 
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.15...0.2.16
