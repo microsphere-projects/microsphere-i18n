@@ -16,7 +16,7 @@
  */
 package io.microsphere.i18n.spring.cloud.autoconfigure;
 
-import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailiable;
+import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailable;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Import;
@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Import;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
-@ConditionalOnI18nAvailiable
+@ConditionalOnI18nAvailable
 @ConditionalOnClass(name = {
         "org.springframework.cloud.context.environment.EnvironmentChangeEvent", // spring-cloud-context
 })

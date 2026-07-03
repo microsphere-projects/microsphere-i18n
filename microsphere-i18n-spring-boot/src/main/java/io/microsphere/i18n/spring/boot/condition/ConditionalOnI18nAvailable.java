@@ -13,12 +13,12 @@ import java.lang.annotation.Target;
 import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERTY_NAME;
 
 /**
- * {@link Conditional @Conditional} that checks whether I18n is availiable.
+ * {@link Conditional @Conditional} that checks whether I18n is available.
  * Combines class presence checks and property condition ({@code microsphere.i18n.enabled}).
  *
  * <h3>Example Usage</h3>
  * <pre>{@code
- *   @ConditionalOnI18nAvailiable
+ *   @ConditionalOnI18nAvailable
  *   @Configuration
  *   public class MyI18nConfig {
  *       // Only activated when i18n core and spring modules are on classpath
@@ -37,5 +37,5 @@ import static io.microsphere.i18n.spring.constants.I18nConstants.ENABLED_PROPERT
         "io.microsphere.i18n.spring.annotation.EnableI18n", // microsphere-i18n-spring
 })
 @ConditionalOnProperty(name = ENABLED_PROPERTY_NAME, matchIfMissing = true)
-public @interface ConditionalOnI18nAvailiable {
+public @interface ConditionalOnI18nAvailable {
 }
