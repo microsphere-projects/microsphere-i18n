@@ -228,4 +228,18 @@ Full Changelog: [v0.1.12...v0.1.13](https://link-to-changelog)
 
 **Released on:** [Date of Release]
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.14...0.1.15
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.14...0.1.15## v0.1.16
+
+# Release Notes: Version 0.1.16
+
+## Documentation
+- Updated README with the latest version matrix. ([6f8b0fe](https://github.com/mercyblitz/repo/commit/6f8b0fe))
+
+## Other Changes
+- Renamed i18n condition to "Available". ([fe94bc0](https://github.com/mercyblitz/repo/commit/fe94bc0))
+- Merged `release-1.x` into `dev-1.x`. ([3342618](https://github.com/mercyblitz/repo/commit/3342618))
+- Bumped version to the next patch after publishing 0.1.15. ([bb0bb0e](https://github.com/mercyblitz/repo/commit/bb0bb0e))
+
+**Full Changelog**: [v0.1.15...v0.1.16](https://github.com/mercyblitz/repo/compare/v0.1.15...v0.1.16)
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.15...0.1.16
