@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Configuration;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
- * {@link ConditionalOnI18nAvailiable} Test
+ * {@link ConditionalOnI18nAvailable} Test
  *
  * @author li.qi
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy<a/>
- * @see ConditionalOnI18nAvailiable
+ * @see ConditionalOnI18nAvailable
  * @since 1.0.0
  */
-class ConditionalOnI18NAvailiableTests {
+class ConditionalOnI18NAvailableTests {
 
     ApplicationContextRunner applicationContextRunner;
 
@@ -60,7 +60,7 @@ class ConditionalOnI18NAvailiableTests {
     static class Config {
 
         @Bean
-        @ConditionalOnI18nAvailiable
+        @ConditionalOnI18nAvailable
         public String a() {
             return "a";
         }
