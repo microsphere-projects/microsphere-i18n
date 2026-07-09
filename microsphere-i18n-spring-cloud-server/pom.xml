@@ -38,6 +38,21 @@
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
             <artifactId>microsphere-spring-cloud-commons</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Microsphere Spring Boot Core -->
+        <dependency>
+            <groupId>io.github.microsphere-projects</groupId>
+            <artifactId>microsphere-spring-boot-core</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Microsphere Spring Boot Actuator -->
+        <dependency>
+            <groupId>io.github.microsphere-projects</groupId>
+            <artifactId>microsphere-spring-boot-actuator</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Spring Cloud Dependencies -->
