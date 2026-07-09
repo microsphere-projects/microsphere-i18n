@@ -14,13 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.microsphere.i18n.spring.cloud.server.annotation;
+package io.microsphere.i18n.spring.cloud.server.autoconfigure;
 
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
+import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
+import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailable;
+import io.microsphere.i18n.spring.cloud.autoconfigure.I18nCloudAutoConfiguration;
+import io.microsphere.i18n.spring.cloud.server.annotation.EnableI18nServer.Marker;
 import io.microsphere.i18n.spring.cloud.server.controller.I18nServerController;
+import io.microsphere.spring.cloud.client.discovery.condition.ConditionalOnBlockingDiscoveryAvailable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -35,11 +43,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static io.microsphere.collection.Lists.ofList;
+import static io.microsphere.spring.cloud.client.discovery.constants.DiscoveryClientConstants.COMMONS_CLIENT_AUTO_CONFIGURATION_CLASS_NAME;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;
 
 /**
- * The Configuration Class for I18n Server that discovers services via {@link DiscoveryClient}
+ * The Auto-Configuration Class for I18n Server that discovers services via {@link DiscoveryClient}
  * and builds {@link PropertySourcesServiceMessageSource} instances for each service.
  *
  * <h3>Example Usage</h3>
@@ -54,8 +63,23 @@ import static java.util.Locale.getDefault;
  * @since 1.0.0
  */
 @Configuration(proxyBeanMethods = false)
+@ConditionalOnI18nAvailable
+@ConditionalOnBlockingDiscoveryAvailable
+@ConditionalOnWebApplication
+@ConditionalOnBean(Marker.class)
 @Import(I18nServerController.class)
-public class I18nServerConfiguration {
+@AutoConfigureAfter(name = {
+        COMMONS_CLIENT_AUTO_CONFIGURATION_CLASS_NAME
+}, value = {
+        I18nAutoConfiguration.class,
+        I18nCloudAutoConfiguration.class
+})
+public class I18nServerAutoConfiguration {
+
+    /**
+     * The bean name of {@link #lazyCompositeServiceMessageSource()}
+     */
+    public static final String LAZY_COMPOSITE_SERVICEMESSAGE_SOURCE_BEAN_NAME = "lazyCompositeServiceMessageSource";
 
     @Autowired
     private ConfigurableEnvironment environment;
@@ -68,8 +92,8 @@ public class I18nServerConfiguration {
      *
      * @return an empty {@link CompositeServiceMessageSource}
      */
-    @Bean
     @Lazy
+    @Bean(name = LAZY_COMPOSITE_SERVICEMESSAGE_SOURCE_BEAN_NAME)
     public CompositeServiceMessageSource lazyCompositeServiceMessageSource() {
         return new CompositeServiceMessageSource();
     }
@@ -78,7 +102,7 @@ public class I18nServerConfiguration {
     public void onApplicationStartedEvent(ApplicationStartedEvent event) {
         ConfigurableApplicationContext context = event.getApplicationContext();
         CompositeServiceMessageSource lazyCompositeServiceMessageSource =
-                context.getBean("lazyCompositeServiceMessageSource", CompositeServiceMessageSource.class);
+                context.getBean(LAZY_COMPOSITE_SERVICEMESSAGE_SOURCE_BEAN_NAME, CompositeServiceMessageSource.class);
         List<String> services = discoveryClient.getServices();
         List<ServiceMessageSource> serviceMessageSources = services.stream()
                 .map(this::buildServiceMessageSource)
