@@ -24,6 +24,7 @@ import org.springframework.boot.actuate.autoconfigure.endpoint.condition.Conditi
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * I18n Spring Boot Actuator Endpoint Auto-Configuration that registers the
@@ -40,6 +41,7 @@ import org.springframework.context.annotation.Bean;
  * @see I18nAutoConfiguration
  * @since 1.0.0
  */
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnI18nAvailable
 @ConditionalOnActuatorEndpointPresent
 @AutoConfigureAfter(I18nAutoConfiguration.class)
