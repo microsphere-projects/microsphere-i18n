@@ -1,0 +1,421 @@
+{
+  "nodes": [
+    {
+      "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "type": "file",
+      "name": "DefaultServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "summary": "Default implementation of ServiceMessageSource that loads i18n property resources from classpath locations under META-INF/i18n/{source}/, with reloadable resource support via ClassLoader resolution.",
+      "tags": ["service-message-source", "i18n", "resource-loading", "reloadable"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "type": "file",
+      "name": "EmptyServiceMessageSource.java",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "summary": "No-op implementation of ServiceMessageSource that always returns null for any message code, used as a fallback or singleton placeholder in the i18n framework.",
+      "tags": ["service-message-source", "i18n", "singleton", "noop"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "type": "file",
+      "name": "AbstractI18nTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "summary": "Abstract test base class that sets Simplified Chinese as the default locale and cleans up the ServiceMessageSource before and after each test method.",
+      "tags": ["test", "i18n", "abstract-base", "junit"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "type": "file",
+      "name": "I18nUtilsTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "summary": "Test class for I18nUtils that verifies singleton service message source retrieval, setting, and recursive discovery of all ServiceMessageSource instances from a CompositeServiceMessageSource.",
+      "tags": ["test", "i18n", "utility", "junit"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "type": "file",
+      "name": "MessageUtilsTest.java",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "summary": "Test class for MessageUtils that validates message pattern constants and localized message resolution with various argument combinations across Chinese and English locales.",
+      "tags": ["test", "i18n", "message-utils", "localization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "type": "file",
+      "name": "DelegatingServiceMessageSourceTest.java",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "summary": "Test class for DelegatingServiceMessageSource that verifies it returns null for unresolvable message codes when no matching bean is available in the Spring container.",
+      "tags": ["test", "i18n", "spring", "delegating"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "type": "file",
+      "name": "MessageSourceAdapterTest.java",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "summary": "Test class for MessageSourceAdapter that validates message resolution with and without a backing MessageSource bean, covering code-based, default-message, and MessageSourceResolvable lookups in the Spring container.",
+      "tags": ["test", "i18n", "spring", "message-source-adapter"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java:DefaultServiceMessageSource",
+      "type": "class",
+      "name": "DefaultServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "lineRange": [34, 89],
+      "summary": "Extends PropertiesResourceServiceMessageSource and implements ReloadableResourceServiceMessageSource to load i18n property files from classpath using a configurable location pattern, with ClassLoader-driven resource enumeration.",
+      "tags": ["service-message-source", "i18n", "resource-loading", "reloadable"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java:EmptyServiceMessageSource",
+      "type": "class",
+      "name": "EmptyServiceMessageSource",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "lineRange": [23, 56],
+      "summary": "Singleton no-op ServiceMessageSource implementation that returns null for all message codes, providing a safe default when no real message source is configured.",
+      "tags": ["service-message-source", "i18n", "singleton", "noop"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java:AbstractI18nTest",
+      "type": "class",
+      "name": "AbstractI18nTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "lineRange": [33, 54],
+      "summary": "Abstract JUnit 5 test base that sets the default locale to Simplified Chinese before all tests and destroys the ServiceMessageSource singleton before and after each test.",
+      "tags": ["test", "i18n", "abstract-base", "junit"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java:I18nUtilsTest",
+      "type": "class",
+      "name": "I18nUtilsTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "lineRange": [27, 48],
+      "summary": "Test class extending AbstractI18nTest that validates I18nUtils singleton operations and recursive ServiceMessageSource discovery from CompositeServiceMessageSource.",
+      "tags": ["test", "i18n", "utility", "junit"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java:MessageUtilsTest",
+      "type": "class",
+      "name": "MessageUtilsTest",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "lineRange": [23, 66],
+      "summary": "Test class extending AbstractI18nTest that validates MessageUtils constants and getLocalizedMessage behavior across Chinese and English locales with various message patterns.",
+      "tags": ["test", "i18n", "message-utils", "localization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java:MessageSourceAdapterTest",
+      "type": "class",
+      "name": "MessageSourceAdapterTest",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "lineRange": [45, 112],
+      "summary": "Test class extending AbstractSpringTest that validates MessageSourceAdapter message resolution with Spring bean-backed and no-bean scenarios, including MessageSourceResolvable and fallback defaults.",
+      "tags": ["test", "i18n", "spring", "message-source-adapter"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java:loadAllPropertiesResources",
+      "type": "function",
+      "name": "loadAllPropertiesResources",
+      "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "lineRange": [74, 84],
+      "summary": "Enumerates all classpath URL resources matching the given resource name, opens each as an InputStreamReader with the configured encoding, and collects them into a list for property loading.",
+      "tags": ["resource-loading", "classpath", "i18n", "properties"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java:testGetLocalizedMessage",
+      "type": "function",
+      "name": "testGetLocalizedMessage",
+      "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "lineRange": [41, 65],
+      "summary": "Tests localized message resolution with patterns including plain text, message code templates, source-qualified codes, and fallback behavior across Simplified Chinese and English locales.",
+      "tags": ["test", "i18n", "localization", "message-pattern"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java:testOnNoMessageSourceBean",
+      "type": "function",
+      "name": "testOnNoMessageSourceBean",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "lineRange": [75, 84],
+      "summary": "Tests that MessageSourceAdapter returns null for code-only lookups, falls back to the default message, and resolves MessageSourceResolvable with default message when no backing MessageSource bean exists.",
+      "tags": ["test", "spring", "message-source-adapter", "fallback"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java:test",
+      "type": "function",
+      "name": "test",
+      "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "lineRange": [86, 98],
+      "summary": "Tests MessageSourceAdapter with a fully configured DefaultServiceMessageSource bean, verifying code lookups, default message fallback, MessageSourceResolvable resolution, and handling of unresolvable codes.",
+      "tags": ["test", "spring", "message-source-adapter", "integration"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java:DefaultServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "target": "function:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java:loadAllPropertiesResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java:EmptyServiceMessageSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java:AbstractI18nTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java:I18nUtilsTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java:MessageUtilsTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "target": "function:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java:testGetLocalizedMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "target": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java:MessageSourceAdapterTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "target": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java:testOnNoMessageSourceBean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "target": "function:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java:test",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "target": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "target": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "target": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java:DefaultServiceMessageSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java:EmptyServiceMessageSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java:AbstractI18nTest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java:I18nUtilsTest",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java:AbstractI18nTest",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java:MessageUtilsTest",
+      "target": "class:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java:AbstractI18nTest",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java:DefaultServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java:PropertiesResourceServiceMessageSource",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java:MessageSourceAdapterTest",
+      "target": "class:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java:AbstractSpringTest",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java:DefaultServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java:ReloadableResourceServiceMessageSource",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java:EmptyServiceMessageSource",
+      "target": "class:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java:ServiceMessageSource",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "target": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "target": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "target": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+      "target": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

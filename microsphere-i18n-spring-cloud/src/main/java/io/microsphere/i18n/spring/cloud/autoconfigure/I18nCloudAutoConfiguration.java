@@ -19,7 +19,8 @@ package io.microsphere.i18n.spring.cloud.autoconfigure;
 import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailable;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * I18n Auto-Configuration for Spring Cloud that enables dynamic reloading of
@@ -34,12 +35,15 @@ import org.springframework.context.annotation.Import;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnI18nAvailable
 @ConditionalOnClass(name = {
-        "org.springframework.cloud.context.environment.EnvironmentChangeEvent", // spring-cloud-context
-})
-@Import(value = {
-        ReloadableResourceServiceMessageSourceListener.class
+        "org.springframework.cloud.context.environment.EnvironmentChangeEvent", // Spring Cloud Context API
 })
 public class I18nCloudAutoConfiguration {
+
+    @Bean
+    public ReloadableResourceServiceMessageSourceListener reloadableResourceServiceMessageSourceListener() {
+        return new ReloadableResourceServiceMessageSourceListener();
+    }
 }

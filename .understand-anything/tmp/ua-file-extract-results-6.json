@@ -1,0 +1,201 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".github/prompts/create-readme.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 45,
+      "nonEmptyLines": 33,
+      "sections": [
+        {
+          "heading": "Role",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Task",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "Guidelines",
+          "level": 2,
+          "line": 20
+        },
+        {
+          "heading": "Content and Structure",
+          "level": 3,
+          "line": 22
+        },
+        {
+          "heading": "Technical Requirements",
+          "level": 3,
+          "line": 30
+        },
+        {
+          "heading": "What NOT to include",
+          "level": 3,
+          "line": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": ".github/prompts/document-api.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 52,
+      "nonEmptyLines": 39,
+      "sections": [
+        {
+          "heading": "Task",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "OpenAPI Structure",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "Requirements",
+          "level": 2,
+          "line": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": ".github/prompts/explain-code.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 19,
+      "nonEmptyLines": 14,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "path": ".github/prompts/generate-unit-tests.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 52,
+      "nonEmptyLines": 39,
+      "sections": [
+        {
+          "heading": "Task",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Test Generation Strategy",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "Test Structure Requirements",
+          "level": 2,
+          "line": 33
+        },
+        {
+          "heading": "Guidelines",
+          "level": 2,
+          "line": 44
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": ".github/prompts/onboarding-plan.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 26,
+      "nonEmptyLines": 15,
+      "sections": [
+        {
+          "heading": "Create My Onboarding Plan",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "Phase 1 - Foundation",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "Phase 2 - Exploration",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Phase 3 - Integration",
+          "level": 2,
+          "line": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": ".github/prompts/review-code.prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 59,
+      "nonEmptyLines": 44,
+      "sections": [
+        {
+          "heading": "Role",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Review Areas",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "Output Format",
+          "level": 2,
+          "line": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    }
+  ]
+}

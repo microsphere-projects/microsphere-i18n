@@ -27,7 +27,7 @@ public interface I18nConstants {
     String PROPERTY_NAME_PREFIX = "microsphere.i18n.";
 
     /**
-     * Enabled Configuration Name
+     * Enabled Configuration Name : "microsphere.i18n.enabled"
      */
     @ConfigurationProperty(
             type = boolean.class,

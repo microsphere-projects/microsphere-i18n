@@ -1,20 +1,21 @@
 package io.microsphere.i18n.spring.cloud.autoconfigure;
 
-import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
+import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.cloud.event.ReloadableResourceServiceMessageSourceListener;
-import org.junit.jupiter.api.BeforeEach;
+import io.microsphere.spring.boot.test.AutoConfigurationTest;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.context.FilteredClassLoader;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.cloud.client.actuator.FeaturesEndpoint;
+import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.boot.autoconfigure.AutoConfigurations.of;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
 /**
  * {@link I18nCloudAutoConfiguration} Test
@@ -24,27 +25,28 @@ import static org.springframework.boot.autoconfigure.AutoConfigurations.of;
  * @see I18nCloudAutoConfiguration
  * @since 1.0.0
  */
-class I18nCloudAutoConfigurationTest {
+@SpringBootTest(
+        classes = {I18nCloudAutoConfigurationTest.class},
+        webEnvironment = NONE
+)
+class I18nCloudAutoConfigurationTest extends AutoConfigurationTest<I18nCloudAutoConfiguration> {
 
-    ApplicationContextRunner applicationContextRunner;
 
-    @BeforeEach
-    void setup() {
-        applicationContextRunner = new ApplicationContextRunner().withConfiguration(
-                of(I18nAutoConfiguration.class, I18nCloudAutoConfiguration.class)
-        );
+    @Override
+    protected void configureAutoConfiguredClasses(Set<Class<?>> autoConfiguredClasses) {
+        autoConfiguredClasses.add(ReloadableResourceServiceMessageSourceListener.class);
     }
 
-    @Test
-    void shouldContainReloadableResourceServiceMessageSourceListenerBean() {
-        applicationContextRunner.run(context ->
-                assertThat(context).hasSingleBean(ReloadableResourceServiceMessageSourceListener.class));
+    @Override
+    protected void configureGlobalDisabledPropertyValues(Set<String> globalDisabledPropertyValues) {
+        globalDisabledPropertyValues.add("microsphere.i18n.enabled=false");
     }
 
-    @Test
-    void shouldNotContainReloadableResourceServiceMessageSourceListenerBeanWhenMissingEnvironmentChangeEvent() {
-        applicationContextRunner.withClassLoader(new FilteredClassLoader("org.springframework.cloud.context.environment.EnvironmentChangeEvent"))
-                .run(context -> assertThat(context).doesNotHaveBean(ReloadableResourceServiceMessageSourceListener.class));
+    @Override
+    protected void configureGlobalMissingClasses(Set<Class<?>> globalMissingClasses) {
+        globalMissingClasses.add(ServiceMessageSource.class);
+        globalMissingClasses.add(EnableI18n.class);
+        globalMissingClasses.add(EnvironmentChangeEvent.class);
     }
 
     @Nested

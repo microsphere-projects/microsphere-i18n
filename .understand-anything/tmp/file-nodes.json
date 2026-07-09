@@ -1,0 +1,1718 @@
+[
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+    "type": "file",
+    "name": "AbstractResourceServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractResourceServiceMessageSource.java",
+    "summary": "Abstract base class for resource-backed ServiceMessageSource implementations managing message lifecycle from resource files. Provides initialization, validation with code prefix checks, resource loading per locale, and localized message retrieval with logging.",
+    "tags": [
+      "abstract-class",
+      "service-message-source",
+      "resource-management",
+      "i18n-core"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+    "type": "file",
+    "name": "PropertiesResourceServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/PropertiesResourceServiceMessageSource.java",
+    "summary": "Abstract extension of AbstractResourceServiceMessageSource that loads i18n messages from Java .properties files. Provides Properties-based message loading with I/O error handling and unmodifiable result wrapping.",
+    "tags": [
+      "properties-loader",
+      "message-source",
+      "i18n-core",
+      "abstract-class"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+    "type": "file",
+    "name": "ReloadableResourceServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ReloadableResourceServiceMessageSource.java",
+    "summary": "Interface extending ResourceServiceMessageSource that defines contract for runtime reloading of i18n message resources. Provides default methods for canReload and reload delegation.",
+    "tags": [
+      "interface",
+      "reloadable",
+      "message-source",
+      "i18n-core"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "type": "file",
+    "name": "I18nEndpoint.java",
+    "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpoint.java",
+    "summary": "Spring Boot Actuator endpoint ('/actuator/i18n') providing read and write operations for i18n message management. Supports listing all localized messages, querying messages by code and locale, and adding new messages at runtime via property source manipulation.",
+    "tags": [
+      "actuator-endpoint",
+      "api-handler",
+      "i18n",
+      "spring-boot",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+    "type": "file",
+    "name": "I18nEndpointAutoConfiguration.java",
+    "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfiguration.java",
+    "summary": "Spring Boot auto-configuration that registers the I18nEndpoint Actuator bean when Spring Boot Actuator is available and i18n is enabled. Guards bean creation with ConditionalOnAvailableEndpoint and ConditionalOnMissingBean.",
+    "tags": [
+      "auto-configuration",
+      "actuator",
+      "i18n",
+      "spring-boot",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "type": "file",
+    "name": "I18nAutoConfiguration.java",
+    "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfiguration.java",
+    "summary": "Core Spring Boot auto-configuration that enables i18n support and registers an application-specific ServiceMessageSourceFactoryBean keyed by spring.application.name. Activated when the i18n enabled property is true (default).",
+    "tags": [
+      "auto-configuration",
+      "i18n",
+      "spring-boot",
+      "entry-point",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+    "type": "file",
+    "name": "ConditionalOnI18nEnabled.java",
+    "filePath": "microsphere-i18n-spring-boot/src/main/java/io/microsphere/i18n/spring/boot/condition/ConditionalOnI18nEnabled.java",
+    "summary": "Custom Spring Boot @Conditional annotation that activates i18n configuration only when both the i18n core and spring modules are on the classpath and the 'microsphere.i18n.enabled' property is true (defaulting to true if absent).",
+    "tags": [
+      "conditional",
+      "annotation",
+      "i18n",
+      "spring-boot"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+    "type": "file",
+    "name": "I18nEndpointTest.java",
+    "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/I18nEndpointTest.java",
+    "summary": "Integration test for I18nEndpoint covering the invoke, getMessage, and addMessage operations. Validates JSON path structure, locale handling, multi-source message aggregation, and edge cases like missing sources.",
+    "tags": [
+      "test",
+      "integration-test",
+      "actuator",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+    "type": "file",
+    "name": "I18nEndpointAutoConfigurationTest.java",
+    "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationTest.java",
+    "summary": "Auto-configuration test for I18nEndpointAutoConfiguration using ApplicationContextRunner. Verifies that the I18nEndpoint bean is created only when the Actuator endpoint is exposed and not disabled via properties.",
+    "tags": [
+      "test",
+      "auto-configuration-test",
+      "actuator",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+    "type": "file",
+    "name": "I18nServerConfiguration.java",
+    "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/I18nServerConfiguration.java",
+    "summary": "Spring Cloud Server configuration that discovers services via DiscoveryClient and builds PropertySourcesServiceMessageSource instances for each service. Creates a lazy CompositeServiceMessageSource populated on ApplicationStartedEvent.",
+    "tags": [
+      "cloud-server",
+      "service-discovery",
+      "i18n",
+      "spring-cloud",
+      "configuration"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+    "type": "file",
+    "name": "I18nServerController.java",
+    "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/controller/I18nServerController.java",
+    "summary": "Spring Cloud REST controller exposing a GET /messages endpoint that returns all localized i18n messages by delegating to the I18nEndpoint Actuator.",
+    "tags": [
+      "rest-controller",
+      "api-handler",
+      "i18n",
+      "spring-cloud"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+    "type": "file",
+    "name": "I18nCloudAutoConfiguration.java",
+    "filePath": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfiguration.java",
+    "summary": "Spring Cloud auto-configuration that enables dynamic reloading of i18n messages on environment changes. Imports ReloadableResourceServiceMessageSourceListener and registers HasFeatures for monitoring via Spring Cloud Actuator.",
+    "tags": [
+      "auto-configuration",
+      "cloud",
+      "i18n",
+      "reloadable",
+      "spring-cloud",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "type": "file",
+    "name": "ReloadableResourceServiceMessageSourceListener.java",
+    "filePath": "microsphere-i18n-spring-cloud/src/main/java/io/microsphere/i18n/spring/cloud/event/ReloadableResourceServiceMessageSourceListener.java",
+    "summary": "ApplicationListener for Spring Cloud EnvironmentChangeEvent that triggers dynamic reloading of all PropertySourcesServiceMessageSource beans when environment properties change (e.g., via /actuator/refresh).",
+    "tags": [
+      "event-listener",
+      "reloadable",
+      "cloud",
+      "i18n",
+      "spring-cloud",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+    "type": "file",
+    "name": "I18nCloudAutoConfigurationTest.java",
+    "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/autoconfigure/I18nCloudAutoConfigurationTest.java",
+    "summary": "Auto-configuration test for I18nCloudAutoConfiguration using ApplicationContextRunner. Verifies that ReloadableResourceServiceMessageSourceListener bean is present when environment change events are available and absent when filtered out.",
+    "tags": [
+      "test",
+      "auto-configuration-test",
+      "cloud",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+    "type": "file",
+    "name": "MessageSourceIntegrationTest.java",
+    "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/integration/MessageSourceIntegrationTest.java",
+    "summary": "Integration test verifying that i18n messages are dynamically reloaded when EnvironmentChangeEvent fires with changed property keys. Validates end-to-end flow from property change to message source reload.",
+    "tags": [
+      "test",
+      "integration-test",
+      "reload",
+      "i18n",
+      "cloud"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "type": "file",
+    "name": "PropertySourcesServiceMessageSource.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSource.java",
+    "summary": "Spring-integrated ServiceMessageSource that loads i18n messages from Environment property sources instead of files. Supports runtime reloading triggered by property changes and provides static utility methods for finding and reloading all PropertySourcesServiceMessageSource beans.",
+    "tags": [
+      "spring-integration",
+      "property-source",
+      "message-source",
+      "reloadable",
+      "i18n",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "type": "file",
+    "name": "I18nAutoConfigurationTests.java",
+    "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+    "summary": "Integration test for I18nAutoConfiguration verifying that the Spring Boot auto-configuration registers all expected i18n beans including ServiceMessageSourceFactoryBean, MessageSourceAdapter, and related post-processors.",
+    "tags": [
+      "test",
+      "spring-boot",
+      "auto-configuration",
+      "integration-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "type": "file",
+    "name": "EnableI18n.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+    "summary": "Annotation that enables Spring i18n support by importing I18nImportBeanDefinitionRegistrar, allowing configuration of message sources and optional MessageSource exposure through annotation attributes.",
+    "tags": [
+      "annotation",
+      "entry-point",
+      "configuration",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "type": "file",
+    "name": "I18nImportBeanDefinitionRegistrar.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+    "summary": "ImportBeanDefinitionRegistrar that conditionally registers all i18n Spring beans (ServiceMessageSourceFactoryBean, DelegatingServiceMessageSource, MessageSourceAdapter, lifecycle listeners, and conditional bean post-processors) when @EnableI18n is present and the i18n feature is enabled.",
+    "tags": [
+      "spring",
+      "registration",
+      "i18n",
+      "bean-definition",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "type": "file",
+    "name": "ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+    "summary": "MergedBeanDefinitionPostProcessor that automatically configures init and destroy method names on ServiceMessageSource bean definitions, delegating to Spring's lifecycle interfaces when applicable.",
+    "tags": [
+      "spring",
+      "post-processor",
+      "lifecycle",
+      "i18n",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+    "type": "file",
+    "name": "I18nConstants.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+    "summary": "Constants interface defining Spring configuration property names for the i18n framework including enabled flag, sources, default locale, supported locales, and the primary bean name.",
+    "tags": [
+      "constants",
+      "configuration",
+      "i18n",
+      "spring-properties"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+    "type": "file",
+    "name": "I18nApplicationListener.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+    "summary": "Application event listener that initializes the global ServiceMessageSource on context refresh, destroys it on context close, and reloads sources on property changes.",
+    "tags": [
+      "spring",
+      "event-listener",
+      "lifecycle",
+      "i18n",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "type": "file",
+    "name": "MessageSourceAdapter.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+    "summary": "Spring MessageSource adapter that delegates message resolution to a ServiceMessageSource and falls back to other MessageSource beans in the application context for default messages.",
+    "tags": [
+      "spring",
+      "message-source",
+      "adapter",
+      "i18n",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "type": "file",
+    "name": "I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+    "summary": "BeanPostProcessor that associates the i18n MessageSourceAdapter with Spring's LocalValidatorFactoryBean to enable internationalized validation error messages.",
+    "tags": [
+      "spring",
+      "validation",
+      "bean-post-processor",
+      "i18n",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+    "type": "file",
+    "name": "AcceptHeaderLocaleResolverBeanPostProcessor.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+    "summary": "BeanPostProcessor that configures Spring MVC's AcceptHeaderLocaleResolver with the default locale and supported locales from the ServiceMessageSource configuration.",
+    "tags": [
+      "spring",
+      "web-mvc",
+      "locale-resolver",
+      "post-processor",
+      "i18n",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "type": "file",
+    "name": "I18nImportBeanDefinitionRegistrarTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+    "summary": "Comprehensive test for I18nImportBeanDefinitionRegistrar covering source-specified, disabled, unexposed message source, and absent bean class scenarios in a Spring application context.",
+    "tags": [
+      "test",
+      "spring",
+      "integration-test",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+    "type": "file",
+    "name": "DisabledEnableI18nConfiguration.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+    "summary": "Test configuration class annotated with @EnableI18n and a ResourcePropertySource that sets microsphere.i18n.enabled=false, used to verify the disabled behavior of i18n bean registration.",
+    "tags": [
+      "test",
+      "configuration",
+      "spring",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+    "type": "file",
+    "name": "UnexposedMessageSourceEnableI18nConfiguration.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+    "summary": "Test configuration class annotated with @EnableI18n(exposeMessageSource = false) used to verify i18n bean registration without exposing the MessageSourceAdapter as the Spring MessageSource.",
+    "tags": [
+      "test",
+      "configuration",
+      "spring",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+    "type": "file",
+    "name": "I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+    "summary": "Test for I18nLocalValidatorFactoryBeanPostProcessor covering scenarios without LocalValidatorFactoryBean, without MessageSourceAdapter, and verifying that the message interpolator is set correctly.",
+    "tags": [
+      "test",
+      "validation",
+      "spring",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java",
+    "type": "file",
+    "name": "AbstractServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/AbstractServiceMessageSource.java",
+    "summary": "Abstract base implementation of ServiceMessageSource providing locale management, message code resolution, hierarchical locale resolution, and delegating message retrieval for concrete subclasses.",
+    "tags": [
+      "abstract",
+      "service-message-source",
+      "i18n",
+      "locale-resolution"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+    "type": "file",
+    "name": "CompositeServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/CompositeServiceMessageSource.java",
+    "summary": "Composite implementation of ReloadableResourceServiceMessageSource that delegates message resolution across a prioritized list of child ServiceMessageSource instances, returns the first non-null result.",
+    "tags": [
+      "composite",
+      "delegation",
+      "service-message-source",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageException.java",
+    "type": "file",
+    "name": "ServiceMessageException.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageException.java",
+    "summary": "Runtime exception that resolves localized messages via MessageUtils, supporting message pattern codes like {messageCode} for dynamic i18n error messages.",
+    "tags": [
+      "exception",
+      "i18n",
+      "error-handling",
+      "localization"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "type": "file",
+    "name": "ServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ServiceMessageSource.java",
+    "summary": "Core service interface for internationalized message resolution defining the contract for getting messages by code and locale, with default methods for common locale and source handling.",
+    "tags": [
+      "interface",
+      "service-message-source",
+      "i18n",
+      "contract"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+    "type": "file",
+    "name": "I18nUtils.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/I18nUtils.java",
+    "summary": "Global static accessor and utility class for the ServiceMessageSource singleton, with recursive discovery of leaf sources within CompositeServiceMessageSource hierarchies.",
+    "tags": [
+      "utility",
+      "i18n",
+      "service-message-source",
+      "singleton"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java",
+    "type": "file",
+    "name": "MessageUtils.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/util/MessageUtils.java",
+    "summary": "Message pattern resolution utility that extracts i18n message codes from {code} patterns and resolves them through the global ServiceMessageSource, with fallback to the original pattern when no translation is found.",
+    "tags": [
+      "utility",
+      "message",
+      "localization",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationBootstrap.java",
+    "type": "file",
+    "name": "I18nEndpointAutoConfigurationBootstrap.java",
+    "filePath": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/actuate/autoconfigure/I18nEndpointAutoConfigurationBootstrap.java",
+    "summary": "Spring Boot test bootstrap application that starts a servlet-based container with EnableAutoConfiguration and registers a test ServiceMessageSourceFactoryBean for endpoint integration testing.",
+    "tags": [
+      "test",
+      "bootstrap",
+      "spring-boot",
+      "actuator"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "type": "file",
+    "name": "DelegatingServiceMessageSource.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/DelegatingServiceMessageSource.java",
+    "summary": "Spring-aware delegating CompositeServiceMessageSource that auto-discovers all ServiceMessageSource beans in the BeanFactory and delegates to them as the primary message source bean.",
+    "tags": [
+      "delegation",
+      "service-message-source",
+      "spring",
+      "bean-discovery"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "type": "file",
+    "name": "ServiceMessageSourceFactoryBean.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBean.java",
+    "summary": "Spring FactoryBean that creates and manages ServiceMessageSource instances from SpringFactoriesLoader configuration, resolving default and supported locales from environment properties, and reloading on ResourceServiceMessageSourceChangedEvent.",
+    "tags": [
+      "factory-bean",
+      "spring",
+      "service-message-source",
+      "initialization",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+    "type": "file",
+    "name": "I18nBeanUtils.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/I18nBeanUtils.java",
+    "summary": "Spring bean utility class for retrieving i18n-related beans (MessageSource, MessageSourceAdapter, ServiceMessageSource) from a BeanFactory with proper type casting and null safety.",
+    "tags": [
+      "utility",
+      "spring",
+      "bean-factory",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+    "type": "file",
+    "name": "ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessorTest.java",
+    "summary": "JUnit 5 test for ServiceMessageSourceBeanLifecyclePostProcessor verifying that init/destroy method names are correctly set on RootBeanDefinition for ServiceMessageSource and DelegatingServiceMessageSource bean types.",
+    "tags": [
+      "test",
+      "spring",
+      "lifecycle",
+      "post-processor",
+      "bean-definition"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+    "type": "file",
+    "name": "I18nBeanUtilsTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/util/I18nBeanUtilsTest.java",
+    "summary": "JUnit 5 test for I18nBeanUtils verifying message source bean retrieval in various Spring container configurations including exposed adapters and disabled i18n setups.",
+    "tags": [
+      "test",
+      "utility",
+      "spring",
+      "bean-factory",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java",
+    "type": "file",
+    "name": "ResourceServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/ResourceServiceMessageSource.java",
+    "summary": "Interface extending ServiceMessageSource that defines resource initialization lifecycle methods and configurable character encoding for i18n message sources.",
+    "tags": [
+      "interface",
+      "resource-management",
+      "i18n",
+      "service-message-source",
+      "abstraction"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+    "type": "file",
+    "name": "ResourceServiceMessageSourceChangedEvent.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/ResourceServiceMessageSourceChangedEvent.java",
+    "summary": "Spring ApplicationContextEvent published when i18n resource files are modified at runtime, carrying the set of changed resource paths for reactive message source reloading.",
+    "tags": [
+      "event",
+      "spring",
+      "i18n",
+      "resource-change",
+      "runtime",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "type": "file",
+    "name": "AbstractSpringTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/AbstractSpringTest.java",
+    "summary": "Abstract base test class providing JUnit 5 lifecycle hooks for locale setup and teardown along with a shared assertion helper for verifying ServiceMessageSource message resolution.",
+    "tags": [
+      "test",
+      "abstract-base",
+      "spring",
+      "i18n",
+      "assertion"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "PropertySourcesServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/PropertySourcesServiceMessageSourceTest.java",
+    "summary": "Test class verifying PropertySourcesServiceMessageSource with 10 test methods covering resource initialization from Spring Environment, reload capability detection, bean discovery in various Spring container configurations, and resource/property name lookups.",
+    "tags": [
+      "test",
+      "spring",
+      "i18n",
+      "property-source",
+      "service-message-source"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+    "type": "file",
+    "name": "EnableI18nTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/EnableI18nTest.java",
+    "summary": "Test class verifying the EnableI18n annotation correctly bootstraps a ServiceMessageSource bean with working message resolution and singleton identity behavior.",
+    "tags": [
+      "test",
+      "spring",
+      "annotation",
+      "i18n",
+      "enable-config"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+    "type": "file",
+    "name": "ServiceMessageSourceFactoryBeanTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/beans/factory/ServiceMessageSourceFactoryBeanTest.java",
+    "summary": "Comprehensive test class for ServiceMessageSourceFactoryBean with 11 test methods covering message resolution, locale handling, supported locales, event-driven reload via ResourceServiceMessageSourceChangedEvent, ordering, and toString behavior.",
+    "tags": [
+      "test",
+      "spring",
+      "factory-bean",
+      "i18n",
+      "service-message-source"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "type": "file",
+    "name": "TestSourceEnableI18nConfiguration.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/TestSourceEnableI18nConfiguration.java",
+    "summary": "Spring @Configuration class annotated with @EnableI18n(sources = \"test\") that enables i18n for the test message source, used as a shared configuration in Spring integration test contexts.",
+    "tags": [
+      "test",
+      "configuration",
+      "spring",
+      "i18n",
+      "enable-annotation"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+    "type": "file",
+    "name": "I18nApplicationListenerTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/I18nApplicationListenerTest.java",
+    "summary": "Test class verifying I18nApplicationListener behavior including ServiceMessageSource singleton identity and reactive message reloading triggered by PropertySourcesChangedEvent publication.",
+    "tags": [
+      "test",
+      "spring",
+      "event-listener",
+      "i18n",
+      "reload"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+    "type": "file",
+    "name": "AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessorTest.java",
+    "summary": "Test class verifying AcceptHeaderLocaleResolverBeanPostProcessor correctly propagates supported locales from ServiceMessageSource to AcceptHeaderLocaleResolver beans in the Spring container.",
+    "tags": [
+      "test",
+      "spring",
+      "web",
+      "locale-resolver",
+      "i18n"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+    "type": "file",
+    "name": "DefaultServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/DefaultServiceMessageSource.java",
+    "summary": "Default implementation of ServiceMessageSource that loads i18n property resources from classpath locations under META-INF/i18n/{source}/, with reloadable resource support via ClassLoader resolution.",
+    "tags": [
+      "service-message-source",
+      "i18n",
+      "resource-loading",
+      "reloadable",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+    "type": "file",
+    "name": "EmptyServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/main/java/io/microsphere/i18n/EmptyServiceMessageSource.java",
+    "summary": "No-op implementation of ServiceMessageSource that always returns null for any message code, used as a fallback or singleton placeholder in the i18n framework.",
+    "tags": [
+      "service-message-source",
+      "i18n",
+      "singleton",
+      "noop",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+    "type": "file",
+    "name": "AbstractI18nTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractI18nTest.java",
+    "summary": "Abstract test base class that sets Simplified Chinese as the default locale and cleans up the ServiceMessageSource before and after each test method.",
+    "tags": [
+      "test",
+      "i18n",
+      "abstract-base",
+      "junit"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+    "type": "file",
+    "name": "I18nUtilsTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/I18nUtilsTest.java",
+    "summary": "Test class for I18nUtils that verifies singleton service message source retrieval, setting, and recursive discovery of all ServiceMessageSource instances from a CompositeServiceMessageSource.",
+    "tags": [
+      "test",
+      "i18n",
+      "utility",
+      "junit"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+    "type": "file",
+    "name": "MessageUtilsTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/util/MessageUtilsTest.java",
+    "summary": "Test class for MessageUtils that validates message pattern constants and localized message resolution with various argument combinations across Chinese and English locales.",
+    "tags": [
+      "test",
+      "i18n",
+      "message-utils",
+      "localization"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "DelegatingServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/DelegatingServiceMessageSourceTest.java",
+    "summary": "Test class for DelegatingServiceMessageSource that verifies it returns null for unresolvable message codes when no matching bean is available in the Spring container.",
+    "tags": [
+      "test",
+      "i18n",
+      "spring",
+      "delegating"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+    "type": "file",
+    "name": "MessageSourceAdapterTest.java",
+    "filePath": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/context/MessageSourceAdapterTest.java",
+    "summary": "Test class for MessageSourceAdapter that validates message resolution with and without a backing MessageSource bean, covering code-based, default-message, and MessageSourceResolvable lookups in the Spring container.",
+    "tags": [
+      "test",
+      "i18n",
+      "spring",
+      "message-source-adapter"
+    ]
+  },
+  {
+    "id": "pipeline:.github/workflows/maven-build.yml",
+    "type": "pipeline",
+    "name": "maven-build.yml",
+    "filePath": ".github/workflows/maven-build.yml",
+    "summary": "GitHub Actions workflow that builds and tests the Maven project on push or pull request targeting main, dev, or release branches, running against a matrix of Java 17, 21, and 25 with multiple Spring Cloud profiles.",
+    "tags": [
+      "ci-cd",
+      "build",
+      "testing",
+      "github-actions",
+      "maven"
+    ]
+  },
+  {
+    "id": "pipeline:.github/workflows/maven-publish.yml",
+    "type": "pipeline",
+    "name": "maven-publish.yml",
+    "filePath": ".github/workflows/maven-publish.yml",
+    "summary": "GitHub Actions workflow that publishes the Maven artifact to Maven Central via OSS Sonatype, creates a GitHub release with auto-generated release notes using GitHub Models API, increments the patch version, and merges the release branch back into main.",
+    "tags": [
+      "ci-cd",
+      "deployment",
+      "publishing",
+      "github-actions",
+      "maven"
+    ]
+  },
+  {
+    "id": "pipeline:.github/workflows/merge-main-to-branches.yml",
+    "type": "pipeline",
+    "name": "merge-main-to-branches.yml",
+    "filePath": ".github/workflows/merge-main-to-branches.yml",
+    "summary": "GitHub Actions workflow that automatically merges the main branch into dev and release branches whenever changes are pushed to main, using a matrix strategy to handle each target branch.",
+    "tags": [
+      "ci-cd",
+      "automation",
+      "branch-management",
+      "github-actions",
+      "merge"
+    ]
+  },
+  {
+    "id": "pipeline:.github/workflows/sync-branches-from-upstream.yml",
+    "type": "pipeline",
+    "name": "sync-branches-from-upstream.yml",
+    "filePath": ".github/workflows/sync-branches-from-upstream.yml",
+    "summary": "GitHub Actions workflow that syncs all branches in a fork from the upstream repository, running on push to main/dev branches or every 5 minutes via schedule, with safeguards to avoid overwriting fork-ahead branches.",
+    "tags": [
+      "ci-cd",
+      "fork-sync",
+      "automation",
+      "github-actions",
+      "schedule"
+    ]
+  },
+  {
+    "id": "pipeline:.github/workflows/wiki-publish.yml",
+    "type": "pipeline",
+    "name": "wiki-publish.yml",
+    "filePath": ".github/workflows/wiki-publish.yml",
+    "summary": "GitHub Actions workflow that generates project documentation pages from Java source code using a Python script, then publishes the rendered Markdown to the GitHub Wiki repository on pushes to main or manual trigger.",
+    "tags": [
+      "ci-cd",
+      "documentation",
+      "wiki",
+      "github-actions",
+      "automation"
+    ]
+  },
+  {
+    "id": "document:.github/prompts/create-readme.prompt.md",
+    "type": "document",
+    "name": "create-readme.prompt.md",
+    "filePath": ".github/prompts/create-readme.prompt.md",
+    "summary": "Agentic prompt template for generating a comprehensive README.md file covering project description, setup instructions, and contribution guidelines using GitHub Flavored Markdown.",
+    "tags": [
+      "documentation",
+      "prompt-template",
+      "readme",
+      "open-source"
+    ]
+  },
+  {
+    "id": "document:.github/prompts/document-api.prompt.md",
+    "type": "document",
+    "name": "document-api.prompt.md",
+    "filePath": ".github/prompts/document-api.prompt.md",
+    "summary": "Agentic prompt template for generating OpenAPI 3.0.3 YAML specifications from API endpoint code, including path definitions, parameter schemas, response schemas, and reusable components.",
+    "tags": [
+      "documentation",
+      "prompt-template",
+      "api-specification",
+      "openapi"
+    ]
+  },
+  {
+    "id": "document:.github/prompts/explain-code.prompt.md",
+    "type": "document",
+    "name": "explain-code.prompt.md",
+    "filePath": ".github/prompts/explain-code.prompt.md",
+    "summary": "Concise agentic prompt template for generating beginner-friendly code explanations with step-by-step breakdowns, key concept definitions, and practical usage examples.",
+    "tags": [
+      "documentation",
+      "prompt-template",
+      "code-explanation",
+      "learning"
+    ]
+  },
+  {
+    "id": "document:.github/prompts/generate-unit-tests.prompt.md",
+    "type": "document",
+    "name": "generate-unit-tests.prompt.md",
+    "filePath": ".github/prompts/generate-unit-tests.prompt.md",
+    "summary": "Agentic prompt template for generating focused unit tests covering core functionality, input validation, error handling, and side effects following the AAA pattern with configurable target function and testing framework.",
+    "tags": [
+      "documentation",
+      "prompt-template",
+      "unit-testing",
+      "quality"
+    ]
+  },
+  {
+    "id": "document:.github/prompts/onboarding-plan.prompt.md",
+    "type": "document",
+    "name": "onboarding-plan.prompt.md",
+    "filePath": ".github/prompts/onboarding-plan.prompt.md",
+    "summary": "Agentic prompt template for creating a personalized phased onboarding plan covering foundation setup, codebase exploration with beginner-friendly tasks, and integration into team processes.",
+    "tags": [
+      "documentation",
+      "prompt-template",
+      "onboarding",
+      "development"
+    ]
+  },
+  {
+    "id": "document:.github/prompts/review-code.prompt.md",
+    "type": "document",
+    "name": "review-code.prompt.md",
+    "filePath": ".github/prompts/review-code.prompt.md",
+    "summary": "Agentic prompt template for performing comprehensive code reviews covering security, performance, code quality, architecture, testing, and documentation with structured severity-based feedback output.",
+    "tags": [
+      "documentation",
+      "prompt-template",
+      "code-review",
+      "quality"
+    ]
+  },
+  {
+    "id": "document:CODE_OF_CONDUCT.md",
+    "type": "document",
+    "name": "CODE_OF_CONDUCT.md",
+    "filePath": "CODE_OF_CONDUCT.md",
+    "summary": "Contributor code of conduct adapted from the Contributor Covenant v1.3.0, outlining expected behaviors, reporting guidelines, and maintainer responsibilities for the project community.",
+    "tags": [
+      "documentation",
+      "community",
+      "governance"
+    ]
+  },
+  {
+    "id": "document:README.md",
+    "type": "document",
+    "name": "README.md",
+    "filePath": "README.md",
+    "summary": "Project overview and getting-started guide covering features, modules, setup instructions for Spring/Boot/Cloud applications, message file conventions, configuration properties, Actuator endpoint, and contribution guidelines.",
+    "tags": [
+      "documentation",
+      "entry-point",
+      "overview",
+      "getting-started"
+    ]
+  },
+  {
+    "id": "document:developer-guide.md",
+    "type": "document",
+    "name": "developer-guide.md",
+    "filePath": "developer-guide.md",
+    "summary": "Comprehensive developer guide detailing the architecture, class hierarchy, and module-by-module breakdown of all six microsphere-i18n modules with code examples and key concept explanations.",
+    "tags": [
+      "documentation",
+      "developer-guide",
+      "architecture"
+    ]
+  },
+  {
+    "id": "file:mvnw.cmd",
+    "type": "file",
+    "name": "mvnw.cmd",
+    "filePath": "mvnw.cmd",
+    "summary": "Apache Maven Wrapper startup script for Windows that downloads the configured Maven distribution, validates its SHA-256 checksum, extracts it, and invokes Maven commands.",
+    "tags": [
+      "build-system",
+      "maven",
+      "script",
+      "wrapper"
+    ]
+  },
+  {
+    "id": "config:pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "pom.xml",
+    "summary": "Parent POM for the microsphere-i18n multi-module project defining seven sub-modules, project metadata, SCM configuration, licensing information, and build properties targeting Java 17.",
+    "tags": [
+      "configuration",
+      "maven",
+      "build-system",
+      "parent-pom"
+    ]
+  },
+  {
+    "id": "document:release-notes.md",
+    "type": "document",
+    "name": "release-notes.md",
+    "filePath": "release-notes.md",
+    "summary": "Cumulative release notes documenting changes across versions 0.2.4 through 0.2.11, including new features, dependency updates, bug fixes, and build workflow enhancements.",
+    "tags": [
+      "documentation",
+      "changelog",
+      "release-notes"
+    ]
+  },
+  {
+    "id": "config:.github/dependabot.yml",
+    "type": "config",
+    "name": "dependabot.yml",
+    "filePath": ".github/dependabot.yml",
+    "summary": "Dependabot configuration for automated Maven dependency updates on this project, checking daily with a limit of 10 open pull requests.",
+    "tags": [
+      "configuration",
+      "ci-cd",
+      "dependencies"
+    ]
+  },
+  {
+    "id": "file:.github/scripts/generate-wiki-docs.py",
+    "type": "file",
+    "name": "generate-wiki-docs.py",
+    "filePath": ".github/scripts/generate-wiki-docs.py",
+    "summary": "Wiki documentation generator that parses Java source files in the project and produces Markdown wiki pages for each public Java component, with Javadoc extraction, code examples, and version metadata.",
+    "tags": [
+      "documentation",
+      "script",
+      "code-generation",
+      "python"
+    ]
+  },
+  {
+    "id": "config:.mvn/wrapper/maven-wrapper.properties",
+    "type": "config",
+    "name": "maven-wrapper.properties",
+    "filePath": ".mvn/wrapper/maven-wrapper.properties",
+    "summary": "Maven wrapper configuration specifying wrapper version 3.3.4 and the Apache Maven 3.9.15 distribution URL.",
+    "tags": [
+      "configuration",
+      "maven",
+      "build-system"
+    ]
+  },
+  {
+    "id": "file:.understand-anything/.understandignore",
+    "type": "file",
+    "name": ".understandignore",
+    "filePath": ".understand-anything/.understandignore",
+    "summary": "Exclusion pattern file for the Understand-Anything codebase analysis tool, listing Java/Maven-specific file and directory globs to skip during scanning.",
+    "tags": [
+      "configuration",
+      "analysis",
+      "ignore-file"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-core/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-core/pom.xml",
+    "summary": "Maven module descriptor for the core i18n library, bundling the foundational internationalization APIs with dependencies on microsphere-java-core and optional Jakarta Servlet and SLF4J APIs.",
+    "tags": [
+      "configuration",
+      "maven",
+      "library",
+      "core"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-dependencies/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-dependencies/pom.xml",
+    "summary": "Maven Bill of Materials (BOM) POM that manages versions for all microsphere-i18n submodules, providing unified dependency management across the project.",
+    "tags": [
+      "configuration",
+      "maven",
+      "bom",
+      "dependency-management"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-openfeign/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-openfeign/pom.xml",
+    "summary": "Maven module descriptor for the OpenFeign integration module, depending on microsphere-i18n-core with optional Feign core and Spring WebMVC for Accept-Language header propagation.",
+    "tags": [
+      "configuration",
+      "maven",
+      "openfeign",
+      "integration"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+    "type": "file",
+    "name": "AcceptLanguageHeaderRequestInterceptor.java",
+    "filePath": "microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+    "summary": "Feign RequestInterceptor that propagates the Accept-Language header from the current Spring WebMVC HTTP request to outgoing Feign client requests for i18n support.",
+    "tags": [
+      "interceptor",
+      "openfeign",
+      "i18n",
+      "http-header",
+      "tested"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+    "type": "file",
+    "name": "AcceptLanguageHeaderRequestInterceptorTest.java",
+    "filePath": "microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+    "summary": "Test suite for AcceptLanguageHeaderRequestInterceptor covering standard header propagation, missing header, and non-WebMVC scenarios.",
+    "tags": [
+      "test",
+      "openfeign",
+      "i18n",
+      "spring"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-parent/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-parent/pom.xml",
+    "summary": "Parent Maven POM for all microsphere-i18n modules, importing microsphere-spring-cloud-dependencies BOM for unified version management.",
+    "tags": [
+      "configuration",
+      "maven",
+      "parent",
+      "dependency-management"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-boot/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-spring-boot/pom.xml",
+    "summary": "Maven module descriptor for the Spring Boot auto-configuration module, depending on microsphere-i18n-spring with optional Spring Boot autoconfigure and web starters.",
+    "tags": [
+      "configuration",
+      "maven",
+      "spring-boot",
+      "auto-configuration"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-spring-cloud-server/pom.xml",
+    "summary": "Maven module descriptor for the Spring Cloud Server module that exposes i18n messages via REST endpoints, depending on microsphere-i18n-spring-cloud with optional Spring Cloud Commons and Context.",
+    "tags": [
+      "configuration",
+      "maven",
+      "spring-cloud",
+      "server"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+    "type": "file",
+    "name": "EnableI18nServer.java",
+    "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+    "summary": "Annotation to enable the I18n Server, importing I18nServerConfiguration via @Import and exposing a REST endpoint for serving internationalized messages from discovered services.",
+    "tags": [
+      "annotation",
+      "spring-cloud",
+      "i18n",
+      "configuration"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+    "type": "file",
+    "name": "I18nServerBootstrap.java",
+    "filePath": "microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+    "summary": "Test bootstrap application for the I18n Server, annotated with @SpringBootApplication, @EnableDiscoveryClient, and @EnableI18nServer to verify the server configuration.",
+    "tags": [
+      "test",
+      "bootstrap",
+      "spring-cloud",
+      "i18n"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-spring-cloud/pom.xml",
+    "summary": "Maven module descriptor for the Spring Cloud integration module, depending on microsphere-i18n-spring-boot and microsphere-spring-cloud-commons with optional Spring Cloud Commons.",
+    "tags": [
+      "configuration",
+      "maven",
+      "spring-cloud",
+      "integration"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/pom.xml",
+    "type": "config",
+    "name": "pom.xml",
+    "filePath": "microsphere-i18n-spring/pom.xml",
+    "summary": "Maven module descriptor for the Spring integration module, depending on microsphere-i18n-core with optional Spring Context, WebMVC, and expression support.",
+    "tags": [
+      "configuration",
+      "maven",
+      "spring",
+      "integration"
+    ]
+  },
+  {
+    "id": "file:mvnw",
+    "type": "file",
+    "name": "mvnw",
+    "filePath": "mvnw",
+    "summary": "Apache Maven Wrapper shell script that downloads and executes the configured Maven distribution, enabling reproducible builds without requiring a pre-installed Maven runtime.",
+    "tags": [
+      "build-system",
+      "maven",
+      "script",
+      "wrapper"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+    "type": "file",
+    "name": "AutoConfiguration.imports",
+    "filePath": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+    "summary": "Spring Boot 3.0+ auto-configuration registration file listing I18nAutoConfiguration and I18nEndpointAutoConfiguration for automatic discovery.",
+    "tags": [
+      "spring-boot",
+      "auto-configuration",
+      "configuration"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+    "type": "file",
+    "name": "spring.factories",
+    "filePath": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+    "summary": "Legacy Spring Boot auto-configuration registration file enabling I18nAutoConfiguration and I18nEndpointAutoConfiguration via the EnableAutoConfiguration key.",
+    "tags": [
+      "spring-boot",
+      "auto-configuration",
+      "configuration"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "AbstractResourceServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/AbstractResourceServiceMessageSourceTest.java",
+    "summary": "Tests that AbstractResourceServiceMessageSource throws IllegalArgumentException when initialize() is called without a valid source configuration, using a test subclass that stubs getResource() and loadMessages().",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "CompositeServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/CompositeServiceMessageSourceTest.java",
+    "summary": "Comprehensive test suite for CompositeServiceMessageSource covering delegation to child sources, locale resolution, reload behavior, resource initialization, encoding, and source management across both populated and empty composite instances.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "composite",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "DefaultServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/DefaultServiceMessageSourceTest.java",
+    "summary": "Tests DefaultServiceMessageSource functionality including message resolution with locale, resource initialization, message code validation, locale introspection, source identification, and reload capabilities against the test i18n resource bundle.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "unit-test",
+      "message-source"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "EmptyServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/EmptyServiceMessageSourceTest.java",
+    "summary": "Verifies that EmptyServiceMessageSource returns null for all message lookups, defaults to the JVM default locale, and identifies its source as \"Empty\" as a no-op message source implementation.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "null-object",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "PropertiesResourceServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/PropertiesResourceServiceMessageSourceTest.java",
+    "summary": "Tests PropertiesResourceServiceMessageSource including loadMessages error handling, default locale assignment, and supported locales configuration with logging level assertions.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "properties",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "ReloadableResourceServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ReloadableResourceServiceMessageSourceTest.java",
+    "summary": "Tests ReloadableResourceServiceMessageSource interface methods including single and batch resource reloading, and canReload state transitions before and after resource initialization.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "reloadable",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "ResourceServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ResourceServiceMessageSourceTest.java",
+    "summary": "Tests ResourceServiceMessageSource interface methods for resource initialization tracking and default encoding (UTF-8) retrieval.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "resource",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+    "type": "file",
+    "name": "ServiceMessageExceptionTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageExceptionTest.java",
+    "summary": "Tests ServiceMessageException creation with localized message resolution, verifying the exception correctly reports both the raw message and the i18n-localized variant using the test resource bundle.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "exception",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+    "type": "file",
+    "name": "ServiceMessageSourceTest.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/ServiceMessageSourceTest.java",
+    "summary": "Base test class for ServiceMessageSource hierarchy, verifying core contract methods including message lookup defaults (null for unknown codes), locale resolution, source identification, and constants.",
+    "tags": [
+      "test",
+      "junit5",
+      "i18n",
+      "base-test",
+      "unit-test"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+    "type": "file",
+    "name": "TestPropertiesResourceServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestPropertiesResourceServiceMessageSource.java",
+    "summary": "Test stub for PropertiesResourceServiceMessageSource that overrides getResource() to return an empty string and loadAllPropertiesResources() to throw IOException, enabling controlled testing of properties loading failure paths.",
+    "tags": [
+      "test-double",
+      "i18n",
+      "properties",
+      "stub"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+    "type": "file",
+    "name": "TestReloadableResourceServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestReloadableResourceServiceMessageSource.java",
+    "summary": "Test stub implementing ReloadableResourceServiceMessageSource that delegates reload/canReload to the interface default methods and overrides canReload to check resource set membership for deterministic test assertions.",
+    "tags": [
+      "test-double",
+      "i18n",
+      "reloadable",
+      "stub"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+    "type": "file",
+    "name": "TestResourceServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestResourceServiceMessageSource.java",
+    "summary": "Test stub implementing ResourceServiceMessageSource that tracks initialized resources in a LinkedHashSet, delegates resource initialization to the interface default, and returns a read-only view of tracked resources.",
+    "tags": [
+      "test-double",
+      "i18n",
+      "resource",
+      "stub"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+    "type": "file",
+    "name": "TestServiceMessageSource.java",
+    "filePath": "microsphere-i18n-core/src/test/java/io/microsphere/i18n/TestServiceMessageSource.java",
+    "summary": "Test stub implementing ServiceMessageSource with no-op lifecycle methods, null-returning message lookups, and delegation to interface defaults for locale and source resolution.",
+    "tags": [
+      "test-double",
+      "i18n",
+      "stub",
+      "service-message-source"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+    "type": "config",
+    "name": "i18n_messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-core/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+    "summary": "Chinese (Simplified) i18n resource bundle for the \"error\" source, providing test messages that validate error-sourced message resolution in the i18n framework.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+    "type": "config",
+    "name": "i18n_messages_en.properties",
+    "filePath": "microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+    "summary": "English i18n resource bundle for the \"test\" source with placeholder-based messages (test.a, test.hello) used by the core test suite for message resolution verification.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+    "type": "config",
+    "name": "i18n_messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-core/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+    "summary": "Chinese (Simplified) i18n resource bundle for the \"test\" source with Chinese translations of test messages used to verify locale-aware message resolution.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-boot/src/test/resources/application.properties",
+    "type": "config",
+    "name": "application.properties",
+    "filePath": "microsphere-i18n-spring-boot/src/test/resources/application.properties",
+    "summary": "Spring Boot test application configuration enabling the i18n management endpoint and exposing all Actuator web endpoints for the spring-boot module integration tests.",
+    "tags": [
+      "spring-boot",
+      "configuration",
+      "actuator",
+      "management"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+    "type": "config",
+    "name": "i18n_messages_en.properties",
+    "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+    "summary": "Empty English i18n resource bundle placeholder for the \"common\" source in the spring-boot module, available for test message resolution.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+    "type": "config",
+    "name": "i18n_messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+    "summary": "Empty Chinese (Simplified) i18n resource bundle placeholder for the \"common\" source in the spring-boot module, available for test message resolution.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+    "type": "config",
+    "name": "i18n_messages_en.properties",
+    "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+    "summary": "English i18n resource bundle for the \"test\" source in the spring-boot module, providing test messages for spring-boot integration test verification.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+    "type": "config",
+    "name": "i18n_messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-spring-boot/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+    "summary": "Chinese (Simplified) i18n resource bundle for the \"test\" source in the spring-boot module, providing Chinese translations for spring-boot integration test verification.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/I18nBootstrap.java",
+    "type": "file",
+    "name": "I18nBootstrap.java",
+    "filePath": "microsphere-i18n-spring-cloud/src/test/java/io/microsphere/i18n/spring/cloud/I18nBootstrap.java",
+    "summary": "Spring Cloud test bootstrap class annotated with @EnableAutoConfiguration that initializes the Spring application context with an overriding i18n property for the common source.",
+    "tags": [
+      "test",
+      "spring-cloud",
+      "bootstrap",
+      "entry-point",
+      "integration-test"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud/src/test/resources/i18n-bootstrap.properties",
+    "type": "config",
+    "name": "i18n-bootstrap.properties",
+    "filePath": "microsphere-i18n-spring-cloud/src/test/resources/i18n-bootstrap.properties",
+    "summary": "Spring Cloud bootstrap configuration setting the application name and enabling the i18n management endpoint with full Actuator web exposure for integration tests.",
+    "tags": [
+      "spring-cloud",
+      "configuration",
+      "bootstrap",
+      "actuator"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+    "type": "config",
+    "name": "i18n_messages_en.properties",
+    "filePath": "microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_en.properties",
+    "summary": "Empty English i18n resource bundle placeholder for the \"common\" source in the spring-cloud module, available for test message resolution.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+    "type": "config",
+    "name": "i18n_messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-spring-cloud/src/test/resources/META-INF/i18n/common/i18n_messages_zh_CN.properties",
+    "summary": "Empty Chinese (Simplified) i18n resource bundle placeholder for the \"common\" source in the spring-cloud module, available for test message resolution.",
+    "tags": [
+      "i18n",
+      "resource-bundle",
+      "locale",
+      "test-data"
+    ]
+  },
+  {
+    "id": "file:microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+    "type": "file",
+    "name": "LocaleUtils.java",
+    "filePath": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+    "summary": "Abstract utility class providing a single static method to retrieve the Locale from Spring's thread-local LocaleContext, used across the Spring-based i18n layer.",
+    "tags": [
+      "utility",
+      "locale",
+      "spring",
+      "i18n"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+    "type": "config",
+    "name": "spring.factories",
+    "filePath": "microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+    "summary": "Spring Boot auto-configuration factories file registering PropertySourcesServiceMessageSource and DefaultServiceMessageSource as implementations of AbstractServiceMessageSource.",
+    "tags": [
+      "spring",
+      "auto-configuration",
+      "factories",
+      "i18n"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/src/test/resources/messages_en.properties",
+    "type": "config",
+    "name": "messages_en.properties",
+    "filePath": "microsphere-i18n-spring/src/test/resources/messages_en.properties",
+    "summary": "English test message properties file with a sample test.value key used for verifying i18n message resolution in test suites.",
+    "tags": [
+      "test",
+      "message-properties",
+      "i18n",
+      "locale"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+    "type": "config",
+    "name": "messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+    "summary": "Chinese (Simplified) test message properties file providing localized test.value for verifying locale-specific message resolution.",
+    "tags": [
+      "test",
+      "message-properties",
+      "i18n",
+      "locale"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+    "type": "config",
+    "name": "disabled-enable-i18n.properties",
+    "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+    "summary": "Test configuration property file that disables the i18n module by setting microsphere.i18n.enabled to false, used to test conditional behavior.",
+    "tags": [
+      "test",
+      "configuration",
+      "i18n",
+      "disable"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+    "type": "config",
+    "name": "i18n_messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+    "summary": "Chinese (Simplified) error message resource bundle for i18n tests providing localized error and test message keys.",
+    "tags": [
+      "test",
+      "message-bundle",
+      "i18n",
+      "error-messages"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+    "type": "config",
+    "name": "i18n_messages_en.properties",
+    "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+    "summary": "English test message resource bundle with sample i18n keys including a parameterized hello message using {} placeholder syntax.",
+    "tags": [
+      "test",
+      "message-bundle",
+      "i18n",
+      "locale"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+    "type": "config",
+    "name": "i18n_messages_zh_CN.properties",
+    "filePath": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+    "summary": "Chinese (Simplified) test message resource bundle providing localized values matching the English bundle keys including parameterized greetings.",
+    "tags": [
+      "test",
+      "message-bundle",
+      "i18n",
+      "locale"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+    "type": "config",
+    "name": "spring.factories",
+    "filePath": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+    "summary": "Empty Spring Boot factories file in the spring-cloud-server module, reserved for future auto-configuration declarations.",
+    "tags": [
+      "spring",
+      "auto-configuration",
+      "factories"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+    "type": "config",
+    "name": "AutoConfiguration.imports",
+    "filePath": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+    "summary": "Empty Spring Boot auto-configuration imports file in the spring-cloud-server module, reserved for future auto-configuration registrations.",
+    "tags": [
+      "spring",
+      "auto-configuration",
+      "imports"
+    ]
+  },
+  {
+    "id": "config:microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+    "type": "config",
+    "name": "AutoConfiguration.imports",
+    "filePath": "microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+    "summary": "Spring Boot auto-configuration imports file registering I18nCloudAutoConfiguration for automatic configuration in Spring Cloud integration.",
+    "tags": [
+      "spring",
+      "auto-configuration",
+      "imports",
+      "i18n",
+      "cloud"
+    ]
+  }
+]

@@ -19,11 +19,12 @@ package io.microsphere.i18n.spring.boot.actuate.autoconfigure;
 import io.microsphere.i18n.spring.boot.actuate.I18nEndpoint;
 import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
 import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailable;
+import io.microsphere.spring.boot.actuate.condition.ConditionalOnActuatorEndpointPresent;
 import org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * I18n Spring Boot Actuator Endpoint Auto-Configuration that registers the
@@ -40,19 +41,20 @@ import org.springframework.context.annotation.Bean;
  * @see I18nAutoConfiguration
  * @since 1.0.0
  */
-@ConditionalOnClass(name = "org.springframework.boot.actuate.endpoint.annotation.Endpoint")
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnI18nAvailable
-@ConditionalOnAvailableEndpoint(endpoint = I18nEndpoint.class)
+@ConditionalOnActuatorEndpointPresent
 @AutoConfigureAfter(I18nAutoConfiguration.class)
 public class I18nEndpointAutoConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean
     /**
      * Creates the {@link I18nEndpoint} bean.
      *
      * @return a new {@link I18nEndpoint} instance
      */
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnAvailableEndpoint(endpoint = I18nEndpoint.class)
     public I18nEndpoint i18nEndpoint() {
         return new I18nEndpoint();
     }

@@ -1,0 +1,165 @@
+{
+  "nodes": [
+    {
+      "id": "document:.github/prompts/create-readme.prompt.md",
+      "type": "document",
+      "name": "create-readme.prompt.md",
+      "filePath": ".github/prompts/create-readme.prompt.md",
+      "summary": "Agentic prompt template for generating a comprehensive README.md file covering project description, setup instructions, and contribution guidelines using GitHub Flavored Markdown.",
+      "tags": ["documentation", "prompt-template", "readme", "open-source"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.github/prompts/document-api.prompt.md",
+      "type": "document",
+      "name": "document-api.prompt.md",
+      "filePath": ".github/prompts/document-api.prompt.md",
+      "summary": "Agentic prompt template for generating OpenAPI 3.0.3 YAML specifications from API endpoint code, including path definitions, parameter schemas, response schemas, and reusable components.",
+      "tags": ["documentation", "prompt-template", "api-specification", "openapi"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.github/prompts/explain-code.prompt.md",
+      "type": "document",
+      "name": "explain-code.prompt.md",
+      "filePath": ".github/prompts/explain-code.prompt.md",
+      "summary": "Concise agentic prompt template for generating beginner-friendly code explanations with step-by-step breakdowns, key concept definitions, and practical usage examples.",
+      "tags": ["documentation", "prompt-template", "code-explanation", "learning"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.github/prompts/generate-unit-tests.prompt.md",
+      "type": "document",
+      "name": "generate-unit-tests.prompt.md",
+      "filePath": ".github/prompts/generate-unit-tests.prompt.md",
+      "summary": "Agentic prompt template for generating focused unit tests covering core functionality, input validation, error handling, and side effects following the AAA pattern with configurable target function and testing framework.",
+      "tags": ["documentation", "prompt-template", "unit-testing", "quality"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.github/prompts/onboarding-plan.prompt.md",
+      "type": "document",
+      "name": "onboarding-plan.prompt.md",
+      "filePath": ".github/prompts/onboarding-plan.prompt.md",
+      "summary": "Agentic prompt template for creating a personalized phased onboarding plan covering foundation setup, codebase exploration with beginner-friendly tasks, and integration into team processes.",
+      "tags": ["documentation", "prompt-template", "onboarding", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.github/prompts/review-code.prompt.md",
+      "type": "document",
+      "name": "review-code.prompt.md",
+      "filePath": ".github/prompts/review-code.prompt.md",
+      "summary": "Agentic prompt template for performing comprehensive code reviews covering security, performance, code quality, architecture, testing, and documentation with structured severity-based feedback output.",
+      "tags": ["documentation", "prompt-template", "code-review", "quality"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:.github/prompts/create-readme.prompt.md",
+      "target": "document:.github/prompts/document-api.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/create-readme.prompt.md",
+      "target": "document:.github/prompts/explain-code.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/create-readme.prompt.md",
+      "target": "document:.github/prompts/generate-unit-tests.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/create-readme.prompt.md",
+      "target": "document:.github/prompts/onboarding-plan.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/create-readme.prompt.md",
+      "target": "document:.github/prompts/review-code.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/document-api.prompt.md",
+      "target": "document:.github/prompts/explain-code.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/document-api.prompt.md",
+      "target": "document:.github/prompts/generate-unit-tests.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/document-api.prompt.md",
+      "target": "document:.github/prompts/onboarding-plan.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/document-api.prompt.md",
+      "target": "document:.github/prompts/review-code.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/explain-code.prompt.md",
+      "target": "document:.github/prompts/generate-unit-tests.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/explain-code.prompt.md",
+      "target": "document:.github/prompts/onboarding-plan.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/explain-code.prompt.md",
+      "target": "document:.github/prompts/review-code.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/generate-unit-tests.prompt.md",
+      "target": "document:.github/prompts/onboarding-plan.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/generate-unit-tests.prompt.md",
+      "target": "document:.github/prompts/review-code.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/prompts/onboarding-plan.prompt.md",
+      "target": "document:.github/prompts/review-code.prompt.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}
