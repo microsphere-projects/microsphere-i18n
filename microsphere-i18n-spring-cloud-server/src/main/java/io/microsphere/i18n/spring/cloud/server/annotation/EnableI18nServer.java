@@ -48,6 +48,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Documented
 @Inherited
-@Import(I18nServerConfiguration.class)
+@Import(EnableI18nServer.Marker.class)
 public @interface EnableI18nServer {
+
+    class Marker {
+    }
 }
