@@ -1,0 +1,150 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 11,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 55,
+      "nonEmptyLines": 49,
+      "functions": [
+        {
+          "name": "getLocaleFromLocaleContext",
+          "startLine": 47,
+          "endLine": 51,
+          "params": []
+        },
+        {
+          "name": "LocaleUtils",
+          "startLine": 53,
+          "endLine": 54,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "LocaleUtils",
+          "startLine": 40,
+          "endLine": 55,
+          "methods": [
+            "getLocaleFromLocaleContext",
+            "LocaleUtils"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "getLocaleFromLocaleContext",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "LocaleUtils",
+          "line": 40,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getLocaleFromLocaleContext",
+          "callee": "getLocaleContext",
+          "lineNumber": 49
+        },
+        {
+          "caller": "getLocaleFromLocaleContext",
+          "callee": "localeContext.getLocale",
+          "lineNumber": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/resources/META-INF/spring.factories",
+      "language": "factories",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories",
+      "language": "factories",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "language": "imports",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {}
+    },
+    {
+      "path": "microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "language": "imports",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    }
+  ]
+}

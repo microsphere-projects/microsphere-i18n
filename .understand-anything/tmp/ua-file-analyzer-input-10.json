@@ -1,0 +1,29 @@
+{
+  "projectRoot": "/Users/mercyblitz/workspaces/github/microsphere-projects/microsphere-i18n",
+  "batchFiles": [
+    {"path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java", "language": "java", "sizeLines": 55, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/main/resources/META-INF/spring.factories", "language": "factories", "sizeLines": 2, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring/src/test/resources/messages_en.properties", "language": "properties", "sizeLines": 1, "fileCategory": "config"},
+    {"path": "microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties", "language": "properties", "sizeLines": 1, "fileCategory": "config"},
+    {"path": "microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties", "language": "properties", "sizeLines": 1, "fileCategory": "config"},
+    {"path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties", "language": "properties", "sizeLines": 2, "fileCategory": "config"},
+    {"path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties", "language": "properties", "sizeLines": 2, "fileCategory": "config"},
+    {"path": "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties", "language": "properties", "sizeLines": 2, "fileCategory": "config"},
+    {"path": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories", "language": "factories", "sizeLines": 1, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports", "language": "imports", "sizeLines": 1, "fileCategory": "code"},
+    {"path": "microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports", "language": "imports", "sizeLines": 1, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/util/LocaleUtils.java": [],
+    "microsphere-i18n-spring/src/main/resources/META-INF/spring.factories": [],
+    "microsphere-i18n-spring/src/test/resources/messages_en.properties": [],
+    "microsphere-i18n-spring/src/test/resources/messages_zh_CN.properties": [],
+    "microsphere-i18n-spring/src/test/resources/META-INF/config/disabled-enable-i18n.properties": [],
+    "microsphere-i18n-spring/src/test/resources/META-INF/i18n/error/i18n_messages_zh_CN.properties": [],
+    "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_en.properties": [],
+    "microsphere-i18n-spring/src/test/resources/META-INF/i18n/test/i18n_messages_zh_CN.properties": [],
+    "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring.factories": [],
+    "microsphere-i18n-spring-cloud-server/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports": [],
+    "microsphere-i18n-spring-cloud/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports": []
+  }
+}
