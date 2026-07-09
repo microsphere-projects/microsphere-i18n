@@ -38,6 +38,7 @@
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
             <artifactId>microsphere-spring-cloud-commons</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Spring Cloud Dependencies -->
@@ -122,11 +123,10 @@
             <scope>test</scope>
         </dependency>
 
-
-        <!-- Microsphere Spring Test -->
+        <!-- Microsphere Spring Boot Test -->
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
-            <artifactId>microsphere-spring-test</artifactId>
+            <artifactId>microsphere-spring-boot-test</artifactId>
             <scope>test</scope>
         </dependency>
 
