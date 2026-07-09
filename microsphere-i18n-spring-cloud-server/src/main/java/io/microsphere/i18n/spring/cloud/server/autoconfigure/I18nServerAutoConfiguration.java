@@ -19,13 +19,17 @@ package io.microsphere.i18n.spring.cloud.server.autoconfigure;
 import io.microsphere.i18n.CompositeServiceMessageSource;
 import io.microsphere.i18n.ServiceMessageSource;
 import io.microsphere.i18n.spring.PropertySourcesServiceMessageSource;
+import io.microsphere.i18n.spring.boot.actuate.I18nEndpoint;
+import io.microsphere.i18n.spring.boot.actuate.autoconfigure.I18nEndpointAutoConfiguration;
 import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
 import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailable;
 import io.microsphere.i18n.spring.cloud.autoconfigure.I18nCloudAutoConfiguration;
 import io.microsphere.i18n.spring.cloud.server.annotation.EnableI18nServer.Marker;
 import io.microsphere.i18n.spring.cloud.server.controller.I18nServerController;
+import io.microsphere.spring.boot.actuate.condition.ConditionalOnActuatorEndpointPresent;
 import io.microsphere.spring.cloud.client.discovery.condition.ConditionalOnBlockingDiscoveryAvailable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -65,13 +69,16 @@ import static java.util.Locale.getDefault;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnI18nAvailable
 @ConditionalOnBlockingDiscoveryAvailable
+@ConditionalOnActuatorEndpointPresent
 @ConditionalOnWebApplication
+@ConditionalOnAvailableEndpoint(endpoint = I18nEndpoint.class)
 @ConditionalOnBean(Marker.class)
 @Import(I18nServerController.class)
 @AutoConfigureAfter(name = {
         COMMONS_CLIENT_AUTO_CONFIGURATION_CLASS_NAME
 }, value = {
         I18nAutoConfiguration.class,
+        I18nEndpointAutoConfiguration.class,
         I18nCloudAutoConfiguration.class
 })
 public class I18nServerAutoConfiguration {
