@@ -1,0 +1,930 @@
+{
+  "nodes": [
+    {
+      "id": "config:.github/dependabot.yml",
+      "type": "config",
+      "name": "dependabot.yml",
+      "filePath": ".github/dependabot.yml",
+      "summary": "Dependabot configuration for automated Maven dependency updates on this project, checking daily with a limit of 10 open pull requests.",
+      "tags": ["configuration", "ci-cd", "dependencies"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.github/scripts/generate-wiki-docs.py",
+      "type": "file",
+      "name": "generate-wiki-docs.py",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "summary": "Wiki documentation generator that parses Java source files in the project and produces Markdown wiki pages for each public Java component, with Javadoc extraction, code examples, and version metadata.",
+      "tags": ["documentation", "script", "code-generation", "python"],
+      "complexity": "complex",
+      "languageNotes": "Python script using regex-based parsing to extract Javadoc, class hierarchies, and method signatures from Java source files."
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:_read_java_versions",
+      "type": "function",
+      "name": "_read_java_versions",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [44, 53],
+      "summary": "Internal helper that reads Java version information from the project's .java-version file using regex.",
+      "tags": ["utility", "helper", "version"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:_read_pom_revision",
+      "type": "function",
+      "name": "_read_pom_revision",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [56, 65],
+      "summary": "Internal helper that extracts the revision version from the root pom.xml using regex search.",
+      "tags": ["utility", "helper", "version"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:_read_pom_artifact_id",
+      "type": "function",
+      "name": "_read_pom_artifact_id",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [68, 78],
+      "summary": "Internal helper that reads the artifact ID from a module pom.xml file.",
+      "tags": ["utility", "helper", "maven"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:_read_readme_title",
+      "type": "function",
+      "name": "_read_readme_title",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [81, 90],
+      "summary": "Internal helper that extracts the first Markdown heading from a module's README file.",
+      "tags": ["utility", "helper", "documentation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:clean_javadoc_line",
+      "type": "function",
+      "name": "clean_javadoc_line",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [149, 156],
+      "summary": "Strips leading comment markers and whitespace from a raw Javadoc line.",
+      "tags": ["utility", "text-processing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:parse_javadoc",
+      "type": "function",
+      "name": "parse_javadoc",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [159, 220],
+      "summary": "Parses raw Javadoc text to extract description, @since version, @author, @see references, and code examples.",
+      "tags": ["parsing", "documentation", "text-processing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:convert_javadoc_to_markdown",
+      "type": "function",
+      "name": "convert_javadoc_to_markdown",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [223, 253],
+      "summary": "Converts Javadoc tags ({@link}, {@code}, {@value}, etc.) to equivalent Markdown syntax using regex substitution.",
+      "tags": ["utility", "documentation", "markdown", "text-processing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:.github/scripts/generate-wiki-docs.py:JavaComponent",
+      "type": "class",
+      "name": "JavaComponent",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [260, 288],
+      "summary": "Data class representing a parsed Java component with its qualified name, type, package, and source file metadata.",
+      "tags": ["data-model", "parsing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:.github/scripts/generate-wiki-docs.py:JavaMethod",
+      "type": "class",
+      "name": "JavaMethod",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [291, 300],
+      "summary": "Data class representing a parsed Java public method with its signature and Javadoc description.",
+      "tags": ["data-model", "parsing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:parse_java_file",
+      "type": "function",
+      "name": "parse_java_file",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [303, 415],
+      "summary": "Parses a single Java source file to extract package, class/interface/enum/annotation declarations, inheritance, imports, and Javadoc.",
+      "tags": ["parsing", "java", "code-analysis"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:extract_public_methods",
+      "type": "function",
+      "name": "extract_public_methods",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [418, 445],
+      "summary": "Extracts public method signatures and their associated Javadoc from a Java class body.",
+      "tags": ["parsing", "java", "code-analysis"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:generate_wiki_page",
+      "type": "function",
+      "name": "generate_wiki_page",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [452, 644],
+      "summary": "Generates the full Markdown wiki page for a single Java component including badges, package info, description, and method tables.",
+      "tags": ["documentation", "markdown", "code-generation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:generate_home_page",
+      "type": "function",
+      "name": "generate_home_page",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [647, 711],
+      "summary": "Generates the wiki home page with module, package, and component listings organized by project structure.",
+      "tags": ["documentation", "markdown", "code-generation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:generate_sidebar",
+      "type": "function",
+      "name": "generate_sidebar",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [714, 730],
+      "summary": "Generates the wiki sidebar with a module hierarchy navigation tree.",
+      "tags": ["documentation", "markdown", "navigation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:discover_java_files",
+      "type": "function",
+      "name": "discover_java_files",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [737, 748],
+      "summary": "Walks module source directories to discover all Java source files.",
+      "tags": ["utility", "file-discovery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/scripts/generate-wiki-docs.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".github/scripts/generate-wiki-docs.py",
+      "lineRange": [751, 827],
+      "summary": "Entry point that orchestrates the full wiki generation pipeline: discovers Java files, parses them, and writes per-component wiki pages plus home and sidebar.",
+      "tags": ["entry-point", "orchestration", "script"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:.mvn/wrapper/maven-wrapper.properties",
+      "type": "config",
+      "name": "maven-wrapper.properties",
+      "filePath": ".mvn/wrapper/maven-wrapper.properties",
+      "summary": "Maven wrapper configuration specifying wrapper version 3.3.4 and the Apache Maven 3.9.15 distribution URL.",
+      "tags": ["configuration", "maven", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.understand-anything/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "Exclusion pattern file for the Understand-Anything codebase analysis tool, listing Java/Maven-specific file and directory globs to skip during scanning.",
+      "tags": ["configuration", "analysis", "ignore-file"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-core/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-core/pom.xml",
+      "summary": "Maven module descriptor for the core i18n library, bundling the foundational internationalization APIs with dependencies on microsphere-java-core and optional Jakarta Servlet and SLF4J APIs.",
+      "tags": ["configuration", "maven", "library", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:microsphere-i18n-dependencies/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-dependencies/pom.xml",
+      "summary": "Maven Bill of Materials (BOM) POM that manages versions for all microsphere-i18n submodules, providing unified dependency management across the project.",
+      "tags": ["configuration", "maven", "bom", "dependency-management"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-openfeign/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-openfeign/pom.xml",
+      "summary": "Maven module descriptor for the OpenFeign integration module, depending on microsphere-i18n-core with optional Feign core and Spring WebMVC for Accept-Language header propagation.",
+      "tags": ["configuration", "maven", "openfeign", "integration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "type": "file",
+      "name": "AcceptLanguageHeaderRequestInterceptor.java",
+      "filePath": "microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "summary": "Feign RequestInterceptor that propagates the Accept-Language header from the current Spring WebMVC HTTP request to outgoing Feign client requests for i18n support.",
+      "tags": ["interceptor", "openfeign", "i18n", "http-header"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java:AcceptLanguageHeaderRequestInterceptor",
+      "type": "class",
+      "name": "AcceptLanguageHeaderRequestInterceptor",
+      "filePath": "microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "lineRange": [35, 68],
+      "summary": "Implements feign.RequestInterceptor to copy the Accept-Language HTTP header from the current servlet request to Feign request templates, enabling locale propagation across service boundaries.",
+      "tags": ["interceptor", "openfeign", "i18n", "spring"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java:apply",
+      "type": "function",
+      "name": "apply",
+      "filePath": "microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "lineRange": [41, 67],
+      "summary": "Extracts the Accept-Language header from the current servlet request attributes and forwards it onto the Feign RequestTemplate.",
+      "tags": ["handler", "http", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "type": "file",
+      "name": "AcceptLanguageHeaderRequestInterceptorTest.java",
+      "filePath": "microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "summary": "Test suite for AcceptLanguageHeaderRequestInterceptor covering standard header propagation, missing header, and non-WebMVC scenarios.",
+      "tags": ["test", "openfeign", "i18n", "spring"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java:AcceptLanguageHeaderRequestInterceptorTest",
+      "type": "class",
+      "name": "AcceptLanguageHeaderRequestInterceptorTest",
+      "filePath": "microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "lineRange": [24, 68],
+      "summary": "JUnit 5 test class with three test methods validating Accept-Language header forwarding behavior across normal, missing-header, and non-servlet scenarios.",
+      "tags": ["test", "unit-test", "junit"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:microsphere-i18n-parent/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-parent/pom.xml",
+      "summary": "Parent Maven POM for all microsphere-i18n modules, importing microsphere-spring-cloud-dependencies BOM for unified version management.",
+      "tags": ["configuration", "maven", "parent", "dependency-management"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-boot/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-spring-boot/pom.xml",
+      "summary": "Maven module descriptor for the Spring Boot auto-configuration module, depending on microsphere-i18n-spring with optional Spring Boot autoconfigure and web starters.",
+      "tags": ["configuration", "maven", "spring-boot", "auto-configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-spring-cloud-server/pom.xml",
+      "summary": "Maven module descriptor for the Spring Cloud Server module that exposes i18n messages via REST endpoints, depending on microsphere-i18n-spring-cloud with optional Spring Cloud Commons and Context.",
+      "tags": ["configuration", "maven", "spring-cloud", "server"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "type": "file",
+      "name": "EnableI18nServer.java",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "summary": "Annotation to enable the I18n Server, importing I18nServerConfiguration via @Import and exposing a REST endpoint for serving internationalized messages from discovered services.",
+      "tags": ["annotation", "spring-cloud", "i18n", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "type": "file",
+      "name": "I18nServerBootstrap.java",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "summary": "Test bootstrap application for the I18n Server, annotated with @SpringBootApplication, @EnableDiscoveryClient, and @EnableI18nServer to verify the server configuration.",
+      "tags": ["test", "bootstrap", "spring-cloud", "i18n"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java:I18nServerBootstrap",
+      "type": "class",
+      "name": "I18nServerBootstrap",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "lineRange": [32, 42],
+      "summary": "Spring Boot application entry point for launching the I18n Server as a servlet-based web application during testing.",
+      "tags": ["test", "bootstrap", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "lineRange": [37, 41],
+      "summary": "Launches the I18n Server Spring Boot application using SpringApplicationBuilder with servlet web type.",
+      "tags": ["entry-point", "spring-boot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:microsphere-i18n-spring-cloud/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-spring-cloud/pom.xml",
+      "summary": "Maven module descriptor for the Spring Cloud integration module, depending on microsphere-i18n-spring-boot and microsphere-spring-cloud-commons with optional Spring Cloud Commons.",
+      "tags": ["configuration", "maven", "spring-cloud", "integration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:microsphere-i18n-spring/pom.xml",
+      "type": "config",
+      "name": "pom.xml",
+      "filePath": "microsphere-i18n-spring/pom.xml",
+      "summary": "Maven module descriptor for the Spring integration module, depending on microsphere-i18n-core with optional Spring Context, WebMVC, and expression support.",
+      "tags": ["configuration", "maven", "spring", "integration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mvnw",
+      "type": "file",
+      "name": "mvnw",
+      "filePath": "mvnw",
+      "summary": "Apache Maven Wrapper shell script that downloads and executes the configured Maven distribution, enabling reproducible builds without requiring a pre-installed Maven runtime.",
+      "tags": ["build-system", "maven", "script", "wrapper"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mvnw:set_java_home",
+      "type": "function",
+      "name": "set_java_home",
+      "filePath": "mvnw",
+      "lineRange": [45, 79],
+      "summary": "Resolves the Java runtime location from JAVA_HOME or PATH, handling Cygwin/MinGW path translation and verifying executables exist.",
+      "tags": ["utility", "java", "environment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "type": "file",
+      "name": "AutoConfiguration.imports",
+      "filePath": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "summary": "Spring Boot 3.0+ auto-configuration registration file listing I18nAutoConfiguration and I18nEndpointAutoConfiguration for automatic discovery.",
+      "tags": ["spring-boot", "auto-configuration", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+      "type": "file",
+      "name": "spring.factories",
+      "filePath": "microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+      "summary": "Legacy Spring Boot auto-configuration registration file enabling I18nAutoConfiguration and I18nEndpointAutoConfiguration via the EnableAutoConfiguration key.",
+      "tags": ["spring-boot", "auto-configuration", "configuration"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_java_versions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_pom_revision",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_pom_artifact_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_readme_title",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:clean_javadoc_line",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:parse_javadoc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:convert_javadoc_to_markdown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "class:.github/scripts/generate-wiki-docs.py:JavaComponent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "class:.github/scripts/generate-wiki-docs.py:JavaMethod",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:parse_java_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:extract_public_methods",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:generate_wiki_page",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:generate_home_page",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:generate_sidebar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:discover_java_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_java_versions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_pom_revision",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_pom_artifact_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:_read_readme_title",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:clean_javadoc_line",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:parse_javadoc",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:convert_javadoc_to_markdown",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "class:.github/scripts/generate-wiki-docs.py:JavaComponent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "class:.github/scripts/generate-wiki-docs.py:JavaMethod",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:parse_java_file",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:extract_public_methods",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:generate_wiki_page",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:generate_home_page",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:generate_sidebar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:discover_java_files",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/scripts/generate-wiki-docs.py",
+      "target": "function:.github/scripts/generate-wiki-docs.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "target": "class:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java:AcceptLanguageHeaderRequestInterceptor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "target": "function:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java:apply",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "target": "class:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java:AcceptLanguageHeaderRequestInterceptor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "target": "function:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java:apply",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "target": "class:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java:AcceptLanguageHeaderRequestInterceptorTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "target": "class:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java:I18nServerBootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "target": "function:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "target": "class:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java:I18nServerBootstrap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "target": "function:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mvnw",
+      "target": "function:mvnw:set_java_home",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "target": "file:microsphere-i18n-openfeign/src/test/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptorTest.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "target": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:.github/dependabot.yml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.mvn/wrapper/maven-wrapper.properties",
+      "target": "file:mvnw",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-parent/pom.xml",
+      "target": "config:microsphere-i18n-core/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-parent/pom.xml",
+      "target": "config:microsphere-i18n-dependencies/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-parent/pom.xml",
+      "target": "config:microsphere-i18n-openfeign/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-parent/pom.xml",
+      "target": "config:microsphere-i18n-spring/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-parent/pom.xml",
+      "target": "config:microsphere-i18n-spring-boot/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-parent/pom.xml",
+      "target": "config:microsphere-i18n-spring-cloud/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-parent/pom.xml",
+      "target": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-dependencies/pom.xml",
+      "target": "config:microsphere-i18n-core/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-dependencies/pom.xml",
+      "target": "config:microsphere-i18n-openfeign/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-dependencies/pom.xml",
+      "target": "config:microsphere-i18n-spring/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-dependencies/pom.xml",
+      "target": "config:microsphere-i18n-spring-boot/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-dependencies/pom.xml",
+      "target": "config:microsphere-i18n-spring-cloud/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-dependencies/pom.xml",
+      "target": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-openfeign/pom.xml",
+      "target": "file:microsphere-i18n-openfeign/src/main/java/io/microsphere/i18n/feign/AcceptLanguageHeaderRequestInterceptor.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-boot/pom.xml",
+      "target": "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-boot/pom.xml",
+      "target": "file:microsphere-i18n-spring-boot/src/main/resources/META-INF/spring.factories",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "target": "file:microsphere-i18n-spring-cloud-server/src/main/java/io/microsphere/i18n/spring/cloud/server/annotation/EnableI18nServer.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "target": "file:microsphere-i18n-spring-cloud-server/src/test/java/io/microsphere/i18n/spring/cloud/server/I18nServerBootstrap.java",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-core/pom.xml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-dependencies/pom.xml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-openfeign/pom.xml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-openfeign/pom.xml",
+      "target": "config:microsphere-i18n-core/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring/pom.xml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring/pom.xml",
+      "target": "config:microsphere-i18n-core/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-boot/pom.xml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-boot/pom.xml",
+      "target": "config:microsphere-i18n-spring/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-cloud/pom.xml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-cloud/pom.xml",
+      "target": "config:microsphere-i18n-spring-boot/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "target": "config:microsphere-i18n-parent/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:microsphere-i18n-spring-cloud-server/pom.xml",
+      "target": "config:microsphere-i18n-spring-cloud/pom.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -17,7 +17,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
  * @see ConditionalOnI18nAvailable
  * @since 1.0.0
  */
-class ConditionalOnI18NAvailableTests {
+class ConditionalOnI18nAvailableTests {
 
     ApplicationContextRunner applicationContextRunner;
 

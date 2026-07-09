@@ -1,0 +1,19 @@
+{
+  "projectRoot": "/Users/mercyblitz/workspaces/github/microsphere-projects/microsphere-i18n",
+  "batchFiles": [
+    {"path": "CODE_OF_CONDUCT.md", "language": "markdown", "sizeLines": 47, "fileCategory": "docs"},
+    {"path": "README.md", "language": "markdown", "sizeLines": 328, "fileCategory": "docs"},
+    {"path": "developer-guide.md", "language": "markdown", "sizeLines": 444, "fileCategory": "docs"},
+    {"path": "mvnw.cmd", "language": "batch", "sizeLines": 189, "fileCategory": "script"},
+    {"path": "pom.xml", "language": "xml", "sizeLines": 69, "fileCategory": "config"},
+    {"path": "release-notes.md", "language": "markdown", "sizeLines": 151, "fileCategory": "docs"}
+  ],
+  "batchImportData": {
+    "CODE_OF_CONDUCT.md": [],
+    "README.md": [],
+    "developer-guide.md": [],
+    "mvnw.cmd": [],
+    "pom.xml": [],
+    "release-notes.md": []
+  }
+}

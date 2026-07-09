@@ -1,0 +1,17 @@
+{
+  "projectRoot": "/Users/mercyblitz/workspaces/github/microsphere-projects/microsphere-i18n",
+  "batchFiles": [
+    {"path": ".github/workflows/maven-build.yml", "language": "yaml", "sizeLines": 51, "fileCategory": "infra"},
+    {"path": ".github/workflows/maven-publish.yml", "language": "yaml", "sizeLines": 211, "fileCategory": "infra"},
+    {"path": ".github/workflows/merge-main-to-branches.yml", "language": "yaml", "sizeLines": 38, "fileCategory": "infra"},
+    {"path": ".github/workflows/sync-branches-from-upstream.yml", "language": "yaml", "sizeLines": 129, "fileCategory": "infra"},
+    {"path": ".github/workflows/wiki-publish.yml", "language": "yaml", "sizeLines": 79, "fileCategory": "infra"}
+  ],
+  "batchImportData": {
+    ".github/workflows/maven-build.yml": [],
+    ".github/workflows/maven-publish.yml": [],
+    ".github/workflows/merge-main-to-branches.yml": [],
+    ".github/workflows/sync-branches-from-upstream.yml": [],
+    ".github/workflows/wiki-publish.yml": []
+  }
+}

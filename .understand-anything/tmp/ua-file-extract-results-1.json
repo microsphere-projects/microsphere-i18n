@@ -1,0 +1,1777 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 13,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "microsphere-i18n-spring-boot/src/test/java/io/microsphere/i18n/spring/boot/autoconfigure/I18nAutoConfigurationTests.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 45,
+      "functions": [
+        {
+          "name": "setup",
+          "startLine": 29,
+          "endLine": 32,
+          "params": []
+        },
+        {
+          "name": "shouldContainServiceMessageSourceFactoryBean",
+          "startLine": 34,
+          "endLine": 53,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18nAutoConfigurationTests",
+          "startLine": 25,
+          "endLine": 54,
+          "methods": [
+            "setup",
+            "shouldContainServiceMessageSourceFactoryBean"
+          ],
+          "properties": [
+            "applicationContextRunner"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "setup",
+          "callee": "new ApplicationContextRunner",
+          "lineNumber": 31
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "applicationContextRunner.withPropertyValues(\"spring.application.name=I18nAutoConfigurationTests\")\n                .withConfiguration(of(I18nAutoConfiguration.class, PropertyPlaceholderAutoConfiguration.class)).run",
+          "lineNumber": 36
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "applicationContextRunner.withPropertyValues(\"spring.application.name=I18nAutoConfigurationTests\").withConfiguration",
+          "lineNumber": 36
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "applicationContextRunner.withPropertyValues",
+          "lineNumber": 36
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "of",
+          "lineNumber": 37
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context)\n                            .hasBean(\"applicationServiceMessageSource\")\n                            .getBean(\"applicationServiceMessageSource\").hasFieldOrPropertyWithValue",
+          "lineNumber": 39
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context)\n                            .hasBean(\"applicationServiceMessageSource\").getBean",
+          "lineNumber": 39
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).hasBean",
+          "lineNumber": 39
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat",
+          "lineNumber": 39
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).getBeans(ServiceMessageSourceFactoryBean.class).hasSizeGreaterThanOrEqualTo",
+          "lineNumber": 44
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).getBeans",
+          "lineNumber": 44
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat",
+          "lineNumber": 44
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).getBean(\"serviceMessageSource\").isInstanceOf",
+          "lineNumber": 46
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).getBean",
+          "lineNumber": 46
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat",
+          "lineNumber": 46
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).getBean(\"messageSource\").isInstanceOf",
+          "lineNumber": 47
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).getBean",
+          "lineNumber": 47
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat",
+          "lineNumber": 47
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).hasSingleBean(I18nApplicationListener.class)\n                            .hasSingleBean(I18nLocalValidatorFactoryBeanPostProcessor.class).hasSingleBean",
+          "lineNumber": 49
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).hasSingleBean(I18nApplicationListener.class).hasSingleBean",
+          "lineNumber": 49
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat(context).hasSingleBean",
+          "lineNumber": 49
+        },
+        {
+          "caller": "shouldContainServiceMessageSourceFactoryBean",
+          "callee": "assertThat",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/EnableI18n.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 90,
+      "nonEmptyLines": 84,
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrar.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 162,
+      "nonEmptyLines": 144,
+      "functions": [
+        {
+          "name": "registerBeanDefinitions",
+          "startLine": 85,
+          "endLine": 94,
+          "params": [
+            "metadata",
+            "registry"
+          ]
+        },
+        {
+          "name": "registerServiceMessageSourceBeanDefinitions",
+          "startLine": 96,
+          "endLine": 109,
+          "params": [
+            "attributes",
+            "registry"
+          ]
+        },
+        {
+          "name": "resolveSources",
+          "startLine": 111,
+          "endLine": 116,
+          "params": [
+            "attributes"
+          ]
+        },
+        {
+          "name": "initSources",
+          "startLine": 118,
+          "endLine": 122,
+          "params": [
+            "sources",
+            "sourcesSupplier"
+          ]
+        },
+        {
+          "name": "registerMessageSourceAdapterBeanDefinition",
+          "startLine": 124,
+          "endLine": 129,
+          "params": [
+            "attributes",
+            "registry"
+          ]
+        },
+        {
+          "name": "registerI18nApplicationListenerBeanDefinition",
+          "startLine": 131,
+          "endLine": 133,
+          "params": [
+            "registry"
+          ]
+        },
+        {
+          "name": "registerBeanPostProcessorBeanDefinitions",
+          "startLine": 135,
+          "endLine": 144,
+          "params": [
+            "registry"
+          ]
+        },
+        {
+          "name": "setEnvironment",
+          "startLine": 146,
+          "endLine": 149,
+          "params": [
+            "environment"
+          ]
+        },
+        {
+          "name": "isEnabled",
+          "startLine": 151,
+          "endLine": 161,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18nImportBeanDefinitionRegistrar",
+          "startLine": 77,
+          "endLine": 162,
+          "methods": [
+            "registerBeanDefinitions",
+            "registerServiceMessageSourceBeanDefinitions",
+            "resolveSources",
+            "initSources",
+            "registerMessageSourceAdapterBeanDefinition",
+            "registerI18nApplicationListenerBeanDefinition",
+            "registerBeanPostProcessorBeanDefinitions",
+            "setEnvironment",
+            "isEnabled"
+          ],
+          "properties": [
+            "ANNOTATION_TYPE",
+            "logger",
+            "environment"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "registerBeanDefinitions",
+          "line": 85,
+          "isDefault": false
+        },
+        {
+          "name": "setEnvironment",
+          "line": 146,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "isEnabled",
+          "lineNumber": 87
+        },
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "fromMap",
+          "lineNumber": 88
+        },
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "metadata.getAnnotationAttributes",
+          "lineNumber": 88
+        },
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "ANNOTATION_TYPE.getName",
+          "lineNumber": 88
+        },
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "registerServiceMessageSourceBeanDefinitions",
+          "lineNumber": 89
+        },
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "registerMessageSourceAdapterBeanDefinition",
+          "lineNumber": 90
+        },
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "registerI18nApplicationListenerBeanDefinition",
+          "lineNumber": 91
+        },
+        {
+          "caller": "registerBeanDefinitions",
+          "callee": "registerBeanPostProcessorBeanDefinitions",
+          "lineNumber": 92
+        },
+        {
+          "caller": "registerServiceMessageSourceBeanDefinitions",
+          "callee": "resolveSources",
+          "lineNumber": 97
+        },
+        {
+          "caller": "registerServiceMessageSourceBeanDefinitions",
+          "callee": "registerBeanDefinition",
+          "lineNumber": 101
+        },
+        {
+          "caller": "registerServiceMessageSourceBeanDefinitions",
+          "callee": "rootBeanDefinition(DelegatingServiceMessageSource.class)\n                .setPrimary(true).getBeanDefinition",
+          "lineNumber": 105
+        },
+        {
+          "caller": "registerServiceMessageSourceBeanDefinitions",
+          "callee": "rootBeanDefinition(DelegatingServiceMessageSource.class).setPrimary",
+          "lineNumber": 105
+        },
+        {
+          "caller": "registerServiceMessageSourceBeanDefinitions",
+          "callee": "rootBeanDefinition",
+          "lineNumber": 105
+        },
+        {
+          "caller": "registerServiceMessageSourceBeanDefinitions",
+          "callee": "registry.registerBeanDefinition",
+          "lineNumber": 108
+        },
+        {
+          "caller": "resolveSources",
+          "callee": "new LinkedHashSet<>",
+          "lineNumber": 112
+        },
+        {
+          "caller": "resolveSources",
+          "callee": "initSources",
+          "lineNumber": 113
+        },
+        {
+          "caller": "resolveSources",
+          "callee": "environment.getProperty",
+          "lineNumber": 113
+        },
+        {
+          "caller": "resolveSources",
+          "callee": "initSources",
+          "lineNumber": 114
+        },
+        {
+          "caller": "resolveSources",
+          "callee": "attributes.getStringArray",
+          "lineNumber": 114
+        },
+        {
+          "caller": "initSources",
+          "callee": "sourcesSupplier.get",
+          "lineNumber": 119
+        },
+        {
+          "caller": "initSources",
+          "callee": "sources.add",
+          "lineNumber": 120
+        },
+        {
+          "caller": "initSources",
+          "callee": "environment.resolvePlaceholders",
+          "lineNumber": 120
+        },
+        {
+          "caller": "registerMessageSourceAdapterBeanDefinition",
+          "callee": "attributes.getBoolean",
+          "lineNumber": 125
+        },
+        {
+          "caller": "registerMessageSourceAdapterBeanDefinition",
+          "callee": "registerBeanDefinition",
+          "lineNumber": 127
+        },
+        {
+          "caller": "registerI18nApplicationListenerBeanDefinition",
+          "callee": "registerBeanDefinition",
+          "lineNumber": 132
+        },
+        {
+          "caller": "registerBeanPostProcessorBeanDefinitions",
+          "callee": "registerBeanDefinition",
+          "lineNumber": 136
+        },
+        {
+          "caller": "registerBeanPostProcessorBeanDefinitions",
+          "callee": "getDefaultClassLoader",
+          "lineNumber": 137
+        },
+        {
+          "caller": "registerBeanPostProcessorBeanDefinitions",
+          "callee": "isValidatorFactoryPresent",
+          "lineNumber": 138
+        },
+        {
+          "caller": "registerBeanPostProcessorBeanDefinitions",
+          "callee": "registerBeanDefinition",
+          "lineNumber": 139
+        },
+        {
+          "caller": "registerBeanPostProcessorBeanDefinitions",
+          "callee": "isAcceptHeaderLocaleResolverPresent",
+          "lineNumber": 141
+        },
+        {
+          "caller": "registerBeanPostProcessorBeanDefinitions",
+          "callee": "registerBeanDefinition",
+          "lineNumber": 142
+        },
+        {
+          "caller": "isEnabled",
+          "callee": "environment.getProperty",
+          "lineNumber": 153
+        },
+        {
+          "caller": "isEnabled",
+          "callee": "logger.isTraceEnabled",
+          "lineNumber": 154
+        },
+        {
+          "caller": "isEnabled",
+          "callee": "logger.trace",
+          "lineNumber": 155
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 2,
+        "functionCount": 9,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/beans/factory/support/ServiceMessageSourceBeanLifecyclePostProcessor.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 91,
+      "nonEmptyLines": 84,
+      "functions": [
+        {
+          "name": "postProcessMergedBeanDefinition",
+          "startLine": 51,
+          "endLine": 57,
+          "params": [
+            "beanDefinition",
+            "beanType",
+            "beanName"
+          ]
+        },
+        {
+          "name": "setInitMethodName",
+          "startLine": 59,
+          "endLine": 71,
+          "params": [
+            "beanDefinition",
+            "beanType"
+          ]
+        },
+        {
+          "name": "setDestroyMethodName",
+          "startLine": 73,
+          "endLine": 90,
+          "params": [
+            "beanDefinition",
+            "beanType"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ServiceMessageSourceBeanLifecyclePostProcessor",
+          "startLine": 49,
+          "endLine": 91,
+          "methods": [
+            "postProcessMergedBeanDefinition",
+            "setInitMethodName",
+            "setDestroyMethodName"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "postProcessMergedBeanDefinition",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "ServiceMessageSourceBeanLifecyclePostProcessor",
+          "line": 49,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "postProcessMergedBeanDefinition",
+          "callee": "isAssignableFrom",
+          "lineNumber": 53
+        },
+        {
+          "caller": "postProcessMergedBeanDefinition",
+          "callee": "setInitMethodName",
+          "lineNumber": 54
+        },
+        {
+          "caller": "postProcessMergedBeanDefinition",
+          "callee": "setDestroyMethodName",
+          "lineNumber": 55
+        },
+        {
+          "caller": "setInitMethodName",
+          "callee": "isAssignableFrom",
+          "lineNumber": 60
+        },
+        {
+          "caller": "setInitMethodName",
+          "callee": "beanDefinition.getInitMethodName",
+          "lineNumber": 65
+        },
+        {
+          "caller": "setInitMethodName",
+          "callee": "isBlank",
+          "lineNumber": 66
+        },
+        {
+          "caller": "setInitMethodName",
+          "callee": "beanDefinition.setInitMethodName",
+          "lineNumber": 69
+        },
+        {
+          "caller": "setDestroyMethodName",
+          "callee": "isAssignableFrom",
+          "lineNumber": 74
+        },
+        {
+          "caller": "setDestroyMethodName",
+          "callee": "beanDefinition.getDestroyMethodName",
+          "lineNumber": 79
+        },
+        {
+          "caller": "setDestroyMethodName",
+          "callee": "INFER_METHOD.equals",
+          "lineNumber": 81
+        },
+        {
+          "caller": "setDestroyMethodName",
+          "callee": "isBlank",
+          "lineNumber": 85
+        },
+        {
+          "caller": "setDestroyMethodName",
+          "callee": "beanDefinition.setDestroyMethodName",
+          "lineNumber": 88
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/constants/I18nConstants.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 77,
+      "nonEmptyLines": 66,
+      "classes": [
+        {
+          "name": "I18nConstants",
+          "startLine": 25,
+          "endLine": 77,
+          "methods": [],
+          "properties": [
+            "PROPERTY_NAME_PREFIX",
+            "ENABLED_PROPERTY_NAME",
+            "DEFAULT_ENABLED",
+            "SOURCES_PROPERTY_NAME",
+            "DEFAULT_LOCALE_PROPERTY_NAME",
+            "SUPPORTED_LOCALES_PROPERTY_NAME",
+            "SERVICE_MESSAGE_SOURCE_BEAN_NAME"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "I18nConstants",
+          "line": 25,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/I18nApplicationListener.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 80,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "onContextRefreshedEvent",
+          "startLine": 58,
+          "endLine": 62,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "onContextClosedEvent",
+          "startLine": 64,
+          "endLine": 67,
+          "params": []
+        },
+        {
+          "name": "onPropertySourcesChangedEvent",
+          "startLine": 69,
+          "endLine": 74,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "initializeServiceMessageSource",
+          "startLine": 76,
+          "endLine": 79,
+          "params": [
+            "context"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18nApplicationListener",
+          "startLine": 56,
+          "endLine": 80,
+          "methods": [
+            "onContextRefreshedEvent",
+            "onContextClosedEvent",
+            "onPropertySourcesChangedEvent",
+            "initializeServiceMessageSource"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "onContextRefreshedEvent",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "onContextClosedEvent",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "onPropertySourcesChangedEvent",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "I18nApplicationListener",
+          "line": 56,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "onContextRefreshedEvent",
+          "callee": "event.getApplicationContext",
+          "lineNumber": 60
+        },
+        {
+          "caller": "onContextRefreshedEvent",
+          "callee": "initializeServiceMessageSource",
+          "lineNumber": 61
+        },
+        {
+          "caller": "onContextClosedEvent",
+          "callee": "destroyServiceMessageSource",
+          "lineNumber": 66
+        },
+        {
+          "caller": "onPropertySourcesChangedEvent",
+          "callee": "event.getChangedProperties",
+          "lineNumber": 71
+        },
+        {
+          "caller": "onPropertySourcesChangedEvent",
+          "callee": "event.getApplicationContext",
+          "lineNumber": 72
+        },
+        {
+          "caller": "onPropertySourcesChangedEvent",
+          "callee": "reloadAll",
+          "lineNumber": 73
+        },
+        {
+          "caller": "onPropertySourcesChangedEvent",
+          "callee": "changedProperties.keySet",
+          "lineNumber": 73
+        },
+        {
+          "caller": "initializeServiceMessageSource",
+          "callee": "getServiceMessageSource",
+          "lineNumber": 77
+        },
+        {
+          "caller": "initializeServiceMessageSource",
+          "callee": "setServiceMessageSource",
+          "lineNumber": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/context/MessageSourceAdapter.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 119,
+      "nonEmptyLines": 104,
+      "functions": [
+        {
+          "name": "MessageSourceAdapter",
+          "startLine": 48,
+          "endLine": 51,
+          "params": [
+            "serviceMessageSource"
+          ]
+        },
+        {
+          "name": "getMessage",
+          "startLine": 53,
+          "endLine": 60,
+          "params": [
+            "code",
+            "args",
+            "defaultMessage",
+            "locale"
+          ]
+        },
+        {
+          "name": "getMessage",
+          "startLine": 62,
+          "endLine": 65,
+          "params": [
+            "code",
+            "args",
+            "locale"
+          ]
+        },
+        {
+          "name": "getMessage",
+          "startLine": 67,
+          "endLine": 77,
+          "params": [
+            "resolvable",
+            "locale"
+          ]
+        },
+        {
+          "name": "afterSingletonsInstantiated",
+          "startLine": 79,
+          "endLine": 86,
+          "params": []
+        },
+        {
+          "name": "setBeanFactory",
+          "startLine": 88,
+          "endLine": 91,
+          "params": [
+            "beanFactory"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 93,
+          "endLine": 99,
+          "params": []
+        },
+        {
+          "name": "getDefaultMessage",
+          "startLine": 110,
+          "endLine": 118,
+          "params": [
+            "code",
+            "args",
+            "defaultMessage",
+            "locale"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "MessageSourceAdapter",
+          "startLine": 35,
+          "endLine": 119,
+          "methods": [
+            "MessageSourceAdapter",
+            "getMessage",
+            "getMessage",
+            "getMessage",
+            "afterSingletonsInstantiated",
+            "setBeanFactory",
+            "toString",
+            "getDefaultMessage"
+          ],
+          "properties": [
+            "serviceMessageSource",
+            "defaultMessageSources",
+            "beanFactory"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MessageSourceAdapter",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "getMessage",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "getMessage",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "getMessage",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "afterSingletonsInstantiated",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "setBeanFactory",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "MessageSourceAdapter",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "MessageSourceAdapter",
+          "callee": "new ArrayList<>",
+          "lineNumber": 50
+        },
+        {
+          "caller": "getMessage",
+          "callee": "this.serviceMessageSource.getMessage",
+          "lineNumber": 55
+        },
+        {
+          "caller": "getMessage",
+          "callee": "getDefaultMessage",
+          "lineNumber": 57
+        },
+        {
+          "caller": "getMessage",
+          "callee": "getMessage",
+          "lineNumber": 64
+        },
+        {
+          "caller": "getMessage",
+          "callee": "resolvable.getCodes",
+          "lineNumber": 70
+        },
+        {
+          "caller": "getMessage",
+          "callee": "getMessage",
+          "lineNumber": 71
+        },
+        {
+          "caller": "getMessage",
+          "callee": "resolvable.getArguments",
+          "lineNumber": 71
+        },
+        {
+          "caller": "getMessage",
+          "callee": "resolvable.getDefaultMessage",
+          "lineNumber": 71
+        },
+        {
+          "caller": "afterSingletonsInstantiated",
+          "callee": "getSortedBeans",
+          "lineNumber": 81
+        },
+        {
+          "caller": "afterSingletonsInstantiated",
+          "callee": "this.defaultMessageSources.add",
+          "lineNumber": 83
+        },
+        {
+          "caller": "getDefaultMessage",
+          "callee": "defaultMessageSource.getMessage",
+          "lineNumber": 112
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 8,
+        "functionCount": 8,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/validation/beanvalidation/I18nLocalValidatorFactoryBeanPostProcessor.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 62,
+      "functions": [
+        {
+          "name": "I18nLocalValidatorFactoryBeanPostProcessor",
+          "startLine": 48,
+          "endLine": 50,
+          "params": [
+            "messageSourceAdapterProvider"
+          ]
+        },
+        {
+          "name": "processBeforeInitialization",
+          "startLine": 52,
+          "endLine": 60,
+          "params": [
+            "localValidatorFactoryBean",
+            "beanName"
+          ]
+        },
+        {
+          "name": "isValidatorFactoryPresent",
+          "startLine": 68,
+          "endLine": 70,
+          "params": [
+            "classLoader"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18nLocalValidatorFactoryBeanPostProcessor",
+          "startLine": 35,
+          "endLine": 71,
+          "methods": [
+            "I18nLocalValidatorFactoryBeanPostProcessor",
+            "processBeforeInitialization",
+            "isValidatorFactoryPresent"
+          ],
+          "properties": [
+            "VALIDATOR_FACTORY_CLASS_NAME",
+            "logger",
+            "messageSourceAdapterProvider"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "I18nLocalValidatorFactoryBeanPostProcessor",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "isValidatorFactoryPresent",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "I18nLocalValidatorFactoryBeanPostProcessor",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "processBeforeInitialization",
+          "callee": "messageSourceAdapterProvider.ifAvailable",
+          "lineNumber": 54
+        },
+        {
+          "caller": "processBeforeInitialization",
+          "callee": "localValidatorFactoryBean.setValidationMessageSource",
+          "lineNumber": 55
+        },
+        {
+          "caller": "processBeforeInitialization",
+          "callee": "logger.isTraceEnabled",
+          "lineNumber": 56
+        },
+        {
+          "caller": "processBeforeInitialization",
+          "callee": "logger.trace",
+          "lineNumber": 57
+        },
+        {
+          "caller": "isValidatorFactoryPresent",
+          "callee": "isPresent",
+          "lineNumber": 69
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/main/java/io/microsphere/i18n/spring/web/servlet/AcceptHeaderLocaleResolverBeanPostProcessor.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 93,
+      "nonEmptyLines": 82,
+      "functions": [
+        {
+          "name": "processAfterInitialization",
+          "startLine": 67,
+          "endLine": 77,
+          "params": [
+            "acceptHeaderLocaleResolver",
+            "beanName"
+          ]
+        },
+        {
+          "name": "setApplicationContext",
+          "startLine": 79,
+          "endLine": 82,
+          "params": [
+            "context"
+          ]
+        },
+        {
+          "name": "isAcceptHeaderLocaleResolverPresent",
+          "startLine": 90,
+          "endLine": 92,
+          "params": [
+            "classLoader"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "AcceptHeaderLocaleResolverBeanPostProcessor",
+          "startLine": 59,
+          "endLine": 93,
+          "methods": [
+            "processAfterInitialization",
+            "setApplicationContext",
+            "isAcceptHeaderLocaleResolverPresent"
+          ],
+          "properties": [
+            "CLASS_NAME",
+            "logger",
+            "context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "setApplicationContext",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "isAcceptHeaderLocaleResolverPresent",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "AcceptHeaderLocaleResolverBeanPostProcessor",
+          "line": 59,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "processAfterInitialization",
+          "callee": "getServiceMessageSource",
+          "lineNumber": 69
+        },
+        {
+          "caller": "processAfterInitialization",
+          "callee": "serviceMessageSource.getDefaultLocale",
+          "lineNumber": 70
+        },
+        {
+          "caller": "processAfterInitialization",
+          "callee": "serviceMessageSource.getSupportedLocales",
+          "lineNumber": 71
+        },
+        {
+          "caller": "processAfterInitialization",
+          "callee": "acceptHeaderLocaleResolver.setDefaultLocale",
+          "lineNumber": 72
+        },
+        {
+          "caller": "processAfterInitialization",
+          "callee": "acceptHeaderLocaleResolver.setSupportedLocales",
+          "lineNumber": 73
+        },
+        {
+          "caller": "processAfterInitialization",
+          "callee": "ofList",
+          "lineNumber": 73
+        },
+        {
+          "caller": "processAfterInitialization",
+          "callee": "logger.isTraceEnabled",
+          "lineNumber": 74
+        },
+        {
+          "caller": "processAfterInitialization",
+          "callee": "logger.trace",
+          "lineNumber": 75
+        },
+        {
+          "caller": "isAcceptHeaderLocaleResolverPresent",
+          "callee": "isPresent",
+          "lineNumber": 91
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/annotation/I18nImportBeanDefinitionRegistrarTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 112,
+      "nonEmptyLines": 102,
+      "functions": [
+        {
+          "name": "testOnSpecifiedSources",
+          "startLine": 51,
+          "endLine": 65,
+          "params": []
+        },
+        {
+          "name": "testOnDisabled",
+          "startLine": 67,
+          "endLine": 78,
+          "params": []
+        },
+        {
+          "name": "testOnUnexposedMessageSource",
+          "startLine": 80,
+          "endLine": 91,
+          "params": []
+        },
+        {
+          "name": "testOnBeanClassAbsent",
+          "startLine": 93,
+          "endLine": 110,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18nImportBeanDefinitionRegistrarTest",
+          "startLine": 48,
+          "endLine": 112,
+          "methods": [
+            "testOnSpecifiedSources",
+            "testOnDisabled",
+            "testOnUnexposedMessageSource",
+            "testOnBeanClassAbsent"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "testInSpringContainer",
+          "lineNumber": 53
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 54
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 54
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 55
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 55
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 57
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 57
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 59
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 59
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 60
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 60
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 62
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "isBeanPresent",
+          "lineNumber": 62
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "assertTrue",
+          "lineNumber": 63
+        },
+        {
+          "caller": "testOnSpecifiedSources",
+          "callee": "context.containsBean",
+          "lineNumber": 63
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "testInSpringContainer",
+          "lineNumber": 69
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "assertFalse",
+          "lineNumber": 70
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "isBeanPresent",
+          "lineNumber": 70
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "assertFalse",
+          "lineNumber": 71
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "isBeanPresent",
+          "lineNumber": 71
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "assertFalse",
+          "lineNumber": 72
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "isBeanPresent",
+          "lineNumber": 72
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "assertFalse",
+          "lineNumber": 73
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "isBeanPresent",
+          "lineNumber": 73
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "assertFalse",
+          "lineNumber": 74
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "isBeanPresent",
+          "lineNumber": 74
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "assertFalse",
+          "lineNumber": 75
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "isBeanPresent",
+          "lineNumber": 75
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "assertFalse",
+          "lineNumber": 76
+        },
+        {
+          "caller": "testOnDisabled",
+          "callee": "isBeanPresent",
+          "lineNumber": 76
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "testInSpringContainer",
+          "lineNumber": 82
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "assertTrue",
+          "lineNumber": 83
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "isBeanPresent",
+          "lineNumber": 83
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "assertFalse",
+          "lineNumber": 84
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "isBeanPresent",
+          "lineNumber": 84
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "assertTrue",
+          "lineNumber": 85
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "isBeanPresent",
+          "lineNumber": 85
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "assertTrue",
+          "lineNumber": 86
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "isBeanPresent",
+          "lineNumber": 86
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "assertTrue",
+          "lineNumber": 87
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "isBeanPresent",
+          "lineNumber": 87
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "assertTrue",
+          "lineNumber": 88
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "isBeanPresent",
+          "lineNumber": 88
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "assertTrue",
+          "lineNumber": 89
+        },
+        {
+          "caller": "testOnUnexposedMessageSource",
+          "callee": "isBeanPresent",
+          "lineNumber": 89
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "currentThread().getContextClassLoader",
+          "lineNumber": 95
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "currentThread",
+          "lineNumber": 95
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "currentThread().setContextClassLoader",
+          "lineNumber": 97
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "currentThread",
+          "lineNumber": 97
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "getSystemClassLoader().getParent",
+          "lineNumber": 97
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "getSystemClassLoader",
+          "lineNumber": 97
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "testInSpringContainer",
+          "lineNumber": 98
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "assertTrue",
+          "lineNumber": 99
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "isBeanPresent",
+          "lineNumber": 99
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "assertTrue",
+          "lineNumber": 100
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "isBeanPresent",
+          "lineNumber": 100
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "assertTrue",
+          "lineNumber": 101
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "isBeanPresent",
+          "lineNumber": 101
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "assertTrue",
+          "lineNumber": 102
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "isBeanPresent",
+          "lineNumber": 102
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "assertTrue",
+          "lineNumber": 103
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "isBeanPresent",
+          "lineNumber": 103
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "assertFalse",
+          "lineNumber": 104
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "isBeanPresent",
+          "lineNumber": 104
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "assertFalse",
+          "lineNumber": 105
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "isBeanPresent",
+          "lineNumber": 105
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "currentThread().setContextClassLoader",
+          "lineNumber": 108
+        },
+        {
+          "caller": "testOnBeanClassAbsent",
+          "callee": "currentThread",
+          "lineNumber": 108
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/DisabledEnableI18nConfiguration.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 36,
+      "nonEmptyLines": 33,
+      "classes": [
+        {
+          "name": "DisabledEnableI18nConfiguration",
+          "startLine": 33,
+          "endLine": 36,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "DisabledEnableI18nConfiguration",
+          "line": 33,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/config/UnexposedMessageSourceEnableI18nConfiguration.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 31,
+      "classes": [
+        {
+          "name": "UnexposedMessageSourceEnableI18nConfiguration",
+          "startLine": 32,
+          "endLine": 34,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "UnexposedMessageSourceEnableI18nConfiguration",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "microsphere-i18n-spring/src/test/java/io/microsphere/i18n/spring/validation/beanvalidation/I18NLocalValidatorFactoryBeanPostProcessorTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 57,
+      "functions": [
+        {
+          "name": "testOnNoLocalValidatorFactoryBean",
+          "startLine": 42,
+          "endLine": 47,
+          "params": []
+        },
+        {
+          "name": "testOnNoMessageSourceAdapterBean",
+          "startLine": 49,
+          "endLine": 54,
+          "params": []
+        },
+        {
+          "name": "test",
+          "startLine": 56,
+          "endLine": 63,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "I18NLocalValidatorFactoryBeanPostProcessorTest",
+          "startLine": 39,
+          "endLine": 64,
+          "methods": [
+            "testOnNoLocalValidatorFactoryBean",
+            "testOnNoMessageSourceAdapterBean",
+            "test"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "testOnNoLocalValidatorFactoryBean",
+          "callee": "testInSpringContainer",
+          "lineNumber": 44
+        },
+        {
+          "caller": "testOnNoLocalValidatorFactoryBean",
+          "callee": "assertFalse",
+          "lineNumber": 45
+        },
+        {
+          "caller": "testOnNoLocalValidatorFactoryBean",
+          "callee": "isBeanPresent",
+          "lineNumber": 45
+        },
+        {
+          "caller": "testOnNoMessageSourceAdapterBean",
+          "callee": "testInSpringContainer",
+          "lineNumber": 51
+        },
+        {
+          "caller": "testOnNoMessageSourceAdapterBean",
+          "callee": "assertTrue",
+          "lineNumber": 52
+        },
+        {
+          "caller": "testOnNoMessageSourceAdapterBean",
+          "callee": "isBeanPresent",
+          "lineNumber": 52
+        },
+        {
+          "caller": "test",
+          "callee": "testInSpringContainer",
+          "lineNumber": 58
+        },
+        {
+          "caller": "test",
+          "callee": "assertTrue",
+          "lineNumber": 59
+        },
+        {
+          "caller": "test",
+          "callee": "isBeanPresent",
+          "lineNumber": 59
+        },
+        {
+          "caller": "test",
+          "callee": "context.getBean",
+          "lineNumber": 60
+        },
+        {
+          "caller": "test",
+          "callee": "assertTrue",
+          "lineNumber": 61
+        },
+        {
+          "caller": "test",
+          "callee": "localValidatorFactoryBean.getMessageInterpolator",
+          "lineNumber": 61
+        },
+        {
+          "caller": "test",
+          "callee": "this.getClass",
+          "lineNumber": 62
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    }
+  ]
+}

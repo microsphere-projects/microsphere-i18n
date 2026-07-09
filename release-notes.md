@@ -242,4 +242,36 @@ Full Changelog: [v0.1.12...v0.1.13](https://link-to-changelog)
 
 **Full Changelog**: [v0.1.15...v0.1.16](https://github.com/mercyblitz/repo/compare/v0.1.15...v0.1.16)
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.15...0.1.16
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.15...0.1.16## v0.1.17
+
+# Release Notes - Version 0.1.17
+
+## New Features
+- Introduced auto-configuration for i18n server. ([3669947](https://example.com))
+- Added `@Configuration` annotations to various i18n-related classes for better integration. ([ba48320](https://example.com), [7250e8c](https://example.com))
+- Implemented `ConditionalOnI18nAvailable` annotation for conditional configuration. ([01b0ab2](https://example.com))
+
+## Bug Fixes
+- Refined i18n endpoint auto-configuration conditions. ([b5edeee](https://example.com))
+- Improved test reliability with `microsphere-spring-boot-test`. ([9a84e99](https://example.com), [b014161](https://example.com))
+
+## Documentation
+- Updated README with the latest release versions. ([7830a67](https://example.com))
+
+## Dependency Updates
+- Upgraded `microsphere-spring-cloud` to version 0.1.22. ([23391e4](https://example.com))
+- Marked `commons` dependency as optional for reduced dependency footprint. ([e271683](https://example.com))
+
+## Build and Workflow Enhancements
+- Added annotation processors to module POMs for consistency. ([48c521b](https://example.com))
+- Removed empty Spring metadata files. ([a472017](https://example.com))
+
+## Test Improvements
+- Refactored i18n auto-configuration tests and improved naming conventions. ([59ea6b4](https://example.com))
+- Switched to `microsphere-spring-boot-test` for enhanced testing. ([b014161](https://example.com))
+
+## Other Changes
+- Registered cloud i18n listener via `@Bean` for streamlined integration. ([e6bb1d9](https://example.com))
+- Added Understand Anything analysis artifacts for internal use. ([133f183](https://example.com))
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.16...0.1.17
