@@ -25,6 +25,7 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.event.EventListener;
@@ -52,6 +53,7 @@ import static java.util.Locale.getDefault;
  * @see PropertySourcesServiceMessageSource
  * @since 1.0.0
  */
+@Configuration(proxyBeanMethods = false)
 @Import(I18nServerController.class)
 public class I18nServerConfiguration {
 
