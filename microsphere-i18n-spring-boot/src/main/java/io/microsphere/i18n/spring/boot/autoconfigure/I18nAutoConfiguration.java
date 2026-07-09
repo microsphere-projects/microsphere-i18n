@@ -22,6 +22,7 @@ import io.microsphere.i18n.spring.boot.condition.ConditionalOnI18nAvailable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * I18n Auto-Configuration for Spring Boot that automatically enables i18n support
@@ -38,6 +39,7 @@ import org.springframework.context.annotation.Bean;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
  */
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnI18nAvailable
 @EnableI18n
 public class I18nAutoConfiguration {
