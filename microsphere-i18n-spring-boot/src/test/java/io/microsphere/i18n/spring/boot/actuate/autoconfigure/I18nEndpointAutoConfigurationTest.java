@@ -1,13 +1,13 @@
 package io.microsphere.i18n.spring.boot.actuate.autoconfigure;
 
+import io.microsphere.i18n.ServiceMessageSource;
+import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.boot.actuate.I18nEndpoint;
-import io.microsphere.i18n.spring.boot.autoconfigure.I18nAutoConfiguration;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.microsphere.spring.boot.test.AutoConfigurationTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.springframework.boot.autoconfigure.AutoConfigurations.of;
+import java.util.Set;
 
 /**
  * {@link I18nEndpointAutoConfiguration} Test
@@ -17,32 +17,32 @@ import static org.springframework.boot.autoconfigure.AutoConfigurations.of;
  * @see I18nEndpointAutoConfiguration
  * @since 1.0.0
  */
-class I18nEndpointAutoConfigurationTest {
+@SpringBootTest(
+        classes = {
+                I18nEndpointAutoConfigurationTest.class
+        },
+        properties = {
+                "management.endpoints.web.exposure.include=i18n",
+                "management.endpoint.i18n.enabled=true"
+        }
+)
+class I18nEndpointAutoConfigurationTest extends AutoConfigurationTest<I18nEndpointAutoConfiguration> {
 
     ApplicationContextRunner applicationContextRunner;
 
-    @BeforeEach
-    void setup() {
-        applicationContextRunner = new ApplicationContextRunner()
-                .withConfiguration(of(I18nAutoConfiguration.class, I18nEndpointAutoConfiguration.class));
+    @Override
+    protected void configureAutoConfiguredClasses(Set<Class<?>> autoConfiguredClasses) {
+        autoConfiguredClasses.add(I18nEndpoint.class);
     }
 
-    @Test
-    void shouldHaveEndpointBean() {
-        applicationContextRunner.withPropertyValues("management.endpoints.web.exposure.include=i18n")
-                .run(context -> assertThat(context).hasSingleBean(I18nEndpoint.class));
+    @Override
+    protected void configureGlobalDisabledPropertyValues(Set<String> globalDisabledPropertyValues) {
+        globalDisabledPropertyValues.add("microsphere.i18n.enabled=false");
     }
 
-    @Test
-    void shouldNotHaveEndpointBean() {
-        applicationContextRunner
-                .run(context -> assertThat(context).doesNotHaveBean(I18nEndpoint.class));
-    }
-
-    @Test
-    void shouldNotHaveEndpointBeanWhenEnablePropertyIsFalse() {
-        applicationContextRunner.withPropertyValues("management.endpoint.i18n.enabled=false")
-                .withPropertyValues("management.endpoints.web.exposure.include=*")
-                .run(context -> assertThat(context).doesNotHaveBean(I18nEndpoint.class));
+    @Override
+    protected void configureGlobalMissingClasses(Set<Class<?>> globalMissingClasses) {
+        globalMissingClasses.add(ServiceMessageSource.class);
+        globalMissingClasses.add(EnableI18n.class);
     }
 }
