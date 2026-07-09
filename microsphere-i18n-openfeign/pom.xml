@@ -27,7 +27,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Microsphere -->
+        <!-- Microsphere i18n Core -->
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
             <artifactId>microsphere-i18n-core</artifactId>
