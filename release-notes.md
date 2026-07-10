@@ -244,4 +244,37 @@ Full Changelog: [0.2.12...0.2.13](URL_TO_CHANGELOG_IF_AVAILABLE)
   - Merged `main` into `release`. (#eafbd2c, #9548079)
   - Bumped version post 0.2.15 release. (#e8f2942) 
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.15...0.2.16
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.15...0.2.16## v0.2.17
+
+# Release Notes - Version 0.2.17
+
+## New Features
+- **Internationalization (i18n)**:  
+  - Auto-configure Spring Cloud i18n server to streamline setup.  
+  - Gate i18n server auto-configuration by endpoint availability.  
+  - Introduced `ConditionalOnI18nAvailable` annotation for enhanced conditional auto-configuration.  
+
+## Bug Fixes
+- Fixed actuator auto-configuration registration issue.  
+
+## Dependency Updates
+- Bumped `microsphere-spring-cloud` to version `0.2.22`.  
+- Refined Spring Boot, Spring Cloud, and OpenFeign POM dependencies.  
+
+## Documentation
+- Updated README with the latest version numbers.  
+
+## Build and Workflow Enhancements
+- Added annotation processors in core and server modules for improved development workflows.  
+- Cleaned up unused Spring metadata files.  
+- Tidy up test dependency management across modules.  
+
+## Other Changes
+- Marked several auto-configurations with `@Configuration` for better Spring context handling.  
+- Enhanced i18n auto-config test setup for improved robustness.  
+
+---
+
+For more details, refer to the [Full Changelog](https://github.com/your-repo/compare/v0.2.16...v0.2.17).
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.16...0.2.17
