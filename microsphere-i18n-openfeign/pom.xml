@@ -47,14 +47,7 @@
             <artifactId>spring-webmvc</artifactId>
             <optional>true</optional>
         </dependency>
-
-        <!-- slf4j API -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-
+        
         <!-- Feign -->
         <dependency>
             <groupId>io.github.openfeign</groupId>
