@@ -5,7 +5,6 @@ import io.microsphere.i18n.spring.annotation.EnableI18n;
 import io.microsphere.i18n.spring.boot.actuate.I18nEndpoint;
 import io.microsphere.spring.boot.test.AutoConfigurationTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 
 import java.util.Set;
 
@@ -27,8 +26,6 @@ import java.util.Set;
         }
 )
 class I18nEndpointAutoConfigurationTest extends AutoConfigurationTest<I18nEndpointAutoConfiguration> {
-
-    ApplicationContextRunner applicationContextRunner;
 
     @Override
     protected void configureAutoConfiguredClasses(Set<Class<?>> autoConfiguredClasses) {
