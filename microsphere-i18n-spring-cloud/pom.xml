@@ -107,6 +107,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JSON Path Assert -->
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Microsphere Spring Boot Test -->
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
