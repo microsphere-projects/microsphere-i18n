@@ -26,7 +26,7 @@ import java.util.Set;
         }
 )
 class I18nEndpointAutoConfigurationTest extends AutoConfigurationTest<I18nEndpointAutoConfiguration> {
-    
+
     @Override
     protected void configureAutoConfiguredClasses(Set<Class<?>> autoConfiguredClasses) {
         autoConfiguredClasses.add(I18nEndpoint.class);
