@@ -277,4 +277,35 @@ Full Changelog: [0.2.12...0.2.13](URL_TO_CHANGELOG_IF_AVAILABLE)
 
 For more details, refer to the [Full Changelog](https://github.com/your-repo/compare/v0.2.16...v0.2.17).
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.16...0.2.17
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.16...0.2.17## v0.2.18
+
+# Release Notes - Version 0.2.18
+
+## New Features
+- **Test Enhancements**: Add `json-path-assert` test dependencies to improve testing capabilities. ([4c223dc](commit-link))
+
+## Bug Fixes
+- **i18n Auto-Config**: Fix test setup issues for i18n auto-configuration. ([5fb27eb](commit-link))
+
+## Dependency Updates
+- Remove redundant `slf4j-api` dependency from `openfeign` module. ([39e233b](commit-link))
+- Remove optional SLF4J dependencies to clean up configurations. ([36cf8dc](commit-link), [84cae58](commit-link))
+- Align and simplify Spring Boot and Spring Cloud module dependencies. ([f411069](commit-link), [0fb6b55](commit-link))
+- Bump `microsphere-spring-cloud` to version `0.2.23`. ([9263899](commit-link))
+- Add starter test dependency to `server` module for better configurability. ([0f69799](commit-link))
+
+## Documentation
+- Update README with the latest release versions. ([9b63d33](commit-link))
+
+## Test Improvements
+- Remove unused context runner to streamline endpoint testing. ([81750c9](commit-link))
+
+## Build and Workflow Enhancements
+- Multiple merges of `main` into `release` to synchronize changes. ([922c7b0](commit-link), [dc871c0](commit-link), [c0534fb](commit-link), [4733c50](commit-link))
+- Bump version to `0.2.18` after releasing `0.2.17`. ([ca80527](commit-link))
+
+---
+
+**Note**: For a detailed list of changes, refer to the full changelog in the repository.
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.17...0.2.18
