@@ -40,7 +40,7 @@ class I18nAutoConfigurationTest extends AutoConfigurationTest<I18nAutoConfigurat
 
     @Test
     void shouldContainServiceMessageSourceFactoryBean() {
-        applicationContextRunner.run(context -> {
+        runner.run(context -> {
             assertThat(context)
                     .hasBean("applicationServiceMessageSource")
                     .getBean("applicationServiceMessageSource")

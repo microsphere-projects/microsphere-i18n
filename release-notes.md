@@ -274,4 +274,29 @@ Full Changelog: [v0.1.12...v0.1.13](https://link-to-changelog)
 - Registered cloud i18n listener via `@Bean` for streamlined integration. ([e6bb1d9](https://example.com))
 - Added Understand Anything analysis artifacts for internal use. ([133f183](https://example.com))
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.16...0.1.17
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.16...0.1.17## v0.1.18
+
+# Release Notes for Version 0.1.18
+
+## New Features
+- **JSONPath Assertion:** Added `json-path-assert` test dependency for improved integration testing. ([#60](https://github.com/mercyblitz/dev-1.x))
+
+## Bug Fixes
+- Fixed Spring Boot test issues to ensure smoother testing workflows. ([commit](https://github.com/mercyblitz/dev-1.x/commit/2a568df))
+
+## Dependency Updates
+- **Microsphere Spring Cloud:** Bumped version to `0.1.23` for compatibility improvements. ([commit](https://github.com/mercyblitz/dev-1.x/commit/6949245))
+
+## Documentation
+- Updated the release version table in the README for better clarity. ([commit](https://github.com/mercyblitz/dev-1.x/commit/a336974))
+
+## Build and Workflow Enhancements
+- Aligned module POMs with Spring Boot starters to maintain consistency. ([commit](https://github.com/mercyblitz/dev-1.x/commit/bdc5798))
+- Merged `release-1.x` into `dev-1.x` for streamlined development. ([commit](https://github.com/mercyblitz/dev-1.x/commit/5a871c3))
+- Bumped version to the next patch level post-`0.1.17` release. ([commit](https://github.com/mercyblitz/dev-1.x/commit/a45428f))
+
+---
+
+Full Changelog: [v0.1.17...v0.1.18](https://github.com/mercyblitz/dev-1.x/compare/v0.1.17...v0.1.18)
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.17...0.1.18
