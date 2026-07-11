@@ -299,4 +299,20 @@ Full Changelog: [v0.1.12...v0.1.13](https://link-to-changelog)
 
 Full Changelog: [v0.1.17...v0.1.18](https://github.com/mercyblitz/dev-1.x/compare/v0.1.17...v0.1.18)
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.17...0.1.18
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.17...0.1.18## v0.1.19
+
+```markdown
+# Release Notes - Version 0.1.19
+
+## Dependency Updates
+- Bumped parent BOM and aligned release versions. ([8a39094](#))
+
+## Build and Workflow Enhancements
+- Merged `release-1.x` branch into `dev-1.x`. ([876a519](#))
+- Updated `pom.xml` for dependency configuration. ([cf58fde](#))
+
+## Other Changes
+- Bumped version to the next patch following the 0.1.18 release. ([de3c2f5](#))
+```
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.18...0.1.19
