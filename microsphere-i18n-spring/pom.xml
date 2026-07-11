@@ -38,6 +38,7 @@
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
             <artifactId>microsphere-spring-context</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Servlet API -->
