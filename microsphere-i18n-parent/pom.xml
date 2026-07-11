@@ -20,7 +20,7 @@
 
     <properties>
         <!-- BOM versions -->
-        <microsphere-spring-cloud.version>0.1.23</microsphere-spring-cloud.version>
+        <microsphere-spring-cloud.version>0.1.24</microsphere-spring-cloud.version>
     </properties>
 
     <dependencyManagement>
