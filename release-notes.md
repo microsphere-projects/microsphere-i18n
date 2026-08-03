@@ -326,4 +326,16 @@ For more details, refer to the [Full Changelog](https://github.com/your-repo/com
 
 *Full Changelog: View commit history for more details.*
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.18...0.2.19
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.18...0.2.19## v0.2.20
+
+_Release notes generation failed. Raw commits since 0.2.19:_
+
+```
+d83a02b Update README.md
+a35486a chore: merge main into release [skip ci]
+5f16be4 Bump microsphere-spring-cloud to 0.2.25
+b5c18e2 chore: merge release into main [skip ci]
+f2f438d chore: bump version to next patch after publishing 0.2.19
+```
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.19...0.2.20
