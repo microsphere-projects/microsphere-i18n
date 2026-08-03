@@ -315,4 +315,16 @@ Full Changelog: [v0.1.17...v0.1.18](https://github.com/mercyblitz/dev-1.x/compar
 - Bumped version to the next patch following the 0.1.18 release. ([de3c2f5](#))
 ```
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.18...0.1.19
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.18...0.1.19## v0.1.20
+
+_Release notes generation failed. Raw commits since 0.1.19:_
+
+```
+a2c9c14 Update version numbers in README.md
+b55acab Merge pull request #62 from mercyblitz/dev-1.x
+69dc9fd Bump Microsphere Spring Cloud to 0.1.25
+9f5b9ea chore: merge release-1.x into dev-1.x [skip ci]
+898403b chore: bump version to next patch after publishing 0.1.19
+```
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.19...0.1.20
