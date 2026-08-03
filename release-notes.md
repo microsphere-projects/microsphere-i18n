@@ -308,4 +308,22 @@ For more details, refer to the [Full Changelog](https://github.com/your-repo/com
 
 **Note**: For a detailed list of changes, refer to the full changelog in the repository.
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.17...0.2.18
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.17...0.2.18## v0.2.19
+
+# Release Notes - Version 0.2.19
+
+## Dependency Updates
+- Made `spring-context` dependency optional. ([ddb1c6b](#))
+- Bumped BOM versions and marked core dependency as optional. ([3df2e2b](#))
+
+## Build and Workflow Enhancements
+- Merged `main` into `release` and `release` into `main` to ensure synchronization. ([00162d7](#), [f109a52](#), [f97babd](#))
+
+## Other Changes
+- Updated version for post-0.2.18 development. ([ac09d57](#))
+
+---
+
+*Full Changelog: View commit history for more details.*
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.18...0.2.19
