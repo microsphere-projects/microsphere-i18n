@@ -327,4 +327,18 @@ b55acab Merge pull request #62 from mercyblitz/dev-1.x
 898403b chore: bump version to next patch after publishing 0.1.19
 ```
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.19...0.1.20
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.19...0.1.20## v0.1.21
+
+_Release notes generation failed. Raw commits since 0.1.20:_
+
+```
+5e5521b Update version numbers in README.md
+9cdfc2c Merge pull request #64 from mercyblitz/dev-1.x
+23555ba Split features endpoint test into integration test
+36a17e5 Bump Spring Cloud parent to 0.1.26
+b87b65b Create sync-branches-from-upstream.yml
+6fcfba9 chore: merge release-1.x into dev-1.x [skip ci]
+1de2de5 chore: bump version to next patch after publishing 0.1.20
+```
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.1.20...0.1.21
