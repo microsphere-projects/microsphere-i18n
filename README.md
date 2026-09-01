@@ -94,8 +94,8 @@ Choose the version that matches your Spring Cloud generation:
 
 | **Branch** | **Compatible Spring Cloud** | **Latest Version** |
 |------------|-----------------------------|--------------------|
-| **main**   | 2022.0.x – 2025.0.x         | `0.2.20`           |
-| **1.x**    | Hoxton – 2021.0.x           | `0.1.20`           |
+| **main**   | 2022.0.x – 2025.0.x         | `0.2.21`           |
+| **1.x**    | Hoxton – 2021.0.x           | `0.1.21`           |
 
 ### Spring Applications
 
