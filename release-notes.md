@@ -338,4 +338,21 @@ b5c18e2 chore: merge release into main [skip ci]
 f2f438d chore: bump version to next patch after publishing 0.2.19
 ```
 
-**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.19...0.2.20
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.19...0.2.20## v0.2.21
+
+_Release notes generation failed. Raw commits since 0.2.20:_
+
+```
+5247a85 Update version numbers in README.md
+d5b6eb1 chore: merge main into release [skip ci]
+b74fd1e Extract features check to integration test
+0fe6095 chore: merge main into release [skip ci]
+6b015d6 Bump Microsphere Spring Cloud parent to 0.2.26
+0a646e9 chore: merge main into release [skip ci]
+0744000 Merge pull request #63 from microsphere-projects/dependabot/maven/org.apache.maven-apache-maven-3.9.16
+2e40175 Bump org.apache.maven:apache-maven from 3.9.15 to 3.9.16
+e8550ea chore: merge release into main [skip ci]
+68cef87 chore: bump version to next patch after publishing 0.2.20
+```
+
+**Full Changelog**: https://github.com/microsphere-projects/microsphere-i18n/compare/0.2.20...0.2.21
