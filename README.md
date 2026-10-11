@@ -14,6 +14,7 @@ scenarios ranging from standalone Spring applications to distributed, cloud-nati
 
 ## Table of Contents
 
+- [Documentation](#documentation)
 - [Features](#features)
 - [Modules](#modules)
 - [Requirements](#requirements)
@@ -31,6 +32,16 @@ scenarios ranging from standalone Spring applications to distributed, cloud-nati
 - [Getting Help](#getting-help)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Documentation
+
+Detailed bilingual documentation lives under [`docs/`](./docs/README.md), organized per release line
+(`current/` for the 0.2.x `release` branch, `1.x/` for the 0.1.x `release-1.x` branch) and per Maven module:
+
+| **Guide** | **English** | **中文** | **Audience** |
+|-----------|-------------|----------|--------------|
+| User Guide | [docs/user-guide/README.md](./docs/user-guide/README.md) | [用户文档](./docs/user-guide/zh/README.md) | API reference, configuration and code examples |
+| Developer Guide | [docs/developer-guide/README.md](./docs/developer-guide/README.md) | [开发者文档](./docs/developer-guide/zh/README.md) | Architecture, source analysis, design patterns, flow diagrams |
 
 ## Features
 
