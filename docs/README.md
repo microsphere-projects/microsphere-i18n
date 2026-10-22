@@ -18,6 +18,8 @@ docs/
 │   │   └── zh/          # Chinese translations
 │   └── 1.x/             # 0.1.x line (release-1.x branch, Spring Boot 2)
 │       └── zh/
+├── diff/
+│   └── source/          # Per-module source comparisons between release-line tags
 └── developer-guide/     # Architecture, source analysis, design patterns, flows
     ├── current/
     │   └── zh/
@@ -31,6 +33,8 @@ docs/
 |--------------|-------------|--------------|
 | [User Guide](./user-guide/README.md) | [用户文档](./user-guide/zh/README.md) | Application developers consuming the library |
 | [Developer Guide](./developer-guide/README.md) | [开发者文档](./developer-guide/zh/README.md) | Contributors and framework integrators |
+| [Source diff `src/main` 0.2.21 vs 0.1.21](./diff/source/main-diff-0.2.21-vs-0.1.21.md) | [源码差异（src/main）0.2.21 vs 0.1.21](./diff/source/main-diff-0.2.21-vs-0.1.21.zh.md) | Release-line comparisons |
+| [Source diff `src/test` 0.2.21 vs 0.1.21](./diff/source/test-diff-0.2.21-vs-0.1.21.md) | [源码差异（src/test）0.2.21 vs 0.1.21](./diff/source/test-diff-0.2.21-vs-0.1.21.zh.md) | Release-line comparisons |
 
 ## Release lines
 
