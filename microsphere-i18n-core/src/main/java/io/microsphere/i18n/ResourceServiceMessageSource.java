@@ -34,7 +34,12 @@ public interface ResourceServiceMessageSource extends ServiceMessageSource {
     void initializeResource(String resource);
 
     /**
-     * Initializes the multiple resources
+     * Initializes the multiple resources.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   source.initializeResources(Arrays.asList("resource1.properties", "resource2.properties"));
+     * }</pre>
      *
      * @param resources the resources to be loaded for messages
      */
@@ -51,7 +56,13 @@ public interface ResourceServiceMessageSource extends ServiceMessageSource {
     Set<String> getInitializedResources();
 
     /**
-     * Gets the resource content character encoding
+     * Gets the resource content character encoding.
+     *
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   Charset encoding = source.getEncoding();
+     *   // returns StandardCharsets.UTF_8 by default
+     * }</pre>
      *
      * @return The default is utf-8
      */
