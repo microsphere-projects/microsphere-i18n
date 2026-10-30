@@ -19,18 +19,36 @@ package io.microsphere.i18n;
 public interface ReloadableResourceServiceMessageSource extends ResourceServiceMessageSource {
 
     /**
-     * Whether the specified resource can be overloaded
+     * Whether the specified resource can be reloaded at runtime.
      *
-     * @param changedResource Changes in the resource
-     * @return Supported by default, returning <code>true<code>
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+     *   source.init();
+     *   boolean reloadable = source.canReload("META-INF/i18n/test/i18n_messages_en.properties");
+     *   // returns true if the resource exists
+     * }</pre>
+     *
+     * @param changedResource the changed resource path
+     * @return {@code true} if reloadable, default returns {@code true}
      */
     boolean canReload(String changedResource);
 
     /**
-     * Whether the specified resource list can be overloaded
+     * Whether the specified resource list can be reloaded at runtime.
      *
-     * @param changedResources Changes in the resource
-     * @return Supported by default, returning <code>true<code>
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+     *   source.init();
+     *   boolean reloadable = source.canReload(Arrays.asList(
+     *       "i18n_messages_en.properties",
+     *       "i18n_messages_zh_CN.properties"
+     * ));
+     * }</pre>
+     *
+     * @param changedResources the list of changed resources
+     * @return {@code true} if any resource is reloadable, default returns {@code true}
      */
     default boolean canReload(Iterable<String> changedResources) {
         boolean reloadable = false;
@@ -43,20 +61,35 @@ public interface ReloadableResourceServiceMessageSource extends ResourceServiceM
     }
 
     /**
-     * Reload if {@link #canReload(String)} returns <code>true</code>,
-     * The calling {@link #initializeResource(String)} as default
+     * Reloads the specified resource if {@link #canReload(String)} returns {@code true}.
      *
-     * @param changedResource Changes in the resource
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+     *   source.init();
+     *   source.reload("i18n_messages_en.properties");
+     * }</pre>
+     *
+     * @param changedResource the changed resource path
      */
     default void reload(String changedResource) {
         initializeResource(changedResource);
     }
 
     /**
-     * Reload if {@link #canReload(Iterable)} returns <code>true</code>,
-     * The calling {@link #initializeResources(Iterable)} as default
+     * Reloads the specified resources if {@link #canReload(Iterable)} returns {@code true}.
      *
-     * @param changedResources Changes in the resources
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   DefaultServiceMessageSource source = new DefaultServiceMessageSource("test");
+     *   source.init();
+     *   source.reload(Arrays.asList(
+     *       "i18n_messages_en.properties",
+     *       "i18n_messages_zh_CN.properties"
+     * ));
+     * }</pre>
+     *
+     * @param changedResources the list of changed resources
      */
     default void reload(Iterable<String> changedResources) {
         initializeResources(changedResources);
