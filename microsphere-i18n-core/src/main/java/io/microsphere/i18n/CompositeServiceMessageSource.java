@@ -121,14 +121,26 @@ public class CompositeServiceMessageSource implements ReloadableResourceServiceM
     }
 
     /**
-     * Gets the default supported locales from the parent interface.
+     * Gets the default supported locales from the parent {@link ServiceMessageSource} interface.
      *
-     * @return default supported locales set
+     * <h3>Example Usage</h3>
+     * <pre>{@code
+     *   CompositeServiceMessageSource composite = new CompositeServiceMessageSource();
+     *   Set<Locale> locales = composite.getDefaultSupportedLocales();
+     *   // returns [Simplified Chinese, English] by default
+     * }</pre>
+     *
+     * @return default supported locales set (Chinese and English)
      */
     public Set<Locale> getDefaultSupportedLocales() {
         return ReloadableResourceServiceMessageSource.super.getSupportedLocales();
     }
 
+    /**
+     * Gets the source identifier of this composite message source.
+     *
+     * @return The source from the first child {@link ServiceMessageSource} or default
+     */
     @Override
     public String getSource() {
         return ReloadableResourceServiceMessageSource.super.getSource();
